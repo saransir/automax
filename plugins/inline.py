@@ -83,7 +83,7 @@ async def answer(bot, query):
 def get_reply_markup(query):
     buttons = [
         [
-            InlineKeyboardButton('🖥️ How To Own 🖥️', url=f'{TUTORIAL}')
+            InlineKeyboardButton('⭕️group ⭕️', url='https://t.me/bhddhhddnjd')
         ],
         [
             InlineKeyboardButton('🔍 Search again 🔎', switch_inline_query_current_chat=query)
@@ -102,4 +102,3 @@ def get_size(size):
         i += 1
         size /= 1024.0
     return "%.2f %s" % (size, units[i])
-
