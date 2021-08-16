@@ -19,7 +19,7 @@ async def filter(client, message):
             if user.status == "kicked":
                 await client.send_message(
                     chat_id=message.from_user.id,
-                    text="Sorry Sir, You are Banned to use me.",
+                    text="Sorry mowne 💋, You are Banned to use me.",
                     parse_mode="markdown",
                     disable_web_page_preview=True
                 )
@@ -27,7 +27,7 @@ async def filter(client, message):
         except UserNotParticipant:
             await client.send_message(
                 chat_id=message.from_user.id,
-                text="**⭕️⭕️Join My Updates Channel to use this Bot⭕️⭕️!**",
+                text="**⭕️⭕️Join My Updates Channel to use this Bot😉 ⭕️⭕️!**",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -140,7 +140,7 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton(text="📃 Pages 1/1",callback_data="pages")]
+                [InlineKeyboardButton(text="⭕️ Pages 1/1",callback_data="pages")]
             )
             poster=None
             if API_KEY:
@@ -311,7 +311,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer("I Like Your Smartness, But Don't Be Oversmart ⭕️",show_alert=True)
+                await query.answer("⭕️ജോയിൻ ചെയ്യണം മിസ്റ്റർ 😉⭕️",show_alert=True)
                 return
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
@@ -345,4 +345,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "pages":
             await query.answer()
     else:
-        await query.answer("⭕️കൌതുകും ലേശം കൂടുതൽ ആണല്ലേ⭕️👀",show_alert=True)
+        await query.answer("⭕️ യെടാ മോനാ ഇത് നിനക്ക് ഉള്ളതല്ല ⭕️👀",show_alert=True)
