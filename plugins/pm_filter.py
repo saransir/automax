@@ -60,7 +60,7 @@ async def filter(client, message):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
                     )
         else:
-            await client.send_photo(chat_id=message.from_user.id, photo="https://telegra.ph/file/aae3f0c04c407b86b171e.jpg" caption=f"❗️❗️𝘊𝘰𝘶𝘭𝘥𝘯'𝘵 𝘍𝘪𝘯𝘥 𝘛𝘩𝘪𝘴 𝘔𝘰𝘷𝘪𝘦❗️❗️\n\n ⚠️𝙋𝙡𝙚𝙖𝙨𝙚 𝙘𝙝𝙚𝙘𝙠 𝙩𝙝𝙚 𝙨𝙥𝙚𝙡𝙡𝙞𝙣𝙜⚠️",
+            await client.send_photo(chat_id=message.from_user.id, photo="https://telegra.ph/file/aae3f0c04c407b86b171e.jpg",
             return
 
         if not btn:
