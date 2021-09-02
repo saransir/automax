@@ -28,11 +28,11 @@ async def start(bot, cmd):
                 ident, file_id = cmd.text.split("_-_-_-_")
                 await bot.send_message(
                     chat_id=cmd.from_user.id,
-                    text="**⭕️ Join My Updates Channel to use this Bot⭕️!**",
+                    text="**⭕️ Join My group to use this Bot⭕️!**",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("⭕️ Join Updates Channel ⭕️", url=invite_link.invite_link)
+                                InlineKeyboardButton("⭕️ Join group ⭕️", url=invite_link.invite_link)
                             ],
                             [
                                 InlineKeyboardButton("🔄 Try Again⭕️", callback_data=f"checksub#{file_id}")
@@ -89,7 +89,7 @@ async def start(bot, cmd):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("⭕️ Join Updates Channel ⭕️", url=invite_link.invite_link)
+                        InlineKeyboardButton("⭕️ Join group ⭕️", url=invite_link.invite_link)
                     ]
                 ]
             )
