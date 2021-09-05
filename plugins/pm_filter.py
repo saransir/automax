@@ -273,7 +273,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "about":
             buttons = [
                 [
-                    InlineKeyboardButton('⭕️group⭕️', url='https://t.me/bhddhhddnjd'),
+                    InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/bhddhhddnjd'),
                     InlineKeyboardButton('on air (tm)', url=f'{TUTORIAL}')
                 ]
                 ]
@@ -295,10 +295,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         print(e)
                         f_caption=f_caption
                 if f_caption is None:
-                    f_caption = f"{files.file_name}"
+                    f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('⭕️group⭕️', url='https://t.me/bhddhhddnjd')
+                        InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/bhddhhddnjd')
                     ]
                     ]
                 
@@ -329,7 +329,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('⭕️group⭕️', url=f'https://t.me/bhddhhddnjd')
+                        InlineKeyboardButton('⭕️ group ⭕️', url=f'https://t.me/bhddhhddnjd')
                     ]
                     ]
                 
@@ -337,7 +337,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption="title""f_caption",
+                    caption=f_caption,
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
 
