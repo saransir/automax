@@ -59,7 +59,7 @@ async def start(bot, cmd):
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
                     try:
-                        f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
+                        f_caption="{title}",
                     except Exception as e:
                         print(e)
                         f_caption=f_caption
@@ -67,16 +67,16 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('⭕️group⭕️', url='https://t.me/bhddhhddnjd')
+                        InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/bhddhhddnjd')
                     ],
                     [
-                        InlineKeyboardButton('⭕️🔍 Search again ⭕️', switch_inline_query_current_chat='')
+                        InlineKeyboardButton('⭕️ 🔍 Search again ⭕️', switch_inline_query_current_chat='')
                     ]
                     ]
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption=f_caption,
+                    caption="<b>⭕️ file name ⭕️ 👉  </b>""<code>" + title + "</code>""\n\n<b>⭕️𝙲𝚑𝚊𝚗𝚗𝚎𝚕-- @on_air_movies\n👇𝙼𝚘𝚟𝚒𝚎 searching 𝚐𝚛𝚘𝚞𝚙👇</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
@@ -85,7 +85,7 @@ async def start(bot, cmd):
         invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text="**Please Join My main Channel to use this Bot!**",
+            text="**Please Join My group to use this Bot!**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -102,8 +102,8 @@ async def start(bot, cmd):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("⭕️channel⭕️", url="https://t.me/on_air_movies"), 
-                        InlineKeyboardButton("⭕️group⭕️", url="https://t.me/bhddhhddnjd")
+                        InlineKeyboardButton("channel", url="https://t.me/on_air_movies"), 
+                        InlineKeyboardButton("⭕️ group ⭕️", url="https://t.me/bhddhhddnjd")
                     ],
                     [
                         InlineKeyboardButton("⭕️ 🔎Search Here🔍 ⭕️", switch_inline_query_current_chat='')
@@ -195,8 +195,8 @@ async def delete(bot, message):
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('⭕️group⭕️', url='https://t.me/bhddhhddnjd'),
-            InlineKeyboardButton('⭕️channel⭕️', url=f'https://t.me/on_air_movies')
+            InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/bhddhhddnjd'),
+            InlineKeyboardButton('⭕️ channel ⭕️', url=f'https://t.me/on_air_movies')
         ]
         ]
     await message.reply(text=f"Language : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\nSource Code : <a href='https://t.me/bhddhhddnjd'>Click here</a>\nUpdate Channel : <a href='https://t.me/bhddhhddnjd'>⭕️on air⭕️</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
