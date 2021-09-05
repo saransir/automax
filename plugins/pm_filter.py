@@ -321,7 +321,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
                     try:
-                        f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
+                        f_caption="{title}",
                     except Exception as e:
                         print(e)
                         f_caption=f_caption
@@ -337,7 +337,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption=title,
+                    caption=f_caption,
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
 
@@ -345,4 +345,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "pages":
             await query.answer()
     else:
-        await query.answer("⭕️ യെടാ മോനാ ഇത് നിനക്ക് ഉള്ളതല്ല ⭕️👀",show_alert=True)
+        await query.answer("⭕️ യെടാ മോനാ ഇത് നിനക്ക് ഉള്ളതല്ല 🙃 ⭕️",show_alert=True)
