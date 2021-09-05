@@ -290,7 +290,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
                     try:
-                        f_caption="<code>{title}</code>",
+                        f_caption="{title}",
                     except Exception as e:
                         print(e)
                         f_caption=f_caption
@@ -321,7 +321,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
                     try:
-                        f_caption="<code>{title}</code>",
+                        f_caption="{title}",
                     except Exception as e:
                         print(e)
                         f_caption=f_caption
