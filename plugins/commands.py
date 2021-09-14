@@ -19,7 +19,7 @@ async def start(bot, cmd):
                 if user.status == "kicked":
                     await bot.send_message(
                         chat_id=cmd.from_user.id,
-                        text="Sorry 😶 mowna , You are Banned to use me.",
+                        text="Sorry  mowna 💋, You are Banned to use me.",
                         parse_mode="markdown",
                         disable_web_page_preview=True
                     )
@@ -28,14 +28,14 @@ async def start(bot, cmd):
                 ident, file_id = cmd.text.split("_-_-_-_")
                 await bot.send_message(
                     chat_id=cmd.from_user.id,
-                    text="**⭕️ Join My group to use this Bot⭕️!**",
+                    text="**⭕️ Join My group to use this Bot ⭕️",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
                                 InlineKeyboardButton("⭕️ Join group ⭕️", url=invite_link.invite_link)
                             ],
                             [
-                                InlineKeyboardButton("🔄 Try Again⭕️", callback_data=f"checksub#{file_id}")
+                                InlineKeyboardButton("🔄 Try Again 🔄", callback_data=f"checksub#{file_id}")
                             ]
                         ]
                     ),
@@ -67,7 +67,7 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/bhddhhddnjd')
+                        InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1')
                     ],
                     [
                         InlineKeyboardButton('⭕️ 🔍 Search again ⭕️', switch_inline_query_current_chat='')
@@ -76,7 +76,7 @@ async def start(bot, cmd):
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption="<b>⭕️ file name ⭕️ 👉  </b>""<code>" + title + "</code>""\n\n<b>⭕️𝙲𝚑𝚊𝚗𝚗𝚎𝚕-- @on_air_movies\n👇𝙼𝚘𝚟𝚒𝚎 searching 𝚐𝚛𝚘𝚞𝚙👇</b>",
+                    caption="<b>⭕️ file name ⭕️ 👉  </b>""<code>" + title + "</code>""\n\n»»————★————-««\n\n<b>⭕️ 𝙲𝚑𝚊𝚗𝚗𝚎𝚕-- @on_air_movies\n👇𝙼𝚘𝚟𝚒𝚎 searching 𝚐𝚛𝚘𝚞𝚙👇</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
@@ -85,7 +85,7 @@ async def start(bot, cmd):
         invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text="**Please Join My group to use this Bot!**",
+            text="** Join My group to use this Bot!**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -103,7 +103,7 @@ async def start(bot, cmd):
                 [
                     [
                         InlineKeyboardButton("channel", url="https://t.me/on_air_movies"), 
-                        InlineKeyboardButton("⭕️ group ⭕️", url="https://t.me/bhddhhddnjd")
+                        InlineKeyboardButton("⭕️ group ⭕️", url="https://t.me/joinchat/q4xMr02fvA9jNzQ1")
                     ],
                     [
                         InlineKeyboardButton("⭕️ 🔎Search Here🔍 ⭕️", switch_inline_query_current_chat='')
