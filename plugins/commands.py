@@ -76,7 +76,7 @@ async def start(bot, cmd):
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption="<b>⭕️ file name ⭕️ 👉  </b>""<code>" + title + "</code>""\n\n»»————★————-««\n\n<b>⭕️ 𝙲𝚑𝚊𝚗𝚗𝚎𝚕-- @on_air_movies\n👇𝙼𝚘𝚟𝚒𝚎 searching 𝚐𝚛𝚘𝚞𝚙👇</b>",
+                    caption="<b>⭕️ file name ⭕️ 👉  </b>""<code>" + title + "</code>""\n\n»»————★————-««\n\n<b>⭕️ 𝙲𝚑𝚊𝚗𝚗𝚎𝚕-- @on_air_movies\n👇𝙼𝚘𝚟𝚒𝚎 requesting 𝚐𝚛𝚘𝚞𝚙👇</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
@@ -102,7 +102,7 @@ async def start(bot, cmd):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("channel", url="https://t.me/on_air_movies"), 
+                        InlineKeyboardButton("channel", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"), 
                         InlineKeyboardButton("⭕️ group ⭕️", url="https://t.me/joinchat/q4xMr02fvA9jNzQ1")
                     ],
                     [
@@ -191,7 +191,7 @@ async def delete(bot, message):
         await msg.edit('File is successfully deleted from database')
     else:
         await msg.edit('File not found in database')
-@Client.on_message(filters.command('about'))
+@Client.on_message(filters.command('saran'))
 async def bot_info(bot, message):
     buttons = [
         [
