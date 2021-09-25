@@ -191,12 +191,12 @@ async def delete(bot, message):
         await msg.edit('File is successfully deleted from database')
     else:
         await msg.edit('File not found in database')
-@Client.on_message(filters.command('saran'))
+@Client.on_message(filters.command('help'))
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/bhddhhddnjd'),
-            InlineKeyboardButton('⭕️ channel ⭕️', url=f'https://t.me/on_air_movies')
+            InlineKeyboardButton('🌀 How to use bot 🌀', url='https://t.me/movie_requesting_group_rules/42'),
+            InlineKeyboardButton('⚠️ group rules ⚠️', url=f'https://t.me/on_air_movies')
         ]
         ]
-    await message.reply(text=f"Language : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\nSource Code : <a href='https://t.me/bhddhhddnjd'>Click here</a>\nUpdate Channel : <a href='https://t.me/bhddhhddnjd'>⭕️on air⭕️</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    await message.reply(text=f"click 👇👇)
