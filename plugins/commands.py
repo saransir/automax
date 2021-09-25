@@ -195,8 +195,7 @@ async def delete(bot, message):
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('🌀How to use🌀', url='https://t.me/movie_requesting_group_rules/42'),
-            InlineKeyboardButton('⚠️rules ⚠️', url='https://t.me/movie_requesting_group_rules/4')
+            InlineKeyboardButton('⚠️ group rules ⚠️', url='https://t.me/movie_requesting_group_rules/4')
         ]
         ]
-    await message.reply(text=f"😶")
+    await message.reply(text=f"Hi)
