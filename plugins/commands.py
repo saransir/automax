@@ -197,7 +197,7 @@ async def bot_info(bot, message):
         [
             InlineKeyboardButton('⚠️ group rules ⚠️', url='https://t.me/movie_requesting_group_rules/4')
         ]
-    await message.reply(text=f"click the 👇 button ")
+    await message.reply(text=f"click the 👇 button")
 
 @Client.on_message(filters.command('onair'))
 async def bot_gro(bot, message):
