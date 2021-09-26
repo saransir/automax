@@ -197,8 +197,7 @@ async def bot_info(bot, message):
         [
             InlineKeyboardButton('⚠️ group rules ⚠️', url='https://t.me/movie_requesting_group_rules/4')
         ]
-        ]
-    await message.reply(text=f"Rules of Group 👉 https://t.me/movie_requesting_group_rules/4 👈👆click here")
+    await message.reply(text=f"click the 👇 button ")
 
 @Client.on_message(filters.command('onair'))
 async def bot_gro(bot, message):
@@ -209,7 +208,6 @@ async def bot_link(bot, message):
     buttons = [
         [
             InlineKeyboardButton('🌀 click & share 🌀', url='https://telegram.me/share/url?url=t.me/joinchat/q4xMr02fvA9jNzQ1')
-        ]
         ]
     await message.reply(text=f"movie searching bot link 👉 https://t.me/On_air_Filter_bot")
 
