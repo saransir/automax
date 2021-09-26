@@ -191,11 +191,19 @@ async def delete(bot, message):
         await msg.edit('File is successfully deleted from database')
     else:
         await msg.edit('File not found in database')
-@Client.on_message(filters.command('help'))
+@Client.on_message(filters.command('Rules'))
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('⚠️ group rules ⚠️', url='https://t.me/movie_requesting_group_rules/4')
+            InlineKeyboardButton("⚠️ group rules ⚠️", url="https://t.me/movie_requesting_group_rules/4")
         ]
         ]
     await message.reply(text=f"Rules of Group 👉 https://t.me/movie_requesting_group_rules/4 👈👆click here")
+@Client.on_message(filters.command('onair'))
+async def bot_info(bot, message):
+    buttons = [
+        [
+            InlineKeyboardButton("click & share", url="https://telegram.me/share/url?url=t.me/joinchat/q4xMr02fvA9jNzQ1")
+        ]
+        ]
+    await message.reply(text=f"group link 👉 https://t.me/joinchat/q4xMr02fvA9jNzQ1")
