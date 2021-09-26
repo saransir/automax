@@ -198,4 +198,4 @@ async def bot_info(bot, message):
             InlineKeyboardButton('⚠️ group rules ⚠️', url='https://t.me/movie_requesting_group_rules/4')
         ]
         ]
-    await message.reply(text=f"hi🎡")
+    await message.reply(text=f"Rules of Group_<a href="https://t.me/movie_requesting_group_rules/4">click here</a>")
