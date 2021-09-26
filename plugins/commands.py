@@ -202,11 +202,6 @@ async def bot_info(bot, message):
 
 @Client.on_message(filters.command('onair'))
 async def bot_info(bot, message):
-    buttons = [
-        [
-            InlineKeyboardButton("click & share", url="https://telegram.me/share/url?url=t.me/joinchat/q4xMr02fvA9jNzQ1")
-        ]
-        ]
     await message.reply(text=f"group link 👉 https://t.me/joinchat/q4xMr02fvA9jNzQ1")
 
 @Client.on_message(filters.command('botlink'))
