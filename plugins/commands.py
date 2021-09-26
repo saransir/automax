@@ -205,7 +205,7 @@ async def bot_info(bot, message):
     await message.reply(text=f"group link 👉 https://t.me/joinchat/q4xMr02fvA9jNzQ1")
 
 @Client.on_message(filters.command('botlink'))
-async def bot_info(bot, message):
+async def bot_link(bot, message):
     buttons = [
         [
             InlineKeyboardButton("click & share", url="https://telegram.me/share/url?url=t.me/joinchat/q4xMr02fvA9jNzQ1")
