@@ -203,8 +203,13 @@ async def bot_gro(bot, message):
 
 @Client.on_message(filters.command('botlink'))
 async def bot_link(bot, message):
-    buttons = [[
-            InlineKeyboardButton('🌀 click & share 🌀', url="https://telegram.me/share/url?url=t.me/joinchat/q4xMr02fvA9jNzQ1")
-        ]]
+    buttons = [
+                    [
+                        InlineKeyboardButton('🌀 group 🌀', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1')
+                    ],
+                    [
+                        InlineKeyboardButton('🔍 Search movie', switch_inline_query_current_chat='')
+                    ]
+                    ]
     await message.reply(text=f"movie searching bot link 👉 https://t.me/On_air_Filter_bot")
 
