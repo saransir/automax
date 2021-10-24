@@ -204,12 +204,11 @@ async def bot_gro(bot, message):
 @Client.on_message(filters.command('botlink'))
 async def bot_link(bot, message):
     buttons = [
-                    [
-                        InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1')
-                    ],
-                    [
-                        InlineKeyboardButton('⭕️ 🔍 Search again ⭕️', switch_inline_query_current_chat='')
-                    ]
-                    ]
-    await message.reply(text=f"movie searching bot link 👉 https://t.me/On_air_Filter_bot")
+        [
+            InlineKeyboardButton('🎪 group 🎪', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1'),
+            InlineKeyboardButton('🔍search file 💼', switch_inline_query_current_chat='')
+        ]
+        ]
+    await message.reply(text=f"@On_air_Filter_bot", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+
 
