@@ -198,7 +198,7 @@ async def bot_info(bot, message):
             InlineKeyboardButton('⚠️ group rules ⚠️', url='https://t.me/movie_requesting_group_rules/4')
         ]
         ] 
-    await message.reply_photo(photo="https://telegra.ph/file/51683050f583af4c81013.jpg", caption=f"<b>click the 👇 button to read group rules </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    await message.reply(photo="https://telegra.ph/file/51683050f583af4c81013.jpg", caption=f"<b>click the 👇 button to read group rules </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 @Client.on_message(filters.command('search'))
 async def bot_link(bot, message):
     buttons = [
