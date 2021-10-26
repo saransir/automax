@@ -76,7 +76,7 @@ async def start(bot, cmd):
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption="<b>⭕️ file name ⭕️ 👉  </b>""<code>" + title + "</code>""\n\n»»————★————-««\n\n<b>⭕️ 𝙲𝚑𝚊𝚗𝚗𝚎𝚕-- @on_air_movies\n👇𝙼𝚘𝚟𝚒𝚎 requesting 𝚐𝚛𝚘𝚞𝚙👇</b>",
+                    caption="<b>⭕️ file name ⭕️ 👉  </b>""<code>" + title + "</code>""\n\n<b>⭕️ 𝙲𝚑𝚊𝚗𝚗𝚎𝚕-- @on_air_movies\n👇𝙼𝚘𝚟𝚒𝚎 requesting 𝚐𝚛𝚘𝚞𝚙👇</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
@@ -85,11 +85,11 @@ async def start(bot, cmd):
         invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text="** Join My group to use this Bot!**",
+            text="** Join My 🎪 group to use this Bot!**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("⭕️ Join group ⭕️", url=invite_link.invite_link)
+                        InlineKeyboardButton("🎪 Join group 🎪", url=invite_link.invite_link)
                     ]
                 ]
             )
@@ -102,11 +102,11 @@ async def start(bot, cmd):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("channel", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"), 
-                        InlineKeyboardButton("⭕️ group ⭕️", url="https://t.me/joinchat/q4xMr02fvA9jNzQ1")
+                        InlineKeyboardButton("🌀 channel 🌀", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"), 
+                        InlineKeyboardButton("🎪 group 🎪", url="https://t.me/joinchat/q4xMr02fvA9jNzQ1")
                     ],
                     [
-                        InlineKeyboardButton("⭕️ 🔎Search Here🔍 ⭕️", switch_inline_query_current_chat='')
+                        InlineKeyboardButton("🎬 🔎 Search Here 🔍 🎬", switch_inline_query_current_chat='')
                     ]
                 ]
             )
