@@ -27,11 +27,11 @@ async def filter(client, message):
         except UserNotParticipant:
             await client.send_message(
                 chat_id=message.from_user.id,
-                text="**⭕️ Join My group to use this Bot😉 ⭕️!**",
+                text="**Join My group🎪 to use this Bot 😉**",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("⭕️ Join GROUP ⭕️", url=invite_link.invite_link)
+                            InlineKeyboardButton("🎪 Join GROUP 🌀", url=invite_link.invite_link)
                         ]
                     ]
                 ),
@@ -76,7 +76,7 @@ async def filter(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton(text="⭕️ Pages 1/1 ⭕️",callback_data="pages")]
+                [InlineKeyboardButton(text="🎪 Pages 1/1 🎪",callback_data="pages")]
             )
             poster=None
             if API_KEY:
@@ -140,7 +140,7 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton(text="⭕️ Pages 1/1⭕️",callback_data="pages")]
+                [InlineKeyboardButton(text="🎪 Pages 1/1 🎪",callback_data="pages")]
             )
             poster=None
             if API_KEY:
@@ -158,7 +158,7 @@ async def group(client, message):
             [InlineKeyboardButton(text="⇛⇛next⇛⇛",callback_data=f"next_0_{keyword}")]
         )    
         buttons.append(
-            [InlineKeyboardButton(text=f"⭕️ Pages 1/{data['total']}⭕️",callback_data="pages")]
+            [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages")]
         )
         poster=None
         if API_KEY:
@@ -211,7 +211,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton("⇚⇚back⇚⇚", callback_data=f"back_{int(index)+1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(f"⭕️ Pages {int(index)+2}/{data['total']}", callback_data="pages")]
+                    [InlineKeyboardButton(f"🎪 Pages {int(index)+2}/{data['total']}🎪", callback_data="pages")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -225,7 +225,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton("⇚⇚back⇚⇚", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton("⇛⇛next⇛⇛", callback_data=f"next_{int(index)+1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(f"⭕️ Pages {int(index)+2}/{data['total']}", callback_data="pages")]
+                    [InlineKeyboardButton(f"🎪 Pages {int(index)+2}/{data['total']}🎪", callback_data="pages")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -249,7 +249,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton("⇛⇛next⇛⇛", callback_data=f"next_{int(index)-1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(f"⭕️ Pages {int(index)}/{data['total']}", callback_data="pages")]
+                    [InlineKeyboardButton(f"🎪 Pages {int(index)}/{data['total']}🎪", callback_data="pages")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -263,7 +263,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton("⇚⇚back⇚⇚ ", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton("⇛⇛next⇛⇛", callback_data=f"next_{int(index)-1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(f"⭕️ Pages {int(index)}/{data['total']}", callback_data="pages")]
+                    [InlineKeyboardButton(f"🎪 Pages {int(index)}/{data['total']}🎪", callback_data="pages")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -273,7 +273,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "about":
             buttons = [
                 [
-                    InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1'),
+                    InlineKeyboardButton('🎪 group ⭕️', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1'),
                     InlineKeyboardButton('on air ', url=f'{TUTORIAL}')
                 ]
                 ]
@@ -298,7 +298,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1')
+                        InlineKeyboardButton('🎪 group 🎪', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1')
                     ]
                     ]
                 
@@ -329,7 +329,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('⭕️ group ⭕️', url=f'https://t.me/joinchat/q4xMr02fvA9jNzQ1')
+                        InlineKeyboardButton('🎪 group 🎪', url=f'https://t.me/joinchat/q4xMr02fvA9jNzQ1')
                     ]
                     ]
                 
@@ -337,7 +337,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption="<b>⭕️ file name 🎬 👉  </b>""<code>" + title + "</code>""\n\n»»————★————-««\n\n<b>⭕️ 𝙲𝚑𝚊𝚗𝚗𝚎𝚕-- @on_air_movies\n👇𝙼𝚘𝚟𝚒𝚎 searching 𝚐𝚛𝚘𝚞𝚙👇</b>",
+                    caption="<b>⭕️ file name 🎬 👉  </b>""<code>" + title + "</code>""\n\n<b>⭕️ 𝙲𝚑𝚊𝚗𝚗𝚎𝚕-- @on_air_movies\n👇𝙼𝚘𝚟𝚒𝚎 searching 𝚐𝚛𝚘𝚞𝚙👇</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     ) 
 
