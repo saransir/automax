@@ -32,7 +32,7 @@ async def start(bot, cmd):
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("⭕️ Join group ⭕️", url=invite_link.invite_link)
+                                InlineKeyboardButton("🌀 Join group 🌀", url=invite_link.invite_link)
                             ],
                             [
                                 InlineKeyboardButton("🔄 Try Again 🔄", callback_data=f"checksub#{file_id}")
@@ -67,10 +67,10 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('⭕️ group ⭕️', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1')
+                        InlineKeyboardButton('🎪 group 🎪', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1')
                     ],
                     [
-                        InlineKeyboardButton('⭕️ 🔍 Search again ⭕️', switch_inline_query_current_chat='')
+                        InlineKeyboardButton(' 🔍 Search again 🎬', switch_inline_query_current_chat='')
                     ]
                     ]
                 await bot.send_cached_media(
@@ -193,15 +193,17 @@ async def delete(bot, message):
         await msg.edit('File not found in database')
 @Client.on_message(filters.command('help'))
 async def bot_info(bot, message):
-    buttons = [[
+    buttons = [
+        [
             InlineKeyboardButton('⚠️ group rules ⚠️', url="https://t.me/movie_requesting_group_rules/4")
-        ]]
-    await message.reply(text=f"click the 👇 button")
+        ]
+        ] 
+    await message.reply(text=f"<b>click the 👇 button to read group rules </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True
 @Client.on_message(filters.command('onair'))
 async def bot_gro(bot, message):
-    await message.reply(text=f"group link 👉 https://t.me/joinchat/q4xMr02fvA9jNzQ1")
+    await message.reply(text=f"<b>group link 👉 https://t.me/joinchat/q4xMr02fvA9jNzQ1</b>")
 
-@Client.on_message(filters.command('botlink'))
+@Client.on_message(filters.command('search'))
 async def bot_link(bot, message):
     buttons = [
         [
