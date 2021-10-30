@@ -192,7 +192,7 @@ async def delete(bot, message):
     else:
         await msg.edit('File not found in database')
 @Client.on_message(filters.command('help'))
-async def bot_info(bot, message):
+async def bot_indo(bot, message):
     buttons = [
         [
             InlineKeyboardButton('⚠️ group rules ⚠️', url='https://t.me/movie_requesting_group_rules/4')
@@ -207,3 +207,12 @@ async def bot_link(bot, message):
         ]
         ]
     await message.reply(text=f"<b>തായേ👇 കാണുന്ന 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു 🎬സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്യുക</b> \n\n <b>👇Click on the 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 button and type the name of the movie‌‌</b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+@Client.on_message(filters.command('about'))
+async def bot_info(bot, message):
+    buttons = [
+        [
+            InlineKeyboardButton("🏡home", callback_data="start"),
+            InlineKeyboardButton("group⚡️", url="https://t.me/joinchat/q4xMr02fvA9jNzQ1")
+        ]
+        ]
+    await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v3 🎪\n ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](t.me/S1a2r3a4n)\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
