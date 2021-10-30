@@ -211,8 +211,7 @@ async def bot_link(bot, message):
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton("🏡home", callback_data="start"),
-            InlineKeyboardButton("group⚡️", url="https://t.me/joinchat/q4xMr02fvA9jNzQ1")
+            InlineKeyboardButton("🎪 group 🎪", url="https://t.me/joinchat/q4xMr02fvA9jNzQ1")
         ]
         ]
-    await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v3 🎪\n ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](t.me/S1a2r3a4n)\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v3 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](t.me/S1a2r3a4n)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
