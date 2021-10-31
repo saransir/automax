@@ -1,6 +1,6 @@
 #Kanged From @TroJanZheX
 from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS
-from info import IMOG
+from index import IMOG
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
 import re
