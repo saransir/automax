@@ -78,4 +78,3 @@ async def index_files(bot, message):
                 await msg.edit(f'Error: {e}')
             else:
                 await msg.edit(f'Total {total_files} Saved To DataBase!')
-IMOG = ["🎬", "🎪", "💫", "📽️", "🌀", ]
