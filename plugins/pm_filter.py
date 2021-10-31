@@ -50,7 +50,7 @@ async def filter(client, message):
         return
     if 2 < len(message.text) < 100:    
         btn = []
-        mog = random.choice(IMOG)
+        mog = "random.choice(IMOG)"
         search = message.text
         files = await get_filter_results(query=search)
         if files:
