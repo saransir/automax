@@ -50,12 +50,13 @@ async def filter(client, message):
         return
     if 2 < len(message.text) < 100:    
         btn = []
+        mog = random.choice(IMOG)
         search = message.text
         files = await get_filter_results(query=search)
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = f"🎪-[{get_size(file.file_size)}] {file.file_name}"
+                filename = f"mog-[{get_size(file.file_size)}] {file.file_name}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
                     )
