@@ -21,7 +21,6 @@ AUTH_USERS = (auth_users + ADMINS) if auth_users else []
 auth_channel = environ.get('AUTH_CHANNEL')
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else auth_channel
 AUTH_GROUPS = [int(admin) for admin in environ.get("AUTH_GROUPS", "").split()]
-IMOG = @on_air_movies
 TUTORIAL = "https://t.me/joinchat/q4xMr02fvA9jNzQ1"
 # MongoDB information
 DATABASE_URI = environ['DATABASE_URI']
