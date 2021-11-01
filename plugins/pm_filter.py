@@ -8,6 +8,16 @@ from pyrogram.errors import UserNotParticipant
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster
 BUTTONS = {}
 BOT = {}
+
+RATING = ["5.1 🐿️ IMDB", "6.2 🐿️ IMDB", "7.3 🐿️ IMDB", "8.4 🐿️ IMDB", "9.5 🐿️ IMDB", ]
+GENRES = ["fun🍿 fact",
+         "Thriller🍿 Comedy",
+         "Drama🍿 Comedy",
+         "Family🍿 Drama",
+         "Action🍿 Adventure",
+         "Film Noir🍿",
+         "Documentary🍿"]
+
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
     if message.text.startswith("/"):
