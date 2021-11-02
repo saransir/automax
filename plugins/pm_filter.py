@@ -9,7 +9,7 @@ from utils import get_filter_results, get_file_details, is_subscribed, get_poste
 BUTTONS = {}
 BOT = {}
 
-RAT = ["🎪", "🇲🇰", "🌀", "🍿", "🎬", ]
+RAT = ["🍉", "🍇", "🍊", "🍓", "🍎", "🥭", "🍒", ]
 RATING = ["5.1/10 🤺ɪᴍᴅʙ", "6.2/10 🤺ɪᴍᴅʙ", "7.3/10 🤺ɪᴍᴅʙ", "8.4/10 🤺ɪᴍᴅʙ", "7.5/10 🤺ɪᴍᴅʙ", ]
 GENRES = ["ғᴜɴ🍿 ғᴀᴄᴛ",
          "ᴛʜʀɪʟʟᴇʀ🍿",
@@ -66,7 +66,7 @@ async def filter(client, message):
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = f"**{random.choice(RAT)}**[{get_size(file.file_size)}] {file.file_name}"
+                filename = f"{random.choice(RAT)}[{get_size(file.file_size)}] {file.file_name}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
                     )
@@ -135,7 +135,7 @@ async def group(client, message):
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = f"🎪-[{get_size(file.file_size)}]-🥀-{file.file_name}"
+                filename = f"{random.choice(RAT)}-[{get_size(file.file_size)}]-{random.choice(RAT)}-{file.file_name}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
                 )
