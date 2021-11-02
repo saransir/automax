@@ -9,14 +9,14 @@ from utils import get_filter_results, get_file_details, is_subscribed, get_poste
 BUTTONS = {}
 BOT = {}
 
-RATING = ["5.1 🐿️ IMDB", "6.2 🐿️ IMDB", "7.3 🐿️ IMDB", "8.4 🐿️ IMDB", "9.5 🐿️ IMDB", ]
-GENRES = ["fun🍿 fact",
-         "Thriller🍿 Comedy",
-         "Drama🍿 Comedy",
-         "Family🍿 Drama",
-         "Action🍿 Adventure",
-         "Film Noir🍿",
-         "Documentary🍿"]
+RATING = ["5.1/10 🤺ɪᴍᴅʙ", "6.2/10 🤺ɪᴍᴅʙ", "7.3/10 🤺ɪᴍᴅʙ", "8.4/10 🤺ɪᴍᴅʙ", "7.5/10 🤺ɪᴍᴅʙ", ]
+GENRES = ["ғᴜɴ🍿 ғᴀᴄᴛ",
+         "ᴛʜʀɪʟʟᴇʀ🍿",
+         "ᴅʀᴀᴍᴀ🍿 ᴄᴏᴍᴇᴅʏ",
+         "ғᴀᴍɪʟʏ🍿 ᴅʀᴀᴍᴀ",
+         "ᴀᴅᴠᴇɴᴛᴜʀᴇ🍿",
+         "ғɪʟᴍ ɴᴏɪʀ🍿",
+         "ᴅᴏᴄᴜᴍᴇɴᴛᴀʀʏ🍿"]
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
@@ -123,7 +123,7 @@ async def group(client, message):
         btn = []
 
         search = message.text
-        result_txt = f"**<b>🎬ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b> {search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎🇲🇰 Rating‌‌‌‌‎ :** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n\n**⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b> **"
+        result_txt = f"**<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b> {search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎🦚ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**🎭ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n\n**⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)\n**©[🎪 ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ 🎪](https://t.me/joinchat/q4xMr02fvA9jNzQ1) **"
 
         nyva=BOT.get("username")
         if not nyva:
@@ -177,9 +177,9 @@ async def group(client, message):
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"<b> 🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ: [ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ: [ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ: [ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ: [ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(result_txt, reply_markup=InlineKeyboardMarkup(buttons))
 
     
 def get_size(size):
