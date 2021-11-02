@@ -62,12 +62,11 @@ async def filter(client, message):
     if 2 < len(message.text) < 100:    
         btn = []
         search = message.text
-        rat = f"**{random.choice(RAT)}**[{get_size(file.file_size)}]** {file.file_name}**"
         files = await get_filter_results(query=search)
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = rat
+                filename = f"**{random.choice(RAT)}**[{get_size(file.file_size)}] {file.file_name}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
                     )
