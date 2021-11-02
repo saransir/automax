@@ -62,7 +62,7 @@ async def filter(client, message):
     if 2 < len(message.text) < 100:    
         btn = []
         search = message.text
-        rat = f"**{random.choice(RATING)}**[{get_size(file.file_size)}]** {file.file_name}**"
+        rat = f"**{random.choice(RAT)}**[{get_size(file.file_size)}]** {file.file_name}**"
         files = await get_filter_results(query=search)
         if files:
             for file in files:
