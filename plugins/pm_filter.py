@@ -9,6 +9,7 @@ from utils import get_filter_results, get_file_details, is_subscribed, get_poste
 BUTTONS = {}
 BOT = {}
 
+RAT = ["🎪", "🇲🇰", "🌀", "🍿", "🎬", ]
 RATING = ["5.1/10 🤺ɪᴍᴅʙ", "6.2/10 🤺ɪᴍᴅʙ", "7.3/10 🤺ɪᴍᴅʙ", "8.4/10 🤺ɪᴍᴅʙ", "7.5/10 🤺ɪᴍᴅʙ", ]
 GENRES = ["ғᴜɴ🍿 ғᴀᴄᴛ",
          "ᴛʜʀɪʟʟᴇʀ🍿",
@@ -61,11 +62,12 @@ async def filter(client, message):
     if 2 < len(message.text) < 100:    
         btn = []
         search = message.text
+        rat = f"**{random.choice(RATING)}**[{get_size(file.file_size)}]** {file.file_name}**"
         files = await get_filter_results(query=search)
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = f"🎪-[{get_size(file.file_size)}] {file.file_name}"
+                filename = rat
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
                     )
