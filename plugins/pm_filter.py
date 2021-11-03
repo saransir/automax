@@ -164,11 +164,11 @@ async def group(client, message):
             if poster:
                 await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
                 await asyncio.sleep(50) # in seconds
-                await message.delete(photo)
+                await message.delete(reply_photo)
             else:
                 await message.reply_text(result_txt, reply_markup=InlineKeyboardMarkup(buttons))
                 await asyncio.sleep(50) # in seconds
-                await message.delete(photo)
+                await message.delete(reply_text)
             return
 
         data = BUTTONS[keyword]
