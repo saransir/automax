@@ -140,6 +140,7 @@ async def group(client, message):
                     [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
                 )
         else:
+            await client.send_photo(chat_id=message.from_user.id, photo='https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg')
             return
         if not btn:
             return
