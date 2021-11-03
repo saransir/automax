@@ -142,8 +142,6 @@ async def group(client, message):
                 )
         else:
             await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"ɴᴏᴛ ᴀᴠᴀɪʟᴀʙʟᴇ ʀɪɢʜᴛ ɴᴏᴡ \nᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n🎪sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n🎪 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n🎪 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n🎪 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/31)",)
-            await asyncio.sleep(15) # in seconds
-            await message.delete()
             return
         if not btn:
             return
@@ -165,8 +163,12 @@ async def group(client, message):
                 poster=await get_poster(search)
             if poster:
                 await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
+                await asyncio.sleep(50) # in seconds
+                await message.delete()
             else:
                 await message.reply_text(result_txt, reply_markup=InlineKeyboardMarkup(buttons))
+                await asyncio.sleep(50) # in seconds
+                await message.delete()
             return
 
         data = BUTTONS[keyword]
