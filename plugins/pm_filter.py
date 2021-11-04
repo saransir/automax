@@ -10,8 +10,8 @@ from utils import get_filter_results, get_file_details, is_subscribed, get_poste
 BUTTONS = {}
 BOT = {}
 
-RAT = ["🍉", "🍇", "🍊", "🍓", "🍎", "🥭", "🍒", ]
-RATING = ["5.1/10 🤺ɪᴍᴅʙ", "6.2/10 🤺ɪᴍᴅʙ", "7.3/10 🤺ɪᴍᴅʙ", "8.4/10 🤺ɪᴍᴅʙ", "7.5/10 🤺ɪᴍᴅʙ", ]
+RAT = ["🌧️", "🌥️", "⛈️", "⛅️", "☁️", "🌩️", "🌨️", ]
+RATING = ["5.1/10 🤺ɪᴍᴅʙ", "6.2/10 🤺ɪᴍᴅʙ", "7.3/10 🤺ɪᴍᴅʙ", "8.1/10 🤺ɪᴍᴅʙ", "5.5/10 🤺ɪᴍᴅʙ", "7.8/10 🤺ɪᴍᴅʙ", "6.4/10 🤺ɪᴍᴅʙ", "6.9/10 🤺ɪᴍᴅʙ", ]
 GENRES = ["ғᴜɴ🍿 ғᴀᴄᴛ",
          "ᴛʜʀɪʟʟᴇʀ🍿",
          "ᴅʀᴀᴍᴀ🍿 ᴄᴏᴍᴇᴅʏ",
@@ -19,6 +19,11 @@ GENRES = ["ғᴜɴ🍿 ғᴀᴄᴛ",
          "ᴀᴅᴠᴇɴᴛᴜʀᴇ🍿",
          "ғɪʟᴍ ɴᴏɪʀ🍿",
          "ᴅᴏᴄᴜᴍᴇɴᴛᴀʀʏ🍿"]
+PHOTO = [
+    "https://telegra.ph/file/9075ca7cbad944afaa823.jpg",
+    "https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg",
+    "https://telegra.ph/file/51683050f583af4c81013.jpg",
+]
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
@@ -97,7 +102,7 @@ async def filter(client, message):
                 await message.reply_photo(photo=poster, caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n  <b>🌀 ᴄʜᴀɴɴᴇʟ : [ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
 
             else:
-                await message.reply_text(f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ : [ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ : [ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -115,7 +120,7 @@ async def filter(client, message):
         if poster:
             await message.reply_photo(photo=poster, caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ :[ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ :[ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ :[ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -125,7 +130,7 @@ async def group(client, message):
         btn = []
 
         search = message.text
-        result_txt = f"**<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b> {search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎🦚ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**🎭ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n\n**⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)\n**©[🎪 ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ 🎪](https://t.me/joinchat/q4xMr02fvA9jNzQ1) **"
+        result_txt = f"**<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b> {search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎🦚ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**🎭ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n\n**⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)\n**©[🎬 ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ 🎬](https://t.me/joinchat/q4xMr02fvA9jNzQ1) **"
 
         nyva=BOT.get("username")
         if not nyva:
