@@ -169,7 +169,7 @@ async def group(client, message):
             if poster:
                 await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
                 await asyncio.sleep(10) # in seconds
-                await query.message.delete()
+                await poster.delete()
             else:
                 await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
                 await asyncio.sleep(10) # in seconds
