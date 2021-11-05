@@ -163,17 +163,19 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("🎪 channel 🎪", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton('྿ ᴄʟᴏsᴇ ྿', callback_data='close')]
+                [InlineKeyboardButton("🎪 channel 🎪", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
                 a = await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
-                await asyncio.sleep(180) # in seconds
+                await asyncio.sleep(240) # second il aanu
                 await a.delete()
             else:
-                await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
+                ab = await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
+                await asyncio.sleep(240) # second il aanu
+                await ab.delete()
             return
 
         data = BUTTONS[keyword]
