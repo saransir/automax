@@ -130,7 +130,7 @@ async def group(client, message):
         btn = []
 
         search = message.text
-        result_txt = f"**<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b> {search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎🦚ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**🎭ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n\n**⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)\n**©[🎬 ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ 🎬](https://t.me/joinchat/q4xMr02fvA9jNzQ1) **"
+        result_txt = f"**<b>ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b> {search}‌‌‌‌‎</b>\n**<b>ғᴏʀ: {message.from_user.mention}</b>\n\n**‌‌‌‌‎🦚ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**🎭ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n\n**⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)\n**©[_ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ_🎬](https://t.me/joinchat/q4xMr02fvA9jNzQ1) **"
 
         nyva=BOT.get("username")
         if not nyva:
