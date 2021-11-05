@@ -130,7 +130,7 @@ async def group(client, message):
         btn = []
 
         search = message.text
-        result_txt = f"**<b>ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b> {search}‌‌‌‌‎</b>\n**<b>ғᴏʀ: {message.from_user.mention}</b>\n\n**‌‌‌‌‎🦚ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**🎭ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n\n**⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)\n**©[_ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ_🎬](https://t.me/joinchat/q4xMr02fvA9jNzQ1) **"
+        result_txt = f"**<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎🦚ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**🎭ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n\n**⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)\n**©[_ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ_🎬](https://t.me/joinchat/q4xMr02fvA9jNzQ1) **"
 
         nyva=BOT.get("username")
         if not nyva:
@@ -146,7 +146,7 @@ async def group(client, message):
                     [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
                 )
         else:
-            a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"ɴᴏᴛ ᴀᴠᴀɪʟᴀʙʟᴇ ʀɪɢʜᴛ ɴᴏᴡ \nᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n🎪sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n🎪 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n🎪 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n🎪 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/31)",)
+            a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ɴᴏᴛ ᴀᴠᴀɪʟᴀʙʟᴇ ʀɪɢʜᴛ ɴᴏᴡ \n\nᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n🎪sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n🎪 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n🎪 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n🎪 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/31)",)
             await asyncio.sleep(30) # in seconds
             await a.delete()
             return
