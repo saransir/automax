@@ -67,13 +67,12 @@ async def filter(client, message):
         return
     if 2 < len(message.text) < 100:    
         btn = []
-        search = message.text
-        onair = "{random.choice(RAT)}"
+        search = message.text 
         files = await get_filter_results(query=search)
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = f"**onair**[{get_size(file.file_size)}] {file.file_name}"
+                filename = f"{random.choice(RAT)}[{get_size(file.file_size)}] {file.file_name}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
                     )
