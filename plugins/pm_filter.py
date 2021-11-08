@@ -191,9 +191,15 @@ async def group(client, message):
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
+            myr = await message.reply_photo(photo=poster, caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
+            await asyncio.sleep(480) # second il aanu
+            await myr.delete()
+            await message.delete()
         else:
-            await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
+            my = await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
+            await asyncio.sleep(480) # pever varatte
+            await my.delete()
+            await message.delete()
 
     
 def get_size(size):
