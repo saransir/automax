@@ -39,9 +39,8 @@
 
 
 ## Support
-Contact Me On [Telegram](https://t.me/subinps_bot)
+Contact Me On [Telegram](https://t.me/joinchat/q4xMr02fvA9jNzQ1)
 
-[Update Channel](https://t.me/Mo_Tech_YT)
 
 ## License
 Code released under [The GNU General Public License](LICENSE).
