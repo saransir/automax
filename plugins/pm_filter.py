@@ -93,7 +93,7 @@ async def filter(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("🥀 channel 🥀", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
+                [InlineKeyboardButton("🥀channel 1", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("🥀channel 2", url="https://t.me/joinchat/p5PTtAzhhWhhNjM1")]
             )
             poster=None
             if API_KEY:
