@@ -130,8 +130,8 @@ async def group(client, message):
         btn = []
 
         search = message.text
-        result_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╔‎/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\ [ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ](https://t.me/joinchat/q4xMr02fvA9jNzQ1)\n\n**<b>ᵗʰⁱˢ ᵐˢᵍᵉ ✉️ ᵈᵘʳᵃᵗⁱᵒⁿ 4 ᵐⁱⁿᵘᵗᵉ</b>**"
-        resul_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎╔/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╠|[ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ](https://t.me/joinchat/q4xMr02fvA9jNzQ1)\n**<b>╚\ᵗʰⁱˢ ᵐˢᵍᵉ ✉️ ᵈᵘʳᵃᵗⁱᵒⁿ 8 ᵐⁱⁿᵘᵗᵉ</b>\n\n**ⁱᶠ ʸᵒᵘ ᵈᵒⁿ'ᵗ ˢᵉᵉ ᵗʰᵉ ᶠⁱˡᵉˢ ᵒᶠ ᵗʰᵉ ᵐᵒᵛⁱᵉ ʸᵒᵘ ᵃˢᵏᵉᵈ ᶠᵒʳ 👀<b>ˡᵒᵒᵏ ᵃᵗ ⁿᵉˣᵗ ᵖᵃᵍᵉ</b>** "
+        result_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╔‎/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\ [ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ](https://t.me/joinchat/q4xMr02fvA9jNzQ1)\n\n**<b>ᵗʰⁱˢ ᵐˢᵍᵉ ✉️ ᵈᵘʳᵃᵗⁱᵒⁿ 3 ᵐⁱⁿᵘᵗᵉ</b>**"
+        resul_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎╔/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╠|[ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ](https://t.me/joinchat/q4xMr02fvA9jNzQ1)\n**<b>╚\ᵗʰⁱˢ ᵐˢᵍᵉ ✉️ ᵈᵘʳᵃᵗⁱᵒⁿ 6 ᵐⁱⁿᵘᵗᵉ</b>\n\n**ⁱᶠ ʸᵒᵘ ᵈᵒⁿ'ᵗ ˢᵉᵉ ᵗʰᵉ ᶠⁱˡᵉˢ ᵒᶠ ᵗʰᵉ ᵐᵒᵛⁱᵉ ʸᵒᵘ ᵃˢᵏᵉᵈ ᶠᵒʳ 👀<b>ˡᵒᵒᵏ ᵃᵗ ⁿᵉˣᵗ ᵖᵃᵍᵉ</b>** "
 
         nyva=BOT.get("username")
         if not nyva:
@@ -148,7 +148,7 @@ async def group(client, message):
                 )
         else:
             a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/31)",)
-            await asyncio.sleep(30) # in seconds
+            await asyncio.sleep(20) # in seconds
             await a.delete()
             return
         if not btn:
@@ -171,12 +171,12 @@ async def group(client, message):
                 poster=await get_poster(search)
             if poster:
                 a = await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
-                await asyncio.sleep(240) # second il aanu
+                await asyncio.sleep(180) # second il aanu
                 await a.delete()
                 await message.delete()
             else:
                 ab = await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
-                await asyncio.sleep(240) # second il aanu
+                await asyncio.sleep(180) # second il aanu
                 await ab.delete()
                 await message.delete()
             return
@@ -192,12 +192,12 @@ async def group(client, message):
             poster=await get_poster(search)
         if poster:
             myr = await message.reply_photo(photo=poster, caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
-            await asyncio.sleep(480) # second il aanu
+            await asyncio.sleep(360) # second il aanu
             await myr.delete()
             await message.delete()
         else:
             my = await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
-            await asyncio.sleep(480) # pever varatte
+            await asyncio.sleep(360) # pever varatte
             await my.delete()
             await message.delete()
 
