@@ -149,7 +149,7 @@ async def group(client, message):
                 )
         else:
             a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/31)",)
-            await message.send_text(chat_id=message.from_user(ADMINS), f"{message.from_user.mention},\n movie <code>{search}‌‌‌‌‎</code>",)
+            await client.send_text(chat_id=message.from_ADMINS, text=f"{message.from_user.mention},\n movie <code>{search}‌‌‌‌‎</code>",)
             await asyncio.sleep(20) # in seconds
             await a.delete()
             return
