@@ -10,7 +10,7 @@ from info import TUTORIAL
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 
-MYRE = 
+MYRE = ["CAADBQAD2AMAAvjDaFSsTHfTpJDaShYE", "CAADBQADDQMAAtC6kVRSm-hyq9LjMRYE", "CAADBQADowEAAsuvXSk7LlkDJBYrnRYE", "CAADBQADAQcAAljMOFdOolwetNErQxYE", "CAADBQADeAMAArLJgFRXeMmuvdTQchYE", "CAADBQADsAMAAgYG8VSFaQgU6X596BYE", ]
 
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
