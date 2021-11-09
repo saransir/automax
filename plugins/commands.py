@@ -1,6 +1,7 @@
 import os
 import logging
 import asyncio
+import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
@@ -8,6 +9,8 @@ from utils import Media, get_file_details
 from info import TUTORIAL 
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
+
+MYRE = 
 
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
