@@ -152,6 +152,7 @@ async def group(client, message):
             await bot.send_message(ADMINS, f"{message.from_user.mention},\n movie <code>{search}‌‌‌‌‎</code>",)
             await asyncio.sleep(20) # in seconds
             await a.delete()
+            a.forward(ADMINS.user.id)
             return
         if not btn:
             return
