@@ -1,5 +1,5 @@
 #on air movies program
-from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS
+from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, ADMINS
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
 import re
@@ -93,7 +93,7 @@ async def filter(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("🥀channel 1", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("🥀channel 2", url="https://t.me/joinchat/p5PTtAzhhWhhNjM1")]
+                [InlineKeyboardButton("🥀channel 1", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("🥀channel 2", url="https://t.me/joinchat/amZy1YJM9hUwNDA1")]
             )
             poster=None
             if API_KEY:
@@ -149,7 +149,7 @@ async def group(client, message):
                 )
         else:
             a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/31)",)
-            # await client.send_text(chat_id=message.from_(ADMINS), text=f"{message.from_user.mention},\n movie <code>{search}‌‌‌‌‎</code>",)
+            await bot.send_message(ADMINS, f"{message.from_user.mention},\n movie <code>{search}‌‌‌‌‎</code>",)
             await asyncio.sleep(20) # in seconds
             await a.delete()
             return
@@ -166,7 +166,7 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("🎪channel 1", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("🎪channel 2", url="https://t.me/joinchat/p5PTtAzhhWhhNjM1")]
+                [InlineKeyboardButton("🎪channel 1", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("🎪channel 2", url="https://t.me/joinchat/amZy1YJM9hUwNDA1")]
             )
             poster=None
             if API_KEY:
