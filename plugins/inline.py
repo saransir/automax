@@ -15,7 +15,7 @@ async def answer(bot, query):
     if AUTH_CHANNEL and not await is_subscribed(bot, query):
         await query.answer(results=[],
                            cache_time=0,
-                           switch_pm_text='join group🎪 then use 😉',
+                           switch_pm_text='join group 🎪 then use 😉',
                            switch_pm_parameter="subscrib")
         return
 
@@ -41,7 +41,7 @@ async def answer(bot, query):
         f_caption=file.caption
         if CUSTOM_FILE_CAPTION:
             try:
-                f_caption="{title}",
+                f_caption="🍿{title}",
             except Exception as e:
                 print(e)
                 f_caption=f_caption
@@ -52,7 +52,7 @@ async def answer(bot, query):
                 title=file.file_name,
                 file_id=file.file_id,
                 caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n<b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/joinchat/q4xMr02fvA9jNzQ1)</b>",
-                description=f'Size: {get_size(file.file_size)}\nType: {file.file_type}',
+                description=f'🍭Size: {get_size(file.file_size)}\nType: {file.file_type}',
                 reply_markup=reply_markup))
 
     if results:
