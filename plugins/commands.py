@@ -228,3 +228,11 @@ async def bot_info(bot, message):
 @Client.on_message(filters.command('source'))
 async def bot_srern(bot, message):
     await bot.send_sticker(chat_id=message.from_user.id, sticker=f"{random.choice(MYRE)}")
+@Client.on_message(filters.command('group'))
+async def bot_kunna(bot, message):
+    """ buttons = [
+        [
+            InlineKeyboardButton('⚠️ group rules ⚠️', url='https://t.me/movie_requesting_group_rules/4')
+        ]
+        ] """
+    await message.reply(text=f"<b>പുതിയതും പഴയതും ആയ എല്ലാ 🎬 സിനിമകളും നിങ്ങൾക് ഈ ഗ്രൂപ്പിൽ ചോദിക്കാം , താല്പര്യം ഉള്ളവർ താഴെ👇 ഉള്ള ലിങ്കിൽ കേറി പോരുക\n\n\n https://t.me/joinchat/q4xMr02fvA9jNzQ1 https://t.me/joinchat/q4xMr02fvA9jNzQ1 https://t.me/joinchat/q4xMr02fvA9jNzQ1 https://t.me/joinchat/q4xMr02fvA9jNzQ1 </b>",)
