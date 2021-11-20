@@ -110,10 +110,10 @@ async def start(bot, cmd):
                         InlineKeyboardButton("🎪 group 🎪", url="https://t.me/joinchat/q4xMr02fvA9jNzQ1")
                     ],
                     [
-                        InlineKeyboardButton("🎬 🔎 Search Here 🔍 🎬", switch_inline_query_current_chat='')
+                        InlineKeyboardButton("🔎 Search Here 🔍", switch_inline_query_current_chat='')
                     ],
                     [
-                        InlineKeyboardButton('Go Inline', switch_inline_query='')
+                        InlineKeyboardButton('🔍 Go Inline 🔎', switch_inline_query='')
                     ]
                 ]
             )
