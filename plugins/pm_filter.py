@@ -167,7 +167,7 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("🎪channel 1", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("🎪channel 2", url="https://t.me/joinchat/amZy1YJM9hUwNDA1")]
+                [InlineKeyboardButton("🎪channel 1", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("About", callback_data="about")]
             )
             poster=None
             if API_KEY:
