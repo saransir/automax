@@ -93,7 +93,7 @@ async def filter(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("🥀channel 1", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("close♻️", callback_data="close")]
+                [InlineKeyboardButton("🥀channel 1", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
             poster=None
             if API_KEY:
@@ -167,7 +167,7 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("🎪channel 1", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("About", callback_data="about")]
+                [InlineKeyboardButton("⚡️channel⚡️", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("💡close💡", callback_data="close")]
             )
             poster=None
             if API_KEY:
