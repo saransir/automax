@@ -344,7 +344,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer("⭕️ ഗ്രൂപ്പിൽ ജോയിൻ ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ 😉⭕️",show_alert=True)
+                await query.answer("🔸Join My [group](https://t.me/joinchat/q4xMr02fvA9jNzQ1) to use this Bot \n 🔹[ഗ്രൂപ്പിൽ ജോയിൻ](https://t.me/joinchat/q4xMr02fvA9jNzQ1) ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ 💐",show_alert=True)
                 return
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
