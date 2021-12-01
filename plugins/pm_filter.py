@@ -44,11 +44,11 @@ async def filter(client, message):
         except UserNotParticipant:
             await client.send_message(
                 chat_id=message.from_user.id,
-                text="**Join My group🎪 to use this Bot 😉**",
+                text="**Join My 🎪 group 🎪 to use this Bot 😉**",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("🎪 Join GROUP 🌀", url=invite_link.invite_link)
+                            InlineKeyboardButton("🎪 Join GROUP 🎪", url=invite_link.invite_link)
                         ]
                     ]
                 ),
@@ -306,8 +306,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "about":
             buttons = [
                 [
-                    InlineKeyboardButton('🎪 group ⭕️', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1'),
-                    InlineKeyboardButton('on air ', url=f'{TUTORIAL}')
+                    InlineKeyboardButton('🎪 group ⭕️', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1')              
                 ]
                 ]
             await query.message.edit(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](t.me/S1a2r3a4n)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum ", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
@@ -344,7 +343,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer("🔸Join My [group](https://t.me/joinchat/q4xMr02fvA9jNzQ1) to use this Bot \n 🔹[ഗ്രൂപ്പിൽ ജോയിൻ](https://t.me/joinchat/q4xMr02fvA9jNzQ1) ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ 💐",show_alert=True)
+                await query.answer("🎪ഗ്രൂപ്പിൽ join ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ 💐",show_alert=True)
                 return
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
