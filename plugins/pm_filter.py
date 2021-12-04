@@ -65,7 +65,7 @@ async def filter(client, message):
             return
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
-    if 2 < len(message.text) < 100:    
+    if 99 < len(message.text) < 100:    
         btn = []
         search = message.text 
         files = await get_filter_results(query=search)
