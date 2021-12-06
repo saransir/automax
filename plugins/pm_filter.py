@@ -335,8 +335,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     success = True
                 except:
                     pass
-             if success:
-                await message.reply_text("**Reported to Admins!**")
+            if success:
+                await query.message.edit(text=f"Reported to Admins!")
 
 
 
