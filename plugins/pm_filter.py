@@ -317,6 +317,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "close":
             await query.message.delete()
         elif query.data == "report":
+            await query.message.edit(text=f"{message.from_user.mention},\n movie: <code>{search}‌‌‌‌‎</code> \n Reported to Admins!", disable_web_page_preview=True))
+
+
             # chat_id = query.message.chat.id
             # reporter = str(message.from_user.id)
             # mention = message.from_user.mention
@@ -337,9 +340,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     pass
             if success: """
 
-             await query.message.edit(text=f"{message.from_user.mention},\n movie: <code>{search}‌‌‌‌‎</code> \n Reported to Admins!")
-
-
+             
 
         elif query.data.startswith("subinps"):
             ident, file_id = query.data.split("#")
