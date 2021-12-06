@@ -317,7 +317,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "close":
             await query.message.delete()
         elif query.data == "report":
-            chat_id = message.chat.id
+            chat_id = query.message.chat.id
             reporter = str(message.from_user.id)
             mention = message.from_user.mention
             admins = await bot.get_chat_members(chat_id=chat_id, filter="administrators")
