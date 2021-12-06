@@ -329,16 +329,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
             # report += f"Message : {message.reply_to_message.link}"
             # for admin in admins:
                # try:
-         """   reported_post = await message.reply_to_message.forward(admin.user.id)
-                    await reported_post.reply_text(
-                        text=report,
-                        chat_id=admin.user.id,
-                        disable_web_page_preview=True 
-                    )
-                    success = True
-                except:
-                    pass
-            if success: """
+           # reported_post = await message.reply_to_message.forward(admin.user.id)
+                   # await reported_post.reply_text(
+                       # text=report,
+                       # chat_id=admin.user.id,
+                       # disable_web_page_preview=True 
+                                 # success = True
+                # except:
+                    # pass
+            # if success:
 
              
 
