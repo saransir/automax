@@ -151,7 +151,7 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("👮‍♂️ report 👮‍♂️", callback_data="report")]
+                [InlineKeyboardButton("👮‍♂️  👮‍♂️", callback_data="report")]
             )
             a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯 ᴜɴᴡᴀɴᴛbuttons)s ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/31)", reply_markup=InlineKeyboardMarkup(buttons))
             # f"{message.from_user.mention},\n movie <code>{search}‌‌‌‌‎</code>
@@ -317,26 +317,26 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "close":
             await query.message.delete()
         elif query.data == "report":
-            chat_id = query.message.chat.id
-            reporter = str(message.from_user.id)
-            mention = message.from_user.mention
-            admins = await bot.get_chat_members(chat_id=chat_id, filter="administrators")
-            success = False
-            report = f"Reporter : {mention} ({reporter})" + "\n"
-            report += f"Message : {message.reply_to_message.link}"
-            for admin in admins:
-                try:
-                    reported_post = await message.reply_to_message.forward(admin.user.id)
+            # chat_id = query.message.chat.id
+            # reporter = str(message.from_user.id)
+            # mention = message.from_user.mention
+            # admins = await bot.get_chat_members(chat_id=chat_id, filter="administrators")
+            # success = False
+            # report = f"Reporter : {mention} ({reporter})" + "\n"
+            # report += f"Message : {message.reply_to_message.link}"
+            # for admin in admins:
+               # try:
+         """   reported_post = await message.reply_to_message.forward(admin.user.id)
                     await reported_post.reply_text(
                         text=report,
                         chat_id=admin.user.id,
-                        disable_web_page_preview=True
-                    )
+                        disable_web_page_preview=True """
+                   """ )
                     success = True
                 except:
                     pass
             if success:
-                await query.message.edit(text=f"Reported to Admins!")
+                await query.message.edit(text=f"Reported to Admins!") """"
 
 
 
