@@ -316,7 +316,28 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](t.me/S1a2r3a4n)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum) ", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
         elif query.data == "close":
             await query.message.delete()
-            
+        elif query.data == "report":
+            chat_id = message.chat.id
+            reporter = str(message.from_user.id)
+            mention = message.from_user.mention
+            admins = await bot.get_chat_members(chat_id=chat_id, filter="administrators")
+            success = False
+            report = f"Reporter : {mention} ({reporter})" + "\n"
+            report += f"Message : {message.reply_to_message.link}"
+            for admin in admins:
+               try:
+                   reported_post = await message.reply_to_message.forward(admin.user.id)
+                   await reported_post.reply_text(
+                       text=report,
+                       chat_id=admin.user.id,
+                       disable_web_page_preview=True
+                   )
+                   success = True
+               except:
+                   pass
+            if success:
+               await message.reply_text("**Reported to Admins!**")
+
 
 
         elif query.data.startswith("subinps"):
