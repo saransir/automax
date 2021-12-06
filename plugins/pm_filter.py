@@ -330,8 +330,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await reported_post.reply_text(
                         text=report,
                         chat_id=admin.user.id,
-                        disable_web_page_preview=True """
-                   """ )
+                        disable_web_page_preview=True 
+                    )
                     success = True
                 except:
                     pass
