@@ -9,7 +9,7 @@ from pyrogram.errors import UserNotParticipant
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster
 BUTTONS = {}
 BOT = {}
-SER = message.text
+
 RAT = ["🦋", "🥀", "🎪", "🎈", "🀄️", "🔖", "🍭", "🍿", ]
 RATING = ["5.1/10 🤺ɪᴍᴅʙ", "6.2/10 🤺ɪᴍᴅʙ", "7.3/10 🤺ɪᴍᴅʙ", "8.1/10 🤺ɪᴍᴅʙ", "5.5/10 🤺ɪᴍᴅʙ", "7.8/10 🤺ɪᴍᴅʙ", "6.4/10 🤺ɪᴍᴅʙ", "6.9/10 🤺ɪᴍᴅʙ", ]
 GENRES = ["ғᴜɴ🍿 ғᴀᴄᴛ",
@@ -317,7 +317,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "close":
             await query.message.delete()
         elif query.data == "report":
-            await query.message.edit(text=f"{query.from_user.mention}\n id: {query.from_user.id} ,\n movie: <code>{SER}‌‌‌‌‎</code> \n Reported to Admins!", disable_web_page_preview=True)
+            await query.message.edit(text=f"{query.from_user.mention} id: {query.from_user.id} , \n **Reported to Admins** 👮‍♂️", disable_web_page_preview=True)
 
 
             # chat_id = query.message.chat.id
