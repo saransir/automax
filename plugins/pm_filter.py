@@ -149,16 +149,16 @@ async def group(client, message):
                     [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
                 )
         else:
-            chat_id = message.chat.id
-            admin = await client.get_chat_members(chat_id=chat_id, filter="administrators")
+            # chat_id = message.chat.id
+            # admin = await client.get_chat_members(chat_id=chat_id, filter="administrators")
          
             buttons = btn
             buttons.append(
                 [InlineKeyboardButton("👮‍♂️ report 👮‍♂️", callback_data="report")]
             )
             a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯 ᴜɴᴡᴀɴᴛbuttons)s ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/31)", reply_markup=InlineKeyboardMarkup(buttons))
-           # await message.forward(admin.user.id)
-            await BOT.send_message(chat_id="@S1a2r3a4n", text="Something went Wrong.", disable_web_page_preview=True)
+            await message.forward("@S1a2r3a4n")
+            # await BOT.send_message(chat_id=admin.user.id, text="Something went Wrong.", disable_web_page_preview=True)
             await asyncio.sleep(30) # in seconds
             await a.delete()
             return
