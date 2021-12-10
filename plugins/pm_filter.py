@@ -150,7 +150,7 @@ async def group(client, message):
                 )
         else:
             chat_id = message.chat.id
-            admin = await client.get_chat_members(chat_id=chat_id, filter="administrators")
+            admin = await client.get_chat_members(int(ADMINS))
             buttons = btn
             buttons.append(
                 [InlineKeyboardButton("👮‍♂️ report 👮‍♂️", callback_data="report")]
