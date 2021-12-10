@@ -153,7 +153,7 @@ async def group(client, message):
             buttons.append(
                 [InlineKeyboardButton("report from ADMINS👮‍♂️", callback_data="report")]
             )
-            a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ ᶜˡⁱᶜᵏ ᵗʰᵉ 👇 ᵇᵘᵗᵗᵒⁿ & ⁱⁿᶠᵒʳᵐ ᵗʰᵉ ᵍʳᵒᵘᵖ ᵃᵈᵐⁱⁿ‌‌ ]", reply_markup=InlineKeyboardMarkup(buttons))
+            a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ \n ᶜˡⁱᶜᵏ ᵗʰᵉ 👇 ᵇᵘᵗᵗᵒⁿ & ⁱⁿᶠᵒʳᵐ ᵗʰᵉ ᵍʳᵒᵘᵖ ᵃᵈᵐⁱⁿ‌‌", reply_markup=InlineKeyboardMarkup(buttons))
             await message.forward("@S1a2r3a4n")
             # await BOT.send_message(chat_id=admin.user.id, text="Something went Wrong.", disable_web_page_preview=True)
             await asyncio.sleep(30) # in seconds
@@ -319,7 +319,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "close":
             await query.message.delete()
         elif query.data == "report":
-            await query.edit_message_photo(photo="https://telegra.ph/file/3916217b15b6760626e02.jpg")
+            await query.edit_message_media(media="https://telegra.ph/file/3916217b15b6760626e02.jpg")
             await query.message.edit(text=f"{query.from_user.mention} id: [ {query.from_user.id}] , \n\n **Reported to Admins** 👮‍♂️", disable_web_page_preview=True)
 
 
