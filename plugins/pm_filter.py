@@ -149,7 +149,7 @@ async def group(client, message):
                     [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
                 )
         else:
-            admin = await bot.get_chat_members(chat_id=chat_id, filter="administrators")
+            admin = await.get_chat_members(chat_id=chat_id, filter="administrators")
             buttons = btn
             buttons.append(
                 [InlineKeyboardButton("👮‍♂️ report 👮‍♂️", callback_data="report")]
