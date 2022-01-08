@@ -118,7 +118,7 @@ async def start(bot, cmd):
                 ]
             )
         )
-    if usr_cmdall1.startswith("/start search"):
+    if usr_cmdall1.startswith("search"):
         await bot.send_message(
                     chat_id=cmd.from_user.id,
                     text=f"<b>തായേ👇 കാണുന്ന 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു 🎬സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്യുക</b> \n\n <b>👇Click on the 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 button and type the name of the movie‌‌</b>",
