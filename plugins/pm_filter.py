@@ -133,7 +133,7 @@ async def group(client, message):
         result_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╔‎/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ](https://t.me/joinchat/q4xMr02fvA9jNzQ1)\n\n**<b>ᵗʰⁱˢ ᵐˢᵍᵉ ✉️ ᵈᵘʳᵃᵗⁱᵒⁿ 3 ᵐⁱⁿᵘᵗᵉ</b>**"
         resul_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎╔/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ](https://t.me/joinchat/q4xMr02fvA9jNzQ1)\n\n**ⁱᶠ ʸᵒᵘ ᵈᵒⁿ'ᵗ ˢᵉᵉ ᵗʰᵉ ᶠⁱˡᵉˢ ᵒᶠ ᵗʰᵉ ᵐᵒᵛⁱᵉ ʸᵒᵘ ᵃˢᵏᵉᵈ ᶠᵒʳ 👀<b>ˡᵒᵒᵏ ᵃᵗ ⁿᵉˣᵗ ᵖᵃᵍᵉ</b>** "
         oam = f"{random.choice(RAT)}"
-        # oamm = f"{random.choice(RAT)}"
+        oamm = f"{random.choice(RAT)}"
 
         nyva=BOT.get("username")
         if not nyva:
@@ -144,14 +144,14 @@ async def group(client, message):
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = f"{oam}{get_size(file.file_size)}{oam}{file.file_name}"
+                filename = f"{oam}{get_size(file.file_size)}{oamm}{file.file_name}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
                 )
         else:            
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("report from ADMINS👮‍♂️", callback_data="report")]
+                [InlineKeyboardButton("☎️ report to ADMIN 👮‍♂️", callback_data="report")]
             )
             a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ \n ᶜˡⁱᶜᵏ ᵗʰᵉ 👇 ᵇᵘᵗᵗᵒⁿ & ⁱⁿᶠᵒʳᵐ ᵗʰᵉ ᵍʳᵒᵘᵖ ᵃᵈᵐⁱⁿ‌‌", reply_markup=InlineKeyboardMarkup(buttons))
             await message.forward("@S1a2r3a4n")
@@ -320,7 +320,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.delete()
         elif query.data == "report":
             # await query.edit_message_media(media="https://telegra.ph/file/3916217b15b6760626e02.jpg", caption=f"{query.from_user.mention} id: [ {query.from_user.id}] , \n\n **Reported to Admins** 👮‍♂️")
-            await query.message.edit(text=f"{query.from_user.mention} id: [ {query.from_user.id}] , \n\n **Reported to Admins** 👮‍♂️", disable_web_page_preview=True)
+            await query.message.edit(text=f"{query.from_user.mention} **#{query.from_user.id}**, \n\n **Reported to Admins** 👮‍♂️", disable_web_page_preview=True)
+            await client.send_message(chat_id="@S1a2r3a4n", text="‼️ {query.from_user.mention} **#{query.from_user.id}**,", disable_web_page_preview=True)
 
 
             # chat_id = query.message.chat.id
