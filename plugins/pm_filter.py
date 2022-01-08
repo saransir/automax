@@ -320,7 +320,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.delete()
         elif query.data == "report":
             # await query.edit_message_media(media="https://telegra.ph/file/3916217b15b6760626e02.jpg", caption=f"{query.from_user.mention} id: [ {query.from_user.id}] , \n\n **Reported to Admins** 👮‍♂️")
-            await query.message.edit(text=f"{query.from_user.mention} [{query.from_user.id}], \n **Reported to Admins** 👮‍♂️", disable_web_page_preview=True)
+            await query.message.edit(text=f"{query.from_user.mention} [{query.from_user.id}] {query.message.reply_to_message}, \n **Reported to Admins** 👮‍♂️", disable_web_page_preview=True)
             await client.send_message(chat_id="@S1a2r3a4n", text="‼️ 👆👆👆👆👆", disable_web_page_preview=True)
 
 
