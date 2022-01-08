@@ -7,11 +7,15 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
 from utils import Media, get_file_details
 from info import TUTORIAL
-from pm_filter import PHOTO
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 
 MYRE = ["CAADBQAD2AMAAvjDaFSsTHfTpJDaShYE", "CAADBQADDQMAAtC6kVRSm-hyq9LjMRYE", "CAADBQADowEAAsuvXSk7LlkDJBYrnRYE", "CAADBQADAQcAAljMOFdOolwetNErQxYE", "CAADBQADeAMAArLJgFRXeMmuvdTQchYE", "CAADBQADsAMAAgYG8VSFaQgU6X596BYE", "CAADBQAD6AMAAi8MwVS1_PRa7JTUWxYE", "CAADBQADOgIAAnRfsFRgDjrWSQK3kxYE", "CAADBQADRAQAAlaVaVSKDdtGH1UJKhYE", ]
+PHOT = [
+    "https://telegra.ph/file/9075ca7cbad944afaa823.jpg",
+    "https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg",
+    "https://telegra.ph/file/51683050f583af4c81013.jpg",
+]
 
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
@@ -101,7 +105,7 @@ async def start(bot, cmd):
         )
     else:
         await cmd.reply_text(
-            photo=random.choice(PHOTO),
+            photo=random.choice(PHOT),
             caption=START_MSG,
             parse_mode="Markdown",
             disable_web_page_preview=True,
