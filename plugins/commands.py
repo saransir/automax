@@ -125,7 +125,7 @@ async def start(bot, cmd):
                     reply_markup=InlineKeyboardMarkup(
                         [
                              [
-                                 InlineKeyboardButton("🎪 Join group 🎪", url=invite_link.invite_link)
+                                 InlineKeyboardButton('🔍search file 💼', switch_inline_query_current_chat='')
                              ]
                         ]
                     )
