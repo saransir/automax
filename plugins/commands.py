@@ -118,7 +118,18 @@ async def start(bot, cmd):
                 ]
             )
         )
-
+    if usr_cmdall1.startswith("/start search"):
+        await bot.send_message(
+                    chat_id=cmd.from_user.id,
+                    text=f"<b>തായേ👇 കാണുന്ന 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു 🎬സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്യുക</b> \n\n <b>👇Click on the 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 button and type the name of the movie‌‌</b>",
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                             [
+                                 InlineKeyboardButton("🎪 Join group 🎪", url=invite_link.invite_link)
+                             ]
+                        ]
+                    )
+               )
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
