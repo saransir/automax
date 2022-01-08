@@ -318,7 +318,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "close":
             await query.message.delete()
         elif query.data == "report":
-            await query.edit_message_media("https://telegra.ph/file/3916217b15b6760626e02.jpg", caption="Reported to Admins",)
+            await query.edit_message_media("https://telegra.ph/file/3916217b15b6760626e02.jpg", "Reported to Admins",)
             # ac = await query.message.edit(text=f"{query.from_user.mention} [{query.from_user.id}], \n **Reported to Admins** 👮‍♂️", disable_web_page_preview=True)
             # await ac.forward("@S1a2r3a4n")
 
