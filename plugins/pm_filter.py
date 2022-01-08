@@ -206,7 +206,7 @@ async def group(client, message):
             await message.reply_photo(photo=poster, caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
         else:
             await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
-saran = search
+saran = message.text
     
 def get_size(size):
     """Get size in readable format"""
