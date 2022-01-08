@@ -105,7 +105,7 @@ async def start(bot, cmd):
         )
     else:
         await cmd.reply_text(
-            photo=random.choice(PHOT),
+            photo={random.choice(PHOT)},
             caption=START_MSG,
             parse_mode="Markdown",
             disable_web_page_preview=True,
