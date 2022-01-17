@@ -20,6 +20,7 @@ PHOT = [
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
+    usr_cmdall15 = cmd.text
     if usr_cmdall1.startswith("/start subinps"):
         if AUTH_CHANNEL:
             invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
@@ -76,7 +77,7 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('🎪 group 🎪', url='https://t.me/joinchat/q4xMr02fvA9jNzQ1')
+                        InlineKeyboardButton('🎪 group 🎪', url='https://t.me/+q4xMr02fvA9jNzQ1')
                     ],
                     [
                         InlineKeyboardButton(' 🔍 Search again 🎬', switch_inline_query_current_chat='')
@@ -85,7 +86,7 @@ async def start(bot, cmd):
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1)\n 🎬file name 👉 </b>""<code>" + title + "</code>""\n\n<b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/joinchat/q4xMr02fvA9jNzQ1)</b>",
+                    caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1)\n 🎬file name 👉 </b>""<code>" + title + "</code>""\n\n<b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+q4xMr02fvA9jNzQ1)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
@@ -112,7 +113,7 @@ async def start(bot, cmd):
                 [
                     [
                         InlineKeyboardButton("🌀 channel 🌀", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"), 
-                        InlineKeyboardButton("🎪 group 🎪", url="https://t.me/joinchat/q4xMr02fvA9jNzQ1")
+                        InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+q4xMr02fvA9jNzQ1")
                     ],
                     [
                         InlineKeyboardButton("🔎 Search Here 🔍", switch_inline_query_current_chat='')
@@ -123,7 +124,7 @@ async def start(bot, cmd):
                 ]
             )
         )
-    if usr_cmdall1.startswith("/start search"):
+    if usr_cmdall15.startswith("/start search"):
         await bot.send_message(
                     chat_id=cmd.from_user.id,
                     text=f"<b>തായേ👇 കാണുന്ന 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു 🎬സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്യുക</b> \n\n <b>👇Click on the 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 button and type the name of the movie‌‌</b>",
@@ -234,10 +235,10 @@ async def bot_link(bot, message):
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton("🎪 group 🎪", url="https://t.me/joinchat/q4xMr02fvA9jNzQ1")
+            InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+q4xMr02fvA9jNzQ1")
         ]
         ]
-    a = await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](t.me/S1a2r3a4n)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    a = await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](https://t.me/+q4xMr02fvA9jNzQ1)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
     await asyncio.sleep(4) # program error 
     await a.delete()
     await bot.send_sticker(chat_id=message.from_user.id, sticker=f"{random.choice(MYRE)}")
