@@ -51,7 +51,7 @@ async def answer(bot, query):
             InlineQueryResultCachedDocument(
                 title=file.file_name,
                 file_id=file.file_id,
-                caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n<b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/joinchat/q4xMr02fvA9jNzQ1)</b>",
+                caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n<b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+aZIoNNlskWk4ODg1)</b>",
                 description=f'🍭Size: {get_size(file.file_size)}\nType: {file.file_type}',
                 reply_markup=reply_markup))
 
@@ -82,7 +82,7 @@ async def answer(bot, query):
 def get_reply_markup(query):
     buttons = [
         [
-            InlineKeyboardButton('🎪 group 🎪', url='https://t.me/+q4xMr02fvA9jNzQ1')
+            InlineKeyboardButton('🎪 group 🎪', url='https://t.me/+aZIoNNlskWk4ODg1')
         ],
         [
             InlineKeyboardButton('🔍 Search again 🔎', switch_inline_query_current_chat=query)
