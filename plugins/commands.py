@@ -77,7 +77,7 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('🎪 group 🎪', url='https://t.me/+q4xMr02fvA9jNzQ1')
+                        InlineKeyboardButton('🎪 group 🎪', url='https://t.me/+aZIoNNlskWk4ODg1')
                     ],
                     [
                         InlineKeyboardButton(' 🔍 Search again 🎬', switch_inline_query_current_chat='')
@@ -86,7 +86,7 @@ async def start(bot, cmd):
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1)\n 🎬file name 👉 </b>""<code>" + title + "</code>""\n\n<b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+q4xMr02fvA9jNzQ1)</b>",
+                    caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1)\n 🎬file name 👉 </b>""<code>" + title + "</code>""\n\n<b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+aZIoNNlskWk4ODg1)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
@@ -113,7 +113,7 @@ async def start(bot, cmd):
                 [
                     [
                         InlineKeyboardButton("🌀 channel 🌀", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"), 
-                        InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+q4xMr02fvA9jNzQ1")
+                        InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
                     ],
                     [
                         InlineKeyboardButton("🔎 Search Here 🔍", switch_inline_query_current_chat='')
@@ -235,10 +235,10 @@ async def bot_link(bot, message):
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+q4xMr02fvA9jNzQ1")
+            InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
         ]
         ]
-    a = await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](https://t.me/+q4xMr02fvA9jNzQ1)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    a = await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](https://t.me/+aZIoNNlskWk4ODg1)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
     await asyncio.sleep(4) # program error 
     await a.delete()
     await bot.send_sticker(chat_id=message.from_user.id, sticker=f"{random.choice(MYRE)}")
