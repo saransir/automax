@@ -82,9 +82,6 @@ async def answer(bot, query):
 def get_reply_markup(query):
     buttons = [
         [
-            InlineKeyboardButton('🎪 group 🎪', url='https://t.me/+aZIoNNlskWk4ODg1')
-        ],
-        [
             InlineKeyboardButton('🔍 Search again 🔎', switch_inline_query_current_chat=query)
         ]
         ]
