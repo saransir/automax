@@ -211,7 +211,7 @@ async def bot_indo(bot, message):
         ]
         ] 
     await message.reply(text=f"<b>click the 👇 button to read group rules </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-@Client.on_message(filters.command('search'))
+@Client.on_message(filters.command('search' ,'help'))
 async def bot_link(bot, message):
     buttons = [
         [
