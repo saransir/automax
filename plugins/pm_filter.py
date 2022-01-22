@@ -163,8 +163,8 @@ async def group(client, message):
         if not btn:
             return
 
-        if len(btn) > 6: 
-            btns = list(split_list(btn, 6)) 
+        if len(btn) > 12: 
+            btns = list(split_list(btn, 12)) 
             keyword = f"{message.chat.id}-{message.message_id}"
             BUTTONS[keyword] = {
                 "total" : len(btns),
