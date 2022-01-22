@@ -163,7 +163,7 @@ async def group(client, message):
         if not btn:
             return
 
-        if len(btn) > 8: 
+        if len(btn) > 6: 
             btns = list(split_list(btn, 6)) 
             keyword = f"{message.chat.id}-{message.message_id}"
             BUTTONS[keyword] = {
@@ -185,7 +185,7 @@ async def group(client, message):
                 await message.delete()
             else:
                 ab = await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
-                await asyncio.sleep(180) # second il aanu
+                await asyncio.sleep(180)
                 await ab.delete()
                 await message.delete()
             return
