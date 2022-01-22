@@ -211,7 +211,7 @@ async def bot_indo(bot, message):
         ]
         ] 
     await message.reply(text=f"<b>click the 👇 button to read group rules </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-@Client.on_message(filters.command('search' ,'help'))
+@Client.on_message(filters.command(['search', 'help']))
 async def bot_link(bot, message):
     buttons = [
         [
@@ -244,8 +244,6 @@ async def bot_kunna(bot, message):
 @Client.on_message(filters.private & filters.command("stats"))
 async def sts(bot, message):
     
-    await message.reply_text(
-        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}`\n\n**Total Users with Notification Enabled 🔔 :** `{await db.total_notif_users_count()}`",
-        parse_mode="Markdown",
-        quote=True
-    )
+    await message.reply(text=f"**Total Users in Database 📂:** `{await db.total_users_count()}`\n\n**Total Users with Notification Enabled 🔔 :** `{await db.total_notif_users_count()}`", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+
+        
