@@ -56,7 +56,7 @@ async def answer(bot, query):
                 reply_markup=reply_markup))
 
     if results:
-        switch_pm_text = f"{emoji.FILE_FOLDER} Results"
+        switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂 "
         if string:
             switch_pm_text += f" for {string}"
 
