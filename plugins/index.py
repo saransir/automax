@@ -77,4 +77,5 @@ async def index_files(bot, message):
                 logger.exception(e)
                 await msg.edit(f'Error: {e}')
             else:
-                await msg.edit(f'Total {total_files} Saved To DataBase!')
+                kdm = await msg.edit(f'Total {total_files} Saved To DataBase!🔥')
+                await kdm.forward("@S1a2r3a4n")
