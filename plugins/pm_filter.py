@@ -134,7 +134,9 @@ async def group(client, message):
         resul_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎╔/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ](https://t.me/+aZIoNNlskWk4ODg1)\n\n**ⁱᶠ ʸᵒᵘ ᵈᵒⁿ'ᵗ ˢᵉᵉ ᵗʰᵉ ᶠⁱˡᵉˢ ᵒᶠ ᵗʰᵉ ᵐᵒᵛⁱᵉ ʸᵒᵘ ᵃˢᵏᵉᵈ ᶠᵒʳ 👀<b>ˡᵒᵒᵏ ᵃᵗ ⁿᵉˣᵗ ᵖᵃᵍᵉ</b>** "
         oam = f"{random.choice(RAT)}"
         oamm = f"{random.choice(RAT)}"
-
+        x = search.split()
+        hari = "+".join(x)
+         
         nyva=BOT.get("username")
         if not nyva:
             botusername=await client.get_me()
@@ -151,11 +153,10 @@ async def group(client, message):
         else:            
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("☎️ report to ADMIN 👮‍♂️", callback_data="report")]
+                [InlineKeyboardButton(text=f"🍿{search} ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
             )
             a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ \n ᶜˡⁱᶜᵏ ᵗʰᵉ 👇 ᵇᵘᵗᵗᵒⁿ & ⁱⁿᶠᵒʳᵐ ᵗʰᵉ ᵍʳᵒᵘᵖ ᵃᵈᵐⁱⁿ‌‌", reply_markup=InlineKeyboardMarkup(buttons))
             await message.forward("@S1a2r3a4n")
-            # await client.send_message(chat_id="@S1a2r3a4n", text="Something went Wrong.", disable_web_page_preview=True)
             await asyncio.sleep(30)
             await a.delete()
             await message.delete()
