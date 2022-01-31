@@ -239,6 +239,18 @@ async def bot_kunna(bot, message):
         ]
         ]
     await message.reply(text=f"<b>പുതിയതും പഴയതും ആയ എല്ലാ 🎬 സിനിമകളും നിങ്ങൾക് ഈ ഗ്രൂപ്പിൽ ചോദിക്കാം , താല്പര്യം ഉള്ളവർ താഴെ👇 ഉള്ള ലിങ്കിൽ കേറി പോരുക\n\n\n https://t.me/+aZIoNNlskWk4ODg1 https://t.me/+aZIoNNlskWk4ODg1 https://t.me/+aZIoNNlskWk4ODg1 </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-@Client.on_message(filters.regex('hi'))
+@Client.on_message(filters.regex('Hi'))
 async def hellto(bot, message):
     await message.reply("hello 🙌🏻")
+@Client.on_message(filters.regex('movie'))
+async def helmo(bot, message):
+    buttons = [
+         [
+             InlineKeyboardButton('🔍 ꜱᴇᴀʀᴄʜ ʙᴏᴛ ', url='https://t.me/On_air_Filter_bot'),
+             InlineKeyboardButton(' 🔍 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ', url='https://www.google.com/')
+         ]
+         ]
+     mo = await message.reply(text=f"𝗦𝗲𝗻𝘁 𝗠𝗼𝘃𝗶𝗲 𝗡𝗮𝗺𝗲 & 𝘆𝗲𝗮𝗿 𝗼𝗻𝗹𝘆 \n മൂവിയുടെ പേര് & വർഷം മാത്രം മതി \n ᴇxᴀᴍᴘʟᴇ :👇\n\n ᴛᴇɴᴇᴛ ✅ \n ᴛᴇɴᴇᴛ 2021 ✅ \n ᴛᴇɴᴇᴛ ᴍᴏᴠɪᴇ ❌ \n\n▫️ɪғ ʏᴏᴜ sᴛɪʟʟ ᴅᴏ ɴᴏᴛ ғɪɴᴅ ᴛʜᴇ 😪 ᴍᴏᴠɪᴇ sᴇᴀʀᴄʜ ᴛʜᴇ ʙᴏᴛ👇\n▪️ɪғ ʏᴏᴜ ᴅᴏ ɴᴏᴛ ᴋɴᴏᴡ ᴛʜᴇ ᴍᴏᴠɪᴇ ᴄᴜʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ ᴄʟɪᴄᴋ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ 👇", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+     await asyncio.sleep(15) # error 
+     await mo.delete()
+     await message.delete()
