@@ -155,9 +155,9 @@ async def group(client, message):
             buttons.append(
                 [InlineKeyboardButton(text=f"🍿{search} ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
             )
-            a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯 ᴜɴᴡᴀɴᴛᴇᴅ ᴛᴇxᴛs ɪɴ ᴍsɢs ʟɪᴋᴇ : , . () ᴅᴏɴᴛ ᴜsᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ \n ᶜˡⁱᶜᵏ ᵗʰᵉ 👇 ᵇᵘᵗᵗᵒⁿ & ⁱⁿᶠᵒʳᵐ ᵗʰᵉ ᵍʳᵒᵘᵖ ᵃᵈᵐⁱⁿ‌‌", reply_markup=InlineKeyboardMarkup(buttons))
+            a = await message.reply_video(video="https://telegra.ph/file/0077da84ae308be1cde7b.mp4", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n[ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯, . () ᴅᴏɴᴛ ᴜsᴇ ᴛʜɪꜱ ᴛyᴩᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ[ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/12) \n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇👇", reply_markup=InlineKeyboardMarkup(buttons))
             await message.forward("@S1a2r3a4n")
-            await asyncio.sleep(30)
+            await asyncio.sleep(40)
             await a.delete()
             await message.delete()
             return
@@ -321,29 +321,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "report":
             # await query.edit_message_media("https://telegra.ph/file/3916217b15b6760626e02.jpg", "Reported to Admins",)
             ac = await query.message.edit(text=f"{query.from_user.mention} [{query.from_user.id}], \n **Reported to Admins** 👮‍♂️", disable_web_page_preview=True)
-            await ac.forward("@S1a2r3a4n")
-
-
-            # chat_id = query.message.chat.id
-            # reporter = str(message.from_user.id)
-            # mention = message.from_user.mention
-            # admins = await bot.get_chat_members(chat_id=chat_id, filter="administrators")
-            # success = False
-            # report = f"Reporter : {mention} ({reporter})" + "\n"
-            # report += f"Message : {message.reply_to_message.link}"
-            # for admin in admins:
-               # try:
-           # reported_post = await message.reply_to_message.forward(admin.user.id)
-                   # await reported_post.reply_text(
-                       # text=report,
-                       # chat_id=admin.user.id,
-                       # disable_web_page_preview=True 
-                                 # success = True
-                # except:
-                    # pass
-            # if success:
-
-             
+            await ac.forward("@S1a2r3a4n")    
 
         elif query.data.startswith("subinps"):
             ident, file_id = query.data.split("#")
