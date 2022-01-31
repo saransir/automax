@@ -77,10 +77,8 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('🎪 group 🎪', url='https://t.me/+aZIoNNlskWk4ODg1')
-                    ],
-                    [
-                        InlineKeyboardButton(' 🔍 Search again 🎬', switch_inline_query_current_chat='')
+                        InlineKeyboardButton('🎪 ɢʀᴏᴜᴘ', url='https://t.me/+aZIoNNlskWk4ODg1'),
+                        InlineKeyboardButton(' 🔍 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
                     ]
                     ]
                 await bot.send_cached_media(
@@ -112,14 +110,14 @@ async def start(bot, cmd):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("🌀 channel 🌀", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"), 
-                        InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
+                        InlineKeyboardButton("🌀 ᴄʜᴀɴɴᴇʟ 🌀", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"), 
+                        InlineKeyboardButton("🎪 ɢʀᴏᴜᴘ  🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
                     ],
                     [
-                        InlineKeyboardButton("🔎 Search Here 🔍", switch_inline_query_current_chat='')
+                        InlineKeyboardButton("🔎 sᴇᴀʀᴄʜ ғɪʟᴇ 🔍", switch_inline_query_current_chat='')
                     ],
                     [
-                        InlineKeyboardButton('🔍 Go Inline 🔎', switch_inline_query='')
+                        InlineKeyboardButton('🔍 ɢᴏ ɪɴʟɪɴᴇ 🔎', switch_inline_query='')
                     ]
                 ]
             )
@@ -215,7 +213,7 @@ async def bot_indo(bot, message):
 async def bot_link(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('🔍search file 💼', switch_inline_query_current_chat='')
+            InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ ғɪʟᴇ 💼', switch_inline_query_current_chat='')
         ]
         ]
     await bot.send_message(chat_id=message.from_user.id, text="<b>തായേ👇 കാണുന്ന 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു 🎬സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്യുക</b> \n\n <b>👇Click on the 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 button and type the name of the movie‌‌</b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
@@ -223,7 +221,7 @@ async def bot_link(bot, message):
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
+            InlineKeyboardButton("🎪 ɢʀᴏᴜᴘ  🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
         ]
         ]
     a = await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](https://t.me/+aZIoNNlskWk4ODg1)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
@@ -237,7 +235,7 @@ async def bot_srern(bot, message):
 async def bot_kunna(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('🍿 group 🍿', url='https://t.me/+aZIoNNlskWk4ODg1')
+            InlineKeyboardButton('🍿 ɢʀᴏᴜᴘ  🍿', url='https://t.me/+aZIoNNlskWk4ODg1')
         ]
         ]
     await message.reply(text=f"<b>പുതിയതും പഴയതും ആയ എല്ലാ 🎬 സിനിമകളും നിങ്ങൾക് ഈ ഗ്രൂപ്പിൽ ചോദിക്കാം , താല്പര്യം ഉള്ളവർ താഴെ👇 ഉള്ള ലിങ്കിൽ കേറി പോരുക\n\n\n https://t.me/+aZIoNNlskWk4ODg1 https://t.me/+aZIoNNlskWk4ODg1 https://t.me/+aZIoNNlskWk4ODg1 </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
