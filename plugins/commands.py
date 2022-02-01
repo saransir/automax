@@ -242,7 +242,7 @@ async def bot_kunna(bot, message):
 @Client.on_message(filters.regex('Hi'))
 async def hellto(bot, message):
     await message.reply("hello 🙌🏻")
-@Client.on_message(filters.regex('movie'))
+@Client.on_message(filters.regex('movie') & filters.group)
 async def helmo(bot, message):
     buttons = [
         [
@@ -254,7 +254,7 @@ async def helmo(bot, message):
     await asyncio.sleep(15) # error 
     await mo.delete()
     await message.delete()
-@Client.on_message(filters.command('mlm_new') & filters.group)
+@Client.on_message(filters.command('mlm_new'))
 async def textx(bot, message):
     buttons = [
         [
