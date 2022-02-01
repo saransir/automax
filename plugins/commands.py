@@ -239,7 +239,7 @@ async def bot_kunna(bot, message):
         ]
         ]
     await message.reply(text=f"<b>പുതിയതും പഴയതും ആയ എല്ലാ 🎬 സിനിമകളും നിങ്ങൾക് ഈ ഗ്രൂപ്പിൽ ചോദിക്കാം , താല്പര്യം ഉള്ളവർ താഴെ👇 ഉള്ള ലിങ്കിൽ കേറി പോരുക\n\n\n https://t.me/+aZIoNNlskWk4ODg1 https://t.me/+aZIoNNlskWk4ODg1 https://t.me/+aZIoNNlskWk4ODg1 </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-@Client.on_message(filters.regex('Hi '))
+@Client.on_message(filters.regex('Hi_'))
 async def hellto(bot, message):
     await message.reply("hello 🙌🏻")
 @Client.on_message(filters.regex('movie') & filters.group & filters.chat(AUTH_CHANNEL))
