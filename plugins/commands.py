@@ -114,7 +114,7 @@ async def start(bot, cmd):
                         InlineKeyboardButton("🎪 ɢʀᴏᴜᴘ  🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
                     ],
                     [
-                        InlineKeyboardButton("🔎 sᴇᴀʀᴄʜ ғɪʟᴇ 🔍", switch_inline_query_current_chat='')
+                        InlineKeyboardButton("🔎 𝚂𝙴𝙰𝚁𝙲𝙷 𝙵𝙸𝙻𝙴 🔍", switch_inline_query_current_chat='')
                     ],
                     [
                         InlineKeyboardButton('🔍 ɢᴏ ɪɴʟɪɴᴇ 🔎', switch_inline_query='')
