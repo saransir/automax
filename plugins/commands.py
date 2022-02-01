@@ -254,7 +254,7 @@ async def helmo(bot, message):
     await asyncio.sleep(15) # error 
     await mo.delete()
     await message.delete()
-@Client.on_message(command.regex('mlm_new'))
+@Client.on_message(filters.command('mlm_new'))
 async def textx(bot, message):
     buttons = [
         [
