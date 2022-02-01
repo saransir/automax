@@ -242,7 +242,7 @@ async def bot_kunna(bot, message):
 @Client.on_message(filters.regex('Hi'))
 async def hellto(bot, message):
     await message.reply("hello 🙌🏻")
-@Client.on_message(filters.regex('movie') & filters.group)
+@Client.on_message(filters.regex('movie') & filters.group & filters.chat(AUTH_CHANNEL))
 async def helmo(bot, message):
     buttons = [
         [
