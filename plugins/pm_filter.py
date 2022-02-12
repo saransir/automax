@@ -354,7 +354,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
             except UserIsBlocked:
                 await query.answer("First go to the bot and hit the /start \n Then click \n ആദ്യം ബോട്ടിൽ പോയിട്ട് സ്റ്റാർട്ട് അടിക്കുക",show_alert=True)
-                    return 400,
+                    
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
                 await query.answer("🎪ഗ്രൂപ്പിൽ join ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ 💐",show_alert=True)
