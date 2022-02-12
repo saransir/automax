@@ -148,7 +148,7 @@ async def group(client, message):
                 file_id = file.file_id
                 filename = f"{oam}{get_size(file.file_size)}{oamm}{file.file_name}"
                 btn.append(
-                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
+                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
         else:            
             buttons = btn
@@ -323,7 +323,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ac = await query.message.edit(text=f"{query.from_user.mention} [{query.from_user.id}], \n **Reported to Admins** 👮‍♂️", disable_web_page_preview=True)
             await ac.forward("@S1a2r3a4n")    
 
-        elif query.data.startswith("subinps"):
+        elif query.data.startswith("saran"):
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
@@ -348,7 +348,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉</b>""<code>" + title + "</code>""\n\n [𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+aZIoNNlskWk4ODg1)",
+                    caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉</b>""<code>" + title + "</code>""\n\n <b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+aZIoNNlskWk4ODg1)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         elif query.data.startswith("checksub"):
