@@ -353,7 +353,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
             except UserIsBlocked:
-                await query.answer("First go to the bot and hit the /start \n Then click \n ആദ്യം ബോട്ടിൽ പോയിട്ട് സ്റ്റാർട്ട് അടിക്കുക",show_alert=True)
+                await query.edit_message_caption("First go to the bot and hit the /start \n Then click \n ആദ്യം ബോട്ടിൽ പോയിട്ട് സ്റ്റാർട്ട് അടിക്കുക")
                     
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
