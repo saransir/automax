@@ -358,7 +358,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
-                title = files.file_name
+                title = files.file_name[0:-4]
                 size=files.file_size
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
@@ -371,7 +371,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('🎪 group 🎪', url=f'https://t.me/joinchat/q4xMr02fvA9jNzQ1')
+                        InlineKeyboardButton('🎪 ɢʀᴏᴜᴘ', url='https://t.me/+aZIoNNlskWk4ODg1'),
+                        InlineKeyboardButton(' 🔍 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
                     ]
                     ]
                 
