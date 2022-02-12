@@ -64,7 +64,7 @@ async def start(bot, cmd):
             ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
-                title = files.file_name
+                title = files.file_name[0:-4]
                 size=files.file_size
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
