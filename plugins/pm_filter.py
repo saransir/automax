@@ -353,7 +353,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
             except UserIsBlocked:
-                await query.answer(url=f"https://telegram.dog/On_air_Filter_bot?start=subinps")
+                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=start")
             else:
                 await query.answer("The file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈😊 sent to your pm",show_alert=True)
 
