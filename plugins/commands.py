@@ -20,7 +20,6 @@ PHOT = [
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
-    usr_cmdall15 = cmd.text
     if usr_cmdall1.startswith("/start subinps"):
         if AUTH_CHANNEL:
             invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
@@ -102,6 +101,8 @@ async def start(bot, cmd):
                 ]
             )
         )
+    elif usr_cmdall1.startswith("/start saran"):
+        await cmd.reply_text(f"set")
     else:
         await cmd.reply_text(
             START_MSG,
