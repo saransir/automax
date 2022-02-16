@@ -262,4 +262,7 @@ async def textx(bot, message):
         ]
         ]
     await bot.send_message(chat_id=message.from_user.id, text="<b>ഏറ്റവും പുതിയതായി ബോട്ടിൽ add ചെയ്ത മലയാളം സിനിമകൾക്കായ് തായേ👇 കാണുന്ന 🔍 𝗦𝗲𝗮𝗿𝗰𝗵 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്ത ശേഷം അനുയോജ്യമായ file select ചെയ്യുക 😇</b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-
+@Client.on_message(filters.regex('Livegram'))
+async def dfhhg(bot, message):
+    await message.reply("<b>bro group link 👉 https://t.me/+PBGW_EV3ldY5YjJl</b>")
+    await message.delete()
