@@ -111,8 +111,9 @@ async def start(bot, cmd):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("🌀 ᴄʜᴀɴɴᴇʟ 🌀", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"), 
-                        InlineKeyboardButton("🎪 ɢʀᴏᴜᴘ  🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
+                        InlineKeyboardButton(text="ᴀʙᴏᴜᴛ 💡",callback_data="about"),
+                        InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ 🍿", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"), 
+                        InlineKeyboardButton("ɢʀᴏᴜᴩ  🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
                     ],
                     [
                         InlineKeyboardButton("🔎 𝚂𝙴𝙰𝚁𝙲𝙷 𝙵𝙸𝙻𝙴 🔍", switch_inline_query_current_chat='')
