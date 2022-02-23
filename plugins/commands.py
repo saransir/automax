@@ -103,7 +103,7 @@ async def start(bot, cmd):
         )
     elif usr_cmdall1.startswith("/start saran"):
         ident, file_name = cmd.text.split("==")
-        x = file_name.split("+")
+        x = file_name.split("_")
         hari = " ".join(x)
         await cmd.reply_text(
             "**തായേ👇 കാണുന്ന 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു 🎬 സിനിമ ഫയൽ തിരഞ്ഞെടുക്കുക** \n\n **👇Click on the 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 button and Select the movie file**",
