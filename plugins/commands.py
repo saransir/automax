@@ -102,14 +102,15 @@ async def start(bot, cmd):
             )
         )
     elif usr_cmdall1.startswith("/start saran"):
+        ident, file_name = cmd.text.split("==")
         await cmd.reply_text(
-            "<b> തായേ👇 കാണുന്ന 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു 🎬സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്യുക</b> \n\n <b>👇Click on the 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 button and type the name of the movie‌‌</b>",
+            "**തായേ👇 കാണുന്ന 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു 🎬സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്യുക** \n\n **👇Click on the 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 button and type the name of the movie‌‌**",
             parse_mode="Markdown",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ ғɪʟᴇ 💼', switch_inline_query_current_chat='')
+                        InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ ғɪʟᴇ 💼', switch_inline_query_current_chat=f'{file_name}')
                     ]
                 ]
             )
