@@ -284,5 +284,5 @@ async def dfhhg(bot, message):
     await message.delete()
 @Client.on_message(filters.command('test'))
 async def texthx(bot, message):
-    mmm = message.text.split(None, 1)
-    await message.reply(f"{mmm}")
+    mm, dd = message.text.split(None, 1)
+    await message.reply(f"{dd}")
