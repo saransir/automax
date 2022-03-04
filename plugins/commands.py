@@ -282,3 +282,7 @@ async def textx(bot, message):
 async def dfhhg(bot, message):
     await message.reply(f"𝙷𝙸 🙌🏻\n <code> മുകളിൽ കാണുന്ന -𝘀𝗲𝗮𝗿𝗰𝗵 𝗳𝗶𝗹𝗲- എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്താൽ  സിനിമ ഫയൽ ലഭികും</code> \n\n <b>⚠️ Note: search ചെയ്യുബോൾ Correct Spelling ആയിരിക്കണം. Correct Spelling അറിയാൻ ഗൂഗിളിൽ നോക്കി  ടൈപ്പ് ചെയ്യുക</b>")
     await message.delete()
+@Client.on_message(filters.command('test'))
+async def texthx(bot, message):
+    mmm = message.text.split(None, 1)
+    await message.reply(f"{mmm}")
