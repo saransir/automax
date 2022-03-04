@@ -16,6 +16,8 @@ PHOT = [
     "https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg",
     "https://telegra.ph/file/51683050f583af4c81013.jpg",
 ]
+BUTTONS = {}
+BOT = {}
 
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
