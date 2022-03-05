@@ -218,7 +218,7 @@ def get_size(size):
     while size >= 1024.0 and i < len(units):
         i += 1
         size /= 1024.0
-    return "%.2f %s" % (size[0:3], 'units[i]')
+    return "%.2f %s" % ((size[0:3]), units[i])
 
 def split_list(l, n):
     for i in range(0, len(l), n):
