@@ -5,7 +5,7 @@ import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, API_KEY
-from utils import get_filter_results, get_file_details, get_poster, Media
+from utils import Media, get_file_details, get_poster
 from info import TUTORIAL
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
@@ -16,8 +16,7 @@ PHOT = [
     "https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg",
     "https://telegra.ph/file/51683050f583af4c81013.jpg",
 ]
-BUTTONS = {}
-BOT = {}
+
 
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
