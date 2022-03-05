@@ -120,7 +120,7 @@ async def start(bot, cmd):
             )
         )
     elif usr_cmdall1.startswith("/start test"):
-        ident, movie_name, show = cmd.text.split("==")
+        ident, movie_name = cmd.text.split("=+=")
         x = movie_name.split("_")
         hari = " ".join(x)
         btn = []
