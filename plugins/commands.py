@@ -119,65 +119,6 @@ async def start(bot, cmd):
                 ]
             )
         )
-    elif usr_cmdall1.startswith("/start test"):
-        ident, movie_name = cmd.text.split("===")
-        x = movie_name.split("_")
-        hari = " ".join(x)
-        btn = []
-        search = movie_name 
-        files = await get_filter_results(query=search)
-        if files:
-            for file in files:
-                file_id = file.file_id
-                filename = f"🍿{get_size(file.file_size)}🍿{file.file_name}"
-                btn.append(
-                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
-                    )
-        else:
-            return
-
-        if not btn:
-            return
-
-        if len(btn) > 15: 
-            btns = list(split_list(btn, 15)) 
-            keyword = f"{cmd.chat.id}-{cmd.message_id}"
-            BUTTONS[keyword] = {
-                "total" : len(btns),
-                "buttons" : btns
-            }
-        else:
-            buttons = btn
-            buttons.append(
-                [InlineKeyboardButton("🎪 channel 🎪", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
-            )
-            poster=None
-            if API_KEY:
-                poster=await get_poster(search)
-            if poster:
-                await cmd.reply_photo(photo=poster, caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n  <b>🌀 ᴄʜᴀɴɴᴇʟ : [ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-
-            else:
-                await cmd.reply_photo(photo=f"{random.choice(PHOT)}", caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ : [ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-            return
-
-        data = BUTTONS[keyword]
-        buttons = data['buttons'][0].copy()
-
-        buttons.append(
-            [InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
-        )    
-        buttons.append(
-            [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages")]
-        )
-        poster=None
-        if API_KEY:
-            poster=await get_poster(search)
-        if poster:
-            await cmd.reply_photo(photo=poster, caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ :[ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-        else:
-            await cmd.reply_photo(photo=f"{random.choice(PHOT)}", caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ :[ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-
     else:
         await cmd.reply_text(
             START_MSG,
