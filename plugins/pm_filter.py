@@ -136,7 +136,8 @@ async def group(client, message):
         oamm = f"{random.choice(RAT)}"
         x = search.split()
         hari = "+".join(x)
-         
+        sesna = "_".join(x)
+
         nyva=BOT.get("username")
         if not nyva:
             botusername=await client.get_me()
@@ -198,7 +199,7 @@ async def group(client, message):
             [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
         )
         buttons.append(
-            [InlineKeyboardButton("🍿   channel   🍿", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
+            [InlineKeyboardButton("𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼", url=f"https://telegram.dog/On_air_Filter_bot?start=saran=={sesna}")]
         )
         poster=None
         if API_KEY:
@@ -217,7 +218,7 @@ def get_size(size):
     while size >= 1024.0 and i < len(units):
         i += 1
         size /= 1024.0
-    return "%.2f %s" % (string(size[0:4]), units[i])
+    return "%.2f %s" % ("{size}[0:4], {units[i]}")
 
 def split_list(l, n):
     for i in range(0, len(l), n):
