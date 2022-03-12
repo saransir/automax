@@ -234,7 +234,41 @@ async def cb_handler(client: Client, query: CallbackQuery):
     except:
         typed = query.from_user.id
         pass
-    if (clicked == typed):
+    if query.data.startswith("saran"):
+            ident, file_id = query.data.split("#")
+            filedetails = await get_file_details(file_id)
+            for files in filedetails:
+                title = files.file_name[0:-4]
+                size=files.file_size
+                f_caption=files.caption
+                if CUSTOM_FILE_CAPTION:
+                    try:
+                        f_caption="{title}",
+                    except Exception as e:
+                        print(e)
+                        f_caption=f_caption
+                if f_caption is None:
+                    f_caption = f"{title}"
+                buttons = [
+                    [
+                        InlineKeyboardButton('🎪 ɢʀᴏᴜᴘ', url='https://t.me/+aZIoNNlskWk4ODg1'),
+                        InlineKeyboardButton(' 🔍 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
+                    ]
+                    ]
+             
+            try:  
+                await client.send_cached_media(
+                    chat_id=query.from_user.id,
+                    file_id=file_id,
+                    caption=f"<code>" + title + "</code>""\n\n <b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+aZIoNNlskWk4ODg1)</b>",
+                    reply_markup=InlineKeyboardMarkup(buttons)
+                    )
+            except UserIsBlocked:
+                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")
+            else:
+                await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)               
+    
+    elif (clicked == typed):
 
         if query.data.startswith("next"):
             ident, index, keyword = query.data.split("_")
@@ -356,38 +390,5 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "pages":
             await query.answer()
 
-    elif query.data.startswith("saran"):
-            ident, file_id = query.data.split("#")
-            filedetails = await get_file_details(file_id)
-            for files in filedetails:
-                title = files.file_name[0:-4]
-                size=files.file_size
-                f_caption=files.caption
-                if CUSTOM_FILE_CAPTION:
-                    try:
-                        f_caption="{title}",
-                    except Exception as e:
-                        print(e)
-                        f_caption=f_caption
-                if f_caption is None:
-                    f_caption = f"{title}"
-                buttons = [
-                    [
-                        InlineKeyboardButton('🎪 ɢʀᴏᴜᴘ', url='https://t.me/+aZIoNNlskWk4ODg1'),
-                        InlineKeyboardButton(' 🔍 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
-                    ]
-                    ]
-             
-            try:  
-                await client.send_cached_media(
-                    chat_id=query.from_user.id,
-                    file_id=file_id,
-                    caption=f"<code>" + title + "</code>""\n\n <b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+aZIoNNlskWk4ODg1)</b>",
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                    )
-            except UserIsBlocked:
-                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")
-            else:
-                await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)               
     else:
         await query.answer("😊Bro, search your own file, Don't click others Requested files🎬",show_alert=True)
