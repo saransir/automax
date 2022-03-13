@@ -292,16 +292,12 @@ async def texthx(bot, message):
         "`Processing user info...`"
     )
     from_user = None
-    from_user_id = message.reply_to_message.from_user.id
-    try:
-        from_user = await client.get_users(from_user_id)
-    except Exception as error:
-        await status_message.edit(str(error))
-        return
+    from_user = message.reply_to_message.from_user
+    
     if from_user is None:
         return await status_message.edit("no valid user_id / message specified")
     message_out_str = ""
-    message_out_str += f"<b>➲First Name:</b> {from_user.first_name}\n"
+    message_out_str += f"<b>➲First Name:</b> {message.reply_to_message.from_user.first_name}\n"
     last_name = from_user.last_name or "<b>None</b>"
     message_out_str += f"<b>➲Last Name:</b> {last_name}\n"
     message_out_str += f"<b>➲Telegram ID:</b> <code>{from_user.id}</code>\n"
