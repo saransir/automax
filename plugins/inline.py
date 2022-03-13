@@ -16,7 +16,7 @@ async def answer(bot, query):
         await query.answer(results=[],
                            cache_time=0,
                            switch_pm_text='join group 🎪 then use 😉',
-                           switch_pm_parameter="subscrib")
+                           switch_pm_parameter="join")
         return
 
     results = []
