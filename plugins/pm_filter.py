@@ -126,7 +126,8 @@ async def filter(client, message):
 async def group(client, message):
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
-    if 2 < len(message.text) < 50:    
+    if len(message.text) < 3:    
+    elif 3 < len(message.text) < 50:    
         btn = []
 
         search = message.text
@@ -208,7 +209,10 @@ async def group(client, message):
             await message.reply_photo(photo=poster, caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
         else:
             await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
-    
+
+    else:
+        await message.del
+
 def get_size(size):
     """Get size in readable format"""
 
