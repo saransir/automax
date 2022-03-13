@@ -127,7 +127,7 @@ async def group(client, message):
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
     if len(message.text) <= 3:
-        kk = await message.reply_text("𝚜𝚎𝚗𝚝 𝗡𝗮𝗺𝗲 & 𝘆𝗲𝗮𝗿 ")
+        kk = await message.reply_text("ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ \n 𝚜𝚎𝚗𝚝👉 𝗡𝗮𝗺𝗲 & 𝘆𝗲𝗮𝗿 ")
         await asyncio.sleep(10)
         await kk.delete()
         await message.delete() 
