@@ -38,14 +38,14 @@ async def start(bot, cmd):
                 ident, file_id = cmd.text.split("_-_-_-_")
                 await bot.send_message(
                     chat_id=cmd.from_user.id,
-                    text="**⭕️ Join My group to use this Bot ⭕️",
+                    text="**Join My [group](https://t.me/+aZIoNNlskWk4ODg1) to use this Bot**",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("🌀 Join group 🌀", url=invite_link.invite_link)
+                                InlineKeyboardButton(" ᴊᴏɪɴ ɢʀᴏᴜᴩ 🎪 ", url=invite_link.invite_link)
                             ],
                             [
-                                InlineKeyboardButton("🔄 Try Again 🔄", callback_data=f"checksub#{file_id}")
+                                InlineKeyboardButton(" 𝚃𝚁𝚈 𝙰𝙶𝙰𝙸𝙽 🔄", callback_data=f"checksub#{file_id}")
                             ]
                         ]
                     ),
@@ -89,11 +89,11 @@ async def start(bot, cmd):
                     )
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
-    elif len(cmd.command) > 1 and cmd.command[1] == '⭕️subscribe⭕️':
+    elif len(cmd.command) > 1 and cmd.command[1] == 'join':
         invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text="** Join My 🎪 group to use this Bot!**",
+            text="** Join My  group🎪 to use this Bot!**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -198,7 +198,7 @@ async def delete(bot, message):
     if reply and reply.media:
         msg = await message.reply("Processing...⏳", quote=True)
     else:
-        await message.reply('Reply to file with /delete which you want to delete', quote=True)
+        await message.reply('Reply to file with /del which you want to delete', quote=True)
         return
 
     for file_type in ("document", "video", "audio"):
@@ -286,4 +286,4 @@ async def dfhhg(bot, message):
 @Client.on_message(filters.command('test'))
 async def texthx(bot, message):
     mm, dd = message.text.split(None, 1)
-    await message.reply(f"{dd}")
+    await message.reply(f"**{dd}**")
