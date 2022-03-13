@@ -291,7 +291,7 @@ async def texthx(bot, message):
     await status_message.edit(
         "`Processing user info...`"
     )
-    from_user = None
+    
     from_user = message.reply_to_message.from_user
     
     if from_user is None:
