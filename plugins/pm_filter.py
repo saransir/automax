@@ -255,19 +255,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         InlineKeyboardButton(' 🔍 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
                     ]
                     ]
-             
-            try:  
-                await client.send_cached_media(
+            
+            if (clicked == typed):
+                try:  
+                    await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
                     caption=f"<code>" + title + "</code>""\n\n <b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+aZIoNNlskWk4ODg1)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
-            except UserIsBlocked:
+                except UserIsBlocked:
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")
+                else:
+                await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)
             else:
-                await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)               
-    
+                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")           
+ 
     elif (clicked == typed):
 
         if query.data.startswith("next"):
