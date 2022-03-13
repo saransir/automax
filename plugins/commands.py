@@ -292,7 +292,7 @@ async def texthx(bot, message):
         "`Processing user info...`"
     )
     from_user = None
-    from_user_id, _ = extract_user(message)
+    from_user_id = message.reply_to_message.from_user.id
     try:
         from_user = await client.get_users(from_user_id)
     except Exception as error:
