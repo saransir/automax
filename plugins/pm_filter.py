@@ -152,7 +152,8 @@ async def group(client, message):
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = f"{oam}{get_size(file.file_size)}{oamm}{file.file_name}"
+                sz = get_size(file.file_size)
+                filename = f"{oam}{sz[0:3]+sz[-2:]}{oamm}{file.file_name}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
@@ -226,7 +227,7 @@ def get_size(size):
     while size >= 1024.0 and i < len(units):
         i += 1
         size /= 1024.0
-    return "%.2f %s"[0:3] % (size, units[i])
+    return "%.2f %s" % (size, units[i])
 
 def split_list(l, n):
     for i in range(0, len(l), n):
