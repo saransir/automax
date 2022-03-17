@@ -154,7 +154,7 @@ async def group(client, message):
                 file_id = file.file_id
                 sz = get_size(file.file_size)
                 fn = file.file_name[0:23]
-                filename = f"{oam}{fn}{oamm}{sz[0:3]+" "+sz[-2:]}"
+                filename = f"{oam}{fn}{oamm}{sz[0:3]} {sz[-2:]}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
