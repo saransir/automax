@@ -10,7 +10,7 @@ from utils import get_filter_results, get_file_details, is_subscribed, get_poste
 BUTTONS = {}
 BOT = {}
 
-RAT = ["🦋", "💡", "🎡", "🎈", "🀄️", "🔖", "🍭", "🍿", ]
+RAT = ["🦋", "🫐", "🎡", "🎈", "🥀", "🔖", "🍭", "🍿", ]
 RATING = ["5.1/10 🤺ɪᴍᴅʙ", "6.2/10 🤺ɪᴍᴅʙ", "7.3/10 🤺ɪᴍᴅʙ", "8.1/10 🤺ɪᴍᴅʙ", "5.5/10 🤺ɪᴍᴅʙ", "7.8/10 🤺ɪᴍᴅʙ", "6.4/10 🤺ɪᴍᴅʙ", "6.9/10 🤺ɪᴍᴅʙ", ]
 GENRES = ["ғᴜɴ🍿 ғᴀᴄᴛ",
          "ᴛʜʀɪʟʟᴇʀ🍿",
@@ -153,7 +153,7 @@ async def group(client, message):
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
-                fn = file.file_name[0:24]
+                fn = file.file_name[0:25]
                 filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oamm}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
@@ -182,7 +182,7 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("⚡️channel⚡️", url="https://t.me/joinchat/4-Quex2FaFhjMDM1"),InlineKeyboardButton("💡close💡", callback_data="close")]
+                [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}", InlineKeyboardButton("💡close💡", callback_data="close")]
             )
             poster=None
             if API_KEY:
@@ -206,7 +206,7 @@ async def group(client, message):
             [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
         )
         buttons.append(
-            [InlineKeyboardButton("𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼", url=f"https://telegram.dog/On_air_Filter_bot?start=saran=={sesna}")]
+            [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
         )
         poster=None
         if API_KEY:
@@ -280,7 +280,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)
             else:
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")           
- 
+    
+    elif query.data.startswith("myree"):
+            ident, file_name = query.data.split("#")
+            await query.answer(url=f"http://t.me/On_air_Filter_bot?start=saran=={file_name}")
+
     elif (clicked == typed):
 
         if query.data.startswith("next"):
@@ -298,7 +302,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton(f"🎪 Pages {int(index)+2}/{data['total']}🎪", callback_data="pages")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton("🍿   channel   🍿", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
+                    [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -312,7 +316,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton(f"🎪{int(index)+2}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)+1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton("🍿   channel   🍿", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
+                    [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
                 )
 
                 await query.edit_message_reply_markup( 
