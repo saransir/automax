@@ -130,7 +130,7 @@ async def start(bot, cmd):
                         InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ 🍿", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")   
                     ],
                     [
-                        InlineKeyboardButton("ɢʀᴏᴜᴩ 1 🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
+                        InlineKeyboardButton("ɢʀᴏᴜᴩ 1 🎪", url="https://t.me/+aZIoNNlskWk4ODg1"),
                         InlineKeyboardButton("ɢʀᴏᴜᴩ 2 🎪", url="https://t.me/+cw1toKgivTRlNDI1")   
                     ],
                     [
