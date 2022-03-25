@@ -92,7 +92,7 @@ async def save_file(media):
         except DuplicateKeyError:
             logger.warning(media.file_name + " is already saved in database")
         else:
-            await bot.send_message(chat_id="732556620", text=f"{file_id}", disable_web_page_preview=True)
+            logger.info(file_id + " is saved in database")
             
 async def get_search_results(query, file_type=None, max_results=10, offset=0):
     """For given query return (results, next_offset)"""
