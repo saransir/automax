@@ -310,3 +310,29 @@ async def texthx(bot, message):
     message_out_str += f"<b>➲User Name:</b> @{username}\n"
     message_out_str += f"<b>➲User 𝖫𝗂𝗇𝗄:</b> <a href='tg://user?id={from_user.id}'><b>Click Here</b></a>\n"
     await status_message.edit(f"{message_out_str}")
+
+@Client.on_message(filters.command('leave') & filters.user(ADMINS))
+async def leave_a_chat(bot, message):
+    if len(message.command) == 1:
+        return await message.reply('Give me a chat id')
+    chat = message.command[1]
+    try:
+        chat = int(chat)
+    except:
+        chat = chat
+    try:
+        buttons = [[
+            InlineKeyboardButton('my group ', url=f'https://t.me/+aZIoNNlskWk4ODg1')
+        ]]
+        reply_markup=InlineKeyboardMarkup(buttons)
+        await bot.send_message(
+            chat_id=chat,
+            text='<b>Hello Friends, \nMy admin has told me to leave from group so i go! If you wanna add me again contact my support group.</b>',
+            reply_markup=reply_markup,
+        )
+
+        await bot.leave_chat(chat)
+        await message.reply(f"left the chat `{chat}`")
+    except Exception as e:
+        await message.reply(f'Error - {e}')
+
