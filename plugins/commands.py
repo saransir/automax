@@ -266,7 +266,7 @@ async def hellto(bot, message):
 async def helmo(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('🔍 ꜱᴇᴀʀᴄʜ ʙᴏᴛ ', url='https://t.me/On_air_Filter_bot'),
+            InlineKeyboardButton(text="🔍 ꜱᴇᴀʀᴄʜ ʙᴏᴛ",callback_data=f"myree#"),
             InlineKeyboardButton(' 🔍 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ', url='https://www.google.com/')
         ]
         ]
