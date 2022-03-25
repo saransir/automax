@@ -336,3 +336,30 @@ async def leave_a_chat(bot, message):
     except Exception as e:
         await message.reply(f'Error - {e}')
 
+
+@Client.on_message(filters.command('snd') & filters.user(ADMINS))
+async def leave_a_chat(bot, message):
+    if len(message.command) == 1:
+        return await message.reply('Give me a chat id')
+    chat = message.command[1]
+    cha, txt = chat.split("_")
+    try:
+        cha = int(cha)
+    except:
+        cha = cha
+    try:
+        buttons = [[
+            InlineKeyboardButton('group ', url=f'https://t.me/+aZIoNNlskWk4ODg1')
+        ]]
+        reply_markup=InlineKeyboardMarkup(buttons)
+        await bot.send_message(
+            chat_id=chat,
+            text="<b>" + txt + "</b>",
+            reply_markup=reply_markup,
+        )
+
+        await bot.leave_chat(chat)
+        await message.reply(f"left the chat `{chat}`")
+    except Exception as e:
+        await message.reply(f'Error - {e}')
+
