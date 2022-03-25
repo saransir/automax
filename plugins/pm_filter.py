@@ -131,7 +131,7 @@ async def group(client, message):
         await asyncio.sleep(10)
         await kk.delete()
         await message.delete() 
-    elif 3 < len(message.text) < 50:    
+    elif 3 < len(message.text) < 45:    
         btn = []
 
         search = message.text
@@ -161,9 +161,9 @@ async def group(client, message):
         else:            
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton(text=f"🍿{search} ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
+                [InlineKeyboardButton(text=f"🍿{search} ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
             )
-            a = await message.reply_video(video="https://telegra.ph/file/0077da84ae308be1cde7b.mp4", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n [ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯, . () ᴅᴏɴᴛ ᴜsᴇ ᴛʜɪꜱ ᴛyᴩᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/12) \n\n **𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇👇", reply_markup=InlineKeyboardMarkup(buttons))
+            a = await message.reply_photo(photo="https://telegra.ph/file/6a0fea5d018525f7d8ed9.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n [ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯, . () ᴅᴏɴᴛ ᴜsᴇ ᴛʜɪꜱ ᴛyᴩᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/12) \n\n **𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇👇", reply_markup=InlineKeyboardMarkup(buttons))
             await message.forward("@S1a2r3a4n")
             await asyncio.sleep(30)
             await a.delete()
