@@ -77,14 +77,14 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('🎪 ɢʀᴏᴜᴘ', url='https://t.me/+aZIoNNlskWk4ODg1'),
+                        InlineKeyboardButton('🎪 ᴍᴀɪɴ ɢʀᴏᴜᴘ', url='https://t.me/+aZIoNNlskWk4ODg1'),
                         InlineKeyboardButton(' 🔍 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
                     ]
                     ]
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption="<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ:</b>""<code>" + title + "</code>""\n\n<b>ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ ⇊\n [𝚐𝚛𝚘𝚞𝚙 1](https://t.me/+aZIoNNlskWk4ODg1) ↔ [𝚐𝚛𝚘𝚞𝚙 2](https://t.me/+NY-f484oVqE1NmU1)<</b>",
+                    caption="<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ:</b>""<code>" + title + "</code>""\n\n<b>ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ ⇊\n [𝚐𝚛𝚘𝚞𝚙 1](https://t.me/+aZIoNNlskWk4ODg1) ↔ [𝚐𝚛𝚘𝚞𝚙 2](https://t.me/+NY-f484oVqE1NmU1)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
