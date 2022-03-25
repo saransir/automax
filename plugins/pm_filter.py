@@ -372,8 +372,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             cha = int(chaa)
             try:
                 await client.send_message(chat_id=cha,text=f"<code>" + kdm + "</code>""{query.from_user.mention} [{query.from_user.id}] ", disable_web_page_preview=True)
-            await query.answer("𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 Reported to Admins 👮‍♂️",show_alert=True)
-                return
+            except UserIsBlocked:
+                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=saran")
+            else:
+                await query.answer("𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 Reported to Admins 👮‍♂️",show_alert=True)
                 
         elif query.data == "about":
             await query.answer("🤖ɴᴀᴍᴇ: ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
