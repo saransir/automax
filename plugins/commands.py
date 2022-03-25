@@ -84,7 +84,7 @@ async def start(bot, cmd):
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1)\n 🎬file name 👉 </b>""<code>" + title + "</code>""\n\n<b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+aZIoNNlskWk4ODg1)</b>",
+                    caption="<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ:</b>""<code>" + title + "</code>""\n\n<b>ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ ⇊\n [𝚐𝚛𝚘𝚞𝚙 1](https://t.me/+aZIoNNlskWk4ODg1) ↔ [𝚐𝚛𝚘𝚞𝚙 2](https://t.me/+NY-f484oVqE1NmU1)<</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
