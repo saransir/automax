@@ -15,7 +15,7 @@ async def answer(bot, query):
     if AUTH_CHANNEL and not await is_subscribed(bot, query):
         await query.answer(results=[],
                            cache_time=0,
-                           switch_pm_text='join group 🎪 then use 😉',
+                           switch_pm_text='join main group 🎪 then use 😉',
                            switch_pm_parameter="join")
         return
 
@@ -51,7 +51,7 @@ async def answer(bot, query):
             InlineQueryResultCachedDocument(
                 title=file.file_name,
                 file_id=file.file_id,
-                caption="<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n<b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+aZIoNNlskWk4ODg1)</b>",
+                caption="<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ 👉</b>""<code>" + title + "</code>""\n\n<b>𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ \n [𝚐𝚛𝚘𝚞𝚙 1](https://t.me/+aZIoNNlskWk4ODg1) [𝚐𝚛𝚘𝚞𝚙 2](https://t.me/+NY-f484oVqE1NmU1)</b>",
                 description=f'🍭Size: {get_size(file.file_size)}\nType: {file.file_type}',
                 reply_markup=reply_markup))
 
