@@ -363,8 +363,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
         elif query.data.startswith("report"):
             ident, movie = query.data.split("_")
+            x = movie.split("+")
+            kdm = " ".join(x)
+            chaa = "-1001289742055"
+            cha = int(chaa)
             try:
-                await query.message.edit(text=f"<code>" + movie + "</code>""{query.from_user.mention} [{query.from_user.id}] ", disable_web_page_preview=True)
+                await client.send_message(chat_id=cha,text=f"<code>" + kdm + "</code>""{query.from_user.mention} [{query.from_user.id}] ", disable_web_page_preview=True)
             await query.answer("𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 Reported to Admins 👮‍♂️",show_alert=True)
                 return
                 
