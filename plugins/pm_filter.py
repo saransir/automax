@@ -164,7 +164,7 @@ async def group(client, message):
                 [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
             )
             buttons.append(
-                [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ",callback_data=f"report_{hari}")]
+                [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ 🤵",callback_data=f"report_{hari}")]
             )
             a = await message.reply_photo(photo="https://telegra.ph/file/6a0fea5d018525f7d8ed9.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇🤔\n\n𝟭 sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ =- sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ\n [ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ](https://www.google.com/)  \n𝟮 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n𝟯, . () ᴅᴏɴᴛ ᴜsᴇ ᴛʜɪꜱ ᴛyᴩᴇ sʏᴍʙᴏʟs \n𝟰 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ [ʳᵉᵖᵒʳᵗ](https://t.me/movie_requesting_group_rules/12) \n\n **𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇👇", reply_markup=InlineKeyboardMarkup(buttons))
             await message.forward("@S1a2r3a4n")
@@ -368,14 +368,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ident, movie = query.data.split("_")
             x = movie.split("+")
             kdm = " ".join(x)
-            chaa = "-1001289742055"
+            chaa = "-1001534114432"
             cha = int(chaa)
             try:
-                await client.send_message(chat_id=cha,text=f"<code>" + kdm + "</code>""{query.from_user.mention} [{query.from_user.id}] ", disable_web_page_preview=True)
+                await client.send_message(chat_id=cha,text=f"{kdm}", disable_web_page_preview=True)
             except UserIsBlocked:
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=saran")
             else:
-                await query.answer("𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 Reported to Admins 👮‍♂️",show_alert=True)
+                await query.answer("𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 Reported to Admins 👮‍♂ \n\n\n ᴛʜᴇ ᴍᴏᴠɪᴇ ᴡɪʟʟ ᴜᴩʟᴏᴀᴅɪɴɢ ꜱᴏᴏɴ..",show_alert=True)
                 
         elif query.data == "about":
             await query.answer("🤖ɴᴀᴍᴇ: ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
