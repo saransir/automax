@@ -263,6 +263,9 @@ async def bot_kunna(bot, message):
 @Client.on_message(filters.regex('https') & filters.group)
 async def hellto(bot, message):
     await message.delete()
+@Client.on_message(filters.forwarded)
+async def delfor(bot,message):
+    await message.delete()
 @Client.on_message(filters.regex('movie') & filters.group & filters.incoming)
 async def helmo(bot, message):
     buttons = [
