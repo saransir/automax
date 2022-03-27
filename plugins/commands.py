@@ -362,7 +362,7 @@ async def leave_a_chat(bot, message):
             reply_markup=reply_markup,
         )
 
-        await message.reply(f"set the chat `{chat}`")
+        await message.reply(f"set the. chat `{chat}`")
     except Exception as e:
         await message.reply(f'Error - {e}')
 
