@@ -16,6 +16,7 @@ PHOT = [
     "https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg",
     "https://telegra.ph/file/51683050f583af4c81013.jpg",
 ]
+LN = "https://t.me/+PBGW_EV3ldY5YjJl"
 
 
 @Client.on_message(filters.command("start"))
@@ -39,7 +40,7 @@ async def start(bot, cmd):
                 ident, file_id = cmd.text.split("_-_-_-_")
                 await bot.send_message(
                     chat_id=cmd.from_user.id,
-                    text="**Join My [group](https://t.me/+aZIoNNlskWk4ODg1) to use this Bot**",
+                    text="**Join My group to use this Bot**",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
@@ -78,14 +79,14 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('🎪 ᴍᴀɪɴ ɢʀᴏᴜᴘ', url='https://t.me/+aZIoNNlskWk4ODg1'),
+                        InlineKeyboardButton('🎪 ᴍᴀɪɴ ɢʀᴏᴜᴘ', url=f'{LN}'),
                         InlineKeyboardButton(' 🔍 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
                     ]
                     ]
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption="<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛</b>""<code>" + title + "</code>""\n\n<b>ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ \n [𝚐𝚛𝚘𝚞𝚙 1](https://t.me/+aZIoNNlskWk4ODg1)  ↮  [𝚐𝚛𝚘𝚞𝚙 2](https://t.me/+NY-f484oVqE1NmU1)</b>",
+                    caption="<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛</b>""<code>" + title + "</code>""\n\n<b>ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ \n [𝚐𝚛𝚘𝚞𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)  ↮  [𝚐𝚛𝚘𝚞𝚙 2](https://t.me/+NY-f484oVqE1NmU1)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
@@ -131,7 +132,7 @@ async def start(bot, cmd):
                         InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ 🍿", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")   
                     ],
                     [
-                        InlineKeyboardButton("ɢʀᴏᴜᴩ 1 🎪", url="https://t.me/+aZIoNNlskWk4ODg1"),
+                        InlineKeyboardButton("ɢʀᴏᴜᴩ 1 🎪", url=f"{LN}"),
                         InlineKeyboardButton("ɢʀᴏᴜᴩ 2 🎪", url="https://t.me/+cw1toKgivTRlNDI1")   
                     ],
                     [
@@ -242,7 +243,7 @@ async def bot_link(bot, message):
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton("🎪 ɢʀᴏᴜᴘ  🎪", url="https://t.me/+aZIoNNlskWk4ODg1")
+            InlineKeyboardButton("🎪 ɢʀᴏᴜᴘ  🎪", url=f"{LN}")
         ]
         ]
     a = await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](https://t.me/+aZIoNNlskWk4ODg1)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
@@ -256,10 +257,10 @@ async def bot_srern(bot, message):
 async def bot_kunna(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('🍿 ɢʀᴏᴜᴘ  🍿', url='https://t.me/+aZIoNNlskWk4ODg1')
+            InlineKeyboardButton('🍿 ɢʀᴏᴜᴘ  🍿', url=f'{LN}')
         ]
         ]
-    await message.reply(text=f"<b>പുതിയതും പഴയതും ആയ എല്ലാ 🎬 സിനിമകളും നിങ്ങൾക് ഈ ഗ്രൂപ്പിൽ ചോദിക്കാം , താല്പര്യം ഉള്ളവർ താഴെ👇 ഉള്ള ലിങ്കിൽ കേറി പോരുക\n\n\n https://t.me/+aZIoNNlskWk4ODg1 https://t.me/+aZIoNNlskWk4ODg1 https://t.me/+aZIoNNlskWk4ODg1 </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    await message.reply(text=f"<b>പുതിയതും പഴയതും ആയ എല്ലാ 🎬 സിനിമകളും നിങ്ങൾക് ഈ ഗ്രൂപ്പിൽ ചോദിക്കാം , താല്പര്യം ഉള്ളവർ താഴെ👇 ഉള്ള ലിങ്കിൽ കേറി പോരുക\n\n\n {LN} </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 @Client.on_message(filters.regex('https') & filters.group)
 async def hellto(bot, message):
     await message.delete()
