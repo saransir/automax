@@ -268,10 +268,12 @@ async def hellto(bot, message):
 async def autoapprove(bot, message: ChatJoinRequest):
     chat=message.chat # Chat
     user=message.from_user # User
-    print(f"{user.first_name} Joined 🤝") # Logs
+    await asyncio.sleep(2)
     await bot.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
-    await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
-    
+    cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
+    await asyncio.sleep(16) 
+    await cg.delete()
+
 @Client.on_message(filters.forwarded & filters.group & filters.incoming)
 async def delfor(bot,message):
     await message.delete()
