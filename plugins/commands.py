@@ -3,7 +3,7 @@ import logging
 import asyncio
 import random
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, API_KEY
 from utils import Media, get_file_details, get_poster
 from info import TUTORIAL
@@ -264,6 +264,14 @@ async def bot_kunna(bot, message):
 @Client.on_message(filters.regex('https') & filters.group)
 async def hellto(bot, message):
     await message.delete()
+@Client.on_chat_join_request(filters.chat(AUTH_CHANNEL))
+async def autoapprove(bot, message: ChatJoinRequest):
+    chat=message.chat # Chat
+    user=message.from_user # User
+    print(f"{user.first_name} Joined 🤝") # Logs
+    await bot.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
+    await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
+    
 @Client.on_message(filters.forwarded & filters.group & filters.incoming)
 async def delfor(bot,message):
     await message.delete()
