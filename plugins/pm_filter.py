@@ -9,6 +9,7 @@ from pyrogram.errors import UserNotParticipant, UserIsBlocked
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster
 BUTTONS = {}
 BOT = {}
+CHAA = "-1001534114432"
 
 RAT = ["🦋", "🫐", "🎡", "🎈", "🥀", "🔖", "🍭", "🍿", ]
 RATING = ["5.1/10 🤺ɪᴍᴅʙ", "6.2/10 🤺ɪᴍᴅʙ", "7.3/10 🤺ɪᴍᴅʙ", "8.1/10 🤺ɪᴍᴅʙ", "5.5/10 🤺ɪᴍᴅʙ", "7.8/10 🤺ɪᴍᴅʙ", "6.4/10 🤺ɪᴍᴅʙ", "6.9/10 🤺ɪᴍᴅʙ", ]
@@ -184,7 +185,7 @@ async def group(client, message):
                 await message.reply_photo(photo=poster, caption=f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>", reply_markup=InlineKeyboardMarkup(buttons))
             else:
                 await message.delete()
-
+            return
         if len(btn) > 6: 
             btns = list(split_list(btn, 6)) 
             keyword = f"{message.chat.id}-{message.message_id}"
@@ -378,8 +379,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ident, movie = query.data.split("_")
             x = movie.split("+")
             kdm = " ".join(x)
-            chaa = "-1001534114432"
-            cha = int(chaa)
+            cha = int(CHAA)
             try:
                 await client.send_message(chat_id=cha,text=f"{kdm}", disable_web_page_preview=True)
             except UserIsBlocked:
@@ -388,7 +388,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.answer("𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 Reported to Admins 👮‍♂ \n\n\n ᴛʜᴇ ᴍᴏᴠɪᴇ ᴡɪʟʟ ᴜᴩʟᴏᴀᴅɪɴɢ ꜱᴏᴏɴ..",show_alert=True)
                 return await query.message.delete()
         elif query.data == "about":
-            await query.answer("🤖ɴᴀᴍᴇ: ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
+            await query.answer("🤖 ɴᴀᴍᴇ: ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
         elif query.data == "close":
             await query.message.delete()
         
