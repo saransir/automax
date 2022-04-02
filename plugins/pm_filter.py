@@ -173,9 +173,17 @@ async def group(client, message):
             await message.delete()
             return
         if not btn:
-            btn.append(
-                [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}"), InlineKeyboardButton("💡close💡", callback_data="close")]
+            buttons = btn
+            buttons.append(
+                [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
+            poster=None
+            if API_KEY:
+                poster=await get_poster(search)
+            if poster:
+                await message.reply_photo(photo=poster, caption=f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>", reply_markup=InlineKeyboardMarkup(buttons))
+            else:
+                await message.delete()
 
         if len(btn) > 6: 
             btns = list(split_list(btn, 6)) 
