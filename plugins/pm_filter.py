@@ -173,7 +173,9 @@ async def group(client, message):
             await message.delete()
             return
         if not btn:
-            return
+            btn.append(
+                [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}"), InlineKeyboardButton("💡close💡", callback_data="close")]
+            )
 
         if len(btn) > 6: 
             btns = list(split_list(btn, 6)) 
