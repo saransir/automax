@@ -173,19 +173,10 @@ async def group(client, message):
             await a.delete()
             await message.delete()
             return
+
         if not btn:
-            buttons = btn
-            buttons.append(
-                [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
-            )
-            poster=None
-            if API_KEY:
-                poster=await get_poster(search)
-            if poster:
-                await message.reply_photo(photo=poster, caption=f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>", reply_markup=InlineKeyboardMarkup(buttons))
-            else:
-                await message.delete()
             return
+
         if len(btn) > 6: 
             btns = list(split_list(btn, 6)) 
             keyword = f"{message.chat.id}-{message.message_id}"
@@ -394,7 +385,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer("🎪ഗ്രൂപ്പിൽ join ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ 💐",show_alert=True)
+                await query.answer("🎪ഗ്രൂപ്പിൽ join ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ \n\n Join My 🎪 group 🎪 to click",show_alert=True)
                 return
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
