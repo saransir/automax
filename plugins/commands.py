@@ -231,7 +231,7 @@ async def bot_indo(bot, message):
         ]
         ] 
     await message.reply(text=f"<b>click the 👇 button to read group rules </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-@Client.on_message(filters.command(['search', 'help']))
+@Client.on_message(filters.command(['search', 'help']) & filters.private)
 async def bot_link(bot, message):
     buttons = [
         [
@@ -239,7 +239,7 @@ async def bot_link(bot, message):
         ]
         ]
     await bot.send_message(chat_id=message.from_user.id, text="<b>തായേ👇 കാണുന്ന 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു 🎬സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്യുക</b> \n\n <b>👇Click on the 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 button and type the name of the movie‌‌</b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-@Client.on_message(filters.command('about'))
+@Client.on_message(filters.command('about') & filters.private)
 async def bot_info(bot, message):
     buttons = [
         [
@@ -274,7 +274,7 @@ async def autoapprove(bot, message: ChatJoinRequest):
     await asyncio.sleep(16) 
     await cg.delete()
 
-@Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS)
+@Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS))
 async def delfor(bot,message):
     await message.delete()
 @Client.on_message(filters.regex('movie') & filters.group & filters.incoming)
@@ -289,7 +289,7 @@ async def helmo(bot, message):
     await asyncio.sleep(15) # error 
     await mo.delete()
     await message.delete()
-@Client.on_message(filters.command('mlm_new'))
+@Client.on_message(filters.command('mlm_new') & filters.private)
 async def textx(bot, message):
     buttons = [
         [
@@ -297,7 +297,7 @@ async def textx(bot, message):
         ]
         ]
     await bot.send_message(chat_id=message.from_user.id, text="<b>ഏറ്റവും പുതിയതായി ബോട്ടിൽ add ചെയ്ത മലയാളം സിനിമകൾക്കായ് തായേ👇 കാണുന്ന 🔍 𝗦𝗲𝗮𝗿𝗰𝗵 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്ത ശേഷം അനുയോജ്യമായ file select ചെയ്യുക 😇</b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-@Client.on_message(filters.regex('Livegram'))
+@Client.on_message(filters.regex('Livegram') & filters.private)
 async def dfhhg(bot, message):
     await message.reply(f"𝙷𝙸 🙌🏻\n <code> മുകളിൽ കാണുന്ന -𝘀𝗲𝗮𝗿𝗰𝗵 𝗳𝗶𝗹𝗲- എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്താൽ  സിനിമ ഫയൽ ലഭികും</code> \n\n <b>⚠️ Note: search ചെയ്യുബോൾ Correct Spelling ആയിരിക്കണം. Correct Spelling അറിയാൻ ഗൂഗിളിൽ നോക്കി  ടൈപ്പ് ചെയ്യുക</b>")
     await message.delete()
