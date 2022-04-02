@@ -4,7 +4,7 @@ import asyncio
 import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest
-from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, API_KEY
+from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
 from utils import Media, get_file_details, get_poster
 from info import TUTORIAL
 from pyrogram.errors import UserNotParticipant
@@ -261,7 +261,7 @@ async def bot_kunna(bot, message):
         ]
         ]
     await message.reply(text=f"<b>പുതിയതും പഴയതും ആയ എല്ലാ 🎬 സിനിമകളും നിങ്ങൾക് ഈ ഗ്രൂപ്പിൽ ചോദിക്കാം , താല്പര്യം ഉള്ളവർ താഴെ👇 ഉള്ള ലിങ്കിൽ കേറി പോരുക\n\n\n {LN} </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-@Client.on_message(filters.regex('https') & filters.group)
+@Client.on_message(filters.regex('https') & filters.group & filters.chat(AUTH_GROUPS))
 async def hellto(bot, message):
     await message.delete()
 @Client.on_chat_join_request(filters.chat(AUTH_CHANNEL))
@@ -274,7 +274,7 @@ async def autoapprove(bot, message: ChatJoinRequest):
     await asyncio.sleep(16) 
     await cg.delete()
 
-@Client.on_message(filters.forwarded & filters.group & filters.incoming)
+@Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS)
 async def delfor(bot,message):
     await message.delete()
 @Client.on_message(filters.regex('movie') & filters.group & filters.incoming)
