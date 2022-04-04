@@ -372,7 +372,8 @@ async def leavw_a_chat(bot, message):
         title = (query.replace(year, "")).strip()
     else:
         year = None
-    movieid = imdb.search_movie(title.lower(), results=10)
+    movieida = imdb.search_movie(title.lower(), results=10)
+    movieid = int(movieida)
     if not movieid:
         return await message.reply(f"umfi")
     movie = imdb.get_movie(movieid)
