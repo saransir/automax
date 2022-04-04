@@ -1,9 +1,7 @@
 import os
-import re
 import logging
 import asyncio
 import random
-from imdb import IMDb
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
@@ -19,7 +17,6 @@ PHOT = [
     "https://telegra.ph/file/51683050f583af4c81013.jpg",
 ]
 LN = "https://t.me/+PBGW_EV3ldY5YjJl"
-imdb = IMDb() 
 
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
