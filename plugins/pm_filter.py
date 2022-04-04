@@ -250,9 +250,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
         typed = query.from_user.id
         pass
     if query.data.startswith("saran"):
-            if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer("main ഗ്രൂപ്പിൽ join ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ \n\n Join My 🎪 main group 🎪 to click",show_alert=True)
-                return
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
@@ -273,8 +270,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         InlineKeyboardButton(' 🔍 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
                     ]
                     ]
-            
-            if (clicked == typed):
+
+            if AUTH_CHANNEL and not await is_subscribed(client, query):
+                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")
+                return
+            elif (clicked == typed):
                 try:  
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
