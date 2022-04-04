@@ -361,24 +361,3 @@ async def leaave_a_chat(bot, message):
     g_s += await search_gagala(text)
     await message.reply(f"{g_s}")
     
-@Client.on_message(filters.command('imdb') & filters.user(ADMINS))
-async def leavw_a_chat(bot, message):
-    queryi = message.command[1]
-    query = (queryi.strip()).lower()
-    title = query
-    year = re.findall(r'[1-2]\d{3}$', query, re.IGNORECASE)
-    if year:
-        year = list_to_str(year[:1])
-        title = (query.replace(year, "")).strip()
-    else:
-        year = None
-    movieida = imdb.search_movie(title.lower(), results=10)
-    movieid = list_to_str(movieida)
-    if not movieid:
-        return await message.reply(f"umfi")
-    movie = imdb.get_movie(movieid)
-
-    title = movie.get('title')
-    votes = movie.get('votes')
-    kind = movie.get("kind")
-    await message.reply(f"{title} \n {votes} \n {kind}")  
