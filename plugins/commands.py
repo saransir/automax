@@ -2,6 +2,7 @@ import os
 import logging
 import asyncio
 import random
+from imdb import IMDb
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
@@ -17,7 +18,7 @@ PHOT = [
     "https://telegra.ph/file/51683050f583af4c81013.jpg",
 ]
 LN = "https://t.me/+PBGW_EV3ldY5YjJl"
-
+imdb = IMDb() 
 
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
@@ -353,10 +354,30 @@ async def leave_a_chat(bot, message):
 
 
 @Client.on_message(filters.command('snd') & filters.user(ADMINS))
-async def leave_a_chat(bot, message):
+async def leaave_a_chat(bot, message):
     text = message.command[1]
     g_s = await search_gagala(text)
     g_s += await search_gagala(text)
     await message.reply(f"{g_s}")
     
+@Client.on_message(filters.command('imdb') & filters.user(ADMINS))
+async def leavw_a_chat(bot, message):
+    queryi = message.command[1]
+    query = (queryi.strip()).lower()
+    title = query
+    year = re.findall(r'[1-2]\d{3}$', query, re.IGNORECASE)
+    if year:
+        year = list_to_str(year[:1])
+        title = (query.replace(year, "")).strip()
+    else:
+        year = None
+    movieid = imdb.search_movie(title.lower(), results=10)
+    if not movieid:
+        return await message.reply(f"umfi")
+    movie = imdb.get_movie(movieid)
 
+    'title': movie.get('title'),
+    'votes': movie.get('votes'),
+    'kind': movie.get("kind"),
+    "runtime": list_to_str(movie.get("runtimes")),
+    await message.reply(f"{title} \n {votes} \n {kind} \n {runtime}")  
