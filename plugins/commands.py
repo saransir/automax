@@ -5,7 +5,7 @@ import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
-from utils import Media, get_file_details, get_poster, search_gagala
+from utils import Media, get_file_details, get_poster, search_gagala, unpack_new_file_id
 from info import TUTORIAL
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
@@ -357,4 +357,15 @@ async def leaave_a_chat(bot, message):
     g_s = await search_gagala(text)
     g_s += await search_gagala(text)
     await message.reply(f"{g_s}")
-    
+  
+@Client.on_message(filters.command('lnk') & filters.user(ADMINS))
+async def gen_link_s(bot, message):
+    replied = message.reply_to_message
+    if not replied:
+        return await message.reply('Reply to a message to get a shareable link.')
+    file_type = replied.media
+    if file_type not in ["video", 'audio', 'document']:
+        return await message.reply("Reply to a supported media")
+    file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
+    await message.reply(f"Here is your Link:\nhttps://telegram.dog/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")
+     
