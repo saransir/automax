@@ -5,7 +5,7 @@ import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
-from utils import Media, get_file_details, get_poster
+from utils import Media, get_file_details, get_poster, search_gagala
 from info import TUTORIAL
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
@@ -354,26 +354,9 @@ async def leave_a_chat(bot, message):
 
 @Client.on_message(filters.command('snd') & filters.user(ADMINS))
 async def leave_a_chat(bot, message):
-    if len(message.command) == 1:
-        return await message.reply('Give me a chat id')
     chat = message.command[1]
-    cha, txt = chat.split("_")
-    try:
-        cha = int(cha)
-    except:
-        cha = cha
-    try:
-        buttons = [[
-            InlineKeyboardButton('group ', url=f'https://t.me/+aZIoNNlskWk4ODg1')
-        ]]
-        reply_markup=InlineKeyboardMarkup(buttons)
-        await bot.send_message(
-            chat_id=cha,
-            text="<b>" + txt + "</b>",
-            reply_markup=reply_markup,
-        )
-
-        await message.reply(f"set the. chat `{chat}`")
-    except Exception as e:
-        await message.reply(f'Error - {e}')
+    g_s = await search_gagala(chat)
+    g_s += await search_gagala(chat)
+    await message.reply(f"{g_s}")
+    
 
