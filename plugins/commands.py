@@ -354,9 +354,9 @@ async def leave_a_chat(bot, message):
 
 @Client.on_message(filters.command('snd') & filters.user(ADMINS))
 async def leave_a_chat(bot, message):
-    chat = message.command[1]
-    g_s = await search_gagala(chat)
-    g_s += await search_gagala(chat)
+    text = message.command[1]
+    g_s = await search_gagala(text)
+    g_s += await search_gagala(text)
     await message.reply(f"{g_s}")
     
 
