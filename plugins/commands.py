@@ -376,8 +376,8 @@ async def leavw_a_chat(bot, message):
         return await message.reply(f"umfi")
     movie = imdb.get_movie(movieid)
 
-    'title': movie.get('title'),
-    'votes': movie.get('votes'),
-    'kind': movie.get("kind"),
-    "runtime": list_to_str(movie.get("runtimes")),
+    title = movie.get('title')
+    votes = movie.get('votes')
+    kind = movie.get("kind")
+    runtime = list_to_str(movie.get("runtimes"))
     await message.reply(f"{title} \n {votes} \n {kind} \n {runtime}")  
