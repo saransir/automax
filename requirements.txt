@@ -8,3 +8,4 @@ pyromod
 requests
 parse-torrent-name
 bs4
+imdbpy
