@@ -136,8 +136,8 @@ async def group(client, message):
         btn = []
 
         search = message.text
-        result_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╔‎/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ](https://t.me/+PBGW_EV3ldY5YjJl)\n\n**ᵗʰⁱˢ ᵐˢᵍᵉ ✉️ ᵈᵘʳᵃᵗⁱᵒⁿ 3 ᵐⁱⁿᵘᵗᵉ**"
-        resul_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎╔/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[ᴛᴇʟᴇ ɢʀᴀᴍᴀᴍ](https://t.me/+PBGW_EV3ldY5YjJl)\n\n**ⁱᶠ ʸᵒᵘ ᵈᵒⁿ'ᵗ ˢᵉᵉ ᵗʰᵉ ᶠⁱˡᵉˢ ᵒᶠ ᵗʰᵉ ᵐᵒᵛⁱᵉ ʸᵒᵘ ᵃˢᵏᵉᵈ ᶠᵒʳ 👀 ˡᵒᵒᵏ-ᵃᵗ-ⁿᵉˣᵗ-ᵖᵃᵍᵉ**"
+        result_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╔‎/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[ᴍᴀɪɴ ɢʀᴏᴜᴩ 🎪](https://t.me/+PBGW_EV3ldY5YjJl)\n\n**ᵗʰⁱˢ ᵐˢᵍᵉ ✉️ ᵈᵘʳᵃᵗⁱᵒⁿ 3 ᵐⁱⁿᵘᵗᵉ**"
+        resul_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎╔/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[ᴍᴀɪɴ ɢʀᴏᴜᴩ 🎪](https://t.me/+PBGW_EV3ldY5YjJl)\n\n**ⁱᶠ ʸᵒᵘ ᵈᵒⁿ'ᵗ ˢᵉᵉ ᵗʰᵉ ᶠⁱˡᵉˢ ᵒᶠ ᵗʰᵉ ᵐᵒᵛⁱᵉ ʸᵒᵘ ᵃˢᵏᵉᵈ ᶠᵒʳ 👀 ˡᵒᵒᵏ-ᵃᵗ-ⁿᵉˣᵗ-ᵖᵃᵍᵉ**"
         oam = f"{random.choice(RAT)}"
         oamm = f"{random.choice(RAT)}"
         x = search.split()
@@ -154,7 +154,7 @@ async def group(client, message):
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
-                fn = file.file_name[0:24]
+                fn = file.file_name[0:23]
                 filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oamm}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
@@ -250,6 +250,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         typed = query.from_user.id
         pass
     if query.data.startswith("saran"):
+            if AUTH_CHANNEL and not await is_subscribed(client, query):
+                await query.answer("main ഗ്രൂപ്പിൽ join ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ \n\n Join My 🎪 main group 🎪 to click",show_alert=True)
+                return
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
