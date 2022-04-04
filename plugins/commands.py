@@ -358,7 +358,7 @@ async def leaave_a_chat(bot, message):
     g_s += await search_gagala(text)
     await message.reply(f"{g_s}")
   
-@Client.on_message(filters.command('lnk') & filters.user(ADMINS))
+@Client.on_message(filters.command('f_link') & filters.user(ADMINS))
 async def gen_link_s(bot, message):
     replied = message.reply_to_message
     if not replied:
@@ -368,4 +368,4 @@ async def gen_link_s(bot, message):
         return await message.reply("Reply to a supported media")
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
     await message.reply(f"Here is your Link:\nhttps://telegram.dog/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")
-     
+    
