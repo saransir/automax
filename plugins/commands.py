@@ -272,7 +272,13 @@ async def autoapprove(bot, message: ChatJoinRequest):
     cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
     await asyncio.sleep(16) 
     await cg.delete()
-
+@Client.on_message(filters.new_chat_members & filters.chat(AUTH_GROUPS))
+async def auto_welcoime(bot, Message):
+    chat=message.chat
+    user=message.from_user
+    cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
+    await asyncio.sleep(16) 
+    await cg.delete()
 @Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS))
 async def delfor(bot,message):
     await message.delete()
