@@ -144,11 +144,6 @@ async def group(client, message):
         hari = "+".join(x)
         sesna = "_".join(x)
 
-        nyva=BOT.get("username")
-        if not nyva:
-            botusername=await client.get_me()
-            nyva=botusername.username
-            BOT["username"]=nyva
         files = await get_filter_results(query=search)
         if files:
             for file in files:
