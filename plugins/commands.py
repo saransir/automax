@@ -380,7 +380,7 @@ async def gen_link_s(bot, message):
 @Client.on_message(filters.command('ref') & filters.user(ADMINS))
 async def le_a_chat(bot, message):
     text = message.command[1]   
-    query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|@On_air_Filter_bot|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", text, flags=re.IGNORECASE)
+    query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|@On_air_Filter_bot|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", text, flags=re.IGNORECASE)
     await message.reply(f"{query}")
 
  
