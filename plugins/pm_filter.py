@@ -27,47 +27,27 @@ PHOTO = [
     "https://telegra.ph/file/51683050f583af4c81013.jpg",
 ]
 
-@Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
+@Client.on_callback_query(filters.regex(r"^spolling"))
+async def advantage_spoll_choker(bot, query):
+    _, user, movie_ = query.data.split('#')
+    if int(user) != 0 and query.from_user.id != int(user):
+        return await query.answer("Don't click others Requested files🎬", show_alert=True)
+    if movie_  == "close_spellcheck":
+        return await query.message.delete()
+    movies = SPELL_CHECK.get(query.message.reply_to_message.message_id)
+    if not movies:
+        return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
+    movie = movies[(int(movie_))]
+    await query.answer('Checking for Movie in database...')
+    files = await get_filter_results(query=movie_)
+    if files:
+        await filter(bot, query)
+    else:
+        k = await query.message.edit('This Movie Not Found In DataBase')
+        await asyncio.sleep(10)
+        await k.delete()
+
 async def filter(client, message):
-    if message.text.startswith("/"):
-        return
-    if AUTH_CHANNEL:
-        invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-        try:
-            user = await client.get_chat_member(int(AUTH_CHANNEL), message.from_user.id)
-            if user.status == "kicked":
-                await client.send_message(
-                    chat_id=message.from_user.id,
-                    text="Sorry mowne 💋, You are Banned to use me.",
-                    parse_mode="markdown",
-                    disable_web_page_preview=True
-                )
-                return
-        except UserNotParticipant:
-            await client.send_message(
-                chat_id=message.from_user.id,
-                text="**Join My 🎪 group 🎪 to use this Bot 😉**",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("🎪 Join GROUP 🎪", url=invite_link.invite_link)
-                        ]
-                    ]
-                ),
-                parse_mode="markdown"
-            )
-            return
-        except Exception:
-            await client.send_message(
-                chat_id=message.from_user.id,
-                text="Something went Wrong.",
-                parse_mode="markdown",
-                disable_web_page_preview=True
-            )
-            return
-    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-        return
-    if 99 < len(message.text) < 100:    
         btn = []
         search = message.text 
         files = await get_filter_results(query=search)
@@ -76,7 +56,7 @@ async def filter(client, message):
                 file_id = file.file_id
                 filename = f"{random.choice(RAT)}[{get_size(file.file_size)}] {file.file_name}"
                 btn.append(
-                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
+                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                     )
         else:
             await client.send_photo(chat_id=message.from_user.id, photo='https://telegra.ph/file/69152843f167e3977e59d.jpg')
@@ -455,4 +435,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer()
 
     else:
-        await query.answer("Bro, search your own file, Don't click others Requested files🎬",show_alert=True)
+        await query.answer("😊Bro, search your own file, Don't click others Requested files🎬",show_alert=True)
