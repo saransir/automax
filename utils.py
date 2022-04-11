@@ -13,6 +13,7 @@ import os
 import PTN
 import requests
 import json
+from imdb import IMDb
 from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, AUTH_CHANNEL, API_KEY
 DATABASE_URI_2=os.environ.get('DATABASE_URI_2', DATABASE_URI)
 DATABASE_NAME_2=os.environ.get('DATABASE_NAME_2', DATABASE_NAME)
@@ -27,6 +28,7 @@ instance = Instance.from_db(db)
 IClient = AsyncIOMotorClient(DATABASE_URI_2)
 imdbdb=client[DATABASE_NAME_2]
 imdb=Instance.from_db(imdbdb)
+imdbb = IMDb() 
 
 @instance.register
 class Media(Document):
@@ -216,7 +218,67 @@ async def get_poster(movie):
             pass
     return poster
 
-
+async def get_post(query, bulk=False, id=False, file=None):
+    if not id:
+        # https://t.me/GetTGLink/4183
+        query = (query.strip()).lower()
+        title = query
+        year = re.findall(r'[1-2]\d{3}$', query, re.IGNORECASE)
+        if year:
+            year = list_to_str(year[:1])
+            title = (query.replace(year, "")).strip()
+        elif file is not None:
+            year = re.findall(r'[1-2]\d{3}', file, re.IGNORECASE)
+            if year:
+                year = list_to_str(year[:1]) 
+        else:
+            year = None
+        movieid = imdbb.search_movie(title.lower(), results=10)
+        if not movieid:
+            return None
+        if year:
+            filtered=list(filter(lambda k: str(k.get('year')) == str(year), movieid))
+            if not filtered:
+                filtered = movieid
+        else:
+            filtered = movieid
+        movieid=list(filter(lambda k: k.get('kind') in ['movie', 'tv series'], filtered))
+        if not movieid:
+            movieid = filtered
+        if bulk:
+            return movieid
+        movieid = movieid[0].movieID
+    else:
+        movieid = int(query)
+    movie = imdbb.get_movie(movieid)
+    if movie.get("original air date"):
+        date = movie["original air date"]
+    elif movie.get("year"):
+        date = movie.get("year")
+    else:
+        date = "N/A"
+    
+    return {
+        'title': movie.get('title'),
+        'votes': movie.get('votes'),
+        "aka": list_to_str(movie.get("akas")),
+        "seasons": movie.get("number of seasons"),
+        "box_office": movie.get('box office'),
+        'localized_title': movie.get('localized title'),
+        'kind': movie.get("kind"),
+        "imdb_id": f"tt{movie.get('imdbID')}",
+        "cast": list_to_str(movie.get("cast")),
+        "runtime": list_to_str(movie.get("runtimes")),
+        "countries": list_to_str(movie.get("countries")),
+        "certificates": list_to_str(movie.get("certificates")),
+        "languages": list_to_str(movie.get("languages")),
+        'release_date': date,
+        'year': movie.get('year'),
+        'genres': list_to_str(movie.get("genres")),
+        'poster': movie.get('full-size cover url'),
+        'rating': str(movie.get("rating")),
+        'url':f'https://www.imdb.com/title/tt{movieid}'
+    }
 async def get_all(list):
     for y in list:
         v=y.get("Title").lower().strip()
@@ -237,6 +299,14 @@ async def search_gagala(text):
     soup = BeautifulSoup(response.text, 'html.parser')
     titles = soup.find_all( 'h3' )
     return [title.getText() for title in titles]
+
+def list_to_str(k):
+    if not k:
+        return "N/A"
+    elif len(k) == 1:
+        return str(k[0])
+    else:
+        return ' '.join(f'{elem}, ' for elem in k)
 
 def encode_file_id(s: bytes) -> str:
     r = b""
