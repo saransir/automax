@@ -6,7 +6,7 @@ import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
-from utils import Media, get_file_details, get_poster, search_gagala, unpack_new_file_id
+from utils import Media, get_file_details, get_poster, unpack_new_file_id
 from info import TUTORIAL
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
@@ -357,14 +357,6 @@ async def leave_a_chat(bot, message):
         await message.reply(f"left the chat `{chat}`")
     except Exception as e:
         await message.reply(f'Error - {e}')
-
-
-@Client.on_message(filters.command('snd') & filters.user(ADMINS))
-async def leaave_a_chat(bot, message):
-    text = message.command[1]
-    g_s = await search_gagala(text)
-    g_s += await search_gagala(text)
-    await message.reply(f"{g_s}")
   
 @Client.on_message(filters.command('f_link') & filters.user(ADMINS))
 async def gen_link_s(bot, message):
