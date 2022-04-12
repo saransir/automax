@@ -41,7 +41,7 @@ async def advantage_spoll_choker(bot, query):
     await query.answer('Checking for Movie in database...')
     files = await get_filter_results(query=movie_)
     if files:
-        await filter(bot, query)
+        await filter(bot, movie_)
     else:
         k = await query.message.edit('This Movie Not Found In DataBase')
         await asyncio.sleep(10)
@@ -49,7 +49,7 @@ async def advantage_spoll_choker(bot, query):
 
 async def filter(client, message):
         btn = []
-        search = message.text 
+        search = message 
         files = await get_filter_results(query=search)
         if files:
             for file in files:
@@ -59,14 +59,16 @@ async def filter(client, message):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                     )
         else:
-            await client.send_photo(chat_id=message.from_user.id, photo='https://telegra.ph/file/69152843f167e3977e59d.jpg')
+            k = await query.message.edit('This Movie Not Found In DataBase')
+            await asyncio.sleep(10)
+            await k.delete()
             return
 
         if not btn:
             return
 
-        if len(btn) > 15: 
-            btns = list(split_list(btn, 15)) 
+        if len(btn) > 10: 
+            btns = list(split_list(btn, 10)) 
             keyword = f"{message.chat.id}-{message.message_id}"
             BUTTONS[keyword] = {
                 "total" : len(btns),
