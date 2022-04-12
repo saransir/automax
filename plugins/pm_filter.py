@@ -47,9 +47,9 @@ async def advantage_spoll_choker(bot, query):
         await asyncio.sleep(10)
         await k.delete()
 
-async def filter(client, message):
+async def filter(client, msg):
         btn = []
-        search = message
+        search = msg
         message = message.message.reply_to_message  
         files = await get_filter_results(query=search)
         if files:
