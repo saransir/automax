@@ -39,7 +39,7 @@ async def advantage_spoll_choker(bot, query):
         return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
     movie = movies[(int(movie_))]
     await query.answer('Checking for Movie in database...')
-    files = await get_filter_results(query=movie_)
+    files = await get_filter_results(movie)
     if files:
         await filter(bot, query.strip())
     else:
@@ -119,7 +119,8 @@ async def group(client, message):
     elif 3 < len(message.text) < 45:    
         btn = []
 
-        search = message.text
+        searc = message.text
+        search = searc.strip()
         result_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╔‎/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+NY-f484oVqE1NmU1)\n\n**ᵗʰⁱˢ ᵐˢᵍᵉ ✉️ ᵈᵘʳᵃᵗⁱᵒⁿ 3 ᵐⁱⁿᵘᵗᵉ**"
         resul_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎╔/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+NY-f484oVqE1NmU1)\n\n**ⁱᶠ ʸᵒᵘ ᵈᵒⁿ'ᵗ ˢᵉᵉ ᵗʰᵉ ᶠⁱˡᵉˢ ᵒᶠ ᵗʰᵉ ᵐᵒᵛⁱᵉ ʸᵒᵘ ᵃˢᵏᵉᵈ ᶠᵒʳ 👀 ˡᵒᵒᵏ-ᵃᵗ-ⁿᵉˣᵗ-ᵖᵃᵍᵉ**"
         oam = f"{random.choice(RAT)}"
