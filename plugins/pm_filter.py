@@ -43,6 +43,7 @@ async def advantage_spoll_choker(bot, query):
     message = query.message.reply_to_message
     files = await get_filter_results(movie)
     if files:
+        await query.message.delete()
         for file in files:
             file_id = file.file_id
             filename = f"{random.choice(RAT)}[{get_size(file.file_size)}] {file.file_name}"
@@ -76,7 +77,7 @@ async def advantage_spoll_choker(bot, query):
 
         else:
             await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {movie} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ : [ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-        return
+        return 
 
     data = BUTTONS[keyword]
     buttons = data['buttons'][0].copy()
