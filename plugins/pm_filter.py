@@ -49,7 +49,7 @@ async def advantage_spoll_choker(bot, query):
 
 async def filter(client, message):
         btn = []
-        search = messag
+        search = message
         message = message.message.reply_to_message  
         files = await get_filter_results(query=search)
         if files:
