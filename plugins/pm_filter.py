@@ -55,6 +55,7 @@ async def advantage_spoll_choker(bot, query):
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
     else:
+        await query.message.delete()
         cha = int(CHAA)
         buttons = btn
         buttons.append(
@@ -65,7 +66,6 @@ async def advantage_spoll_choker(bot, query):
         )
         a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n 🔺,₹&*',) ᴅᴏɴᴛ ᴜsᴇ ᴛʜɪꜱ ᴛyᴩᴇ sʏᴍʙᴏʟs \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ👉 ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇 \n\n sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ/ɪᴍᴅʙ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ \n𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=InlineKeyboardMarkup(buttons))
         await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)   
-        await query.message.delete()
         await asyncio.sleep(25)
         await a.delete()
         await message.delete()
@@ -287,8 +287,8 @@ async def advantage_spell_chok(message):
         await k.delete()
         await message.delete()
         return
-    # regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE) # look for imdb / wiki results
-    # gs = list(filter(regex.match, g_s))
+    regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE) # look for imdb / wiki results
+    gs = list(filter(regex.match, g_s))
     gs_parsed = [re.sub(r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)', '', i, flags=re.IGNORECASE) for i in g_s]
     if not gs_parsed:
         reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*", re.IGNORECASE) # match something like Watch Niram | Amazon Prime 
@@ -324,7 +324,6 @@ async def advantage_spell_chok(message):
     kdm = await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇", reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(40)
     await kdm.delete()
-    await message.delete()
 
 
 @Client.on_callback_query()
