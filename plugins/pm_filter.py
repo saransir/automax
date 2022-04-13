@@ -3,6 +3,8 @@ from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GR
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
 import re
+import ast
+import pyrogram
 import random
 import asyncio
 from pyrogram.errors import UserNotParticipant, UserIsBlocked
