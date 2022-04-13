@@ -466,6 +466,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "about":
             await query.answer("🤖 ɴᴀᴍᴇ: ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
         elif query.data == "close":
+            message = query.message.reply_to_message
+            if message:
             await query.message.delete()
         
         elif query.data.startswith("checksub"):
