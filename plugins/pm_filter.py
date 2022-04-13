@@ -55,6 +55,7 @@ async def advantage_spoll_choker(bot, query):
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
     else:
+        cha = int(CHAA)
         buttons = btn
         buttons.append(
             [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
@@ -63,11 +64,12 @@ async def advantage_spoll_choker(bot, query):
             [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ 🤵",callback_data=f"report_{hari}")]
         )
         a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n 🔺,₹&*',) ᴅᴏɴᴛ ᴜsᴇ ᴛʜɪꜱ ᴛyᴩᴇ sʏᴍʙᴏʟs \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ👉 ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇 \n\n sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ/ɪᴍᴅʙ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ \n𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=InlineKeyboardMarkup(buttons))
-        await message.forward("@S1a2r3a4n")
-        await asyncio.sleep(20)
+        await client.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)   
+        await query.message.delete()
+        await asyncio.sleep(25)
         await a.delete()
         await message.delete()
-        return await query.message.delete()
+        return 
 
     if not btn:
         return
