@@ -30,17 +30,19 @@ PHOTO = [
 @Client.on_callback_query(filters.regex(r"^spolling"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
-    if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer("Don't click others Requested files🎬", show_alert=True)
-    if movie_  == "close_spellcheck":
-        return await query.message.delete()
     movies = SPELL_CHECK.get(query.message.reply_to_message.message_id)
     if not movies:
-        return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
-    movie = movies[(int(movie_))]
-    await query.answer('Checking for Movie in database...')
-    btn = []
+        await query.answer("You are clicking on an old button which is expired.", show_alert=True)
+        return await query.message.delete()
+    if int(user) != 0 and query.from_user.id != int(user):
+        return await query.answer("Don't click others Requested files🎬", show_alert=True)
     message = query.message.reply_to_message
+    if movie_  == "close_spellcheck":
+        await message.delete()
+        return await query.message.delete()
+    movie = movies[(int(movie_))]
+    await query.answer('🔍Checking... for Movie🎬')
+    btn = []
     x = movie.split()
     hari = "+".join(x)
     oam = f"{random.choice(RAT)}"
@@ -317,8 +319,10 @@ async def advantage_spell_chok(message):
                 )
             ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇", reply_markup=InlineKeyboardMarkup(btn))
-    
+    kdm = await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇", reply_markup=InlineKeyboardMarkup(btn))
+    await asyncio.sleep(40)
+    await kdm.delete()
+    await message.delete()
 
 
 @Client.on_callback_query()
