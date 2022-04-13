@@ -468,7 +468,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "close":
             message = query.message.reply_to_message
             if message:
-            await query.message.delete()
+                await message.delete()
+                await query.message.delete()
+            else
         
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
