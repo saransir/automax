@@ -273,7 +273,6 @@ def split_list(l, n):
         yield l[i:i + n]          
 
 async def spell(message):
-    k = await message.reply('Searching ImDB')
     title = message.text
     user = message.from_user.id if message.from_user else 0
     movies = await get_post(title, bulk=True)
@@ -288,7 +287,7 @@ async def spell(message):
         ]
                 for movie in movies
     ]
-    await k.edit('ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇', reply_markup=InlineKeyboardMarkup(btn))
+    await message.reply('ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇', reply_markup=InlineKeyboardMarkup(btn))
     return 
 
 async def advantage_spell_chok(message):
