@@ -212,9 +212,9 @@ async def group(client, message):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
         else:
-            return await advantage_spell_chok(message)
+            return await spell(message)
         if not btn:
-            return await advantage_spell_chok(message)
+            return await spell(message)
 
         if len(btn) > 6: 
             btns = list(split_list(btn, 6)) 
@@ -278,6 +278,7 @@ async def spell(message):
     movies = await get_post(title, bulk=True)
     if not movies:
         return await advantage_spell_chok(message)
+    SPELL_CHECK[message.message_id] = movies
     btn = [
         [
             InlineKeyboardButton(
