@@ -274,6 +274,7 @@ def split_list(l, n):
 
 async def spell(message):
     title = message.text
+    btn = []
     user = message.from_user.id if message.from_user else 0
     movies = await get_post(title, bulk=True)
     if not movies:
