@@ -394,13 +394,17 @@ async def imdb_searh(bot, message):
 @Client.on_callback_query(filters.regex('^imdb'))
 async def imdb_callback(bot, quer_y: CallbackQuery):
     i, movie = quer_y.data.split('#')
-    user = msg.from_user.id if msg.from_user else 0
+    try:
+        typed = quer_y.message.reply_to_message.from_user.id
+    except:
+        typed = quer_y.from_user.id
+        pass
     imdb = await get_post(query=movie, id=True)
     btn = [
             [
                 InlineKeyboardButton(
                     text=f"{imdb.get('title')}",
-                    callback_data=f"spolling#{user}#{imdb.get('title')}"
+                    callback_data=f"spolling#{typed}#{imdb.get('title')}"
                 )
             ]
         ]
