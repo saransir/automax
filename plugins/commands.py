@@ -404,7 +404,7 @@ async def imdb_callback(bot, quer_y: CallbackQuery):
             [
                 InlineKeyboardButton(
                     text=f"{imdb.get('title')}",
-                    switch_inline_query_current_chat=f"{imdb.get('title')}")
+                    switch_inline_query_current_chat=f"{imdb.get('title')}"
                 )
             ]
         ]
