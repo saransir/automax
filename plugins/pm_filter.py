@@ -30,7 +30,7 @@ PHOTO = [
 @Client.on_callback_query(filters.regex(r"^spolling"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
-    movies = SPELL_CHECK.get(query.message.reply_to_message.message_id)
+    movies = SPELL_CHECK.get(query.message.reply_to_message.message_id or query.message.message_id)
     if not movies:
         await query.answer("You are clicking on an old button which is expired.", show_alert=True)
         return await query.message.delete()
