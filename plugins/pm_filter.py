@@ -30,7 +30,7 @@ PHOTO = [
 @Client.on_callback_query(filters.regex(r"^spolling"))
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
-    movies = SPELL_CHECK.get(query.message.reply_to_message.message_id or query.message.message_id)
+    movies = SPELL_CHECK.get(query.message.reply_to_message.message_id)
     if not movies:
         await query.answer("You are clicking on an old button which is expired.", show_alert=True)
         return await query.message.delete()
@@ -212,24 +212,7 @@ async def group(client, message):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
         else:
-            k = await message.reply('Searching ImDB')
-            title = search
-            user = message.from_user.id
-            movies = await get_post(title, bulk=True)
-            if not movies:
-                return await advantage_spell_chok(message)
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        text=f"{movie.get('title')} - {movie.get('year')}",
-                        callback_data=f"spolling#{user}#{movie.get('title')}",
-                    )
-                ]
-                for movie in movies
-            ]
-            await k.edit('ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇', reply_markup=InlineKeyboardMarkup(btn))
-            return 
-
+            return spell(message)
         if not btn:
             return
 
@@ -288,6 +271,25 @@ def get_size(size):
 def split_list(l, n):
     for i in range(0, len(l), n):
         yield l[i:i + n]          
+
+async def spell(message):
+    k = await message.reply('Searching ImDB')
+    title = message.text
+    user = message.from_user.id if message.from_user else 0
+    movies = await get_post(title, bulk=True)
+    if not movies:
+        return await advantage_spell_chok(message)
+    btn = [
+        [
+            InlineKeyboardButton(
+                text=f"{movie.get('title')} - {movie.get('year')}",
+                callback_data=f"spolling#{user}#{movie.get('title')}",
+            )
+        ]
+                for movie in movies
+    ]
+    await k.edit('ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇', reply_markup=InlineKeyboardMarkup(btn))
+    return 
 
 async def advantage_spell_chok(message):
     query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE) # plis contribute some common words 
