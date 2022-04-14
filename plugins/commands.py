@@ -370,7 +370,7 @@ async def gen_link_s(bot, message):
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
     await message.reply(f"https://telegram.dog/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")
 
-@Client.on_message(filters.command('imdb')
+@Client.on_message(filters.command('imdb'))
 async def imdb_searh(bot, message):
     if ' ' in message.text:
         k = await message.reply('Searching ImDB')
