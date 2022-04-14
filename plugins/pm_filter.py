@@ -40,7 +40,6 @@ async def advantage_spoll_choker(bot, query):
     if movie_  == "close_spellcheck":
         await message.delete()
         return await query.message.delete()
-    # movie = movies[(int(movie_))]
     movie = movie_
     await query.message.edit(f"🔍Checking... {movie}🎬")
     btn = []
@@ -282,21 +281,13 @@ async def spell(message):
         return await advantage_spell_chok(message)
     oam = f"{random.choice(RAT)}"
     SPELL_CHECK[message.message_id] = movies
-    """btn = [
-        [
-            InlineKeyboardButton(
-                text=f"{movie.get('title')} - {movie.get('year')}",
-                callback_data=f"spolling#{user}#{movie.get('title')}",
-            )
-        ]
-                for movie in movies
-    ]"""
     for movie in movies:
         title = movie.get('title')
         year = movie.get('year')
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spolling#{user}#{title}")]
         )
+    btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spolling#{user}#close_spellcheck')])
     await message.reply('ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇', reply_markup=InlineKeyboardMarkup(btn)) 
 
 async def advantage_spell_chok(message):
@@ -344,7 +335,7 @@ async def advantage_spell_chok(message):
                     callback_data=f"spolling#{user}#{k}",
                 )
             ] for k, movie in enumerate(movielist)]
-    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
+    btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spolling#{user}#close_spellcheck')])
     kdm = await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇", reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(40)
     await kdm.delete()
