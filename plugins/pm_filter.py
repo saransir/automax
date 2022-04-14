@@ -187,7 +187,7 @@ async def group(client, message):
             return
         searc = message.text
         search = searc.strip()
-        imdb = await get_post(query=search, id=True)
+        imdb = await get_post(search, id=True)
         if imdb:
             caption = IMDB_TEMPLATE.format(
                 query = imdb['title'],
