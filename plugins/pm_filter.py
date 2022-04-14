@@ -5,6 +5,7 @@ from pyrogram import Client, filters
 import re
 import random
 import asyncio
+from info import IMDB_TEMPLATE
 from pyrogram.errors import UserNotParticipant, UserIsBlocked
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster, get_post, search_gagala
 BUTTONS = {}
@@ -186,8 +187,33 @@ async def group(client, message):
             return
         searc = message.text
         search = searc.strip()
-        result_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╔‎/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+NY-f484oVqE1NmU1)**"
-        resul_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌‎╔/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+NY-f484oVqE1NmU1)\n\n**ⁱᶠ ʸᵒᵘ ᵈᵒⁿ'ᵗ ˢᵉᵉ ᵗʰᵉ ᶠⁱˡᵉˢ ᵒᶠ ᵗʰᵉ ᵐᵒᵛⁱᵉ ʸᵒᵘ ᵃˢᵏᵉᵈ ᶠᵒʳ 👀 ˡᵒᵒᵏ-ᵃᵗ-ⁿᵉˣᵗ-ᵖᵃᵍᵉ**"
+        imdb = await get_post(query=search, id=True)
+        if imdb:
+            caption = IMDB_TEMPLATE.format(
+                query = imdb['title'],
+                title = imdb['title'],
+                votes = imdb['votes'],
+                aka = imdb["aka"],
+                seasons = imdb["seasons"],
+                box_office = imdb['box_office'],
+                localized_title = imdb['localized_title'],
+                kind = imdb['kind'],
+                imdb_id = imdb["imdb_id"],
+                cast = imdb["cast"],
+                runtime = imdb["runtime"],
+                countries = imdb["countries"],
+                certificates = imdb["certificates"],
+                languages = imdb["languages"],
+                release_date = imdb['release_date'],
+                year = imdb['year'],
+                genres = imdb['genres'],
+                poster = imdb['poster'],
+                rating = imdb['rating'],
+                url = imdb['url'],
+                **locals()
+            )
+        else:
+            caption = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n**‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+NY-f484oVqE1NmU1)**"
         oam = f"{random.choice(RAT)}"
         oamm = f"{random.choice(RAT)}"
         x = search.split()
@@ -225,9 +251,9 @@ async def group(client, message):
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -243,9 +269,9 @@ async def group(client, message):
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=resul_txt, reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
 
     else:
         await message.delete()
@@ -519,4 +545,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer()
 
     else:
-        await query.answer("😊 Bro, search your own file, Don't click others Requested files🎬",show_alert=True)
+        await query.answer("😊 Bro. search your own file, Don't click others Requested files🎬",show_alert=True)
