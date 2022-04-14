@@ -40,7 +40,8 @@ async def advantage_spoll_choker(bot, query):
     if movie_  == "close_spellcheck":
         await message.delete()
         return await query.message.delete()
-    movie = movies[(int(movie_))]
+    # movie = movies[(int(movie_))]
+    movie = movie_
     await query.message.edit(f"🔍Checking... {movie}🎬")
     btn = []
     x = movie.split()
