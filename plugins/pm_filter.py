@@ -189,7 +189,7 @@ async def group(client, message):
         await message.delete() 
     elif 3 < len(message.text) < 45:    
         btn = []
-        if re.findall("((^rrr|^beast|^@|^#|^Puzhu).*)", message.text):
+        if re.findall("((^Beast|^beast|^@|^#|^Puzhu).*)", message.text):
             return
         searc = message.text
         search = searc.strip()
