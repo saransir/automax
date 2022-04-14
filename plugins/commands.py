@@ -387,19 +387,20 @@ async def imdb_searh(bot, message):
             ]
             for movie in movies
         ]
-        await k.edit('Here is what i found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
+        await k.edit('Here is what i.found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
     else:
         await message.reply('Give me a movie / series Name')
 
 @Client.on_callback_query(filters.regex('^imdb'))
 async def imdb_callback(bot, quer_y: CallbackQuery):
     i, movie = quer_y.data.split('#')
+    user = msg.from_user.id if msg.from_user else 0
     imdb = await get_post(query=movie, id=True)
     btn = [
             [
                 InlineKeyboardButton(
                     text=f"{imdb.get('title')}",
-                    url=imdb['url'],
+                    callback_data=f"spolling#{user}#{imdb.get('title')}"
                 )
             ]
         ]
