@@ -189,7 +189,8 @@ async def group(client, message):
         await message.delete() 
     elif 3 < len(message.text) < 45:    
         btn = []
-
+        if re.findall("((^rrr|^beast|^@|^#|^Puzhu).*)", message.text):
+            return
         searc = message.text
         search = searc.strip()
         result_txt = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╔‎/ʀᴀᴛɪɴɢ‌‌‌‌‎ :** {random.choice(RATING)}\n**╠|ɢᴇɴʀᴇ :** {random.choice(GENRES)}\n**╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+NY-f484oVqE1NmU1)**"
@@ -467,11 +468,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("🤖 ɴᴀᴍᴇ: ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
         elif query.data == "close":
             message = query.message.reply_to_message
-            if message:
-                await message.delete()
-                await query.message.delete()
-            else:
-                await query.message.delete()
+            await message.delete()
+            await query.message.delete()
         
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
