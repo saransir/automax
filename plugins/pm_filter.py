@@ -212,7 +212,7 @@ async def group(client, message):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
         else:
-            return spell(message)
+            return await spell(message)
         if not btn:
             return
 
