@@ -278,8 +278,9 @@ async def spell(message):
     movies = await get_post(title, bulk=True)
     if not movies:
         return await advantage_spell_chok(message)
+    oam = f"{random.choice(RAT)}"
     SPELL_CHECK[message.message_id] = movies
-    btn = [
+    """btn = [
         [
             InlineKeyboardButton(
                 text=f"{movie.get('title')} - {movie.get('year')}",
@@ -287,7 +288,13 @@ async def spell(message):
             )
         ]
                 for movie in movies
-    ]
+    ]"""
+    for movie in movies:
+        title = f"movie.get('title')"
+        year = f"movie.get('year')"
+        btn.append(
+            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spolling#{user}#{title}")]
+        )
     await message.reply('ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇', reply_markup=InlineKeyboardMarkup(btn)) 
 
 async def advantage_spell_chok(message):
