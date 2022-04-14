@@ -371,7 +371,7 @@ async def gen_link_s(bot, message):
     await message.reply(f"https://telegram.dog/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")
 
 @Client.on_message(filters.command('imdb')
-async def imdb_searh(client, message):
+async def imdb_searh(bot, message):
     if ' ' in message.text:
         k = await message.reply('Searching ImDB')
         r, title = message.text.split(None, 1)
@@ -392,7 +392,7 @@ async def imdb_searh(client, message):
         await message.reply('Give me a movie / series Name')
 
 @Client.on_callback_query(filters.regex('^imdb'))
-async def imdb_callback(bot: Client, quer_y: CallbackQuery):
+async def imdb_callback(bot, quer_y: CallbackQuery):
     i, movie = quer_y.data.split('#')
     imdb = await get_post(query=movie, id=True)
     btn = [
