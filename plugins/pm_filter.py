@@ -290,8 +290,8 @@ async def spell(message):
                 for movie in movies
     ]"""
     for movie in movies:
-        title = f"movie.get('title')"
-        year = f"movie.get('year')"
+        title = movie.get('title')
+        year = movie.get('year')
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spolling#{user}#{title}")]
         )
