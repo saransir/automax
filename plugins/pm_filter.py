@@ -211,8 +211,24 @@ async def group(client, message):
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
-        else:            
-            return await advantage_spell_chok(message)
+        else:
+            k = await message.reply('Searching ImDB')
+            title = search
+            user = message.from_user.id
+            movies = await get_post(title, bulk=True)
+            if not movies:
+                return await advantage_spell_chok(message)
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=f"{movie.get('title')} - {movie.get('year')}",
+                        callback_data=f"spolling#{user}#{movie.get('title')}",
+                    )
+                ]
+                for movie in movies
+            ]
+            await k.edit('ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇', reply_markup=InlineKeyboardMarkup(btn))
+            return 
 
         if not btn:
             return
