@@ -35,7 +35,7 @@ async def advantage_spoll_choker(bot, query):
         await message.delete()
         return await query.message.delete()
     movie = movie_
-    await query.message.edit(f"🔍Checking... {movie}🎬")
+    await query.message.edit(f"🔍 ᴄʜᴇᴄᴋɪɴɢ...‎<b>{movie}🎬‎</b>")
     btn = []
     x = movie.split()
     hari = "+".join(x)
