@@ -15,18 +15,18 @@
       "inline"
     ],
     "website": "https://youtube.com/channel/UCmGBpXoM-OEm-FacOccVKgQ",
-    "repository": "https://github.com/MRK-YT/MT-Media-Search-bot",
+    "repository": "https://github.com/Saranhgg/MT-Media-Search-bot",
     "env": {
         "BOT_TOKEN": {
             "description": "Your bot token.",
             "value": ""
         },
         "API_ID": {
-            "description": "Get this value from https://my.telegram.org as @MT_MyTelegramOrg_BoT",
+            "description": "Get this value from https://my.telegram.org ",
             "value": ""
         },
         "API_HASH": {
-            "description": "Get this value from https://my.telegram.org as @MT_MyTelegramOrg_BoT",
+            "description": "Get this value from https://my.telegram.org",
             "value": ""
         },
         "CHANNELS": {
@@ -34,11 +34,11 @@
             "value": ""
         },
         "ADMINS": {
-            "description": "Username or ID of Admin. Separate multiple Admins by space. @MT_ID_Bot",
+            "description": "Username or ID of Admin. Separate multiple Admins by space.",
             "value": ""
         },
         "AUTH_USERS": {
-            "description": "Username or ID of users to give access of inline search. Separate multiple users by space.\nLeave it empty if you don't want to restrict bot usage. @MT_ID_Bot",
+            "description": "Username or ID of users to give access of inline search. Separate multiple users by space.\nLeave it empty if you don't want to restrict bot usage.",
             "value": "",
             "required": false
         },
