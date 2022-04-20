@@ -4,4 +4,4 @@
 
 [GROUP](https://t.me/+aZIoNNlskWk4ODg1)
 
-NB: code മുഴുവൻ errors ആണ്😪 
+NB: code മുഴുവൻ errors ആണ് 😪 
