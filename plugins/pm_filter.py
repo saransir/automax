@@ -21,9 +21,9 @@ PHOTO = [
     "https://telegra.ph/file/51683050f583af4c81013.jpg",
 ]
 
-@Client.on_callback_query(filters.regex(r"^spolling"))
+@Client.on_callback_query(filters.regex(r"^spo"))
 async def advantage_spoll_choker(bot, query):
-    _, user, movie_ = query.data.split('#')
+    _, s, user, movie_ = query.data.split('#')
     movies = SPELL_CHECK.get(query.message.reply_to_message.message_id)
     if not movies:
         await query.answer("You are clicking on an old button which is expired.", show_alert=True)
@@ -35,6 +35,8 @@ async def advantage_spoll_choker(bot, query):
         await message.delete()
         return await query.message.delete()
     movie = movie_
+    if s  == "sa":
+        movie = movies[(int(movie_))]
     await query.message.edit(f"🔍 ᴄʜᴇᴄᴋɪɴɢ...‎<b>{movie}🎬‎</b>")
     btn = []
     x = movie.split()
@@ -292,7 +294,8 @@ def split_list(l, n):
         yield l[i:i + n]          
 
 async def spell(message):
-    title = message.text
+    titl = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE) # plis contribute some common words 
+    title = titl.strip()
     btn = []
     user = message.from_user.id if message.from_user else 0
     movies = await get_post(title, bulk=True)
@@ -304,9 +307,9 @@ async def spell(message):
         title = movie.get('title')
         year = movie.get('year')
         btn.append(
-            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spolling#{user}#{title}")]
+            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{title}")]
         )
-    btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spolling#{user}#close_spellcheck')])
+    btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spo#se#{user}#close_spellcheck')])
     await message.reply('ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇', reply_markup=InlineKeyboardMarkup(btn)) 
 
 async def advantage_spell_chok(message):
@@ -351,10 +354,10 @@ async def advantage_spell_chok(message):
     btn = [[
                 InlineKeyboardButton(
                     text=movie.strip(),
-                    callback_data=f"spolling#{user}#{k}",
+                    callback_data=f"spo#sa#{user}#{k}",
                 )
             ] for k, movie in enumerate(movielist)]
-    btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spolling#{user}#close_spellcheck')])
+    btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spo#sa#{user}#close_spellcheck')])
     kdm = await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇", reply_markup=InlineKeyboardMarkup(btn))
     await asyncio.sleep(40)
     await kdm.delete()
