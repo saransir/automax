@@ -13,7 +13,7 @@ BOT = {}
 SPELL_CHECK = {}
 CHAA = "-1001534114432"
 
-RAT = ["🦋", "🫐", "🎡", "🎈", "🥀", "🔖", "🍭", "🍿", ]
+RAT = ["🦋", "🫐", "🎡", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼", "☄",]
 
 PHOTO = [
     "https://telegra.ph/file/9075ca7cbad944afaa823.jpg",
@@ -37,7 +37,7 @@ async def advantage_spoll_choker(bot, query):
     movie = movie_
     if s  == "sa":
         movie = movies[(int(movie_))]
-    await query.message.edit(f"🔍 ᴄʜᴇᴄᴋɪɴɢ...‎<b>{movie}🎬‎</b>")
+    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ...‎#<b>{movie}🎬‎</b>")
     btn = []
     x = movie.split()
     hari = "+".join(x)
@@ -185,7 +185,7 @@ async def group(client, message):
         await message.delete() 
     elif 3 < len(message.text) < 45:    
         btn = []
-        if re.findall("((^Beast|^beast|^@|^#|^Puzhu).*)", message.text):
+        if re.findall("((^@|^#).*)", message.text):
             return
         searc = message.text
         search = searc.strip()
