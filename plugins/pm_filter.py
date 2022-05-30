@@ -37,7 +37,7 @@ async def advantage_spoll_choker(bot, query):
     movie = movie_
     if s  == "sa":
         movie = movies[(int(movie_))]
-    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ...‎#<b>{movie}🎬‎</b>")
+    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ...‎<code>{movie}🎬‎</code>")
     btn = []
     x = movie.split()
     hari = "+".join(x)
@@ -48,7 +48,7 @@ async def advantage_spoll_choker(bot, query):
         for file in files:
             file_id = file.file_id
             sz = get_size(file.file_size)
-            fn = file.file_name[0:23]
+            fn = file.file_name[0:22]
             filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oam}"  
             btn.append(
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
@@ -63,7 +63,7 @@ async def advantage_spoll_choker(bot, query):
         buttons.append(
             [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ 🤵",callback_data=f"report_{hari}")]
         )
-        a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ \n 🔺,₹&*',) ᴅᴏɴᴛ ᴜsᴇ ᴛʜɪꜱ ᴛyᴩᴇ sʏᴍʙᴏʟs \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ👉 ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇 \n\n sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ/ɪᴍᴅʙ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ \n\n𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=InlineKeyboardMarkup(buttons))
+        a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 **ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ** \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=InlineKeyboardMarkup(buttons))
         await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)   
         await asyncio.sleep(25)
         await a.delete()
@@ -221,13 +221,15 @@ async def group(client, message):
         x = search.split()
         hari = "+".join(x)
         sesna = "_".join(x)
-
+        btn.append(
+            [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
+        )
         files = await get_filter_results(query=search)
         if files:
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
-                fn = file.file_name[0:23].strip()
+                fn = file.file_name[0:22].strip()
                 filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oamm}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
@@ -264,9 +266,7 @@ async def group(client, message):
         buttons.append(
             [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
         )
-        buttons.append(
-            [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
-        )
+        
         poster=None
         if API_KEY:
             poster=await get_poster(search)
