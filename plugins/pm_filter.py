@@ -13,7 +13,7 @@ BOT = {}
 SPELL_CHECK = {}
 CHAA = "-1001534114432"
 
-RAT = ["🦋", "🫐", "🎡", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼", "☄",]
+RAT = ["🦋", "🫐", "🎡", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼",]
 
 PHOTO = [
     "https://telegra.ph/file/9075ca7cbad944afaa823.jpg",
@@ -249,7 +249,7 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}"), InlineKeyboardButton("💡close💡", callback_data="close")]
+                [InlineKeyboardButton("💡close💡", callback_data="close")]
             )
             poster=None
             if API_KEY:
@@ -389,8 +389,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('🎪 ɢʀᴏᴜᴘ 2', url='https://t.me/+NY-f484oVqE1NmU1'),
-                        InlineKeyboardButton(' 🔍 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
+                        InlineKeyboardButton('ᴍᴀɪɴ ɢʀᴏᴜᴘ', url='https://t.me/+PBGW_EV3ldY5YjJl'),
+                        InlineKeyboardButton('sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
                     ]
                     ]
 
@@ -402,7 +402,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption=f"<code>" + title + "</code>""\n\n <b>[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+PBGW_EV3ldY5YjJl)</b>",
+                    caption=f"<code>" + title + "</code>""\n\n <b>[𝙼𝚘𝚟𝚒𝚎/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
                 except UserIsBlocked:
@@ -470,9 +470,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [InlineKeyboardButton(f"🎪 Pages {int(index)}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)-1}_{keyword}")]                   
                 )
-                buttons.append(
-                    [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
-                )
 
                 await query.edit_message_reply_markup( 
                     reply_markup=InlineKeyboardMarkup(buttons)
@@ -508,8 +505,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "about":
             await query.answer("🤖 ɴᴀᴍᴇ: ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
         elif query.data == "close":
-            await message.delete()
             await query.message.delete()
+            try:
+                await message.delete()
+            except KeyError:
+                await query.answer(" your query message is deleted 🌩️",show_alert=True)
+                return
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
                 await query.answer("🎪ഗ്രൂപ്പിൽ join ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ \n\n Join My 🎪 group 🎪 to click",show_alert=True)
@@ -539,7 +540,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption=f"<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+PBGW_EV3ldY5YjJl)",
+                    caption=f"<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     ) 
 
