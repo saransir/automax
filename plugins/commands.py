@@ -265,7 +265,7 @@ async def bot_kunna(bot, message):
 @Client.on_message(filters.regex('https') & filters.group & filters.chat(AUTH_GROUPS) & ~filters.user(ADMINS))
 async def hellto(bot, message):
     await message.delete()
-@Client.on_chat_join_request(filters.chat(AUTH_CHANNEL))
+@Client.on_chat_join_request(filters.chat(AUTH_GROUPS))
 async def autoapprove(bot, message: ChatJoinRequest):
     chat=message.chat # Chat
     user=message.from_user # User
