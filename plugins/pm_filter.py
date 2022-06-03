@@ -319,20 +319,20 @@ async def advantage_spell_chok(message):
     g_s += await search_gagala(message.text)
     gs_parsed = []
     if not g_s:
-        k = await message.reply("I couldn't find any movie in that name.")
+        k = await message.reply("**I couldn't find any movie in that name**.")
         await asyncio.sleep(8)
         await k.delete()
         await message.delete()
         return
     # regex = re.compile(r".*(imdbb|wikipedia).*", re.IGNORECASE) # look for imdb / wiki results
     # gs = list(filter(regex.match, g_s))
-    gs_parsed = [re.sub(r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)', '', i, flags=re.IGNORECASE) for i in g_s]
-    if not gs_parsed:
-        reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*", re.IGNORECASE) # match something like Watch Niram | Amazon Prime 
-        for mv in g_s:
-            match  = reg.match(mv)
-            if match:
-                gs_parsed.append(match.group(1))
+    # gs_parsed = [re.sub(r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)', '', i, flags=re.IGNORECASE) for i in g_s]
+    # if not gs_parsed:
+    reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*", re.IGNORECASE) # match something like Watch Niram | Amazon Prime 
+    for mv in g_s:
+        match  = reg.match(mv)
+        if match:
+            gs_parsed.append(match.group(1))
     user = message.from_user.id if message.from_user else 0
     movielist = []
     gs_parsed = list(dict.fromkeys(gs_parsed)) # removing duplicates https://stackoverflow.com/a/7961425
