@@ -34,7 +34,6 @@ async def advantage_spoll_choker(bot, query):
     if movie_  == "close_spellcheck":
         await message.delete()
         return await query.message.delete()
-    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ... ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...🎬‎</code>")
     btn = []
     oam = f"{random.choice(RAT)}"
     if s  == "sa":
@@ -58,6 +57,7 @@ async def advantage_spoll_choker(bot, query):
     x = movie.split()
     hari = "+".join(x)
     sesna = "_".join(x)
+    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎</code>**#{sesna}**")
     btn.append(
         [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
         )
@@ -196,9 +196,9 @@ async def group(client, message):
         await asyncio.sleep(10)
         await kk.delete()
         await message.delete()
-    elif 2 < len(message.text) <= 6:
+    elif 2 < len(message.text) <= 4:
         return await spell(message)
-    elif 6 < len(message.text) < 45:    
+    elif 4 < len(message.text) < 45:    
         btn = []
         if re.findall("((^@|^#).*)", message.text):
             return
@@ -321,6 +321,8 @@ async def spell(message):
     for movie in movies:
         title = movie.get('title')[:63]
         year = movie.get('year')
+        if year  == "None":
+            year = "2"
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{title}+{year}")]
         )
