@@ -73,7 +73,7 @@ async def advantage_spoll_choker(bot, query):
     else:
         await query.message.delete()
         cha = int(CHAA)
-        buttons = btn
+        buttons = []
         buttons.append(
             [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
         )
