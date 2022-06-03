@@ -196,9 +196,9 @@ async def group(client, message):
         await asyncio.sleep(10)
         await kk.delete()
         await message.delete()
-    elif 2 < len(message.text) <= 4:
+    elif 2 < len(message.text) <= 6:
         return await spell(message)
-    elif 4 < len(message.text) < 45:    
+    elif 6 < len(message.text) < 45:    
         btn = []
         if re.findall("((^@|^#).*)", message.text):
             return
@@ -320,7 +320,6 @@ async def spell(message):
     SPELL_CHECK[message.message_id] = movies
     for movie in movies:
         title = movie.get('title')[:43]
-        # year = movie.get('year')
         year = movie.get('year') if movie.get else "None"
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{title}+{year}")]
