@@ -34,16 +34,30 @@ async def advantage_spoll_choker(bot, query):
     if movie_  == "close_spellcheck":
         await message.delete()
         return await query.message.delete()
-    movie = movie_
+    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ ꜰᴏᴛ ᴅᴀᴛᴀʙᴀꜱᴇ....🎬‎</code>")
+    btn = []
+    oam = f"{random.choice(RAT)}"
     if s  == "sa":
         movie = movies[(int(movie_))]
-    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ...‎<code>{movie}🎬‎</code>")
-    btn = []
+        files = await get_filter_results(movie)
+    else s  == "se":
+        movi = movie_
+        mov, year = movi.split('+')
+        movie = f"{mov} {year}"
+        fils = await get_filter_results(movie)
+        if fils:
+            for file in fils:
+                file_id = file.file_id
+                sz = get_size(file.file_size)
+                fn = file.file_name[0:22]
+                filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oam}"  
+                btn.append(
+                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
+                    )
+        files = await get_filter_results(mov)
     x = movie.split()
     hari = "+".join(x)
     sesna = "_".join(x)
-    oam = f"{random.choice(RAT)}"
-    files = await get_filter_results(movie)
     if files:
         for file in files:
             file_id = file.file_id
