@@ -321,7 +321,7 @@ async def spell(message):
         title = movie.get('title')
         year = movie.get('year')
         btn.append(
-            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{title}")]
+            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{title}+{year}")]
         )
     btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spo#se#{user}#close_spellcheck')])
     await message.reply('ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇', reply_markup=InlineKeyboardMarkup(btn)) 
