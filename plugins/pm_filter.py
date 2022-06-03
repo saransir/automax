@@ -86,8 +86,6 @@ async def advantage_spoll_choker(bot, query):
         await a.delete()
         await message.delete()
         return 
-    bt = list(dict.fromkeys(btn))
-    btn = bt
     if not btn:
         return
 
