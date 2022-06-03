@@ -101,7 +101,7 @@ async def advantage_spoll_choker(bot, query):
     else:
         buttons = btn
         buttons.append(
-            [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
+            [InlineKeyboardButton("💡close💡", callback_data="close")]
         )
         poster=None
         if API_KEY:
