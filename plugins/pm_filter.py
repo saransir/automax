@@ -40,7 +40,7 @@ async def advantage_spoll_choker(bot, query):
     if s  == "sa":
         movie = movies[(int(movie_))]
         files = await get_filter_results(movie)
-    else s  == "se":
+    if s  == "se":
         movi = movie_
         mov, year = movi.split('+')
         movie = f"{mov} {year}"
