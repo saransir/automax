@@ -200,7 +200,7 @@ async def group(client, message):
         return await spell(message)
     elif 6 < len(message.text) < 45:    
         btn = []
-        if re.findall("((^@|^#).*)", message.text):
+        if re.findall("((^@|^#|^Vikram).*)", message.text):
             return
         searc = message.text
         search = searc.strip()
