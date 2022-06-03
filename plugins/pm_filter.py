@@ -319,7 +319,7 @@ async def spell(message):
     oam = f"{random.choice(RAT)}"
     SPELL_CHECK[message.message_id] = movies
     for movie in movies:
-        title = movie.get('title')
+        title = movie.get('title')[:3]
         year = movie.get('year')
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{title}+{year}")]
