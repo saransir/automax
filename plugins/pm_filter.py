@@ -34,7 +34,7 @@ async def advantage_spoll_choker(bot, query):
     if movie_  == "close_spellcheck":
         await message.delete()
         return await query.message.delete()
-    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ ꜰᴏᴛ ᴅᴀᴛᴀʙᴀꜱᴇ....🎬‎</code>")
+    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ... ɪɴ ᴅᴀᴛᴀʙᴀꜱᴇ...🎬‎</code>")
     btn = []
     oam = f"{random.choice(RAT)}"
     if s  == "sa":
@@ -83,7 +83,7 @@ async def advantage_spoll_choker(bot, query):
         await a.delete()
         await message.delete()
         return 
-    btn = list(dict.fromkeys(btn))
+    # btn = list(dict.fromkeys(btn))
     if not btn:
         return
 
