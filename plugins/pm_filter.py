@@ -58,6 +58,9 @@ async def advantage_spoll_choker(bot, query):
     x = movie.split()
     hari = "+".join(x)
     sesna = "_".join(x)
+    btn.append(
+        [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
+        )
     if files:
         for file in files:
             file_id = file.file_id
@@ -83,7 +86,8 @@ async def advantage_spoll_choker(bot, query):
         await a.delete()
         await message.delete()
         return 
-    # btn = list(dict.fromkeys(btn))
+    bt = list(dict.fromkeys(btn))
+    btn = bt
     if not btn:
         return
 
@@ -238,7 +242,7 @@ async def group(client, message):
         hari = "+".join(x)
         sesna = "_".join(x)
         btn.append(
-            [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
+            [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
         )
         files = await get_filter_results(query=search)
         if files:
@@ -449,7 +453,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton(f"🎪 Pages {int(index)+2}/{data['total']}🎪", callback_data="pages")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
+                    [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -463,7 +467,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton(f"🎪{int(index)+2}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)+1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
+                    [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -498,7 +502,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton(f"🎪{int(index)}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)-1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(text="𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
+                    [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
                 )
 
                 await query.edit_message_reply_markup( 
