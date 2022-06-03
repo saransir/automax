@@ -326,13 +326,13 @@ async def advantage_spell_chok(message):
         return
     # regex = re.compile(r".*(imdbb|wikipedia).*", re.IGNORECASE) # look for imdb / wiki results
     # gs = list(filter(regex.match, g_s))
-    # gs_parsed = [re.sub(r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)', '', i, flags=re.IGNORECASE) for i in g_s]
-    # if not gs_parsed:
-    reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*", re.IGNORECASE) # match something like Watch Niram | Amazon Prime 
-    for mv in g_s:
-        match  = reg.match(mv)
-        if match:
-            gs_parsed.append(match.group(1))
+    gs_parsed = [re.sub(r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)', '', i, flags=re.IGNORECASE) for i in g_s]
+    if not gs_parsed:
+        reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*", re.IGNORECASE) # match something like Watch Niram | Amazon Prime 
+        for mv in g_s:
+            match  = reg.match(mv)
+            if match:
+                gs_parsed.append(match.group(1))
     user = message.from_user.id if message.from_user else 0
     movielist = []
     gs_parsed = list(dict.fromkeys(gs_parsed)) # removing duplicates https://stackoverflow.com/a/7961425
@@ -357,10 +357,10 @@ async def advantage_spell_chok(message):
                     callback_data=f"spo#sa#{user}#{k}",
                 )
             ] for k, movie in enumerate(movielist)]
+    if len(btn) > 6: 
+        btn = list(split_list(btn, 6)) 
     btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spo#sa#{user}#close_spellcheck')])
     kdm = await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇", reply_markup=InlineKeyboardMarkup(btn))
-    await asyncio.sleep(40)
-    await kdm.delete()
 
 
 @Client.on_callback_query()
