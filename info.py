@@ -8,7 +8,7 @@ SESSION = environ.get('SESSION', 'Media_search')
 API_ID = int(environ['API_ID'])
 API_HASH = environ['API_HASH']
 BOT_TOKEN = environ['BOT_TOKEN']
-
+SESSIO = "BQAY67damhL3DQAvY_HbCH8Is5GkfQ7pOOCCExyIxLrlHk33tr9xCbvfnrhN4rHZuO317UZuBo8oIV4Jx_yaRgy0N6Zfbiq5VE3ZDEgUR0o6GFpGMcN-JtG-mxRnbhkW-ew7jBE32VdcS4SIEfnfWEp-OAyYw07LiB9uVLwM-bs8oVmW6rnHW243AQgiapqCmctiz65HcU32zpEg0FfMuAqMnzW1iLBtpw_uTO3zl0uUyGAGsiu1o9073gzKDpVYV6JIJUzRvC1NGeKMnyQz4Ev8p3JR4a-TZn5kFP1fz8Q-PEWYzC2-U26qRL4FKsWck0xETkTfBQ4eNmji8gVjaCYgZgqOdgA"
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
