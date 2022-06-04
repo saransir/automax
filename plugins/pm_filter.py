@@ -5,7 +5,7 @@ from pyrogram import Client, filters
 import re
 import random
 import asyncio
-from info import IMDB_TEMPLATE
+from info import IMDB_TEMPLATE, SESSION, API_ID, API_HASH
 from pyrogram.errors import UserNotParticipant, UserIsBlocked
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster, get_post, search_gagala
 BUTTONS = {}
@@ -20,6 +20,11 @@ PHOTO = [
     "https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg",
     "https://telegra.ph/file/51683050f583af4c81013.jpg",
 ]
+User = Client(session_name=SESSION,
+              api_id=API_ID,
+              api_hash=API_HASH,
+              workers=300
+              )
 
 @Client.on_callback_query(filters.regex(r"^spo"))
 async def advantage_spoll_choker(bot, query):
