@@ -27,6 +27,8 @@ User = Client(session_name=SESSIO,
               )
 User.start()
 print("User Started!")
+Bot.start()
+print("Bot Started!")
 
 @Client.on_callback_query(filters.regex(r"^spo"))
 async def advantage_spoll_choker(bot, query):
@@ -65,15 +67,6 @@ async def advantage_spoll_choker(bot, query):
     hari = "+".join(x)
     sesna = "_".join(x)
     ab = await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎</code>**#{sesna}**")
-    CH = "-1001601956206"
-    cha = int(CH)
-    mg = await User.search_messages_count(chat_id=cha, query=f"{movie}")
-    if mg:
-        a = await ab.edit(f"**#{sesna} ʜᴅ ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ**")
-        await asyncio.sleep(15)
-        await a.delete()
-        await message.delete()
-        return
     btn.append(
         [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
         )
