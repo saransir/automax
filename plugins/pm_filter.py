@@ -27,8 +27,6 @@ User = Client(session_name=SESSIO,
               )
 User.start()
 print("User Started!")
-Bot.start()
-print("Bot Started!")
 
 @Client.on_callback_query(filters.regex(r"^spo"))
 async def advantage_spoll_choker(bot, query):
