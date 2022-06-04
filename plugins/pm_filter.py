@@ -25,6 +25,8 @@ User = Client(session_name=SESSION,
               api_hash=API_HASH,
               workers=300
               )
+User.start()
+print("User Started!")
 
 @Client.on_callback_query(filters.regex(r"^spo"))
 async def advantage_spoll_choker(bot, query):
