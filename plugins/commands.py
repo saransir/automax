@@ -65,7 +65,7 @@ async def start(bot, cmd):
                 return
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
-            await cmd.reply_chat_action("sending a file")
+            await cmd.reply_chat_action("upload_document")
             await asyncio.sleep(.5)
             filedetails = await get_file_details(file_id)
             for files in filedetails:
