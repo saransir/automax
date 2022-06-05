@@ -24,7 +24,7 @@ LN = "https://t.me/+PBGW_EV3ldY5YjJl"
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     await cmd.delete()
-    await msg.reply_chat_action("typing")
+    await cmd.reply_chat_action("typing")
     await asyncio.sleep(.5)
     if usr_cmdall1.startswith("/start subinps"):
         if AUTH_CHANNEL:
