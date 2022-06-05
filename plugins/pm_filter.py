@@ -57,7 +57,7 @@ async def advantage_spoll_choker(bot, query):
     x = movie.split()
     hari = "+".join(x)
     sesna = "_".join(x)
-    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎</code>**#{sesna}**")
+    await query.message.edit(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
     btn.append(
         [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
         )
@@ -191,9 +191,10 @@ async def filter(client, msg, files):
 async def group(client, message):
     if re.findall("((^\/|^,|^!|^@|^#|^Vikram|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
-    a = await message.reply('🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..{message.text}')
+    a = message.text
+    a = await message.reply('🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..**{a}**')
     await asyncio.sleep(.5)
-    await kk.delete()
+    await a.delete()
     if len(message.text) <= 2:
         kk = await message.reply_text(f"{message.from_user.mention},ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ")
         await asyncio.sleep(10)
