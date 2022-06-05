@@ -24,8 +24,6 @@ LN = "https://t.me/+PBGW_EV3ldY5YjJl"
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     await cmd.delete()
-    await cmd.reply_chat_action("typing")
-    await asyncio.sleep(.5)
     if usr_cmdall1.startswith("/start subinps"):
         if AUTH_CHANNEL:
             invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
@@ -67,6 +65,8 @@ async def start(bot, cmd):
                 return
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
+            await cmd.reply_chat_action("sending a file")
+            await asyncio.sleep(.5)
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 title = files.file_name[0:-4]
