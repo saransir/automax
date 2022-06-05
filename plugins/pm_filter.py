@@ -191,8 +191,9 @@ async def filter(client, msg, files):
 async def group(client, message):
     if re.findall("((^\/|^,|^!|^@|^#|^Vikram|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
-    await answer('🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..{message.text}')
+    a = await message.reply('🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..{message.text}')
     await asyncio.sleep(.5)
+    await kk.delete()
     if len(message.text) <= 2:
         kk = await message.reply_text(f"{message.from_user.mention},ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ")
         await asyncio.sleep(10)
