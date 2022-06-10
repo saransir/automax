@@ -49,7 +49,7 @@ async def answer(bot, query):
             f_caption = f"{file.file_name}"
         results.append(
             InlineQueryResultCachedDocument(
-                title=file.file_name,
+                title=file.file_name[0:-4],
                 file_id=file.file_id,
                 caption="<code>" + title + "</code>""\n\n  <b>ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ \n [𝚐𝚛𝚘𝚞𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)  ↮  [𝚐𝚛𝚘𝚞𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
                 description=f'🪁 Size: {get_size(file.file_size)}\nType: {file.file_type}',
