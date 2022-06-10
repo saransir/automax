@@ -107,6 +107,18 @@ async def start(bot, cmd):
                 ]
             )
         )
+    elif len(cmd.command) > 1 and cmd.command[1] == 'okay':
+        await bot.send_message(
+            chat_id=cmd.from_user.id,
+            text="**request on group🎪**",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")
+                    ]
+                ]
+            )
+        )
     elif usr_cmdall1.startswith("/start saran"):
         ident, file_name = cmd.text.split("==")
         await cmd.reply_chat_action("typing")
