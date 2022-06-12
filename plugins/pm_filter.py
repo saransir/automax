@@ -71,7 +71,6 @@ async def advantage_spoll_choker(bot, query):
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
     else:
-        # await query.message.delete()
         cha = int(CHAA)
         buttons = []
         buttons.append(
@@ -81,9 +80,8 @@ async def advantage_spoll_choker(bot, query):
             [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ 🤵",callback_data=f"report_{hari}")]
         )
         reply_markup = InlineKeyboardMarkup(buttons)
-        # a = await message.reply_photo(photo="https://telegra.ph/file/3bc31abd2c8b92758dfc5.jpg", caption=f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 **ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ** \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=InlineKeyboardMarkup(buttons))
         await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
-        a = await a1.edit_text(f"{message.from_user.mention},ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
+        a = await a1.edit_text(f"{message.from_user.mention}, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
         await asyncio.sleep(25)
         await a.delete()
         await message.delete()
