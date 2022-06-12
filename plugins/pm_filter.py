@@ -318,7 +318,7 @@ async def spell(message):
     SPELL_CHECK[message.message_id] = movies
     for movie in movies:
         tt = movie.get('title')[:23]
-        title = tt.replace(":", " ")
+        title = tt.replace(":", "")
         year = movie.get('year') if movie.get else "None"
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{title}+{year}")]
