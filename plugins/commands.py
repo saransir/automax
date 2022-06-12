@@ -122,7 +122,7 @@ async def start(bot, cmd):
     elif usr_cmdall1.startswith("/start saran"):
         ident, file_name = cmd.text.split("==")
         await cmd.reply_chat_action("typing")
-        await asyncio.sleep(.5)
+        await asyncio.sleep(1)
         x = file_name.split("_")
         hari = " ".join(x)
         await cmd.reply_text(
@@ -256,7 +256,7 @@ async def bot_link(bot, message):
         ]
         ]
     await message.reply_chat_action("typing")
-    await asyncio.sleep(.5)
+    await asyncio.sleep(1)
     await bot.send_message(chat_id=message.from_user.id, text="<b>തായേ👇 കാണുന്ന 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു 🎬സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്യുക</b> \n\n <b>👇Click on the 🔍𝗦𝗲𝗮𝗿𝗰𝗵 𝗙𝗶𝗹𝗲 button and type the name of the movie‌‌</b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 @Client.on_message(filters.command('about') & filters.private)
 async def bot_info(bot, message):
@@ -265,6 +265,8 @@ async def bot_info(bot, message):
             InlineKeyboardButton("🎪 ɢʀᴏᴜᴘ  🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")
         ]
         ]
+    await message.reply_chat_action("typing")
+    await asyncio.sleep(1)
     a = await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](https://t.me/+aZIoNNlskWk4ODg1)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
     await asyncio.sleep(4) # program error 
     await a.delete()
@@ -279,6 +281,8 @@ async def bot_kunna(bot, message):
             InlineKeyboardButton('🍿 ɢʀᴏᴜᴘ  🍿', url='https://t.me/+eDjzTT2Ua6kwMTI1')
         ]
         ]
+    await message.reply_chat_action("typing")
+    await asyncio.sleep(1)
     await message.reply(text=f"<b>പുതിയതും പഴയതും ആയ എല്ലാ 🎬 സിനിമകളും നിങ്ങൾക് ഈ ഗ്രൂപ്പിൽ ചോദിക്കാം , താല്പര്യം ഉള്ളവർ താഴെ👇 ഉള്ള ലിങ്കിൽ കേറി പോരുക\n\n\n https://t.me/+eDjzTT2Ua6kwMTI1 https://t.me/+eDjzTT2Ua6kwMTI1 </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 @Client.on_message(filters.regex('https') & filters.group & filters.chat(AUTH_GROUPS) & ~filters.user(ADMINS))
 async def hellto(bot, message):
@@ -321,6 +325,8 @@ async def textx(bot, message):
             InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ 🍿', switch_inline_query_current_chat='2022 malayalam')
         ]
         ]
+    await message.reply_chat_action("typing")
+    await asyncio.sleep(1)
     await bot.send_message(chat_id=message.from_user.id, text="<b>ഏറ്റവും പുതിയതായി ബോട്ടിൽ add ചെയ്ത മലയാളം സിനിമകൾക്കായ് തായേ👇 കാണുന്ന 🔍 𝗦𝗲𝗮𝗿𝗰𝗵 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്ത ശേഷം അനുയോജ്യമായ file select ചെയ്യുക 😇</b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 @Client.on_message(filters.regex('Livegram') & filters.private)
 async def dfhhg(bot, message):
