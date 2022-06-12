@@ -326,7 +326,7 @@ async def spell(message):
     if len(btn) > 10: 
         btn = btn[:10]
     btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spo#se#{user}#close_spellcheck')])
-    await message.reply('ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇', reply_markup=InlineKeyboardMarkup(btn)) 
+    await message.reply('𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ? 👇', reply_markup=InlineKeyboardMarkup(btn)) 
 
 async def advantage_spell_chok(message):
     query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE) # plis contribute some common words 
@@ -376,7 +376,7 @@ async def advantage_spell_chok(message):
     if len(btn) > 6: 
         btn = btn[:6]
     btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spo#sa#{user}#close_spellcheck')])
-    kdm = await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n ᴅɪᴅ ʏᴏᴜ ᴍᴇᴀɴ ᴀɴʏ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ?👇", reply_markup=InlineKeyboardMarkup(btn))
+    kdm = await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n 𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇", reply_markup=InlineKeyboardMarkup(btn))
 
 
 @Client.on_callback_query()
