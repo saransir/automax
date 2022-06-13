@@ -208,7 +208,7 @@ async def group(client, message):
         imdb = await get_post(search)
         if imdb:
             btn.append(
-                [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#{imdb.get('imdb_id')}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
+                [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#{imdb.movieID}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
             caption = IMDB_TEMPLATE.format(
                 query = imdb['title'],
