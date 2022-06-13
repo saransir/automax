@@ -397,8 +397,6 @@ async def gen_link_s(bot, message):
 @Client.on_message(filters.command('imdb') & filters.private)
 async def imdb_searh(bot, message):
     if ' ' in message.text:
-        k = await message.reply('Searching ImDB')
-        # message.reply_to_message.from_user.id
         r, title = message.text.split(None, 1)
         movies = await get_post(title, bulk=True)
         if not movies:
@@ -412,7 +410,7 @@ async def imdb_searh(bot, message):
             ]
             for movie in movies
         ]
-        await k.edit('Here is what i.found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
+        await message.reply('Here is what i.found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
     else:
         await message.reply('Give me a movie / series Name')
 
