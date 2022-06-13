@@ -12,7 +12,6 @@ BUTTONS = {}
 BOT = {}
 SPELL_CHECK = {}
 CHAA = "-1001534114432"
-
 RAT = ["🦋", "🫐", "🎡", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼",]
 
 PHOTO = [
@@ -208,7 +207,7 @@ async def group(client, message):
         imdb = await get_post(search)
         if imdb:
             btn.append(
-                [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#{imdb.imdb_id}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
+                [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#{imdb['imdb_id']}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
             caption = IMDB_TEMPLATE.format(
                 query = imdb['title'],
@@ -565,4 +564,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer()
 
     else:
-        await query.answer("😊 Bro. search your own file, Don't click others Requested files🎬",show_alert=True)
+        await query.answer("😊  Bro. search your own file, Don't click others Requested files🎬",show_alert=True)
