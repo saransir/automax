@@ -30,7 +30,7 @@ async def advantage_spoll_choker(bot, query):
     try:
         message = query.message.reply_to_message
     except:
-        message = query
+        message = query.message
         pass
     if movie_  == "close_spellcheck":
         await message.delete()
