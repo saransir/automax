@@ -8,7 +8,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinR
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
 from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post
 from info import TUTORIAL
-from info import IMDB_TEMPLATE
+from info import IMDB_TEMPLATE, IMDB_TEMPLATEE
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 
@@ -404,8 +404,8 @@ async def imdb_searh(bot, message):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{movie.get('title')[:23]} - {movie.get('year')}",
-                    callback_data=f"spo#se#{0}#{movie.get('title')[:23]}+{movie.get('year')}",
+                    text=f"{movie.get('title')} - {movie.get('year')}",
+                    callback_data=f"imdb#{movie.movieID}",
                 )
             ]
             for movie in movies
@@ -433,7 +433,7 @@ async def imdb_callback(bot, quer_y: CallbackQuery):
         ]
     message = quer_y.message.reply_to_message or quer_y.message
     if imdb:
-        caption = IMDB_TEMPLATE.format(
+        caption = IMDB_TEMPLATEE.format(
             query = imdb['title'],
             title = imdb['title'],
             votes = imdb['votes'],
@@ -458,17 +458,4 @@ async def imdb_callback(bot, quer_y: CallbackQuery):
         )
     else:
         caption = "No Results🤷🏻‍♂️"
-    if imdb.get('poster'):
-        try:
-            await quer_y.message.reply_photo(photo=imdb['poster'], caption=caption, reply_markup=InlineKeyboardMarkup(btn))
-        except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
-            pic = imdb.get('poster')
-            poster = pic.replace('.jpg', "._V1_UX360.jpg")
-            await quer_y.message.reply_photo(photo=poster, caption=caption, reply_markup=InlineKeyboardMarkup(btn))
-        except Exception as e:
-            logger.exception(e)
-            await quer_y.message.reply(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-        await quer_y.message.delete()
-    else:
-        await quer_y.message.edit(caption, reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=False)
-    await quer_y.answer()
+    await quer_y.answer({caption})
