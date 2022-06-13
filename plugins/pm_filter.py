@@ -24,10 +24,6 @@ PHOTO = [
 @Client.on_callback_query(filters.regex(r"^spo"))
 async def advantage_spoll_choker(bot, query):
     _, s, user, movie_ = query.data.split('#')
-    movies = SPELL_CHECK.get(query.message.reply_to_message.message_id)
-    if not movies:
-        await query.answer("You are clicking on an old button which is expired.", show_alert=True)
-        return await query.message.delete()
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer("Don't click others Requested files🎬", show_alert=True)
     message = query.message.reply_to_message
@@ -37,6 +33,10 @@ async def advantage_spoll_choker(bot, query):
     btn = []
     oam = f"{random.choice(RAT)}"
     if s  == "sa":
+        movies = SPELL_CHECK.get(query.message.reply_to_message.message_id)
+        if not movies:
+            await query.answer("You are clicking on an old button which is expired.", show_alert=True)
+            return await query.message.delete()
         movie = movies[(int(movie_))]
         files = await get_filter_results(movie)
     if s  == "se":
