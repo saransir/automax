@@ -202,8 +202,14 @@ async def group(client, message):
         btn = []
         searc = message.text
         search = searc.strip()
+        x = search.split()
+        hari = "+".join(x)
+        sesna = "_".join(x)
         imdb = await get_post(search)
         if imdb:
+            btn.append(
+                [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#{imdb["imdb_id"]}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
+            )
             caption = IMDB_TEMPLATE.format(
                 query = imdb['title'],
                 title = imdb['title'],
@@ -231,12 +237,6 @@ async def group(client, message):
             caption = f"**<b>🎬↳ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : ‌‌‌‌‎</b>** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n**‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
         oam = f"{random.choice(RAT)}"
         oamm = f"{random.choice(RAT)}"
-        x = search.split()
-        hari = "+".join(x)
-        sesna = "_".join(x)
-        btn.append(
-            [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
-        )
         files = await get_filter_results(query=search)
         if files:
             for file in files:
