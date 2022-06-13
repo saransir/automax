@@ -394,10 +394,11 @@ async def gen_link_s(bot, message):
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
     await message.reply(f"https://telegram.dog/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")
 
-@Client.on_message(filters.command('imdb'))
+@Client.on_message(filters.command('imdb') & filters.private)
 async def imdb_searh(bot, message):
     if ' ' in message.text:
         k = await message.reply('Searching ImDB')
+        # message.reply_to_message.from_user.id
         r, title = message.text.split(None, 1)
         movies = await get_post(title, bulk=True)
         if not movies:
@@ -406,7 +407,7 @@ async def imdb_searh(bot, message):
             [
                 InlineKeyboardButton(
                     text=f"{movie.get('title')} - {movie.get('year')}",
-                    callback_data=f"spo#se#{user}#{movie.get('title')}+{movie.get('year')}",
+                    callback_data=f"spo#se#{0}#{movie.get('title')}+{movie.get('year')}",
                 )
             ]
             for movie in movies
