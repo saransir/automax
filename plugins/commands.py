@@ -458,4 +458,4 @@ async def imdb_callback(bot, quer_y: CallbackQuery):
         )
     else:
         caption = "No Results🤷🏻‍♂️"
-    await quer_y.answer("{caption}", show_alert=True)
+    await quer_y.answer("caption", show_alert=True)
