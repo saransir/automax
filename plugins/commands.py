@@ -406,8 +406,8 @@ async def imdb_searh(bot, message):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{movie.get('title')} - {movie.get('year')}",
-                    callback_data=f"spo#se#{0}#{movie.get('title')}+{movie.get('year')}",
+                    text=f"{movie.get('title')[:23]} - {movie.get('year')}",
+                    callback_data=f"spo#se#{0}#{movie.get('title')[:23]}+{movie.get('year')}",
                 )
             ]
             for movie in movies
