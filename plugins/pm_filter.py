@@ -26,7 +26,12 @@ async def advantage_spoll_choker(bot, query):
     _, s, user, movie_ = query.data.split('#')
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer("Don't click others Requested files🎬", show_alert=True)
-    message = query.message.reply_to_message
+    # message = query.message.reply_to_message
+    try:
+        message = query.message.reply_to_message
+    except:
+        message = query
+        pass
     if movie_  == "close_spellcheck":
         await message.delete()
         return await query.message.delete()
