@@ -417,7 +417,7 @@ async def imdb_searh(bot, message):
 @Client.on_callback_query(filters.regex('^imdb'))
 async def imdb_callback(bot, quer_y: CallbackQuery):
     i, movi = quer_y.data.split('#')
-    movie = movi[-7:]
+    movie = movi[2:]
     try:
         typed = quer_y.message.reply_to_message.from_user.id
     except:
