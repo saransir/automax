@@ -324,7 +324,7 @@ async def spell(message):
         title = movie.get('title')[:25]
         year = movie.get('year') if movie.get else "None"
         btn.append(
-            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{movie['imdb_id']}")]
+            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
     if len(btn) > 10: 
         btn = btn[:10]
