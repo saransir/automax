@@ -247,7 +247,8 @@ async def group(client, message):
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
-                fn = file.file_name[0:22].strip()
+                tt = file.file_name[0:23].strip()
+                fn = tt.replace("_", " ")
                 filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oamm}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
