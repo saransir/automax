@@ -39,7 +39,7 @@ async def advantage_spoll_choker(bot, query):
         movie = movies[(int(movie_))]
         files = await get_filter_results(movie)
     if s  == "se":
-        movi = movie_
+        movi = movie_[2:]
         imdb = await get_post(query=movi, id=True)
         tt = imdb.get('title')
         mov = tt.replace(":", "")
@@ -322,7 +322,7 @@ async def spell(message):
     oam = f"{random.choice(RAT)}"
     for movie in movies:
         title = movie.get('title')[:25]
-        id = movie.get('imdb_id')[2:]
+        id = movie.get('imdb_id')
         year = movie.get('year') if movie.get else "None"
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{id}")]
