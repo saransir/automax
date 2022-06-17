@@ -40,8 +40,14 @@ async def advantage_spoll_choker(bot, query):
         files = await get_filter_results(movie)
     if s  == "se":
         movi = movie_
-        mov, year = movi.split('+')
+        imdb = await get_post(query=movi, id=True)
+        tt = imdb.get('title')
+        mov = tt.replace(":", "")
+        year = imdb.get('year') if movie.get else "None"
         movie = f"{mov} {year}"
+        btn.append(
+            [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}")]
+            )
         fils = await get_filter_results(movie)
         if fils:
             for file in fils:
@@ -314,13 +320,12 @@ async def spell(message):
     if not movies:
         return await advantage_spell_chok(message)
     oam = f"{random.choice(RAT)}"
-    SPELL_CHECK[message.message_id] = movies
     for movie in movies:
-        tt = movie.get('title')[:23]
-        title = tt.replace(":", "")
+        title = movie.get('title')[:25]
+        id = movie.get('imdb_id')[2:]
         year = movie.get('year') if movie.get else "None"
         btn.append(
-            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{title}+{year}")]
+            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{id}")]
         )
     if len(btn) > 10: 
         btn = btn[:10]
