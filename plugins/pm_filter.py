@@ -322,10 +322,9 @@ async def spell(message):
     oam = f"{random.choice(RAT)}"
     for movie in movies:
         title = movie.get('title')[:25]
-        id = movie.get('imdb_id')
         year = movie.get('year') if movie.get else "None"
         btn.append(
-            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{id}")]
+            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{movie['imdb_id']}")]
         )
     if len(btn) > 10: 
         btn = btn[:10]
