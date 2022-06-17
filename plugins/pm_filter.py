@@ -36,19 +36,19 @@ async def advantage_spoll_choker(bot, query):
         if not movies:
             await query.answer("You are clicking on an old button which is expired.", show_alert=True)
             return await query.message.delete()
-        if len(movies) > 30:
+        movie = movies[(int(movie_))]
+        if len(movie) > 30:
             await query.message.edit_text(f"𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾 \n <spoiler>sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ</spoiler>")
             await asyncio.sleep(10)
             await query.message.delete()
             return await message.delete()
-        movie = movies[(int(movie_))]
         files = await get_filter_results(movie)
     if s  == "se":
         movi = movie_
         imdb = await get_post(query=movi, id=True)
         tt = imdb.get('title')[0:30]
         mov = tt.replace(":", "")
-        yea = imdb.get('year') if imdb.get else "None"
+        yea = imdb.get('year') if imdb.get else ""
         movie = f"{mov} {yea}"
         btn.append(
             [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}")]
