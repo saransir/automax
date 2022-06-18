@@ -48,7 +48,7 @@ async def advantage_spoll_choker(bot, query):
         imdb = await get_post(query=movi, id=True)
         tt = imdb.get('title')[0:30]
         mov = tt.replace(":", "")
-        yea = imdb.get('year')[-4:0]
+        yea = imdb.get('year')
         movie = f"{mov} {yea}"
         btn.append(
             [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}")]
