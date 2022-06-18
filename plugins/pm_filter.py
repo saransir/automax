@@ -209,9 +209,9 @@ async def group(client, message):
         await asyncio.sleep(10)
         await kk.delete()
         await message.delete()
-    elif 2 < len(message.text) <= 6:
+    elif 2 < len(message.text) <= 5:
         return await spell(message)
-    elif 6 < len(message.text) < 45:    
+    elif 5 < len(message.text) < 45:    
         btn = []
         searc = message.text
         search = searc.strip()
@@ -331,12 +331,12 @@ async def spell(message):
     oam = f"{random.choice(RAT)}"
     for movie in movies:
         title = movie.get('title')[:25]
-        year = movie.get('year') if movie.get else "None"
+        year = movie.get('year') if movie.get else "{oam}"
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
-    if len(btn) > 10: 
-        btn = btn[:10]
+    if len(btn) > 9: 
+        btn = btn[:9]
     btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spo#se#{user}#close_spellcheck')])
     await message.reply('𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ? 👇', reply_markup=InlineKeyboardMarkup(btn)) 
 
