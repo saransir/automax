@@ -48,7 +48,7 @@ async def advantage_spoll_choker(bot, query):
         imdb = await get_post(query=movi, id=True)
         tt = imdb.get('title')[0:30]
         mov = tt.replace(":", "")
-        yea = imdb.get('year') if imdb.get else ""
+        yea = imdb.get('year')[-4:0]
         movie = f"{mov} {yea}"
         btn.append(
             [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}")]
@@ -209,9 +209,9 @@ async def group(client, message):
         await asyncio.sleep(10)
         await kk.delete()
         await message.delete()
-    elif 2 < len(message.text) <= 5:
+    elif 2 < len(message.text) <= 6:
         return await spell(message)
-    elif 5 < len(message.text) < 45:    
+    elif 6 < len(message.text) < 45:    
         btn = []
         searc = message.text
         search = searc.strip()
@@ -331,7 +331,7 @@ async def spell(message):
     oam = f"{random.choice(RAT)}"
     for movie in movies:
         title = movie.get('title')[:25]
-        year = movie.get('year') if movie.get else "{oam}"
+        year = movie.get('year')[-4:0]
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
