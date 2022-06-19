@@ -50,11 +50,9 @@ async def advantage_spoll_choker(bot, query):
         mov = tt.replace(":", "")
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
-        if yea:
-            fils = await get_filter_results(movie)
-        else:
-            files = await get_filter_results(mov)
-
+        fils = await get_filter_results(movie)
+        if yea == "None":
+            fils = await get_filter_results(mov)
         btn.append(
             [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}")]
             )
