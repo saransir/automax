@@ -66,8 +66,7 @@ async def advantage_spoll_choker(bot, query):
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                     )
-        else:
-            files = await get_filter_results(mov)
+        files = await get_filter_results(mov)
     x = movie.split()
     hari = "+".join(x)
     sesna = "_".join(x)
