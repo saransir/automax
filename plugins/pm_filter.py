@@ -50,10 +50,14 @@ async def advantage_spoll_choker(bot, query):
         mov = tt.replace(":", "")
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
+        if yea:
+            fils = await get_filter_results(movie)
+        else:
+            files = await get_filter_results(mov)
+
         btn.append(
             [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}")]
             )
-        fils = await get_filter_results(movie)
         if fils:
             for file in fils:
                 file_id = file.file_id
@@ -331,7 +335,7 @@ async def spell(message):
     oam = f"{random.choice(RAT)}"
     for movie in movies:
         title = movie.get('title')[:25]
-        year = movie.get('year')[-4:0]
+        year = movie.get('year')
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
