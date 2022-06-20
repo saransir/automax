@@ -36,7 +36,8 @@ async def advantage_spoll_choker(bot, query):
         if not movies:
             await query.answer("You are clicking on an old button which is expired.", show_alert=True)
             return await query.message.delete()
-        movie = movies[(int(movie_))]
+        mov = movies[(int(movie_))]
+        movie = movie.strip()
         if len(movie) > 30:
             await query.message.edit_text(f"𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾 \n <spoiler>sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ</spoiler>")
             await asyncio.sleep(10)
@@ -46,9 +47,8 @@ async def advantage_spoll_choker(bot, query):
     if s  == "se":
         movi = movie_
         imdb = await get_post(query=movi, id=True)
-        tt = imdb.get('title')[0:29]
-        mov = re.sub(r"(:|-)", "", tt, flags=re.IGNORECASE)
-        # mov = tt.replace(":", "")
+        ttt = imdb.get('title')[0:29]
+        mov = re.sub(r"(:|-|_|IMDb)", "", ttt, flags=re.IGNORECASE)
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
         fils = await get_filter_results(movie)
@@ -68,7 +68,7 @@ async def advantage_spoll_choker(bot, query):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                     )
         files = await get_filter_results(mov)
-    x = movie.split()
+    x = mov.split()
     hari = "+".join(x)
     sesna = "_".join(x)
     a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
@@ -334,6 +334,8 @@ async def spell(message):
     for movie in movies:
         title = movie.get('title')[:25]
         year = movie.get('year')
+        if year == "None":
+            year = oam
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
