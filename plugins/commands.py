@@ -140,31 +140,7 @@ async def start(bot, cmd):
         )
     else:
         await cmd.reply_sticker(sticker=f"{random.choice(HI)}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="start",callback_data="start")]]))
-         
-        """ await cmd.reply_text(
-            START_MSG.format(cmd.from_user.first_name),
-            parse_mode="Markdown",
-            disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(text="ᴀʙᴏᴜᴛ 💡",callback_data="about"),
-                        InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ 🍿", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")   
-                    ],
-                    [
-                        InlineKeyboardButton("ɢʀᴏᴜᴩ 1 🎪", url=f"{LN}"),
-                        InlineKeyboardButton("ɢʀᴏᴜᴩ 2 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")   
-                    ],
-                    [
-                        InlineKeyboardButton("🔎 𝚂𝙴𝙰𝚁𝙲𝙷 𝙵𝙸𝙻𝙴 🔍", switch_inline_query_current_chat='')
-                    ],
-                    [
-                        InlineKeyboardButton('🔍 ɢᴏ ɪɴʟɪɴᴇ 🔎', switch_inline_query='')
-                    ]
-                ]
-            )
-        ) """
-
+        
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
     """Send basic information of channel"""
@@ -334,8 +310,7 @@ async def textx(bot, message):
 @Client.on_message(filters.regex('Livegram') & filters.private)
 async def dfhhg(bot, message):
     await message.delete()
-    await asyncio.sleep(1)
-    await message.reply(f"<code> മുകളിൽ കാണുന്ന -𝘀𝗲𝗮𝗿𝗰𝗵 𝗳𝗶𝗹𝗲- എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്താൽ  സിനിമ ഫയൽ ലഭികും</code> \n\n <b>⚠️ Note: search ചെയ്യുബോൾ Correct Spelling ആയിരിക്കണം. Correct Spelling അറിയാൻ ഗൂഗിളിൽ നോക്കി  ടൈപ്പ് ചെയ്യുക</b>")
+   
 @Client.on_message(filters.command('idd'))
 async def texthx(bot, message):
     status_message = await message.reply_text(
