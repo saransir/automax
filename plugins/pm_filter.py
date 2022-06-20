@@ -535,12 +535,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('🔍 ɢᴏ ɪɴʟɪɴᴇ 🔎', switch_inline_query='')
                 ]
                 ]
-            await query.message.reply_text(
+            a = await query.message.reply_text(
             START_MSG.format(query.from_user.first_name),
             parse_mode="Markdown",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons))
             await query.message.delete()
+            await asyncio.sleep(2)
+            await a.reply(f"<code> മുകളിൽ കാണുന്ന -𝘀𝗲𝗮𝗿𝗰𝗵 𝗳𝗶𝗹𝗲- എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്താൽ  സിനിമ ഫയൽ ലഭികും</code> \n\n <b>⚠️ Note: search ചെയ്യുബോൾ Correct Spelling ആയിരിക്കണം. Correct Spelling അറിയാൻ ഗൂഗിളിൽ നോക്കി  ടൈപ്പ് ചെയ്യുക</b>")
         elif query.data.startswith("report"):
             ident, movie = query.data.split("_")
             x = movie.split("+")
