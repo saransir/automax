@@ -57,7 +57,6 @@ async def advantage_spoll_choker(bot, query):
             files = await get_filter_results(movie)
             if files:
                 files += await get_filter_results(mov)
-                files = list(dict.fromkeys(files))
             else:
                 files = await get_filter_results(mov)
         else:
@@ -65,16 +64,6 @@ async def advantage_spoll_choker(bot, query):
         btn.append(
             [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}")]
             )
-        if fils:
-            for file in fils:
-                file_id = file.file_id
-                sz = get_size(file.file_size)
-                tt = file.file_name[0:23].strip()
-                fn = tt.replace("_", " ")
-                filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oam}"  
-                btn.append(
-                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
-                    )
         
     x = mov.split()
     hari = "+".join(x)
