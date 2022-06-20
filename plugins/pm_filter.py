@@ -37,7 +37,7 @@ async def advantage_spoll_choker(bot, query):
             await query.answer("You are clicking on an old button which is expired.", show_alert=True)
             return await query.message.delete()
         ttte = movies[(int(movie_))]
-        mov = re.sub(r"(:|-|_|IMDb)", "", ttte, flags=re.IGNORECASE)
+        mov = re.sub(r"(:|-|_|´|,|.|;|IMDb)", "", ttte, flags=re.IGNORECASE)
         movie = mov.strip()
         if len(movie) > 30:
             await query.message.edit_text(f"𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾 \n <spoiler>sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ</spoiler>")
@@ -49,12 +49,17 @@ async def advantage_spoll_choker(bot, query):
         movi = movie_
         imdb = await get_post(query=movi, id=True)
         ttt = imdb.get('title')[0:29]
-        mov = re.sub(r"(:|-|_|IMDb)", "", ttt, flags=re.IGNORECASE)
+        mov = re.sub(r"(:|-|_|´|,|(|)|.|;|IMDb)", "", ttt, flags=re.IGNORECASE)
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
-        fils = await get_filter_results(movie)
-        if yea == "None":
-            fils = await get_filter_results(mov)
+        # fils = await get_filter_results(movie)
+        if yea:
+            files = await get_filter_results(movie)
+            if files:
+                files += await get_filter_results(mov)
+                files = list(dict.fromkeys(files))
+        else:
+            files = await get_filter_results(mov)
         btn.append(
             [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}")]
             )
@@ -68,7 +73,7 @@ async def advantage_spoll_choker(bot, query):
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                     )
-        files = await get_filter_results(mov)
+        
     x = mov.split()
     hari = "+".join(x)
     sesna = "_".join(x)
