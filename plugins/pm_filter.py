@@ -204,7 +204,7 @@ async def filter(client, msg, files):
 
 @Client.on_message(filters.text & filters.group & ~filters.edited & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
 async def group(client, message):
-    if re.findall("((^/|^!|^@|^#|^Vikram|^[\U0001F600-\U000E007F]).*)", message.text):
+    if re.findall("((^/|^!|^@|^#|^Vikram|^Makal|^[\U0001F600-\U000E007F]).*)", message.text):
         return await message.delete()
     if len(message.text) <= 2:
         kk = await message.reply_text(f"{message.from_user.mention},ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ")
@@ -249,7 +249,7 @@ async def group(client, message):
                 **locals()
             )
         else:
-            caption = f"** ‌‌‌‌‎<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
+            caption = f"<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
         oam = f"{random.choice(RAT)}"
         oamm = f"{random.choice(RAT)}"
         files = await get_filter_results(query=search)
@@ -335,7 +335,7 @@ async def spell(message):
         title = movie.get('title')[:25]
         year = movie.get('year')
         if not year:
-            year = {oam}
+            year = oam
         btn.append(
             [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
