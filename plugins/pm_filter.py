@@ -43,7 +43,12 @@ async def advantage_spoll_choker(bot, query):
             await query.message.edit_text(f"𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾 \n <spoiler>sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ</spoiler>")
             await asyncio.sleep(10)
             await query.message.delete()
-            return await message.delete()
+            return await message.delete()       
+        x = mov.split()
+        sesna = "_".join(x)
+        btn.append(
+            [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
+            )
         files = await get_filter_results(movie)
     if s  == "se":
         movi = movie_
@@ -52,7 +57,8 @@ async def advantage_spoll_choker(bot, query):
         mov = re.sub(r"(:|-|_|#|;|IMDb)", "", ttt, flags=re.IGNORECASE)
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
-        # fils = await get_filter_results(movie)
+        x = mov.split()
+        sesna = "_".join(x)
         if yea:
             files = await get_filter_results(movie)
             if files:
@@ -62,16 +68,11 @@ async def advantage_spoll_choker(bot, query):
         else:
             files = await get_filter_results(mov)
         btn.append(
-            [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}")]
+            [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
-        
-    x = mov.split()
+
     hari = "+".join(x)
-    sesna = "_".join(x)
     a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
-    btn.append(
-        [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
-        )
     if files:
         for file in files:
             file_id = file.file_id
