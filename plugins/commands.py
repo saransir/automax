@@ -270,7 +270,7 @@ async def bot_info(bot, message):
     a = await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](https://t.me/+aZIoNNlskWk4ODg1)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
     await asyncio.sleep(4) # program error 
     await a.delete()
-    await message.reply_sticker(sticker=f"{random.choice(MYRE)}", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    await message.reply_sticker(sticker=f"{random.choice(MYRE)}", reply_markup=InlineKeyboardMarkup(buttons)
 @Client.on_message(filters.command('source'))
 async def bot_srern(bot, message):
     await bot.send_sticker(chat_id=message.from_user.id, sticker=f"{random.choice(MYRE)}")
