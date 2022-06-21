@@ -23,7 +23,7 @@ LN = "https://t.me/+PBGW_EV3ldY5YjJl"
 
 @Client.on_message(filters.regex('Livegram') & filters.private)
 async def dfhhg(bot, message):
-    await message.delete()
+    return await message.delete()
    
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
