@@ -301,6 +301,10 @@ async def helmo(bot, message):
     await asyncio.sleep(15) # error 
     await mo.delete()
     await message.delete()
+@Client.on_message(filters.command('st_a_rt') & filters.private)
+async def texddtx(bot, message):
+    await message.reply_sticker(sticker=f"{random.choice(HI)}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="🎪 start 🎪",callback_data="start")]]))
+    return await message.delete()  
 @Client.on_message(filters.command('mlm_new') & filters.private)
 async def textx(bot, message):
     buttons = [
