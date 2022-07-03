@@ -54,7 +54,7 @@ async def advantage_spoll_choker(bot, query):
         movi = movie_
         imdb = await get_post(query=movi, id=True)
         ttt = imdb.get('title')[0:29]
-        mov = re.sub(r"(:|-|_|#|;|IMDb)", "", ttt, flags=re.IGNORECASE)
+        mov = re.sub(r"(:|-|_|#|;|IMDb|None)", "", ttt, flags=re.IGNORECASE)
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
         x = mov.split()
@@ -604,4 +604,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer()
 
     else:
-        await query.answer(f"😊 {query.from_user.first_name} search your own file,\n\n this is> {query.message.reply_to_message.from_user.first_name} Requested files🎬",show_alert=True)
+        await query.answer(f"😊 {query.from_user.first_name} search your own file,\n\n this is> {query.message.reply_to_message.from_user.first_name} <Requested files🎬",show_alert=True)
