@@ -340,7 +340,7 @@ async def spell(message):
     if len(btn) > 9: 
         btn = btn[:9]
     btn.append([InlineKeyboardButton(text=f"{oam} {titl} {oam}",url=f"http://t.me/On_air_Filter_bot?start=saran=={titl}")])
-    btn.append([InlineKeyboardButton(text="{oam} Close {oam}", callback_data=f'spo#se#{user}#close_spellcheck')])
+    btn.append([InlineKeyboardButton(text=f"{oam} Close {oam}", callback_data=f'spo#se#{user}#close_spellcheck')])
     await message.reply('𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ? 👇', reply_markup=InlineKeyboardMarkup(btn)) 
 
 async def advantage_spell_chok(message):
