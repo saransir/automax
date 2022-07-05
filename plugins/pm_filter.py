@@ -67,6 +67,8 @@ async def advantage_spoll_choker(bot, query):
                 files = await get_filter_results(mov)
         else:
             files = await get_filter_results(mov)
+            cha = int(CHAA)
+            await bot.send_message(chat_id=cha,text=f"# {mov} year illa -= {yea}", disable_web_page_preview=True) # test one
         btn.append(
             [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
