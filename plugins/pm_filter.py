@@ -77,9 +77,9 @@ async def advantage_spoll_choker(bot, query):
     a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
     if files:
         for file in files:
+            if not file:
+                continue
             file_id = file.file_id
-            if file_id == "N/A":
-                file_id = "saran00"
             sz = get_size(file.file_size)
             tt = file.file_name[0:23].strip()
             fn = tt.replace("_", " ")
@@ -104,6 +104,10 @@ async def advantage_spoll_choker(bot, query):
         await message.delete()
         return 
     if not btn:
+        a = await a1.edit_text(f"{message.from_user.mention}, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>")
+        await asyncio.sleep(5)
+        await a.delete()
+        await message.delete()
         return
 
     if len(btn) > 6: 
