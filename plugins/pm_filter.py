@@ -409,6 +409,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
     if query.data.startswith("saran"):
             ident, file_id = query.data.split("#")
             filedetails = await get_file_details(file_id)
+            if not filedetails:
+                return await query.answer("No such file exist.",show_alert=True)
             for files in filedetails:
                 title = files.file_name[0:-4]
                 size=files.file_size
