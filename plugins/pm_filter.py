@@ -78,6 +78,8 @@ async def advantage_spoll_choker(bot, query):
     if files:
         for file in files:
             file_id = file.file_id
+            if not file_id:
+                continue
             sz = get_size(file.file_size)
             tt = file.file_name[0:23].strip()
             fn = tt.replace("_", " ")
