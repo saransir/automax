@@ -78,7 +78,7 @@ async def advantage_spoll_choker(bot, query):
     if files:
         for file in files:
             file_id = file.file_id
-            if not file_id:
+            if file_id == "N/A":
                 file_id = "saran00"
             sz = get_size(file.file_size)
             tt = file.file_name[0:23].strip()
