@@ -211,9 +211,9 @@ async def group(client, message):
         await asyncio.sleep(10)
         await kk.delete()
         await message.delete()
-    elif 2 < len(message.text) <= 6:
+    elif 2 < len(message.text) <= 5:
         return await spell(message)
-    elif 6 < len(message.text) < 45:    
+    elif 5 < len(message.text) < 45:    
         btn = []
         searc = message.text
         search = searc.strip()
