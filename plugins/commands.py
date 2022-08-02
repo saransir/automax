@@ -220,8 +220,14 @@ async def delete(bot, message):
         'mime_type': media.mime_type
     })
     if result.deleted_count:
-        await msg.edit('File is successfully deleted from database')
+        await message.delete()
+        aa = await msg.edit('File is successfully deleted from database')
+        await reply.delete()
+        await asyncio.sleep(1)
+        await aa.delete()
     else:
+        await message.delete()
+        await reply.delete()
         await msg.edit('File not found in database')
 @Client.on_message(filters.command('rul'))
 async def bot_indo(bot, message):
@@ -250,7 +256,7 @@ async def bot_info(bot, message):
         ]
     await message.reply_chat_action("typing")
     await asyncio.sleep(1)
-    a = await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](https://t.me/+aZIoNNlskWk4ODg1)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    a = await message.reply(text=f"🧞‍♂️ ɴᴀᴍᴇ : ғɪʟᴛᴇʀ -x- v2.7 \n\n🎪 ᴄʀᴇᴀᴛᴏʀ : [sᴀʀᴀɴ](https://t.me/+aZIoNNlskWk4ODg1)\n\n📚 ʟᴀɴɢᴜᴀɢᴇ : ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0\n\n🥀 sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ : [ᴄʟɪᴄᴋ ᴍᴇ](https://t.me/nokiyirunnoippokitum)", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
     await asyncio.sleep(4) # program error 
     await a.delete()
     await message.reply_sticker(sticker=f"{random.choice(MYRE)}", reply_markup=InlineKeyboardMarkup(buttons))
