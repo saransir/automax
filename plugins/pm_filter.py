@@ -274,8 +274,8 @@ async def group(client, message):
         if not btn:
             return await spell(message)
 
-        if len(btn) > 6: 
-            btns = list(split_list(btn, 6)) 
+        if len(btn) > 14: 
+            btns = list(split_list(btn, 14)) 
             keyword = f"{message.chat.id}-{message.message_id}"
             BUTTONS[keyword] = {
                 "total" : len(btns),
@@ -570,7 +570,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await message.delete()
                 return await query.message.delete()
         elif query.data == "about":
-            await query.answer("🤖 ɴᴀᴍᴇ: ᴀᴜᴛᴏ ғɪʟᴛᴇʀ v2.7\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
+            await query.answer("🤖 ɴᴀᴍᴇ: ғɪʟᴛᴇʀ -x- v2.8\n\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ😁\n\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
         elif query.data == "close":
             await query.message.delete()
             try:
