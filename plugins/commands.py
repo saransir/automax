@@ -213,7 +213,7 @@ async def delete(bot, message):
     else:
         await msg.edit('This is not supported file format')
         return
-    file_name = re.sub(r"(_|\-|\.|\+)", " ", str(media.file_name))
+    file_name = re.sub(r"(_|\-|\.|\@|\#|\)|\(|\+)", " ", str(media.file_name))
     result = await Media.collection.delete_one({
         'file_name': file_name,
         'file_size': media.file_size,
