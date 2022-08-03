@@ -76,27 +76,28 @@ async def advantage_spoll_choker(bot, query):
     hari = "+".join(x)
     a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
     if files:
-        try:
-            for file in files:
-                file_id = file.file_id
-                sz = get_size(file.file_size)
-                tt = file.file_name[0:23].strip()
-                fn = tt.replace("_", " ")
-                filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oam}"  
+        for file in files:
+            file_id = file.file_id
+            sz = get_size(file.file_size)
+            tt = file.file_name[0:23].strip()
+            fn = tt.replace("_", " ")
+            filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oam}"
+            try:  
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                     )
-        except:
-            btx = []
-            btx.append(
-                [InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
-            )
-            reply_markup = InlineKeyboardMarkup(btx)
-            va = await a1.edit_text(f"<b>{message.from_user.mention}</b> <spoiler>❗️𝚎𝚛𝚛𝚘𝚛❕️</spoiler>\n\n\n 𝚜𝚎𝚊𝚛𝚌𝚑 𝚒𝚗 ᴩᴍ 👇", reply_markup=reply_markup, parse_mode="html")
-            await asyncio.sleep(10)
-            await va.delete()
-            await message.delete()
-            return
+            except:
+                continue
+                """btx = []
+                btx.append(
+                    [InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
+                )
+                reply_markup = InlineKeyboardMarkup(btx)
+                va = await a1.edit_text(f"<b>{message.from_user.mention}</b> <spoiler>❗️𝚎𝚛𝚛𝚘𝚛❕️</spoiler>\n\n\n 𝚜𝚎𝚊𝚛𝚌𝚑 𝚒𝚗 ᴩᴍ 👇", reply_markup=reply_markup, parse_mode="html")
+                await asyncio.sleep(10)
+                await va.delete()
+                await message.delete()
+                return"""
     else:
         cha = int(CHAA)
         buttons = []
