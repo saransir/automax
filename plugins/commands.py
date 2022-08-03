@@ -226,9 +226,22 @@ async def delete(bot, message):
         await asyncio.sleep(1)
         await aa.delete()
     else:
-        await message.delete()
-        await reply.delete()
-        await msg.edit('File not found in database')
+        result = await Media.collection.delete_one({
+            'file_name': media.file_name,
+            'file_size': media.file_size,
+            'mime_type': media.mime_type
+        })
+        if result.deleted_count:
+            await message.delete()
+            aa = await msg.edit('File is successfully deleted from database')
+            await reply.delete()
+            await asyncio.sleep(1)
+            await aa.delete()
+        else:
+            await message.delete()
+            await reply.delete()
+            await msg.edit('File not found in database')
+
 @Client.on_message(filters.command('rul'))
 async def bot_indo(bot, message):
     buttons = [
