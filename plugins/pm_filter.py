@@ -62,7 +62,8 @@ async def advantage_spoll_choker(bot, query):
         if yea:
             files = await get_filter_results(movie)
             if files:
-                files += await get_filter_results(mov)
+                flexs += await get_filter_results(mov)
+                files = list(dict.fromkeys(flexs))
             else:
                 files = await get_filter_results(mov)
         else:
@@ -77,9 +78,9 @@ async def advantage_spoll_choker(bot, query):
     a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
     if files:
         for file in files:
-            if not file:
-                continue
             file_id = file.file_id
+            if not file_id:
+                continue
             sz = get_size(file.file_size)
             tt = file.file_name[0:23].strip()
             fn = tt.replace("_", " ")
