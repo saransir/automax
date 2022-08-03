@@ -63,7 +63,6 @@ async def advantage_spoll_choker(bot, query):
             files = await get_filter_results(movie)
             if files:
                 files += await get_filter_results(mov)
-                files = list(set(files))
             else:
                 files = await get_filter_results(mov)
         else:
@@ -87,8 +86,9 @@ async def advantage_spoll_choker(bot, query):
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
         else:
-            va = await a1.edit_text(f"{message.from_user.mention}, <spoiler>..𝚎𝚛𝚛𝚘𝚛..</spoiler>")
-            await asyncio.sleep(5)
+            reply_markup = InlineKeyboardMarkup(btn)
+            va = await a1.edit_text(f"<b>{message.from_user.mention}</b> <spoiler>❗️𝚎𝚛𝚛𝚘𝚛❕️</spoiler>\n\n\n 𝚜𝚎𝚊𝚛𝚌𝚑 𝚒𝚗 ᴩᴍ 👇", reply_markup=reply_markup, parse_mode="html")
+            await asyncio.sleep(10)
             await va.delete()
             await message.delete()
             return
