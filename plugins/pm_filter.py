@@ -76,16 +76,17 @@ async def advantage_spoll_choker(bot, query):
     hari = "+".join(x)
     a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
     if files:
-        for file in files:
-            file_id = file.file_id
-            sz = get_size(file.file_size)
-            tt = file.file_name[0:23].strip()
-            fn = tt.replace("_", " ")
-            filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oam}"  
-            btn.append(
-                [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
-                )
-        else:
+        try:
+            for file in files:
+                file_id = file.file_id
+                sz = get_size(file.file_size)
+                tt = file.file_name[0:23].strip()
+                fn = tt.replace("_", " ")
+                filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oam}"  
+                btn.append(
+                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
+                    )
+        except:
             btx = []
             btx.append(
                 [InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
