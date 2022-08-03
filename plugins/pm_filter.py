@@ -86,7 +86,11 @@ async def advantage_spoll_choker(bot, query):
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
         else:
-            reply_markup = InlineKeyboardMarkup(btn)
+            btx = []
+            btx.append(
+                [InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
+            )
+            reply_markup = InlineKeyboardMarkup(btx)
             va = await a1.edit_text(f"<b>{message.from_user.mention}</b> <spoiler>❗️𝚎𝚛𝚛𝚘𝚛❕️</spoiler>\n\n\n 𝚜𝚎𝚊𝚛𝚌𝚑 𝚒𝚗 ᴩᴍ 👇", reply_markup=reply_markup, parse_mode="html")
             await asyncio.sleep(10)
             await va.delete()
