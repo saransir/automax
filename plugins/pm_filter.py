@@ -82,22 +82,9 @@ async def advantage_spoll_choker(bot, query):
             tt = file.file_name[0:23].strip()
             fn = tt.replace("_", " ")
             filename = f"{fn}{oam}{sz[0:3]} {sz[-2:]}{oam}"
-            try:  
-                btn.append(
-                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
-                    )
-            except:
-                continue
-                """btx = []
-                btx.append(
-                    [InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
+            btn.append(
+                [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
-                reply_markup = InlineKeyboardMarkup(btx)
-                va = await a1.edit_text(f"<b>{message.from_user.mention}</b> <spoiler>❗️𝚎𝚛𝚛𝚘𝚛❕️</spoiler>\n\n\n 𝚜𝚎𝚊𝚛𝚌𝚑 𝚒𝚗 ᴩᴍ 👇", reply_markup=reply_markup, parse_mode="html")
-                await asyncio.sleep(10)
-                await va.delete()
-                await message.delete()
-                return"""
     else:
         cha = int(CHAA)
         buttons = []
@@ -134,14 +121,7 @@ async def advantage_spoll_choker(bot, query):
         buttons.append(
             [InlineKeyboardButton("💡close💡", callback_data="close")]
         )
-        poster=None
-        if API_KEY:
-            poster=await get_poster(movie)
-        if poster:
-            await message.reply_photo(photo=poster, caption=f"<b>{movie} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-
-        else:
-            await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=f"<b>{movie} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
+        await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=f"<b>{movie} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
         return
     await query.message.delete()
     data = BUTTONS[keyword]
@@ -150,13 +130,7 @@ async def advantage_spoll_choker(bot, query):
     buttons.append(
         [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
     )
-    poster=None
-    if API_KEY:
-        poster=await get_poster(movie)
-    if poster:
-        await message.reply_photo(photo=poster, caption=f"<b>{movie} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-    else:
-        await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=f"<b>{movie} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
+    await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=f"<b>{movie} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
         
 async def filter(client, msg, files):
         btn = []
