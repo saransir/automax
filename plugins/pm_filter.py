@@ -58,12 +58,12 @@ async def advantage_spoll_choker(bot, query):
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
         x = mov.split()
-        sesna = "_".join(x)
+        sesna = "_".join(x) # list(set(test_list))
         if yea:
             files = await get_filter_results(movie)
             if files:
                 files += await get_filter_results(mov)
-                files = list(dict.fromkeys(files))
+                files = list(set(files))
             else:
                 files = await get_filter_results(mov)
         else:
@@ -79,8 +79,6 @@ async def advantage_spoll_choker(bot, query):
     if files:
         for file in files:
             file_id = file.file_id
-            if not file_id:
-                continue
             sz = get_size(file.file_size)
             tt = file.file_name[0:23].strip()
             fn = tt.replace("_", " ")
@@ -88,6 +86,12 @@ async def advantage_spoll_choker(bot, query):
             btn.append(
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
+        else:
+            va = await a1.edit_text(f"{message.from_user.mention}, <spoiler>..𝚎𝚛𝚛𝚘𝚛..</spoiler>")
+            await asyncio.sleep(5)
+            await va.delete()
+            await message.delete()
+            return
     else:
         cha = int(CHAA)
         buttons = []
