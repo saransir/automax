@@ -79,8 +79,8 @@ async def advantage_spoll_choker(bot, query):
         for file in files:
             file_id = file.file_id
             sz = get_size(file.file_size)
-            tt = file.file_name[0:26].strip()
-            fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
+            tt = file.file_name[0:26]
+            fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE).strip()
             dcode = fn[0:23]
             filename = f"{dcode}{oam}{sz[0:3]} {sz[-2:]}{oam}"
             btn.append(
@@ -248,8 +248,8 @@ async def group(client, message):
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
-                tt = file.file_name[0:26].strip()
-                fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
+                tt = file.file_name[0:26]
+                fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE).strip()
                 dcode = fn[0:23]
                 filename = f"{dcode}{oam}{sz[0:3]} {sz[-2:]}{oamm}"
                 btn.append(
@@ -603,4 +603,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer()
 
     else:
-        await query.answer(f"😊 {query.from_user.first_name} search your own file,\n\n this is> {query.message.reply_to_message.from_user.first_name} <Requested files🎬",show_alert=True)
+        await query.answer(f"😊 {query.from_user.first_name} search your own file,\n\n this is>> {query.message.reply_to_message.from_user.first_name} <<Requested files🎬",show_alert=True)
