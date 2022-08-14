@@ -54,7 +54,7 @@ async def advantage_spoll_choker(bot, query):
         movi = movie_
         imdb = await get_post(query=movi, id=True)
         ttt = imdb.get('title')[0:29]
-        mov = re.sub(r"(:|-|_|.|,|#|;|IMDb|None)", "", ttt, flags=re.IGNORECASE).strip()
+        mov = re.sub(r"(\:|\-|\_|\.|\#|\;|IMDb|None)", "", ttt, flags=re.IGNORECASE).strip()
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
         x = mov.split()
