@@ -194,7 +194,7 @@ async def filter(client, msg, files):
 
 @Client.on_message(filters.text & filters.group & ~filters.edited & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
 async def group(client, message):
-    if re.findall("((^/|^!|^@|^#|^Makal|^[\U0001F600-\U000E007F]).*)", message.text):
+    if re.findall("((^/|^!|^@|^#|^[\U0001F600-\U000E007F]).*)", message.text):
         return await message.delete()
     if len(message.text) <= 2:
         kk = await message.reply_text(f"{message.from_user.mention},ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ")
