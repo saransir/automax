@@ -321,8 +321,14 @@ def split_list(l, n):
         n += 1
 
 async def spell(message):
-    titl = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|malayalam|English|english|Malayalam|Hindi|hindi|Telugu|telugu|1080p|720p|HEVC|Esub|Kannada|kannada|tamil|Tamil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE) # plis contribute some common words 
+    titl = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|malayalam|English|english|Malayalam|Hindi|hindi|Telugu|telugu|1080p|720p|HEVC|Esub|Kannada|kannada|tamil|Tamil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE) # plis contribute some common words 
     title = titl.strip()
+    if len(title) <= 2:
+        ki = await message.reply("**I couldn't find any movie in that name**.")
+        await asyncio.sleep(8)
+        await ki.delete()
+        await message.delete()
+        return
     fn = titl.replace(" ", "_")[0:30]
     btn = []
     user = message.from_user.id if message.from_user else 0
@@ -345,6 +351,12 @@ async def spell(message):
 
 async def advantage_spell_chok(message):
     query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE)
+    if len(query) <= 3:
+        ko = await message.reply("**I couldn't find any movie in that name**.")
+        await asyncio.sleep(8)
+        await ko.delete()
+        await message.delete()
+        return
     fn = query.replace(" ", "_")[0:30]
     query = query.strip() + " movie"
     g_s = await search_gagala(query)
@@ -595,7 +607,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     ]
                     ]
                 
-                await query.answer()
+                await query.answer("Thanks for joining the group",show_alert=True)
+                await query.message.delete()
                 await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
