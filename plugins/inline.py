@@ -56,7 +56,7 @@ async def answer(bot, query):
                 reply_markup=reply_markup))
 
     if results:
-        switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂 "
+        switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂"
         if string:
             switch_pm_text += f" for {string}"
 
@@ -67,7 +67,6 @@ async def answer(bot, query):
                            switch_pm_parameter="start",
                            next_offset=str(next_offset))
     else:
-
         switch_pm_text = f'{emoji.CROSS_MARK} No results'
         if string:
             switch_pm_text += f' for "{string}"'
@@ -77,12 +76,12 @@ async def answer(bot, query):
                            cache_time=cache_time,
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="okay")
-
+        return
 
 def get_reply_markup(query):
     buttons = [
         [
-            InlineKeyboardButton('🔍 𝚂𝙴𝙰𝚁𝙲𝙷 𝙵𝙸𝙻𝙴 🔎', switch_inline_query_current_chat=query)
+            InlineKeyboardButton('🔍 𝚂𝙴𝙰𝚁𝙲𝙷 ꜰɪʟᴇ 🔎', switch_inline_query_current_chat=query)
         ]
         ]
     return InlineKeyboardMarkup(buttons)
@@ -91,7 +90,7 @@ def get_reply_markup(query):
 def get_size(size):
     """Get size in readable format"""
 
-    units = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB"]
+    units = ["Bytes", "ᴋʙ", "ᴍʙ", "ɢʙ", "TB", "PB", "EB"]
     size = float(size)
     i = 0
     while size >= 1024.0 and i < len(units):
