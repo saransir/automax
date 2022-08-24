@@ -19,6 +19,7 @@ async def answer(bot, query):
                            switch_pm_parameter="join")
         return
 
+    results = []
     if '|' in query.query:
         string, file_type = query.query.split('|', maxsplit=1)
         string = string.strip()
@@ -35,7 +36,6 @@ async def answer(bot, query):
                                                   offset=offset)
 
     for file in files:
-        results = []
         title=file.file_name
         size=file.file_size
         f_caption=file.caption
