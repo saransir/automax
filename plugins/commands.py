@@ -6,7 +6,7 @@ import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest, CallbackQuery
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
-from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post
+from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post, add_filter, delete_filter
 from info import TUTORIAL
 from info import IMDB_TEMPLATE, IMDB_TEMPLATEE
 from pyrogram.errors import UserNotParticipant
@@ -174,6 +174,42 @@ async def channel_info(bot, message):
         await message.reply_document(file)
         os.remove(file)
 
+@Client.on_message(filters.command('add') & filters.user(ADMINS))
+async def addfilter(bot, message):
+    reply = message.reply_to_message
+    r, text = message.text.split(None, 1)
+    if reply:
+        try:
+            reply_text = message.reply_to_message.text
+        except:
+            reply_text = ""         
+    else:
+        await message.reply('Reply to file with /add which you want to delete', quote=True)
+        return
+
+    await add_filter(text, reply_text)
+
+    await message.reply_text(
+        f"Filter for  `{text}`  added",
+        quote=True,
+        parse_mode="md"
+    )
+@Client.on_message(filters.command('dele') & filters.user(ADMINS))
+async def adekfilter(bot, message):
+    try:
+        cmd, text = message.text.split(" ", 1)
+    except:
+        await message.reply_text(
+            "<i>Mention the filtername which you wanna delete!</i>\n\n"
+            "<code>/del filtername</code>\n\n"
+            "Useto view all available filters",
+            quote=True
+        )
+        return
+
+    query = text.lower()
+
+    await delete_filter(query)
 
 @Client.on_message(filters.command('total') & filters.user(ADMINS))
 async def total(bot, message):
