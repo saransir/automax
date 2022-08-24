@@ -92,8 +92,8 @@ async def advantage_spoll_choker(bot, query):
             buttons.append(
                 [InlineKeyboardButton(text=f"{movie}",url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
-            ax = await a1.edit_text(f"<b>{message.from_user.mention}</b>, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 ʀᴇʟᴇᴀsᴇᴅ❗️ᴏɴ ᴏᴛᴛ </spoiler>\n <b>Once this movie is releas on Telegram, it will be uploaded on the below 👇 channel \n\n ഈ സിനിമ ടെലെഗ്രാമിൽ ഇറങ്ങിയാൽ ഉടൽ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</b>", reply_markup=InlineKeyboardMarkup(buttons))
-            await asyncio.sleep(10)
+            ax = await a1.edit_text(f"<b>{message.from_user.mention}</b>,..   <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 ʀᴇʟᴇᴀsᴇᴅ❗️ᴏɴ ᴏᴛᴛ </spoiler>\n\n <b>Once this movie is releas on Telegram, it will be uploaded on the below 👇 channel \n\n ഈ സിനിമ ടെലെഗ്രാമിൽ ഇറങ്ങിയാൽ ഉടൽ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</b>", reply_markup=InlineKeyboardMarkup(buttons))
+            await asyncio.sleep(60)
             await ax.delete()
             await message.delete()
             return
