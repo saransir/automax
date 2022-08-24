@@ -67,8 +67,6 @@ async def advantage_spoll_choker(bot, query):
                 files = await get_filter_results(mov)
         else:
             files = await get_filter_results(mov)
-            cha = int(CHAA)
-            await bot.send_message(chat_id=cha,text=f"# {mov} year illa -= {yea}", disable_web_page_preview=True) # test one
         btn.append(
             [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
@@ -86,21 +84,35 @@ async def advantage_spoll_choker(bot, query):
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
     else:
-        cha = int(CHAA)
-        buttons = []
-        buttons.append(
-            [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
-        )
-        buttons.append(
-            [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ 🤵",callback_data=f"report_{hari}")]
-        )
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
-        a = await a1.edit_text(f"<b>{message.from_user.mention}</b>... <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
-        await asyncio.sleep(25)
-        await a.delete()
-        await message.delete()
-        return 
+        CH = "-1001601956206"
+        chx = int(CH)
+        mg = bot.search_messages(chat_id=chx, query=f"{mov}", limit=2)
+        if mg:
+            buttons = []
+            buttons.append(
+                [InlineKeyboardButton(text=f"{movie}",url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
+            )
+            ax = await a1.edit_text(f"<b>{message.from_user.mention}</b>, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 ʀᴇʟᴇᴀsᴇᴅ❗️ᴏɴ ᴏᴛᴛ </spoiler>\n <b>Once this movie is releas on Telegram, it will be uploaded on the below 👇 channel \n\n ഈ സിനിമ ടെലെഗ്രാമിൽ ഇറങ്ങിയാൽ ഉടൽ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</b>", reply_markup=InlineKeyboardMarkup(buttons))
+            await asyncio.sleep(10)
+            await ax.delete()
+            await message.delete()
+            return
+        else:
+            cha = int(CHAA)
+            buttons = []
+            buttons.append(
+                [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
+            )
+            buttons.append(
+                [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ 🤵",callback_data=f"report_{hari}")]
+            )
+            reply_markup = InlineKeyboardMarkup(buttons)
+            await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
+            a = await a1.edit_text(f"<b>{message.from_user.mention}</b>... <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
+            await asyncio.sleep(25)
+            await a.delete()
+            await message.delete()
+            return 
     if not btn:
         a = await a1.edit_text(f"{message.from_user.mention}, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>")
         await asyncio.sleep(5)
