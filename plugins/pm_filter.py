@@ -88,7 +88,7 @@ async def advantage_spoll_choker(bot, query):
         chx = int(CH)
         mg = bot.search_messages(chat_id=chx, query=f"{mov}", limit=2)
         if mg:
-            buttons = []
+            """buttons = []
             buttons.append(
                 [InlineKeyboardButton(text=f"{movie}",url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
@@ -97,7 +97,7 @@ async def advantage_spoll_choker(bot, query):
             await ax.delete()
             await message.delete()
             return
-        else:
+        else:"""
             cha = int(CHAA)
             buttons = []
             buttons.append(
