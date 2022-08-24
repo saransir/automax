@@ -1,6 +1,7 @@
 import re
 import base64
 import logging
+import pymongo
 from struct import pack
 from bs4 import BeautifulSoup
 from pyrogram.errors import UserNotParticipant
@@ -28,7 +29,9 @@ instance = Instance.from_db(db)
 IClient = AsyncIOMotorClient(DATABASE_URI_2)
 imdbdb=client[DATABASE_NAME_2]
 imdb=Instance.from_db(imdbdb)
-imdbb = IMDb() 
+imdbb = IMDb()
+myclient = pymongo.MongoClient(DATABASE_URI)
+mydb = myclient[DATABASE_NAME]
 
 @instance.register
 class Media(Document):
@@ -52,6 +55,41 @@ class Poster(Document):
 
     class Meta:
         collection_name = COLLECTION_NAME_2
+
+async def add_filter(text, reply_text):
+    mycol = mydb[str(2)]
+    # mycol.create_index([('text', 'text')])
+
+    data = {
+        'text':str(text),
+        'reply':str(reply_text),
+    }
+
+    try:
+        mycol.update_one({'text': str(text)},  {"$set": data}, upsert=True)
+    except:
+        logger.exception('Some error occured!', exc_info=True)
+async def find_filter(name):
+    mycol = mydb[str(2)]
+    
+    query = mycol.find( {"text":name})
+    # query = mycol.find( { "$text": {"$search": name}})
+    try:
+        for file in query:
+            reply_text = file['reply']
+        return reply_text
+    except:
+        return None
+async def delete_filter(text):
+    mycol = mydb[str(2)]
+    
+    myquery = {'text':text }
+    query = mycol.count_documents(myquery)
+    if query == 1:
+        mycol.delete_one(myquery)
+        logger.info("deleted")
+    else:
+        logger.info("Couldn't find that filter!")
 
 async def save_poster(imdb_id, title, year, url):
     try:
