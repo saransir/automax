@@ -546,7 +546,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton("ɢʀᴏᴜᴩ 2 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")   
                 ],
                 [
-                    InlineKeyboardButton("🔎 𝚂𝙴𝙰𝚁𝙲𝙷 𝙵𝙸𝙻𝙴 🔍", switch_inline_query_current_chat='')
+                    InlineKeyboardButton("🔎 ꜱᴇᴀʀᴄʜ ꜰɪʟᴇ 🔍", switch_inline_query_current_chat='')
                 ],
                 [
                     InlineKeyboardButton('🔍 ɢᴏ ɪɴʟɪɴᴇ 🔎', switch_inline_query='')
@@ -559,7 +559,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(buttons))
             await query.message.delete()
             await asyncio.sleep(2)
-            await a.reply(f"<code> മുകളിൽ കാണുന്ന -𝘀𝗲𝗮𝗿𝗰𝗵 𝗳𝗶𝗹𝗲- എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്താൽ  സിനിമ ഫയൽ ലഭികും</code> \n\n <b>⚠️ Note: search ചെയ്യുമ്പോൾ Correct Spelling ആയിരിക്കണം. Correct Spelling അറിയാൻ ഗൂഗിളിൽ നോക്കി  ടൈപ്പ് ചെയ്യുക</b>")
+            m = await a.reply(f"<code> മുകളിൽ കാണുന്ന -𝘀𝗲𝗮𝗿𝗰𝗵 𝗳𝗶𝗹𝗲- എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്താൽ  സിനിമ ഫയൽ ലഭികും</code> \n\n <b>⚠️ Note: search ചെയ്യുമ്പോൾ Correct Spelling ആയിരിക്കണം. Correct Spelling അറിയാൻ ഗൂഗിളിൽ നോക്കി  ടൈപ്പ് ചെയ്യുക</b>")
+            await asyncio.sleep(15)
+            await m.delete()
         elif query.data.startswith("report"):
             ident, movie = query.data.split("_")
             x = movie.split("+")
