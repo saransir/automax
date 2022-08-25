@@ -177,7 +177,8 @@ async def channel_info(bot, message):
 @Client.on_message(filters.command('add') & filters.private & filters.user(ADMINS))
 async def addfilter(bot, message):
     reply = message.reply_to_message
-    r, text = message.text.split(None, 1).lower()
+    r, txt = message.text.split(None, 1)
+    text = txt.lower()
     if reply:
         try:
             reply_text = message.reply_to_message.text
