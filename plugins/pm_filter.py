@@ -7,7 +7,7 @@ import random
 import asyncio
 from info import IMDB_TEMPLATE
 from pyrogram.errors import UserNotParticipant, UserIsBlocked
-from utils import get_filter_results, get_file_details, is_subscribed, get_poster, get_post, search_gagala
+from utils import get_filter_results, get_file_details, is_subscribed, get_poster, get_post, search_gagala, find_filter
 BUTTONS = {}
 BOT = {}
 SPELL_CHECK = {}
@@ -84,20 +84,18 @@ async def advantage_spoll_choker(bot, query):
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
     else:
-        CH = "-1001601956206"
-        chx = int(CH)
-        mg = bot.search_messages(chat_id=chx, query=f"{mov}", limit=2)
-        if mg:
-            """buttons = []
+        reply_text = await find_filter(mov)
+        if reply_text:
+            buttons = []
             buttons.append(
                 [InlineKeyboardButton(text=f"{movie}",url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
-            ax = await a1.edit_text(f"<b>{message.from_user.mention}</b>,..   <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 ʀᴇʟᴇᴀsᴇᴅ❗️ᴏɴ ᴏᴛᴛ </spoiler>\n\n <b>Once this movie is releas on Telegram, it will be upload on the below 👇 channel \n\n ഈ സിനിമ ടെലെഗ്രാമിൽ ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</b>", reply_markup=InlineKeyboardMarkup(buttons))
+            ax = await a1.edit_text(f"<b>{message.from_user.mention}</b>,..   <b>{reply_text}</b> \n\n <b>Once this movie is releas on Telegram, it will be upload on the below 👇 channel \n\n ഈ സിനിമ ടെലെഗ്രാമിൽ ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</b>", reply_markup=InlineKeyboardMarkup(buttons))
             await asyncio.sleep(66)
             await ax.delete()
             await message.delete()
             return
-        else:"""
+        else:
             cha = int(CHAA)
             buttons = []
             buttons.append(
