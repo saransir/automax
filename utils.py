@@ -2,6 +2,7 @@ import re
 import base64
 import logging
 import pymongo
+from pyrogram import enums
 from struct import pack
 from bs4 import BeautifulSoup
 from pyrogram.errors import UserNotParticipant
@@ -68,7 +69,7 @@ async def add_filter(text, reply_text):
     try:
         mycol.update_one({'text': str(text)},  {"$set": data}, upsert=True)
     except:
-        logger.exception('Some error occured!', exc_info=True)
+        logger.exception('Some error  occured!', exc_info=True)
 async def find_filter(name):
     mycol = mydb[str(2)]
     qu = (name.strip()).lower()
@@ -89,7 +90,7 @@ async def delete_filter(message, text):
         await message.reply_text(
             f"'`{text}`'  deleted✌️",
             quote=True,
-            parse_mode="md"
+            parse_mode=enums.ParseMode.MARKDOWN
         )
     else:
         await message.reply_text("Couldn't find that filter!", quote=True)
