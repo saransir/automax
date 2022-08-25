@@ -185,8 +185,7 @@ async def addfilter(bot, message):
         except:
             reply_text = "𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 ʀᴇʟᴇᴀsᴇᴅ ᴏɴ ᴏᴛᴛ"         
     else:
-        await message.reply('Reply to file with /add which you want to delete', quote=True)
-        return
+        reply_text = "𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 ʀᴇʟᴇᴀsᴇᴅ ᴏɴ ᴏᴛᴛ"
 
     await add_filter(text, reply_text)
 
@@ -202,8 +201,7 @@ async def adekfilter(bot, message):
     except:
         await message.reply_text(
             "<i>Mention the filtername which you wanna delete!</i>\n\n"
-            "<code>/del filtername</code>\n\n"
-            "Useto view all available filters",
+            "<code>/dele filtername</code>\n\n",
             quote=True
         )
         return
