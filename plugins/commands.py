@@ -207,7 +207,7 @@ async def adekfilter(bot, message):
         )
         return
 
-    # query = text.lower()
+    query = text
 
     await delete_filter(message, query)
 
