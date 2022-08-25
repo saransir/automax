@@ -177,12 +177,12 @@ async def channel_info(bot, message):
 @Client.on_message(filters.command('add') & filters.private & filters.user(ADMINS))
 async def addfilter(bot, message):
     reply = message.reply_to_message
-    r, text = message.text.split(None, 1)
+    r, text = message.text.split(None, 1).lower()
     if reply:
         try:
             reply_text = message.reply_to_message.text
         except:
-            reply_text = ""         
+            reply_text = "𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 ʀᴇʟᴇᴀsᴇᴅ ᴏɴ ᴏᴛᴛ"         
     else:
         await message.reply('Reply to file with /add which you want to delete', quote=True)
         return
@@ -207,7 +207,7 @@ async def adekfilter(bot, message):
         )
         return
 
-    query = text
+    query = text.lower()
 
     await delete_filter(message, query)
 
