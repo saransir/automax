@@ -71,25 +71,29 @@ async def add_filter(text, reply_text):
         logger.exception('Some error occured!', exc_info=True)
 async def find_filter(name):
     mycol = mydb[str(2)]
-    
-    query = mycol.find( {"text":name})
-    # query = mycol.find( { "$text": {"$search": name}})
+    qu = (name.strip()).lower()
+    query = mycol.find( {"text":qu})
     try:
         for file in query:
             reply_text = file['reply']
         return reply_text
     except:
         return None
-async def delete_filter(text):
+async def delete_filter(message, text):
     mycol = mydb[str(2)]
     
     myquery = {'text':text }
     query = mycol.count_documents(myquery)
     if query == 1:
         mycol.delete_one(myquery)
-        logger.info("deleted")
+        await message.reply_text(
+            f"'`{text}`'  deleted✌️",
+            quote=True,
+            parse_mode="md"
+        )
     else:
-        logger.info("Couldn't find that filter!")
+        await message.reply_text("Couldn't find that filter!", quote=True)
+
 
 async def save_poster(imdb_id, title, year, url):
     try:
