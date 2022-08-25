@@ -37,7 +37,7 @@ async def start(bot, cmd):
                 if user.status == "kicked":
                     await bot.send_message(
                         chat_id=cmd.from_user.id,
-                        text="Sorry  mowna 💋, You are Banned to use me.",
+                        text="Sorry  mowna 💋,You are Banned to use me.",
                         parse_mode="markdown",
                         disable_web_page_preview=True
                     )
@@ -174,7 +174,7 @@ async def channel_info(bot, message):
         await message.reply_document(file)
         os.remove(file)
 
-@Client.on_message(filters.command('add') & filters.user(ADMINS))
+@Client.on_message(filters.command('add') & filters.private & filters.user(ADMINS))
 async def addfilter(bot, message):
     reply = message.reply_to_message
     r, text = message.text.split(None, 1)
@@ -194,7 +194,7 @@ async def addfilter(bot, message):
         quote=True,
         parse_mode="md"
     )
-@Client.on_message(filters.command('dele') & filters.user(ADMINS))
+@Client.on_message(filters.command('dele') & filters.private & filters.user(ADMINS))
 async def adekfilter(bot, message):
     try:
         cmd, text = message.text.split(" ", 1)
@@ -207,9 +207,9 @@ async def adekfilter(bot, message):
         )
         return
 
-    query = text.lower()
+    # query = text.lower()
 
-    await delete_filter(query)
+    await delete_filter(message, query)
 
 @Client.on_message(filters.command('total') & filters.user(ADMINS))
 async def total(bot, message):
@@ -232,7 +232,7 @@ async def log_file(bot, message):
         await message.reply(str(e))
 
 
-@Client.on_message(filters.command('del') & filters.user(ADMINS))
+@Client.on_message(filters.command('del') & filters.private & filters.user(ADMINS))
 async def delete(bot, message):
     """Delete file from database"""
     reply = message.reply_to_message
