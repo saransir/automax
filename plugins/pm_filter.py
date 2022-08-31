@@ -80,9 +80,9 @@ async def advantage_spoll_choker(bot, query):
         poster=await get_poster(mov)
     if poster:
         try:
-            await query.message.edit_message_media(media=poster)
+            await query.message.edit_media(poster)
         except:
-            await bot.send_message(chat_id=cha,text="poster erorr🤷🏻‍♂️", disable_web_page_preview=True)
+            await bot.send_message(chat_id=cha,text="❗️❗️poster erorr🤷🏻‍♂️", disable_web_page_preview=True)
     if files:
         for file in files:
             file_id = file.file_id
