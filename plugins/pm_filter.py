@@ -75,35 +75,32 @@ async def advantage_spoll_choker(bot, query):
     a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
     kuttons = []
     imdxb = await get_post(mov)
-        if imdxb:
-            kuttons.append(
-                [InlineKeyboardButton(text="💡 ɪɴꜰᴏ 💡",callback_data=f"imdb#{imdb['imdb_id']}")]
-            )
-            capt = IMDB_TEMPLATE.format(
-                query = imdb['title'],
-                title = imdb['title'],
-                votes = imdb['votes'],
-                aka = imdb["aka"],
-                seasons = imdb["seasons"],
-                box_office = imdb['box_office'],
-                localized_title = imdb['localized_title'],
-                kind = imdb['kind'],
-                imdb_id = imdb["imdb_id"],
-                cast = imdb["cast"],
-                runtime = imdb["runtime"],
-                countries = imdb["countries"],
-                certificates = imdb["certificates"],
-                languages = imdb["languages"],
-                release_date = imdb['release_date'],
-                year = imdb['year'],
-                genres = imdb['genres'],
-                poster = imdb['poster'],
-                rating = imdb['rating'],
-                url = imdb['url'],
-                **locals()
-            )
-        else:
-            capt = f"<b>{mov}‌‌‌‌‎</b>"
+    if imdxb:
+        kuttons.append(
+            [InlineKeyboardButton(text="💡 ɪɴꜰᴏ 💡",callback_data=f"imdb#{imdb['imdb_id']}")]
+        )
+        capt = IMDB_TEMPLATE.format(
+        query = imdb['title'],
+        title = imdb['title'],
+        votes = imdb['votes'],
+        aka = imdb["aka"],
+        kind = imdb['kind'],
+        imdb_id = imdb["imdb_id"],
+        cast = imdb["cast"],
+        runtime = imdb["runtime"],
+        countries = imdb["countries"],
+        certificates = imdb["certificates"],
+        languages = imdb["languages"],
+        release_date = imdb['release_date'],
+        year = imdb['year'],
+        genres = imdb['genres'],
+        poster = imdb['poster'],
+        rating = imdb['rating'],
+        url = imdb['url'],
+            **locals()
+        )
+    else:
+        capt = f"<b>{mov}‌‌‌‌‎</b>"
     if files:
         for file in files:
             file_id = file.file_id
