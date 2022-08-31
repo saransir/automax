@@ -80,7 +80,7 @@ async def advantage_spoll_choker(bot, query):
         poster=await get_poster(mov)
     if poster:
         try:
-            await query.message.edit_message_media(photo=poster)
+            await bot.edit_message_media(chat_id=query.message.chat.id, message_id=query.message.message_id, media=poster)
         except Exception as e:
             print(e)
     if files:
