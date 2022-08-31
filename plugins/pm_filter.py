@@ -74,12 +74,12 @@ async def advantage_spoll_choker(bot, query):
     hari = "+".join(x)
     a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
     kuttons = []
-    imdb = await get_post(mov)
-        if imdb:
+    imdxb = await get_post(mov)
+        if imdxb:
             kuttons.append(
                 [InlineKeyboardButton(text="💡 ɪɴꜰᴏ 💡",callback_data=f"imdb#{imdb['imdb_id']}")]
             )
-            caption1 = IMDB_TEMPLATE.format(
+            capt = IMDB_TEMPLATE.format(
                 query = imdb['title'],
                 title = imdb['title'],
                 votes = imdb['votes'],
@@ -103,7 +103,7 @@ async def advantage_spoll_choker(bot, query):
                 **locals()
             )
         else:
-            caption1 = f"<b>{mov}‌‌‌‌‎</b>"
+            capt = f"<b>{mov}‌‌‌‌‎</b>"
     if files:
         for file in files:
             file_id = file.file_id
@@ -120,7 +120,7 @@ async def advantage_spoll_choker(bot, query):
             kuttons.append(
                 [InlineKeyboardButton(text=f"{movie}",url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
-            ax = await a1.edit_text(f"<b>🌀ꜰᴏʀ {message.from_user.mention}\n\n {caption1} \n{reply_text} </b> \n\n <i> Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(buttons))
+            ax = await a1.edit_text(f"<b>🌀ꜰᴏʀ {message.from_user.mention}\n\n {capt} \n{reply_text} </b> \n\n <i> Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(buttons))
             await asyncio.sleep(600)
             await ax.delete()
             await message.delete()
@@ -135,7 +135,7 @@ async def advantage_spoll_choker(bot, query):
             )
             reply_markup = InlineKeyboardMarkup(kuttons)
             await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
-            a = await a1.edit_text(f"<b>🌀ꜰᴏʀ-{message.from_user.mention}\n\n {caption1}</b>\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
+            a = await a1.edit_text(f"<b>🌀ꜰᴏʀ-{message.from_user.mention}\n\n {capt}</b>\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
             await asyncio.sleep(35)
             await a.delete()
             await message.delete()
