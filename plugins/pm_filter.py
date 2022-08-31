@@ -74,36 +74,6 @@ async def advantage_spoll_choker(bot, query):
     hari = "+".join(x)
     a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
     kuttons = []
-    imdxb = await get_post(mov)
-    if imdxb:
-        kuttons.append(
-            [InlineKeyboardButton(text="💡 ɪɴꜰᴏ 💡",callback_data=f"imdb#{imdb['imdb_id']}")]
-        )
-        capt = IMDB_TEMPLATE.format(
-            query = imdb['title'],
-            title = imdb['title'],
-            votes = imdb['votes'],
-            aka = imdb["aka"],
-            seasons = imdb["seasons"],
-            box_office = imdb['box_office'],
-            localized_title = imdb['localized_title'],
-            kind = imdb['kind'],
-            imdb_id = imdb["imdb_id"],
-            cast = imdb["cast"],
-            runtime = imdb["runtime"],
-            countries = imdb["countries"],
-            certificates = imdb["certificates"],
-            languages = imdb["languages"],
-            release_date = imdb['release_date'],
-            year = imdb['year'],
-            genres = imdb['genres'],
-            poster = imdb['poster'],
-            rating = imdb['rating'],
-            url = imdb['url'],
-            **locals()
-        )
-    else:
-        capt = f"<b>{mov}‌‌‌‌‎</b>"
     if files:
         for file in files:
             file_id = file.file_id
@@ -120,8 +90,8 @@ async def advantage_spoll_choker(bot, query):
             kuttons.append(
                 [InlineKeyboardButton(text=f"{movie}",url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
-            ax = await a1.edit_text(f"<b>🌀ꜰᴏʀ {message.from_user.mention}\n\n {capt} \n{reply_text} </b> \n\n <i> Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(buttons))
-            await asyncio.sleep(600)
+            ax = await a1.edit_text(f"<b>🌀ꜰᴏʀ {message.from_user.mention}\n{reply_text} </b> \n\n <i> Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(buttons))
+            await asyncio.sleep(400)
             await ax.delete()
             await message.delete()
             return
@@ -135,8 +105,8 @@ async def advantage_spoll_choker(bot, query):
             )
             reply_markup = InlineKeyboardMarkup(kuttons)
             await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
-            a = await a1.edit_text(f"<b>🌀ꜰᴏʀ-{message.from_user.mention}\n\n {capt}</b>\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
-            await asyncio.sleep(35)
+            a = await a1.edit_text(f"<b>🌀ꜰᴏʀ-{message.from_user.mention}</b>\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
+            await asyncio.sleep(25)
             await a.delete()
             await message.delete()
             return 
