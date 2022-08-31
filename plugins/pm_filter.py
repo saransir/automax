@@ -50,7 +50,7 @@ async def advantage_spoll_choker(bot, query):
             [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
         files = await get_filter_results(movie)
-    a1 = await query.message.edit_text(f"{oam}")
+    a1 = await query.message.edit_text(f"{oam} ᴄʜᴇᴄᴋɪɴɢ... {oam}")
     if s  == "se":
         movi = movie_
         imdb = await get_post(query=movi, id=True)
