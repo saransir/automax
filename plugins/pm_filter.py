@@ -74,6 +74,15 @@ async def advantage_spoll_choker(bot, query):
     hari = "+".join(x)
     a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
     kuttons = []
+    cha = int(CHAA)
+    poster=None
+    if API_KEY:
+        poster=await get_poster(mov)
+    if poster:
+        try:
+            await query.message.edit_message_media(media=poster)
+        except:
+            await bot.send_message(chat_id=cha,text="poster erorr🤷🏻‍♂️", disable_web_page_preview=True)
     if files:
         for file in files:
             file_id = file.file_id
@@ -96,7 +105,6 @@ async def advantage_spoll_choker(bot, query):
             await message.delete()
             return
         else:
-            cha = int(CHAA)
             kuttons.append(
                 [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
             )
