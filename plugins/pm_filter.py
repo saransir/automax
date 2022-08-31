@@ -1,6 +1,6 @@
 #on air movies program
 from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, ADMINS, START_MSG
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters
 import re
 import random
@@ -80,7 +80,7 @@ async def advantage_spoll_choker(bot, query):
         poster=await get_poster(mov)
     if poster:
         try:
-            await query.message.edit_media(poster, caption=f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..")
+            await query.message.edit_media(poster)
         except Exception as e:
             print(e)
     if files:
