@@ -90,7 +90,7 @@ async def advantage_spoll_choker(bot, query):
             kuttons.append(
                 [InlineKeyboardButton(text=f"{movie}",url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
-            ax = await a1.edit_text(f"<b>🌀ꜰᴏʀ {message.from_user.mention}\n{reply_text} </b> \n\n <i> Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(buttons))
+            ax = await a1.edit_text(f"<b>🌀ꜰᴏʀ {message.from_user.mention}\n{reply_text} </b> \n\n <i> Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(kuttons))
             await asyncio.sleep(400)
             await ax.delete()
             await message.delete()
@@ -125,12 +125,11 @@ async def advantage_spoll_choker(bot, query):
             "buttons" : btns
         }
     else:
-        await query.message.delete()
         buttons = btn
         buttons.append(
             [InlineKeyboardButton("💡close💡", callback_data="close")]
         )
-        await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=f"<b>{movie} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
+        await a1.edit_text(f"<b>{movie} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
         return
     data = BUTTONS[keyword]
     buttons = data['buttons'][0].copy()
@@ -354,7 +353,7 @@ async def spell(message):
     if len(btn) > 9: 
         btn = btn[:9]
     btn.append([InlineKeyboardButton(text=f"{oam} Close {oam}", callback_data=f'spo#se#{user}#close_spellcheck'), InlineKeyboardButton(text=f"{oam} {titl} {oam}",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
-    await message.reply('𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ? 👇', reply_markup=InlineKeyboardMarkup(btn)) 
+    await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption='𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ? 👇', reply_markup=InlineKeyboardMarkup(btn)) 
 
 async def advantage_spell_chok(message):
     query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE)
@@ -411,7 +410,7 @@ async def advantage_spell_chok(message):
     if len(btn) > 6: 
         btn = btn[:6]
     btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spo#sa#{user}#close_spellcheck'), InlineKeyboardButton(text=f"{query}",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
-    kdm = await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n 𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇", reply_markup=InlineKeyboardMarkup(btn))
+    await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption="ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n 𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇", reply_markup=InlineKeyboardMarkup(btn))
 
 
 @Client.on_callback_query()
