@@ -73,16 +73,16 @@ async def advantage_spoll_choker(bot, query):
 
     hari = "+".join(x)
     kuttons = []
+    a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ...🎬‎**#{sesna}**")
     cha = int(CHAA)
     poster=None
     if API_KEY:
         poster=await get_poster(mov)
     if poster:
         try:
-            await query.message.edit_media(media=poster)
-        except:
-            await bot.send_message(chat_id=cha,text="❗️❗️poster erorr🤷🏻‍♂️", disable_web_page_preview=True)
-    a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ..🎬‎**#{sesna}**")
+            await query.message.edit_media(photo=poster)
+        except Exception as e:
+            print(e)
     if files:
         for file in files:
             file_id = file.file_id
