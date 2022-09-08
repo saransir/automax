@@ -1,4 +1,5 @@
 #on air movies program
+from pyrogram.errors import UserNotParticipant, UserIsBlocked
 from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, ADMINS, START_MSG
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters
@@ -6,7 +7,6 @@ import re
 import random
 import asyncio
 from info import IMDB_TEMPLATE
-from pyrogram.errors import UserNotParticipant, UserIsBlocked
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster, get_post, search_gagala, find_filter
 BUTTONS = {}
 BOT = {}
@@ -82,7 +82,7 @@ async def advantage_spoll_choker(bot, query):
             sz = get_size(file.file_size)
             tt = str(file.file_name[0:29].lower().lstrip())
             dcode = re.sub(r"(_|\-|\.|\´|\`|\,|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
-            filename = f"{dcode[0:23]}..{oam}{sz[0:3]}{sz[-2:]}{oam}"
+            filename = f"{dcode[0:23]}{oam}{sz[0:3]} {sz[-2:]}{oam}"
             btn.append(
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
@@ -139,66 +139,6 @@ async def advantage_spoll_choker(bot, query):
     )
     await a1.edit_text(f"<b>{movie} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
         
-async def filter(client, msg, files):
-        btn = []
-        search = msg
-        message = msg.message.reply_to_message  
-        # files = await get_filter_results(query=search)
-        if files:
-            for file in files:
-                file_id = file.file_id
-                filename = f"{random.choice(RAT)}[{get_size(file.file_size)}] {file.file_name}"
-                btn.append(
-                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
-                    )
-        else:
-            k = await query.message.edit('This Movie Not Found In DataBase')
-            await asyncio.sleep(10)
-            await k.delete()
-            return
-
-        if not btn:
-            return
-
-        if len(btn) > 10: 
-            btns = list(split_list(btn, 10)) 
-            keyword = f"{message.chat.id}-{message.message_id}"
-            BUTTONS[keyword] = {
-                "total" : len(btns),
-                "buttons" : btns
-            }
-        else:
-            buttons = btn
-            buttons.append(
-                [InlineKeyboardButton("🎪 channel 🎪", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
-            )
-            poster=None
-            if API_KEY:
-                poster=await get_poster(search)
-            if poster:
-                await message.reply_photo(photo=poster, caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n  <b>🌀 ᴄʜᴀɴɴᴇʟ : [ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-
-            else:
-                await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ : [ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-            return
-
-        data = BUTTONS[keyword]
-        buttons = data['buttons'][0].copy()
-
-        buttons.append(
-            [InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
-        )    
-        buttons.append(
-            [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages")]
-        )
-        poster=None
-        if API_KEY:
-            poster=await get_poster(movie)
-        if poster:
-            await message.reply_photo(photo=poster, caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ :[ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-        else:
-            await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=f"<b>🎬 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ : {search} ‌‌‌‌‎</b> \n\n <b>🌀 ᴄʜᴀɴɴᴇʟ :[ᴏɴᴀɪʀᴍᴏᴠɪᴇs](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
-
 @Client.on_message(filters.text & ~filters.edited & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
 async def group(client, message):
     if re.findall("((^/|^!|^@|^#|^[\U0001F600-\U000E007F]).*)", message.text):
@@ -257,7 +197,7 @@ async def group(client, message):
                 tt = file.file_name[0:26].lower().lstrip()
                 fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
                 dcode = fn[0:23]
-                filename = f"{dcode}..{oam}{sz[0:3]}{sz[-2:]}{oamm}"
+                filename = f"{dcode}{oam}{sz[0:3]} {sz[-2:]}{oamm}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
@@ -314,7 +254,7 @@ async def group(client, message):
 def get_size(size):
     """Get size in readable format"""
 
-    units = ["Bytes", "ᵏᵇ", "ᵐᵇ", "ᵍᵇ", "TB", "PB", "EB"]
+    units = ["Bytes", "ᴋʙ", "ᴍʙ", "ɢʙ", "TB", "PB", "EB"]
     size = float(size)
     i = 0
     while size >= 1024.0 and i < len(units):
@@ -353,7 +293,7 @@ async def spell(message):
         )
     if len(btn) > 9: 
         btn = btn[:9]
-    btn.append([InlineKeyboardButton(text=f"{oam} Close {oam}", callback_data=f'spo#se#{user}#close_spellcheck'), InlineKeyboardButton(text=f"{oam} {titl} {oam}",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
+    btn.append([InlineKeyboardButton(text=f"Close 🔖", callback_data=f'spo#se#{user}#close_spellcheck'), InlineKeyboardButton(text=f"🔖 {titl}",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
     await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption='𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ? 👇', reply_markup=InlineKeyboardMarkup(btn)) 
 
 async def advantage_spell_chok(message):
