@@ -55,7 +55,7 @@ async def advantage_spoll_choker(bot, query):
         movi = movie_
         imdb = await get_post(query=movi, id=True)
         ttt = imdb.get('title')[0:29]
-        mov = re.sub(r"(\:|\-|\_|\.|\#|\;|IMDb|None)", "", ttt, flags=re.IGNORECASE).strip()
+        mov = re.sub(r"(\:|\-|\,|\_|\.|\#|\;|IMDb|None)", "", ttt, flags=re.IGNORECASE).strip()
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
         x = mov.split()
@@ -82,7 +82,7 @@ async def advantage_spoll_choker(bot, query):
             sz = get_size(file.file_size)
             tt = str(file.file_name[0:29].lower().lstrip())
             dcode = re.sub(r"(_|\-|\.|\´|\`|\,|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
-            filename = f"{dcode[0:23]}{oam}{sz[0:3]} {sz[-2:]}{oam}"
+            filename = f"{dcode[0:23]}..{oam}{sz[0:3]}{sz[-2:]}{oam}"
             btn.append(
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
@@ -92,7 +92,7 @@ async def advantage_spoll_choker(bot, query):
             kuttons.append(
                 [InlineKeyboardButton(text=f"{movie}",url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
-            ax = await a1.edit_text(f"<b>🌀ꜰᴏʀ {message.from_user.mention}\n{reply_text} </b> \n\n <i> Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(kuttons))
+            ax = await a1.edit_text(f"<b>{reply_text}</b> \n\n <i>{message.from_user.mention}, Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(kuttons))
             await asyncio.sleep(400)
             await ax.delete()
             await message.delete()
@@ -106,7 +106,7 @@ async def advantage_spoll_choker(bot, query):
             )
             reply_markup = InlineKeyboardMarkup(kuttons)
             await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
-            a = await a1.edit_text(f"<b>🌀ꜰᴏʀ-{message.from_user.mention}</b>\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
+            a = await a1.edit_text(f"<b>🌀ꜰᴏʀ-{message.from_user.mention}</b>\n\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
             await asyncio.sleep(25)
             await a.delete()
             await message.delete()
@@ -257,7 +257,7 @@ async def group(client, message):
                 tt = file.file_name[0:26].lower().lstrip()
                 fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
                 dcode = fn[0:23]
-                filename = f"{dcode}{oam}{sz[0:3]} {sz[-2:]}{oamm}"
+                filename = f"{dcode}..{oam}{sz[0:3]}{sz[-2:]}{oamm}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
@@ -314,7 +314,7 @@ async def group(client, message):
 def get_size(size):
     """Get size in readable format"""
 
-    units = ["Bytes", "ᴋʙ", "ᴍʙ", "ɢʙ", "TB", "PB", "EB"]
+    units = ["Bytes", "ᵏᵇ", "ᵐᵇ", "ᵍᵇ", "TB", "PB", "EB"]
     size = float(size)
     i = 0
     while size >= 1024.0 and i < len(units):
