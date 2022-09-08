@@ -80,7 +80,7 @@ async def advantage_spoll_choker(bot, query):
         for file in files:
             file_id = file.file_id
             sz = get_size(file.file_size)
-            tt = str(file.file_name[0:29].lower().lstrip())
+            tt = str(file.file_name[0:29].title().lstrip())
             dcode = re.sub(r"(_|\-|\.|\´|\`|\,|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
             filename = f"{dcode[0:23]}{oam}{sz[0:3]} {sz[-2:]}{oam}"
             btn.append(
@@ -194,7 +194,7 @@ async def group(client, message):
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
-                tt = file.file_name[0:26].lower().lstrip()
+                tt = file.file_name[0:26].title().lstrip()
                 fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
                 dcode = fn[0:23]
                 filename = f"{dcode}{oam}{sz[0:3]} {sz[-2:]}{oamm}"
