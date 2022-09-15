@@ -6,7 +6,7 @@ import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest, CallbackQuery
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
-from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post, add_filter, delete_filter
+from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post, add_filter, get_filters, delete_filter
 from info import TUTORIAL
 from info import IMDB_TEMPLATE, IMDB_TEMPLATEE
 from pyrogram.errors import UserNotParticipant
@@ -209,7 +209,15 @@ async def adekfilter(bot, message):
     query = text.lower()
 
     await delete_filter(message, query)
-
+@Client.on_message(filters.command('filters') & filters.private & filters.user(ADMINS))
+async def adxfiltxr(bot, message):
+    texts = await get_filters(2)
+    for text in texts:
+        keywords = " ×  `{}`\n".format(text)
+    await message.reply_text(
+        f"Filter👇 \n {keywords}",
+        quote=True,
+        parse_mode="md"
 @Client.on_message(filters.command('total') & filters.user(ADMINS))
 async def total(bot, message):
     """Show total files in database"""
