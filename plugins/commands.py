@@ -185,7 +185,7 @@ async def addfilter(bot, message):
         except:
             reply_text = "𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 ʀᴇʟᴇᴀsᴇᴅ ᴏɴ ᴏᴛᴛ"         
     else:
-        reply_text = "Tʜᴇᴀᴛʀɪᴄᴀʟ Pʀɪɴᴛ ɪꜱ Nᴏᴛ Aᴠᴀɪʟᴀʙʟᴇ Hᴇʀᴇ.Sᴛᴀy Tᴜɴᴇᴅ Fᴏʀ Tʜᴇ "Oᴛᴛ" Rᴇʟᴇᴀꜱᴇ..!"
+        reply_text = "Tʜᴇᴀᴛʀɪᴄᴀʟ Pʀɪɴᴛ ɪꜱ Nᴏᴛ Aᴠᴀɪʟᴀʙʟᴇ Hᴇʀᴇ.Sᴛᴀy Tᴜɴᴇᴅ Fᴏʀ Tʜᴇ 'Oᴛᴛ' Rᴇʟᴇᴀꜱᴇ..!"
 
     await add_filter(text, reply_text)
 
