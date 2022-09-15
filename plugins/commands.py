@@ -211,18 +211,10 @@ async def adekfilter(bot, message):
     await delete_filter(message, query)
 @Client.on_message(filters.command('filters') & filters.private & filters.user(ADMINS))
 async def adxfiltxr(bot, message):
-    texts = await get_filters(2)
-    keywords = "Filter👇"
-    for text in texts:
-        keywords += text
-
-    await message.reply_text(
-        f"{keywords}",
-        quote=True,
-        parse_mode="md"
+    await get_filters(message)
 
 @Client.on_message(filters.command('total') & filters.user(ADMINS))
-async def total(bot, message):
+async def totalv(bot, message):
     """Show total files in database"""
     msg = await message.reply("Processing...⏳", quote=True)
     try:
@@ -366,6 +358,7 @@ async def helmo(bot, message):
     await asyncio.sleep(15) # error 
     await mo.delete()
     await message.delete()
+
 @Client.on_message(filters.command('st_a_rt') & filters.private)
 async def texddtx(bot, message):
     await message.reply_sticker(sticker=f"{random.choice(HI)}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="🎪 start 🎪",callback_data="start")]]))
@@ -380,31 +373,6 @@ async def textx(bot, message):
     await message.reply_chat_action("typing")
     await asyncio.sleep(1)
     await bot.send_message(chat_id=message.from_user.id, text="<b>ഏറ്റവും പുതിയതായി ബോട്ടിൽ add ചെയ്ത മലയാളം സിനിമകൾക്കായ് തായേ👇 കാണുന്ന 🔍 𝗦𝗲𝗮𝗿𝗰𝗵 എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്ത ശേഷം അനുയോജ്യമായ file select ചെയ്യുക 😇</b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-
-@Client.on_message(filters.command('idd'))
-async def texthx(bot, message):
-    status_message = await message.reply_text(
-        "`Fetching user info...`"
-    )
-    await status_message.edit(
-        "`Processing user info...`"
-    )
-    
-    from_user = message.reply_to_message.from_user
-    
-    if from_user is None:
-        return await status_message.edit("no valid user_id / message specified")
-    message_out_str = ""
-    message_out_str += f"<b>➲First Name:</b> {message.reply_to_message.from_user.first_name}\n"
-    last_name = from_user.last_name or "<b>None</b>"
-    message_out_str += f"<b>➲Last Name:</b> {last_name}\n"
-    message_out_str += f"<b>➲Telegram ID:</b> <code>{from_user.id}</code>\n"
-    username = from_user.username or "<b>None</b>"
-    dc_id = from_user.dc_id or "[User Doesn't Have A Valid DP]"
-    message_out_str += f"<b>➲Data Centre:</b> <code>{dc_id}</code>\n"
-    message_out_str += f"<b>➲User Name:</b> @{username}\n"
-    message_out_str += f"<b>➲User 𝖫𝗂𝗇𝗄:</b> <a href='tg://user?id={from_user.id}'><b>Click Here</b></a>\n"
-    await status_message.edit(f"{message_out_str}")
 
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
 async def leave_a_chat(bot, message):
