@@ -30,7 +30,6 @@ async def advantage_spoll_choker(bot, query):
         await message.delete()
         return await query.message.delete()
     btn = []
-    files = []
     oam = f"{random.choice(RAT)}"
     if s  == "sa":
         movies = SPELL_CHECK.get(query.message.reply_to_message.message_id)
@@ -65,7 +64,6 @@ async def advantage_spoll_choker(bot, query):
             files = await get_filter_results(movie)
             if files:
                 files += await get_filter_results(mov)
-                files = list(dict.fromkeys(files)) # removing duplicates
             else:
                 files = await get_filter_results(mov)
         else:
@@ -120,7 +118,7 @@ async def advantage_spoll_choker(bot, query):
         await a.delete()
         await message.delete()
         return
-
+    btn = list(dict.fromkeys(btn)) 
     if len(btn) > 6: 
         btns = list(split_list(btn, 6)) 
         keyword = f"{message.chat.id}-{message.message_id}"
@@ -350,9 +348,10 @@ async def advantage_spell_chok(message):
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist)) # removing duplicates
     if not movielist:
-        k = await message.reply("I couldn't find anything related to that. Check your spelling")
-        await asyncio.sleep(8)
+        k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**")
+        await asyncio.sleep(10)
         await k.delete()
+        await message.delete()
         return
     SPELL_CHECK[message.message_id] = movielist
     btn = [[
