@@ -30,6 +30,7 @@ async def advantage_spoll_choker(bot, query):
         await message.delete()
         return await query.message.delete()
     btn = []
+    files = []
     oam = f"{random.choice(RAT)}"
     if s  == "sa":
         movies = SPELL_CHECK.get(query.message.reply_to_message.message_id)
@@ -64,6 +65,7 @@ async def advantage_spoll_choker(bot, query):
             files = await get_filter_results(movie)
             if files:
                 files += await get_filter_results(mov)
+                files = list(dict.fromkeys(files)) # removing duplicates
             else:
                 files = await get_filter_results(mov)
         else:
@@ -76,7 +78,7 @@ async def advantage_spoll_choker(bot, query):
     kuttons = []
     imdb = await get_post(mov)
     if imdb:
-        imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__ __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+        imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
     else:
         imdbcap = f" **{movie}**"     
     cha = int(CHAA)
@@ -327,8 +329,9 @@ async def advantage_spell_chok(message):
         return
     # regex = re.compile(r".*(imdbb|wikipedia).*", re.IGNORECASE) # look for imdb / wiki results
     # gs = list(filter(regex.match, g_s))
-    gs_parsed = [re.sub(r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)', '', i, flags=re.IGNORECASE) for i in g_s]
-    if not gs_parsed:
+    # gs_parsed = [re.sub(r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)', '', i, flags=re.IGNORECASE) for i in g_s]
+    # if not gs_parsed:
+    if g_s:
         reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*", re.IGNORECASE) # match something like Watch Niram | Amazon Prime 
         for mv in g_s:
             match  = reg.match(mv)
@@ -532,14 +535,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await message.delete()
                 return await query.message.delete()
         elif query.data == "ott":
-            await query.answer("Once this movie is releas HDRip/OTT, it will be upload on the 💒channel \n\n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ 💒ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ് ",show_alert=True)
             buttons = []
             buttons.append(
-                [InlineKeyboardButton(" 💒  ᴄʜᴀɴɴᴇʟ 💒 ", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
+                [InlineKeyboardButton(" 💒💒  ᴄʜᴀɴɴᴇʟ 💒💒 ", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
             await query.edit_message_reply_markup( 
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
+            await asyncio.sleep(2)
+            await query.answer("Once this movie is releas HDRip/OTT, it will be upload on the 💒channel \n\n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ 💒ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ് ",show_alert=True)
             return
         elif query.data == "about":
             await query.answer("🤖 ɴᴀᴍᴇ: ғɪʟᴛᴇʀ -x- v2.8\n\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ😁\n\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
