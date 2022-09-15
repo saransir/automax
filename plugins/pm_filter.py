@@ -76,7 +76,7 @@ async def advantage_spoll_choker(bot, query):
     kuttons = []
     imdb = await get_post(search)
     if imdb:
-        imdbcap = "**<{imdb['title']}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**"     
+        imdbcap = f"**<{imdb['title']}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**"     
     cha = int(CHAA)
     if files:
         for file in files:
