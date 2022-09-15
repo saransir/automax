@@ -80,17 +80,18 @@ async def find_filter(name):
         return None
 async def get_filters(message):
     mycol = mydb[str(2)]
-    texts = []
+    texts = "filters 👇        "
     query = mycol.find()
     count = mycol.count()
     try:
         for file in query:
             text = file['text']
-            texts.append(text)
+            keywords = " ×  `{}`\n".format(text)
+            texts += keywords
     except:
         logger.exception('error at filters find', exc_info=True)
     await message.reply_text(
-        f"filters 👇 '`{texts}`'     total= {count}",
+        f" '`{texts}`' \n total= {count}",
         quote=True,
         parse_mode="md"
     )
