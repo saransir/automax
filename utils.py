@@ -78,17 +78,22 @@ async def find_filter(name):
         return reply_text
     except:
         return None
-async def get_filters(group_id):
-    mycol = mydb[str(group_id)]
+async def get_filters(message):
+    mycol = mydb[str(2)]
     texts = []
     query = mycol.find()
+    count = mycol.count()
     try:
         for file in query:
             text = file['text']
             texts.append(text)
     except:
-        pass
-    return texts
+        logger.exception('error at filters find', exc_info=True)
+    await message.reply_text(
+        f"filters 👇 '`{texts}`'     total= {count}",
+        quote=True,
+        parse_mode="md"
+    )
 async def delete_filter(message, text):
     mycol = mydb[str(2)]
     
