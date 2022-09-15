@@ -58,8 +58,7 @@ class Poster(Document):
 
 async def add_filter(text, reply_text):
     mycol = mydb[str(2)]
-    # mycol.create_index([('text', 'text')])
-
+    
     data = {
         'text':str(text),
         'reply':str(reply_text),
@@ -84,10 +83,11 @@ async def delete_filter(message, text):
     
     myquery = {'text':text }
     query = mycol.count_documents(myquery)
+    count = mycol.count()
     if query == 1:
         mycol.delete_one(myquery)
         await message.reply_text(
-            f"'`{text}`'  deleted✌️",
+            f"'`{text}`'  deleted✌️ total= {count}",
             quote=True,
             parse_mode="md"
         )
