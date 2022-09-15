@@ -118,7 +118,7 @@ async def advantage_spoll_choker(bot, query):
         await a.delete()
         await message.delete()
         return
-    btn = list(dict.fromkeys(btn)) 
+    # btn = list(dict.fromkeys(btn)) 
     if len(btn) > 6: 
         btns = list(split_list(btn, 6)) 
         keyword = f"{message.chat.id}-{message.message_id}"
