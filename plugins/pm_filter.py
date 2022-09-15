@@ -74,7 +74,9 @@ async def advantage_spoll_choker(bot, query):
 
     hari = "+".join(x)
     kuttons = []
-    # a1 = await query.message.edit_text(f"🕵‍♂ᴄʜᴇᴄᴋɪɴɢ...🎬‎**#{sesna}**")
+    imdb = await get_post(search)
+    if imdb:
+        imdbcap = "**<{imdb['title']}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**"     
     cha = int(CHAA)
     if files:
         for file in files:
@@ -92,7 +94,7 @@ async def advantage_spoll_choker(bot, query):
             kuttons.append(
                 [InlineKeyboardButton(text=f"{movie}",url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
-            ax = await a1.edit_text(f"<b>{reply_text}</b> \n\n <i>{message.from_user.mention}, Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(kuttons))
+            ax = await a1.edit_text(f"{imdbcap}\n\n <b>{reply_text}</b> \n\n <i>{message.from_user.mention}, Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(kuttons))
             await asyncio.sleep(400)
             await ax.delete()
             await message.delete()
