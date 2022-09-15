@@ -78,6 +78,17 @@ async def find_filter(name):
         return reply_text
     except:
         return None
+async def get_filters(group_id):
+    mycol = mydb[str(group_id)]
+    texts = []
+    query = mycol.find()
+    try:
+        for file in query:
+            text = file['text']
+            texts.append(text)
+    except:
+        pass
+    return texts
 async def delete_filter(message, text):
     mycol = mydb[str(2)]
     
