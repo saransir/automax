@@ -74,7 +74,7 @@ async def advantage_spoll_choker(bot, query):
 
     hari = "+".join(x)
     kuttons = []
-    imdb = await get_post(search)
+    imdb = await get_post(mov)
     if imdb:
         imdbcap = f"**<{imdb['title']}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**"     
     cha = int(CHAA)
