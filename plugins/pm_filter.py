@@ -300,7 +300,7 @@ async def spell(message):
     btn.append([InlineKeyboardButton(text=f"Close 🔖", callback_data=f'spo#se#{user}#close_spellcheck'), InlineKeyboardButton(text=f"🔖 {titl}",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
     poster=None
     if API_KEY:
-        poster=await get_poster(search)
+        poster=await get_poster(title)
     if poster:
         try:
             await message.reply_photo(photo=poster, caption="        𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞.  ? 👇", reply_markup=InlineKeyboardMarkup(btn))
