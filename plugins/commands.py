@@ -185,7 +185,7 @@ async def addfilter(bot, message):
         except:
             reply_text = "𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 ʀᴇʟᴇᴀsᴇᴅ ᴏɴ ᴏᴛᴛ"         
     else:
-        reply_text = "𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 ʀᴇʟᴇᴀsᴇᴅ ᴏɴ ᴏᴛᴛ"
+        reply_text = "Tʜᴇᴀᴛʀɪᴄᴀʟ Pʀɪɴᴛ ɪꜱ Nᴏᴛ Aᴠᴀɪʟᴀʙʟᴇ Hᴇʀᴇ.Sᴛᴀy Tᴜɴᴇᴅ Fᴏʀ Tʜᴇ "Oᴛᴛ" Rᴇʟᴇᴀꜱᴇ..!"
 
     await add_filter(text, reply_text)
 
@@ -194,7 +194,7 @@ async def addfilter(bot, message):
         quote=True,
         parse_mode="md"
     )
-@Client.on_message(filters.command('dele') & filters.private & filters.user(ADMINS))
+@Client.on_message(filters.command('dl') & filters.private & filters.user(ADMINS))
 async def adekfilter(bot, message):
     try:
         cmd, text = message.text.split(" ", 1)
