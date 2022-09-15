@@ -212,13 +212,15 @@ async def adekfilter(bot, message):
 @Client.on_message(filters.command('filters') & filters.private & filters.user(ADMINS))
 async def adxfiltxr(bot, message):
     texts = await get_filters(2)
+    keywords = "Filter👇"
     for text in texts:
-        keywords += f"- `{text}`\n"
+        keywords += text
 
     await message.reply_text(
-        f"Filter👇 \n {keywords}",
+        f"{keywords}",
         quote=True,
         parse_mode="md"
+
 @Client.on_message(filters.command('total') & filters.user(ADMINS))
 async def total(bot, message):
     """Show total files in database"""
