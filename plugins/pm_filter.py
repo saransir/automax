@@ -94,7 +94,7 @@ async def advantage_spoll_choker(bot, query):
         reply_text = await find_filter(mov)
         if reply_text:
             kuttons.append(
-                [InlineKeyboardButton(text=f"{oam} 𝙾𝚃𝚃/𝙷𝙳 {oam}", callback_data="ott"))]
+                [InlineKeyboardButton(text=f"{oam} 𝙾𝚃𝚃/𝙷𝙳 {oam}", callback_data="ott")]
             )
             ax = await a1.edit_text(f"{imdbcap}\n\n <b>❗️{reply_text}❗️</b> \n", reply_markup=InlineKeyboardMarkup(kuttons))
             await asyncio.sleep(400)
