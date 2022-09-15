@@ -76,7 +76,7 @@ async def advantage_spoll_choker(bot, query):
     kuttons = []
     imdb = await get_post(mov)
     if imdb:
-        imdbcap = f" **<{movie}**\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n __ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__ __ʟᴀɴɢᴜᴀɢᴇꜱ: {imdb['languages']}__\n\n __ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+        imdbcap = f" **<{movie}**\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n __ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__ __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n\n __ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
     else:
         imdbcap = f" **<{movie}**"     
     cha = int(CHAA)
