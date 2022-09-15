@@ -96,10 +96,7 @@ async def advantage_spoll_choker(bot, query):
             kuttons.append(
                 [InlineKeyboardButton(text=f"{oam} 𝙾𝚃𝚃/𝙷𝙳 {oam}", callback_data="ott")]
             )
-            ax = await a1.edit_text(f"{imdbcap}\n\n <b>❗️{reply_text}❗️</b> \n", reply_markup=InlineKeyboardMarkup(kuttons))
-            await asyncio.sleep(400)
-            await ax.delete()
-            await message.delete()
+            await a1.edit_text(f"{imdbcap}\n\n <b>❗️{reply_text}❗️</b> \n", reply_markup=InlineKeyboardMarkup(kuttons))
             return
         else:
             kuttons.append(
@@ -110,7 +107,7 @@ async def advantage_spoll_choker(bot, query):
             )
             reply_markup = InlineKeyboardMarkup(kuttons)
             await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
-            a = await a1.edit_text(f"<b>🌀ꜰᴏʀ-{message.from_user.mention}</b>\n\n {imdbcap}\n\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
+            a = await a1.edit_text(f"<b>🌀ꜰᴏʀ-{message.from_user.mention}</b>\n\n {imdbcap}\n\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup)
             await asyncio.sleep(55)
             await a.delete()
             await message.delete()
