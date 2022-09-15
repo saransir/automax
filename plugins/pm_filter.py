@@ -76,9 +76,9 @@ async def advantage_spoll_choker(bot, query):
     kuttons = []
     imdb = await get_post(mov)
     if imdb:
-        imdbcap = f" **<{movie}**\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n __ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__ __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n\n __ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+        imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__ __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
     else:
-        imdbcap = f" **<{movie}**"     
+        imdbcap = f" **{movie}**"     
     cha = int(CHAA)
     if files:
         for file in files:
@@ -94,9 +94,9 @@ async def advantage_spoll_choker(bot, query):
         reply_text = await find_filter(mov)
         if reply_text:
             kuttons.append(
-                [InlineKeyboardButton(text=f"{movie}",url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
+                [InlineKeyboardButton(text=f"{oam} 𝙾𝚃𝚃/𝙷𝙳 {oam}", callback_data="ott"))]
             )
-            ax = await a1.edit_text(f"{imdbcap}\n\n <b>{reply_text}</b> \n\n <i>{message.from_user.mention}, Once this movie is releas HDRip/OTT, it will be upload on the below 👇 channel \n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ 👇 ഉള്ള ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്</i>", reply_markup=InlineKeyboardMarkup(kuttons))
+            ax = await a1.edit_text(f"{imdbcap}\n\n <b>❗️{reply_text}❗️</b> \n", reply_markup=InlineKeyboardMarkup(kuttons))
             await asyncio.sleep(400)
             await ax.delete()
             await message.delete()
@@ -111,7 +111,7 @@ async def advantage_spoll_choker(bot, query):
             reply_markup = InlineKeyboardMarkup(kuttons)
             await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
             a = await a1.edit_text(f"<b>🌀ꜰᴏʀ-{message.from_user.mention}</b>\n\n {imdbcap}\n\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup, parse_mode="html")
-            await asyncio.sleep(25)
+            await asyncio.sleep(55)
             await a.delete()
             await message.delete()
             return 
@@ -534,6 +534,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.answer("𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 Reported to Admins 👮‍♂ \n\n\n ᴛʜᴇ ᴍᴏᴠɪᴇ ᴡɪʟʟ ᴜᴩʟᴏᴀᴅɪɴɢ ꜱᴏᴏɴ..",show_alert=True)
                 await message.delete()
                 return await query.message.delete()
+        elif query.data == "ott":
+            await query.answer("Once this movie is releas HDRip/OTT, it will be upload on the 💒channel \n\n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ 💒ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ് ",show_alert=True)
+            buttons = []
+            buttons.append(
+                [InlineKeyboardButton(" 💒  ᴄʜᴀɴɴᴇʟ 💒 ", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
+            )
+            await query.edit_message_reply_markup( 
+                reply_markup=InlineKeyboardMarkup(buttons)
+            )
+            return
         elif query.data == "about":
             await query.answer("🤖 ɴᴀᴍᴇ: ғɪʟᴛᴇʀ -x- v2.8\n\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ😁\n\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
         elif query.data == "close":
