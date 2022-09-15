@@ -213,7 +213,8 @@ async def adekfilter(bot, message):
 async def adxfiltxr(bot, message):
     texts = await get_filters(2)
     for text in texts:
-        keywords = " ×  `{}`\n".format(text)
+        keywords += f"- `{text}`\n"
+
     await message.reply_text(
         f"Filter👇 \n {keywords}",
         quote=True,
