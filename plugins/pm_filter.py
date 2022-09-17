@@ -61,10 +61,9 @@ async def advantage_spoll_choker(bot, query):
         x = mov.split()
         sesna = "_".join(x) # list(set(test_list))
         if yea:
-            fils = await get_filter_results(movie)
-            if fils:
-                fils += await get_filter_results(mov)
-                files = list(set(fils))
+            files = await get_filter_results(movie)
+            if files:
+                files += await get_filter_results(mov)
             else:
                 files = await get_filter_results(mov)
         else:
@@ -119,7 +118,7 @@ async def advantage_spoll_choker(bot, query):
         await a.delete()
         await message.delete()
         return
-    # btn = list(dict.fromkeys(btn)) 
+    btn = list(set(btn))
     if len(btn) > 6: 
         btns = list(split_list(btn, 6)) 
         keyword = f"{message.chat.id}-{message.message_id}"
