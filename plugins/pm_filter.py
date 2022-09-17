@@ -61,9 +61,10 @@ async def advantage_spoll_choker(bot, query):
         x = mov.split()
         sesna = "_".join(x) # list(set(test_list))
         if yea:
-            files = await get_filter_results(movie)
-            if files:
-                files += await get_filter_results(mov)
+            fils = await get_filter_results(movie)
+            if fils:
+                fils += await get_filter_results(mov)
+                files = set(fils)
             else:
                 files = await get_filter_results(mov)
         else:
