@@ -76,7 +76,7 @@ async def advantage_spoll_choker(bot, query):
     kuttons = []
     imdb = await get_post(mov)
     if imdb:
-        imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+        imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
     else:
         imdbcap = f" **{movie}**"     
     cha = int(CHAA)
@@ -118,7 +118,7 @@ async def advantage_spoll_choker(bot, query):
         await a.delete()
         await message.delete()
         return
-    btn = list(set(btn))
+    # btn = list(set(btn))
     if len(btn) > 6: 
         btns = list(split_list(btn, 6)) 
         keyword = f"{message.chat.id}-{message.message_id}"
@@ -129,7 +129,7 @@ async def advantage_spoll_choker(bot, query):
     else:
         buttons = btn
         buttons.append(
-            [InlineKeyboardButton("💡close💡", callback_data="close")]
+            [InlineKeyboardButton(" 💒💒  ᴄʜᴀɴɴᴇʟ 💒💒 ", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
         )
         await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
         return
@@ -217,7 +217,7 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton("💡close💡", callback_data="close")]
+                [InlineKeyboardButton(" 💒💒  ᴄʜᴀɴɴᴇʟ 💒💒 ", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
             )
             poster=None
             if API_KEY:
@@ -294,7 +294,7 @@ async def spell(message):
         )
     if len(btn) > 9: 
         btn = btn[:9]
-    btn.append([InlineKeyboardButton(text=f"Close 🔖", callback_data=f'spo#se#{user}#close_spellcheck'), InlineKeyboardButton(text=f"🔖 {titl}",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
+    btn.append([InlineKeyboardButton(text=f"🔖 ᴄʟᴏꜱᴇ", callback_data=f'spo#se#{user}#close_spellcheck'), InlineKeyboardButton(text=f"🔖 ᴩᴍ ",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
     poster=None
     if API_KEY:
         poster=await get_poster(title)
@@ -319,9 +319,19 @@ async def advantage_spell_chok(message):
     g_s = await search_gagala(query)
     g_s += await search_gagala(message.text)
     gs_parsed = []
+    x = fn.split()
+    hari = "+".join(x)
+    kuttons = []
+    kuttons.append(
+        [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
+    )
+    kuttons.append(
+        [InlineKeyboardButton(text="✉️ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ ✉️",callback_data=f"report_{hari}")]
+    )
+    reply_arkup = InlineKeyboardMarkup(kuttons)
     if not g_s:
-        k = await message.reply("**I couldn't find any movie in that name**.")
-        await asyncio.sleep(8)
+        k = await message.reply("**I couldn't find any movie in that name** \n\n ɪꜰ ꜰɪʟᴇ ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇 \n\n __𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
+        await asyncio.sleep(38)
         await k.delete()
         await message.delete()
         return
@@ -348,8 +358,8 @@ async def advantage_spell_chok(message):
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist)) # removing duplicates
     if not movielist:
-        k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**")
-        await asyncio.sleep(10)
+        k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**\n\n ɪꜰ ꜰɪʟᴇ ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇 \n\n __𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_markup)
+        await asyncio.sleep(40)
         await k.delete()
         await message.delete()
         return
