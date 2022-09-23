@@ -29,7 +29,7 @@ async def dfhhg(bot, message):
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     await cmd.delete()
-    if usr_cmdall1.startswith("/start subinps"):
+    if usr_cmdall1.startswith("/start seren"):
         if AUTH_CHANNEL:
             invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
             try:
