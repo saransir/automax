@@ -25,7 +25,7 @@ LN = "https://t.me/+PBGW_EV3ldY5YjJl"
 async def dfhhg(bot, message):
     return await message.delete()
    
-@Client.on_message(filters.command("start"))
+@Client.on_message(filters.command("start") & filters.private)
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     await cmd.delete()
