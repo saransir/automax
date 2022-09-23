@@ -408,7 +408,7 @@ async def gen_link_s(bot, message):
     if file_type not in ["video", 'audio', 'document']:
         return await message.reply("Reply to a supported media")
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
-    await message.reply(f"https://telegram.dog/On_air_Filter_bot?start=subinps_-_-_-_{file_id}")
+    await message.reply(f"https://telegram.dog/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
 
 @Client.on_message(filters.command('imdb') & filters.private)
 async def imdb_searh(bot, message):
