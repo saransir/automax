@@ -421,12 +421,12 @@ async def imdb_searh(bot, message):
             [
                 InlineKeyboardButton(
                     text=f"{movie.get('title')} - {movie.get('year')}",
-                    callback_data=f"imdb#{movie.movieID}",
+                    callback_data=f"imdb#tt{movie.movieID}",
                 )
             ]
             for movie in movies
         ]
-        await message.reply('Here is what i.found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
+        await message.reply('👇 Here is what i.found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
     else:
         await message.reply('Give me a movie / series Name')
 
