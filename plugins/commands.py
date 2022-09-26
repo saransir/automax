@@ -414,6 +414,7 @@ async def gen_link_s(bot, message):
 async def imdb_searh(bot, message):
     if ' ' in message.text:
         r, title = message.text.split(None, 1)
+        user = message.from_user.id if message.from_user else 0 
         movies = await get_post(title, bulk=True)
         if not movies:
             return await message.reply("No results Found")
@@ -421,12 +422,12 @@ async def imdb_searh(bot, message):
             [
                 InlineKeyboardButton(
                     text=f"{movie.get('title')} - {movie.get('year')}",
-                    callback_data=f"imdb#tt{movie.movieID}",
+                    callback_data=f"spo#se#{user}#{movie.movieID}",
                 )
             ]
             for movie in movies
         ]
-        await message.reply('👇 Here is what i.found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
+        await message.reply('👇 Here is what i.found on IMDb', quote=True, reply_markup=InlineKeyboardMarkup(btn))
     else:
         await message.reply('Give me a movie / series Name')
 
