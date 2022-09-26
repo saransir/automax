@@ -1,5 +1,5 @@
-#on air movies program
-from pyrogram.errors import UserNotParticipant, UserIsBlocked
+#on air movies
+from pyrogram.errors import UserNotParticipant, UserIsBlocked, FloodWait 
 from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, ADMINS, START_MSG
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters
@@ -272,7 +272,7 @@ async def spell(message):
     titl = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|malayalam|English|english|Malayalam|Hindi|hindi|Telugu|telugu|1080p|720p|HEVC|Esub|Kannada|kannada|tamil|Tamil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE) # plis contribute some common words 
     title = titl.strip()
     if len(title) <= 2:
-        ki = await message.reply("**I couldn't find any movie in that name**.")
+        ki = await message.reply("** I couldn't find any movie in that name**.")
         await asyncio.sleep(8)
         await ki.delete()
         await message.delete()
@@ -411,6 +411,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
                 return
+            chat_type = query.message.chat.type
+            if chat_type == "private":
+                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+                return
             elif (clicked == typed):
                 try:  
                     await client.send_cached_media(
@@ -421,6 +425,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
                 except UserIsBlocked:
                     await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+                except FloodWait as e:
+                    await asyncio.sleep(e.x)
                 else:
                     await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)
             else:
