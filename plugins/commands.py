@@ -416,7 +416,7 @@ async def imdb_searh(bot, message):
     while True:
         nx = await bot.ask(text = "** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id = message.from_user.id)
         name = nx.text
-        if len(name) <= 4:
+        if len(name) <= 3:
             await message.reply("__No results Found__")
             break
         try:
