@@ -81,12 +81,16 @@ async def advantage_spoll_choker(bot, query):
         imdbcap = f" **{movie}**"     
     cha = int(CHAA)
     if files:
+        chat_type = query.message.chat.type
+        N = int(23)
+            if chat_type == "private":
+                N = int(33)
         for file in files:
             file_id = file.file_id
             sz = get_size(file.file_size)
-            tt = str(file.file_name[0:29].title().lstrip())
+            tt = str(file.file_name[0:34].title().lstrip())
             dcode = re.sub(r"(_|\-|\.|\´|\`|\,|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
-            filename = f"{dcode[0:23]}{oam}{sz[0:3]} {sz[-2:]}{oam}"
+            filename = f"{dcode[0:N]}{oam}{sz[0:3]} {sz[-2:]}{oam}"
             btn.append(
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
@@ -131,14 +135,14 @@ async def advantage_spoll_choker(bot, query):
         buttons.append(
             [InlineKeyboardButton(" 💒💒  ᴄʜᴀɴɴᴇʟ 💒💒 ", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
         )
-        await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
+        await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
         return
     data = BUTTONS[keyword]
     buttons = data['buttons'][0].copy()
     buttons.append(
         [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
     )
-    await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", reply_markup=InlineKeyboardMarkup(buttons))
+    await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n <b>🌀ꜰᴏʀ- {message.from_user.mention} \n⚡️ᴘᴏᴡᴇʀᴇᴅ ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
         
 @Client.on_message(filters.text & ~filters.edited & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
 async def group(client, message):
@@ -414,14 +418,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
             chat_type = query.message.chat.type
             if chat_type == "private":
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+                await asyncio.sleep(1)
                 return
             elif (clicked == typed):
                 try:  
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption=f"\n<code>{title}</code><b>[©ᵗᵉˡᵉᵍʳᵃᵐᵃᵐ](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
-                    protect_content=True,
+                    caption=f"**🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛**<code>{title}</code><b> \n\n  [©ᵗᵉˡᵉᵍʳᵃᵐᵃᵐ](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
                 except UserIsBlocked:
@@ -430,6 +434,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await asyncio.sleep(1)
                 else:
                     await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)
+                    await asyncio.sleep(1)
             else:
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")           
     
@@ -445,6 +450,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 data = BUTTONS[keyword]
             except KeyError:
                 await query.answer(" You are using this for one of my old message, please send the request again ⭕️.",show_alert=True)
+                await query.message.delete()
                 return
 
             if int(index) == int(data["total"]) - 2:
