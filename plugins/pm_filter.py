@@ -84,11 +84,14 @@ async def advantage_spoll_choker(bot, query):
         chat_type = query.message.chat.type
         N = int(23)
         if chat_type == "private":
-            N = int(33)
+            await query.answer(f"ꜰɪɴᴅɪɴɢ {movie}")
+            await asyncio.sleep(.5)
+            N = int(31)
+            btn = []
         for file in files:
             file_id = file.file_id
             sz = get_size(file.file_size)
-            tt = str(file.file_name[0:34].title().lstrip())
+            tt = str(file.file_name[0:32].title().lstrip())
             dcode = re.sub(r"(_|\-|\.|\´|\`|\,|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
             filename = f"{dcode[0:N]}{oam}{sz[0:3]} {sz[-2:]}{oam}"
             btn.append(
@@ -418,7 +421,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             chat_type = query.message.chat.type
             if chat_type == "private":
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
-                await asyncio.sleep(1)
                 return
             elif (clicked == typed):
                 try:  
@@ -434,7 +436,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await asyncio.sleep(1)
                 else:
                     await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)
-                    await asyncio.sleep(1)
+        
             else:
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")           
     
