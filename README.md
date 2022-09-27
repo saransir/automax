@@ -6,4 +6,4 @@
 [GROUP](https://t.me/+aZIoNNlskWk4ODg1)
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=NB:+code+മുഴുവൻ+errors+ആണ്😪!)
-</p>
+
