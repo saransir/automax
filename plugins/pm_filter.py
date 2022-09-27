@@ -83,8 +83,8 @@ async def advantage_spoll_choker(bot, query):
     if files:
         chat_type = query.message.chat.type
         N = int(23)
-            if chat_type == "private":
-                N = int(33)
+        if chat_type == "private":
+            N = int(33)
         for file in files:
             file_id = file.file_id
             sz = get_size(file.file_size)
