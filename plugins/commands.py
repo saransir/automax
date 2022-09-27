@@ -118,6 +118,9 @@ async def start(bot, cmd):
         while True:
             nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=cmd.from_user.id, reply_markup=ForceReply(placeholder="type..."))
             name = nx.text
+            await cmd.delete()
+            # if 
+            # ident, file_name = cmd.text.split("==")
             if len(name) <= 3:
                 await message.reply("__No results Found__")
                 break
@@ -125,6 +128,8 @@ async def start(bot, cmd):
                 movies = await get_post(name, bulk=True)
                 if not movies:
                     return await cmd.reply("No results Found")
+                if nx.reply_to_message:
+                    await nx.reply_to_message.delete()
                 btn = [
                     [
                         InlineKeyboardButton(
@@ -135,11 +140,9 @@ async def start(bot, cmd):
                     for movie in movies
                 ]
                 await nx.reply('**👇 Here is what i found on IMDb**', quote=True, reply_markup=InlineKeyboardMarkup(btn))
-                await cmd.delete()
                 break
             except Exception as e:
                 await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
-                await cmd.delete()
                 break
         """await bot.send_message(
             chat_id=cmd.from_user.id,
