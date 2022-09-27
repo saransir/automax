@@ -25,7 +25,7 @@ LN = "https://t.me/+PBGW_EV3ldY5YjJl"
 async def dfhhg(bot, message):
     return await message.delete()
    
-@Client.on_message(filters.command("start") & filters.private)
+@Client.on_message(filters.command("start") & filters.private & filters.incoming)
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/start seren"):
