@@ -448,8 +448,8 @@ async def gen_link_s(bot, message):
 async def imdb_searh(bot, message):
     user = message.from_user.id if message.from_user else 0
     while True:
-        nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, reply_markup=ForceReply(placeholder="type..."))
-        name = nx.text
+        nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, timeout=10, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ..."))
+        name = nx.text 
         if len(name) <= 3:
             await message.reply("__No results Found__")
             break
