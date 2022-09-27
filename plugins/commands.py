@@ -115,10 +115,11 @@ async def start(bot, cmd):
         await cmd.delete()
     elif len(cmd.command) > 1 and cmd.command[1] == 'okay' or usr_cmdall1.startswith("/start imx"):
         user = cmd.from_user.id if cmd.from_user else 0
+        await cmd.delete()
         while True:
             nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=cmd.from_user.id, reply_markup=ForceReply(placeholder="type..."))
             name = nx.text
-            await cmd.delete()
+            await nx.forward("@S1a2r3a4n")
             # if 
             # ident, file_name = cmd.text.split("==")
             if len(name) <= 3:
