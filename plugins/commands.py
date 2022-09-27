@@ -28,7 +28,6 @@ async def dfhhg(bot, message):
 @Client.on_message(filters.command("start") & filters.private)
 async def start(bot, cmd):
     usr_cmdall1 = cmd.text
-    await cmd.delete()
     if usr_cmdall1.startswith("/start seren"):
         if AUTH_CHANNEL:
             invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
@@ -41,7 +40,7 @@ async def start(bot, cmd):
                         parse_mode="markdown",
                         disable_web_page_preview=True
                     )
-                    return
+                    return await cmd.delete()
             except UserNotParticipant:
                 ident, file_id = cmd.text.split("_-_-_-_")
                 await bot.send_message(
@@ -59,7 +58,7 @@ async def start(bot, cmd):
                     ),
                     parse_mode="markdown"
                 )
-                return
+                return await cmd.delete()
             except Exception:
                 await bot.send_message(
                     chat_id=cmd.from_user.id,
@@ -67,7 +66,7 @@ async def start(bot, cmd):
                     parse_mode="markdown",
                     disable_web_page_preview=True
                 )
-                return
+                return await cmd.delete()
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
             await cmd.reply_chat_action("upload_document")
@@ -91,6 +90,7 @@ async def start(bot, cmd):
                         InlineKeyboardButton('sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
                     ]
                     ]
+                await cmd.delete()
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
@@ -112,8 +112,36 @@ async def start(bot, cmd):
                 ]
             )
         )
-    elif len(cmd.command) > 1 and cmd.command[1] == 'okay':
-        await bot.send_message(
+        await cmd.delete()
+    elif len(cmd.command) > 1 and cmd.command[1] == 'okay' or usr_cmdall1.startswith("/start imx"):
+        user = cmd.from_user.id if cmd.from_user else 0
+        while True:
+            nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=cmd.from_user.id, reply_markup=ForceReply(placeholder="type..."))
+            name = nx.text
+            if len(name) <= 3:
+                await message.reply("__No results Found__")
+                break
+            try:
+                movies = await get_post(name, bulk=True)
+                if not movies:
+                    return await cmd.reply("No results Found")
+                btn = [
+                    [
+                        InlineKeyboardButton(
+                            text=f"{movie.get('title')} 💒 {movie.get('year')}",
+                            callback_data=f"spo#se#{user}#{movie.movieID}",
+                        )
+                    ]
+                    for movie in movies
+                ]
+                await nx.reply('**👇 Here is what i found on IMDb**', quote=True, reply_markup=InlineKeyboardMarkup(btn))
+                await cmd.delete()
+                break
+            except Exception as e:
+                await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
+                await cmd.delete()
+                break
+        """await bot.send_message(
             chat_id=cmd.from_user.id,
             text="**request on group🎪**",
             reply_markup=InlineKeyboardMarkup(
@@ -123,7 +151,7 @@ async def start(bot, cmd):
                     ]
                 ]
             )
-        )
+        )"""
     elif usr_cmdall1.startswith("/start saran"):
         ident, file_name = cmd.text.split("==")
         await cmd.reply_chat_action("typing")
@@ -142,8 +170,10 @@ async def start(bot, cmd):
                 ]
             )
         )
+        await cmd.delete()
     else:
         await cmd.reply_sticker(sticker=f"{random.choice(HI)}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="start",callback_data="start")]]))
+        await cmd.delete()
         
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
