@@ -84,7 +84,7 @@ async def start(bot, cmd):
                         print(e)
                         f_caption=f_caption
                 if f_caption is None:
-                    f_caption = f"{files.file_name}"
+                    f_caption = f"{files.file_name} "
                 buttons = [
                     [
                         InlineKeyboardButton('ᴍᴀɪɴ ɢʀᴏᴜᴘ', url=f'{LN}'),
