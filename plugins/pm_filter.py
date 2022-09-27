@@ -420,13 +420,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption=f"<code>" + title + "</code>""\n\n <b>[𝙼𝚘𝚟𝚒𝚎/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
+                    caption=f"\n<code>{title}</code><b>[©ᵗᵉˡᵉᵍʳᵃᵐᵃᵐ](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
+                    protect_content=True,
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
                 except UserIsBlocked:
                     await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
                 except FloodWait as e:
-                    await asyncio.sleep(e.x)
+                    await asyncio.sleep(1)
                 else:
                     await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)
             else:
