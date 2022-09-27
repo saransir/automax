@@ -410,12 +410,15 @@ async def gen_link_s(bot, message):
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
     await message.reply(f"https://telegram.dog/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
 
-@Client.on_message(filters.command('get') & filters.private)
+@Client.on_message(filters.command('imdb') & filters.private)
 async def imdb_searh(bot, message):
     user = message.from_user.id if message.from_user else 0
     while True:
         nx = await bot.ask(text = "** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id = message.from_user.id)
         name = nx.text
+        if len(name) <= 4:
+            await message.reply("__No results Found__")
+            break
         try:
             movies = await get_post(name, bulk=True)
             if not movies:
@@ -423,39 +426,20 @@ async def imdb_searh(bot, message):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"{movie.get('title')} - {movie.get('year')}",
+                        text=f"{movie.get('title')} 💒 {movie.get('year')}",
                         callback_data=f"spo#se#{user}#{movie.movieID}",
                     )
                 ]
                 for movie in movies
             ]
-            await nx.reply('👇 Here is what i.found on IMDb', quote=True, reply_markup=InlineKeyboardMarkup(btn))
+            await nx.reply('**👇 Here is what i found on IMDb**', quote=True, reply_markup=InlineKeyboardMarkup(btn))
             await message.delete()
             break
         except Exception as e:
             await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
             await message.delete()
-            continue
+            break
 
-"""    if ' ' in message.text:
-        r, title = message.text.split(None, 1)
-        user = message.from_user.id if message.from_user else 0 
-        movies = await get_post(title, bulk=True)
-        if not movies:
-            return await message.reply("No results Found")
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{movie.get('title')} - {movie.get('year')}",
-                    callback_data=f"spo#se#{user}#{movie.movieID}",
-                )
-            ]
-            for movie in movies
-        ]
-        await message.reply('👇 Here is what i.found on IMDb', quote=True, reply_markup=InlineKeyboardMarkup(btn))
-    else:
-        await message.reply('Give me a movie / series Name')
-"""
 @Client.on_callback_query(filters.regex('^imdb'))
 async def imdb_callback(bot, quer_y: CallbackQuery):
     i, movi = quer_y.data.split('#')
