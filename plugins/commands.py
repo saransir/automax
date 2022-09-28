@@ -444,14 +444,20 @@ async def gen_link_s(bot, message):
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
     await message.reply(f"https://telegram.dog/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
 
-@Client.on_message(filters.command('imdb') & filters.private)
+@Client.on_message(filters.command(['pmfilter', 'imdb']) & filters.private)
 async def imdb_searh(bot, message):
     user = message.from_user.id if message.from_user else 0
     while True:
-        nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, timeout=10, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ..."))
-        name = nx.text 
+        nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
+        name = nx.text
+        if not nx:
+            await message.reply("__♻️try again♻️__ 👉 /pmfilter \n\n **you must send movie Name in 20 second **")
+            break
         if len(name) <= 3:
             await message.reply("__No results Found__")
+            break
+        if nx.reply_to_message:
+            await nx.reply_to_message.delete()
             break
         try:
             movies = await get_post(name, bulk=True)
