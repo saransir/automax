@@ -11,7 +11,7 @@ from info import TUTORIAL
 from info import IMDB_TEMPLATE, IMDB_TEMPLATEE
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
-
+from asyncio.exceptions import TimeoutError
 MYRE = ["CAADBQAD2AMAAvjDaFSsTHfTpJDaShYE", "CAADBQADDQMAAtC6kVRSm-hyq9LjMRYE", "CAADBQADowEAAsuvXSk7LlkDJBYrnRYE", "CAADBQADAQcAAljMOFdOolwetNErQxYE", "CAADBQADeAMAArLJgFRXeMmuvdTQchYE", "CAADBQADsAMAAgYG8VSFaQgU6X596BYE", "CAADBQAD6AMAAi8MwVS1_PRa7JTUWxYE", "CAADBQADOgIAAnRfsFRgDjrWSQK3kxYE", "CAADBQADRAQAAlaVaVSKDdtGH1UJKhYE", ]
 HI = ["CAADAgADVBYAAtB7QUn8uVjZ80ZWKBYE", "CAADAgADjhUAAiVNwUmPFk1-69E28xYE", "CAADAgADbBkAArFrGEl6sWLRwfR3mhYE", "CAADAgADqBYAAsaGIEonqRtNuY60VRYE", "CAADAgADKRUAAiLQKEqf0KMMiyjVPBYE", "CAADAgADhxUAAj0PUEnem2b91sejvxYE", "CAADAgADCh0AAsGoIEkIjTf-YvDReBYE", "CAADAgADmxcAAgN6kEkVW672usFGgxYE", "CAADAgADoAADlp-MDmce7YYzVgABVRYE", "CAADAgADsQADwZxgDIoe_kMAAUM8AhYE", "CAADAgADuAAD9wLID0YLnLTiTgs4FgQ", "CAADAgAD0wIAAvPjvguBRPfRdizrsRYE", "CAADAgADbwADwZxgDMsOfYvA3U1WFgQ", "CAADAgAD_gADMNSdERxr3cDCcFZUFgQ", "CAADAgADbgUAAj-VzAqGOtldiLy3NRYE", ]
 PHOT = [
@@ -448,11 +448,14 @@ async def gen_link_s(bot, message):
 async def imdb_searh(bot, message):
     user = message.from_user.id if message.from_user else 0
     while True:
-        nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
+        try:
+            nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
+        except TimeoutError:
+            await message.reply("__♻️try again♻️__ 👉 /pmfilter \n\n **you must send movie Name in** __20__ **second **")
+            return
         name = nx.text
-        if not nx:
-            await message.reply("__♻️try again♻️__ 👉 /pmfilter \n\n **you must send movie Name in 20 second **")
-            break
+        if re.findall("((^/|^!|^(|^@|^#|^[\U0001F600-\U000E007F]).*)", name):
+            return
         if len(name) <= 3:
             await message.reply("__No results Found__")
             break
