@@ -452,7 +452,7 @@ async def imdb_searh(bot, message):
             break
         if nx.reply_to_message:
             await nx.reply_to_message.delete()
-            break
+            return
         try:
             movies = await get_post(name, bulk=True)
         except Exception as e:
