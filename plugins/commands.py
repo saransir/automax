@@ -447,8 +447,6 @@ async def imdb_searh(bot, message):
             await message.delete()
             return
         name = nx.text
-        if re.findall("((^/|^!|^(|^@|^#).*)", nx.text):
-            return await message.delete()
         if len(name) <= 3:
             await message.reply("__No results Found__")
             break
