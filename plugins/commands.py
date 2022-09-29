@@ -114,7 +114,7 @@ async def start(bot, cmd):
         )
         await cmd.delete()
     elif len(cmd.command) > 1 and cmd.command[1] == 'okay' or usr_cmdall1.startswith("/start imx"):
-        user = cmd.from_user.id if cmd.from_user else 0
+        """user = cmd.from_user.id if cmd.from_user else 0
         await cmd.delete()
         while True:
             nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=cmd.from_user.id, reply_markup=ForceReply(placeholder="type..."))
@@ -144,8 +144,8 @@ async def start(bot, cmd):
                 break
             except Exception as e:
                 await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
-                break
-        """await bot.send_message(
+                break """
+        await bot.send_message(
             chat_id=cmd.from_user.id,
             text="**request on group🎪**",
             reply_markup=InlineKeyboardMarkup(
@@ -155,7 +155,7 @@ async def start(bot, cmd):
                     ]
                 ]
             )
-        )"""
+        )
     elif usr_cmdall1.startswith("/start saran"):
         ident, file_name = cmd.text.split("==")
         await cmd.reply_chat_action("typing")
@@ -449,7 +449,7 @@ async def imdb_searh(bot, message):
     user = message.from_user.id if message.from_user else 0
     while True:
         try:
-            nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
+            nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, filters=filters.text, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
         except TimeoutError:
             await message.reply("__♻️try again♻️__ 👉 /pmfilter \n\n **you must send movie Name in** __20__ **second **")
             return
