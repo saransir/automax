@@ -449,13 +449,20 @@ async def imdb_searh(bot, message):
     user = message.from_user.id if message.from_user else 0
     while True:
         try:
-            nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, filters=filters.text, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
+            mx, nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, filters=filters.text, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
         except TimeoutError:
-            await message.reply("__♻️try again♻️__ 👉 /pmfilter \n\n **you must send movie Name in** __20__ **second **")
+            a = await message.reply("**♻️try again♻️** 👉 /pmfilter \n\n **you must send movie Name in** __20__ **second **")
+            try:
+                await mx.delete()
+            except Exception as e:
+                await message.reply(f'Error - {e}')
+            await message.delete()
+            await asyncio.sleep(10)
+            await a.delete()
             return
         name = nx.text
         if re.findall("((^/|^!|^(|^@|^#|^[\U0001F600-\U000E007F]).*)", name):
-            return
+            return await message.delete()
         if len(name) <= 3:
             await message.reply("__No results Found__")
             break
