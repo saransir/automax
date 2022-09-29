@@ -455,8 +455,13 @@ async def imdb_searh(bot, message):
             break
         try:
             movies = await get_post(name, bulk=True)
-            if not movies:
-                return await message.reply("No results Found")
+        except Exception as e:
+            await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
+            movies = []
+            await message.delete()
+        if not movies:
+            return await message.reply("__No results Found__")   
+        try:
             btn = [
                 [
                     InlineKeyboardButton(
