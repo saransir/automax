@@ -452,15 +452,15 @@ async def imdb_searh(bot, message):
             break
         if nx.reply_to_message:
             await nx.reply_to_message.delete()
-            return
         try:
             movies = await get_post(name, bulk=True)
         except Exception as e:
             await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
             movies = []
-            await message.delete()
         if not movies:
-            return await message.reply("__No results Found__")   
+            await message.reply("__No results Found__")
+            await message.delete()
+            return    
         try:
             btn = [
                 [
