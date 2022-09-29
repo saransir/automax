@@ -443,13 +443,11 @@ async def imdb_searh(bot, message):
         try:
             nx = await bot.ask(text="**ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴍᴏᴠɪᴇ\sᴇʀɪᴇs ɴᴀᴍᴇ ᴡɪᴛʜᴏᴜᴛ sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ**", chat_id=message.from_user.id, filters=filters.text, timeout=30, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
         except TimeoutError:
-            a = await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ** __30__ **ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️** 👉/pmfilter")
+            await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ** __30__ **ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️**")
             await message.delete()
-            await asyncio.sleep(15)
-            await a.delete()
             return
         name = nx.text
-        if re.findall("((^/|^!|^(|^@|^#|^[\U0001F600-\U000E007F]).*)", name):
+        if re.findall("((^/|^!|^(|^@|^#).*)", nx.text):
             return await message.delete()
         if len(name) <= 3:
             await message.reply("__No results Found__")
