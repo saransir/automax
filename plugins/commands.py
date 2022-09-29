@@ -453,14 +453,14 @@ async def imdb_searh(bot, message):
         except TimeoutError:
             a = await message.reply("**♻️try again♻️** 👉 /pmfilter \n\n **you must send movie Name in** __20__ **second **")
             try:
-                await mx.delete()
+                await nx.delete()
             except Exception as e:
                 await message.reply(f'Error - {e}')
             await message.delete()
             await asyncio.sleep(10)
             await a.delete()
             return
-        name = nx.text
+        name = mx.text
         if re.findall("((^/|^!|^(|^@|^#|^[\U0001F600-\U000E007F]).*)", name):
             return await message.delete()
         if len(name) <= 3:
