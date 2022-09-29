@@ -441,11 +441,11 @@ async def imdb_searh(bot, message):
     user = message.from_user.id if message.from_user else 0
     while True:
         try:
-            nx = await bot.ask(text="**🤝 Just Send Me Movie\Series Name📃 Without Spelling Mistake**", chat_id=message.from_user.id, filters=filters.text, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
+            nx = await bot.ask(text="**ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴍᴏᴠɪᴇ\sᴇʀɪᴇs ɴᴀᴍᴇ ᴡɪᴛʜᴏᴜᴛ sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ**", chat_id=message.from_user.id, filters=filters.text, timeout=30, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
         except TimeoutError:
-            a = await message.reply("**♻️try again♻️** 👉 /pmfilter \n\n **you must send movie Name in** __20__ **second **")
+            a = await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ** __30__ **ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️** 👉/pmfilter")
             await message.delete()
-            await asyncio.sleep(20)
+            await asyncio.sleep(15)
             await a.delete()
             return
         name = nx.text
@@ -470,17 +470,17 @@ async def imdb_searh(bot, message):
                 ]
                 for movie in movies
             ]
-            await nx.reply('**👇 Here is what i found on IMDb**', quote=True, reply_markup=InlineKeyboardMarkup(btn))
+            await nx.reply('**👇 Hᴇʀᴇ ɪs ᴡʜᴀᴛ ɪ ғᴏᴜɴᴅ ᴏɴ IMDb**', quote=True, reply_markup=InlineKeyboardMarkup(btn))
             await message.delete()
             break
         except Exception as e:
             await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
             await message.delete()
             break
-@Client.on_message(filters.regex('Name📃') & filters.private)
+"""@Client.on_message(filters.regex('Name📃') & filters.private)
 async def helmogth(bot, message):
     await asyncio.sleep(20)
-    await message.delete()
+    await message.delete()"""
 @Client.on_callback_query(filters.regex('^imdb'))
 async def imdb_callback(bot, quer_y: CallbackQuery):
     i, movi = quer_y.data.split('#')
