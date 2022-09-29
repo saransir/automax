@@ -36,7 +36,7 @@ async def start(bot, cmd):
                 if user.status == "kicked":
                     await bot.send_message(
                         chat_id=cmd.from_user.id,
-                        text="Sorry  mowna 💋,You are Banned to use me.",
+                        text="Sorry mowna 💋,You are Banned to use me.",
                         parse_mode="markdown",
                         disable_web_page_preview=True
                     )
