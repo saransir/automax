@@ -449,18 +449,14 @@ async def imdb_searh(bot, message):
     user = message.from_user.id if message.from_user else 0
     while True:
         try:
-            mx, nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=message.from_user.id, filters=filters.text, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
+            nx = await bot.ask(text="**Just Send Me Movie\.Series Name Without Spelling Mistake**", chat_id=message.from_user.id, filters=filters.text, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
         except TimeoutError:
             a = await message.reply("**♻️try again♻️** 👉 /pmfilter \n\n **you must send movie Name in** __20__ **second **")
-            try:
-                await nx.delete()
-            except Exception as e:
-                await message.reply(f'Error - {e}')
             await message.delete()
-            await asyncio.sleep(10)
+            await asyncio.sleep(20)
             await a.delete()
             return
-        name = mx.text
+        name = nx.text
         if re.findall("((^/|^!|^(|^@|^#|^[\U0001F600-\U000E007F]).*)", name):
             return await message.delete()
         if len(name) <= 3:
@@ -489,7 +485,10 @@ async def imdb_searh(bot, message):
             await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
             await message.delete()
             break
-
+@Client.on_message(filters.regex('Movie\.Series') & filters.private)
+async def helmogh(bot, message):
+    await asyncio.sleep(20)
+    await message.delete()
 @Client.on_callback_query(filters.regex('^imdb'))
 async def imdb_callback(bot, quer_y: CallbackQuery):
     i, movi = quer_y.data.split('#')
