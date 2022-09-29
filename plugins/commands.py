@@ -314,14 +314,6 @@ async def delete(bot, message):
             await reply.delete()
             await msg.edit('File not found in database')
 
-@Client.on_message(filters.command('rul'))
-async def bot_indo(bot, message):
-    buttons = [
-        [
-            InlineKeyboardButton('⚠️ group rules ⚠️', url='https://t.me/movie_requesting_group_rules/4')
-        ]
-        ] 
-    await message.reply(text=f"<b>click the 👇 button to read group rules </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 @Client.on_message(filters.command(['search', 'help']) & filters.private)
 async def bot_link(bot, message):
     buttons = [
@@ -449,7 +441,7 @@ async def imdb_searh(bot, message):
     user = message.from_user.id if message.from_user else 0
     while True:
         try:
-            nx = await bot.ask(text="**Just Send Me Movie\.Series Name Without Spelling Mistake**", chat_id=message.from_user.id, filters=filters.text, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
+            nx = await bot.ask(text="**🤝 Just Send Me Movie\Series Name📃 Without Spelling Mistake**", chat_id=message.from_user.id, filters=filters.text, timeout=20, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
         except TimeoutError:
             a = await message.reply("**♻️try again♻️** 👉 /pmfilter \n\n **you must send movie Name in** __20__ **second **")
             await message.delete()
@@ -485,8 +477,8 @@ async def imdb_searh(bot, message):
             await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
             await message.delete()
             break
-@Client.on_message(filters.regex('Movie\.Series') & filters.private)
-async def helmogh(bot, message):
+@Client.on_message(filters.regex('Name📃') & filters.private)
+async def helmogth(bot, message):
     await asyncio.sleep(20)
     await message.delete()
 @Client.on_callback_query(filters.regex('^imdb'))
