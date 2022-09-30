@@ -9,7 +9,6 @@ from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_
 from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post, add_filter, get_filters, delete_filter
 from info import TUTORIAL
 from info import IMDB_TEMPLATE, IMDB_TEMPLATEE
-from pm_filter import spell
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 from asyncio.exceptions import TimeoutError
