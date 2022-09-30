@@ -318,7 +318,7 @@ async def delete(bot, message):
 async def bot_link(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('🔍 sᴇᴀʀᴄʜ ғɪʟᴇ 💼', switch_inline_query_current_chat='')
+            InlineKeyboardButton('🔍 🅂ᴇᴀʀᴄʜ 🄵ɪʟᴇ 💼', switch_inline_query_current_chat='')
         ]
         ]
     await message.reply_chat_action("typing")
