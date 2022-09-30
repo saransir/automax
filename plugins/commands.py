@@ -445,6 +445,8 @@ async def imdb_searh(bot, message):
         except TimeoutError:
             await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ** __30__ **ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️**")
             await message.delete()
+            await asyncio.sleep(1)
+            await bot.send_message(chat_id=cmd.from_user.id, text="**request on group👇**", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
             return
         if nx.reply_to_message:
             await nx.reply_to_message.delete()
