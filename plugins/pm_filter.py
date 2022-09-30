@@ -408,17 +408,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except FloodWait as e:
                     await asyncio.sleep(1)
                 else:
-                    await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)
-        
+                    await query.answer("ᴄʜᴇcᴋ ᴩᴍ 👀 \n\n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm",show_alert=True)        
             else:
-                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")           
-    
+                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")               
     elif query.data.startswith("myree"):
             ident, file_name = query.data.split("#")
             await query.answer(url=f"http://t.me/On_air_Filter_bot?start=saran=={file_name}")
-
     elif (clicked == typed):
-
         if query.data.startswith("next"):
             ident, index, keyword = query.data.split("_")
             try:
@@ -427,7 +423,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.answer(" You are using this for one of my old message, please send the request again ⭕️.",show_alert=True)
                 await query.message.delete()
                 return
-
             if int(index) == int(data["total"]) - 2:
                 buttons = data['buttons'][int(index)+1].copy()
 
@@ -456,8 +451,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup=InlineKeyboardMarkup(buttons)
                 )
                 return
-
-
         elif query.data.startswith("back"):
             ident, index, keyword = query.data.split("_")
             try:
@@ -588,6 +581,5 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         elif query.data == "pages":
             await query.answer()
-
     else:
         await query.answer(f"😊 {query.from_user.first_name} search your own file,\n\n this is>> {query.message.reply_to_message.from_user.first_name} <<Requested files🎬",show_alert=True)
