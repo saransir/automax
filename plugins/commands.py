@@ -9,6 +9,7 @@ from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_
 from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post, add_filter, get_filters, delete_filter
 from info import TUTORIAL
 from info import IMDB_TEMPLATE, IMDB_TEMPLATEE
+from pm_filter import spell
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 from asyncio.exceptions import TimeoutError
@@ -452,7 +453,9 @@ async def imdb_searh(bot, message):
             break
         if nx.reply_to_message:
             await nx.reply_to_message.delete()
-        try:
+        return await spell(nx)
+
+        """try:
             movies = await get_post(name, bulk=True)
         except Exception as e:
             await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
@@ -478,7 +481,7 @@ async def imdb_searh(bot, message):
             await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
             await message.delete()
             break
-"""@Client.on_message(filters.regex('Name📃') & filters.private)
+@Client.on_message(filters.regex('Name📃') & filters.private)
 async def helmogth(bot, message):
     await asyncio.sleep(20)
     await message.delete()"""
