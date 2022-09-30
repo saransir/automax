@@ -84,8 +84,6 @@ async def advantage_spoll_choker(bot, query):
         chat_type = query.message.chat.type
         N = int(23)
         if chat_type == "private":
-            await query.answer(f"ꜰɪɴᴅɪɴɢ {movie}")
-            await asyncio.sleep(.5)
             N = int(31)
             btn = []
         for file in files:
@@ -169,30 +167,7 @@ async def group(client, message):
         if imdb:
             btn.append(
                 [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#{imdb['imdb_id']}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
-            )
-            caption = IMDB_TEMPLATE.format(
-                query = imdb['title'],
-                title = imdb['title'],
-                votes = imdb['votes'],
-                aka = imdb["aka"],
-                seasons = imdb["seasons"],
-                box_office = imdb['box_office'],
-                localized_title = imdb['localized_title'],
-                kind = imdb['kind'],
-                imdb_id = imdb["imdb_id"],
-                cast = imdb["cast"],
-                runtime = imdb["runtime"],
-                countries = imdb["countries"],
-                certificates = imdb["certificates"],
-                languages = imdb["languages"],
-                release_date = imdb['release_date'],
-                year = imdb['year'],
-                genres = imdb['genres'],
-                poster = imdb['poster'],
-                rating = imdb['rating'],
-                url = imdb['url'],
-                **locals()
-            )
+            caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n**‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
         else:
             caption = f"<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
         oam = f"{random.choice(RAT)}"
@@ -307,11 +282,11 @@ async def spell(message):
         poster=await get_poster(title)
     if poster:
         try:
-            await message.reply_photo(photo=poster, caption="        𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞.  ? 👇", reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_photo(photo=poster, caption="        𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞.  ? 👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
         except:
-            await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=" 𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇👇", reply_markup=InlineKeyboardMarkup(btn))
+            await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=" 𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
     else:
-        await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption="    𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞   ?👇", reply_markup=InlineKeyboardMarkup(btn))
+        await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption="    𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞   ?👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
 
 async def advantage_spell_chok(message):
     query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE)
@@ -380,7 +355,7 @@ async def advantage_spell_chok(message):
     if len(btn) > 6: 
         btn = btn[:6]
     btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spo#sa#{user}#close_spellcheck'), InlineKeyboardButton(text=f"{query}",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
-    await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption="ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ 𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇👇", reply_markup=InlineKeyboardMarkup(btn))
+    await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption="ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ 𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
 
 @Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
@@ -396,6 +371,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             filedetails = await get_file_details(file_id)
             if not filedetails:
                 return await query.answer("No such file exist.",show_alert=True)
+            if AUTH_CHANNEL and not await is_subscribed(client, query):
+                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+                return
+            chat_type = query.message.chat.type
+            if chat_type == "private":
+                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+                return
             for files in filedetails:
                 title = files.file_name[0:-4]
                 size=files.file_size
@@ -414,15 +396,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         InlineKeyboardButton('💒 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
                     ]
                     ]
-
-            if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
-                return
-            chat_type = query.message.chat.type
-            if chat_type == "private":
-                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
-                return
-            elif (clicked == typed):
+            if (clicked == typed):
                 try:  
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
