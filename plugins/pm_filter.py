@@ -235,8 +235,7 @@ async def group(client, message):
         await message.delete()
 
 def get_size(size):
-    """Get size in readable format"""
-
+    
     units = ["Bytes", "ᴋʙ", "ᴍʙ", "ɢʙ", "TB", "PB", "EB"]
     size = float(size)
     i = 0
