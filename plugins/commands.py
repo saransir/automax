@@ -443,13 +443,13 @@ async def imdb_searh(bot, message):
         try:
             nx = await bot.ask(text="**ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴍᴏᴠɪᴇ\sᴇʀɪᴇs ɴᴀᴍᴇ ᴡɪᴛʜᴏᴜᴛ sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ**", chat_id=message.from_user.id, filters=filters.text, timeout=30, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
         except TimeoutError:
-            await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ** __30__ **ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️**")
+            await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ** __30__ **ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️ or request on group👇**", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
             await message.delete()
-            await asyncio.sleep(1)
-            await bot.send_message(chat_id=cmd.from_user.id, text="**request on group👇**", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
             return
-        if nx.reply_to_message:
-            await nx.reply_to_message.delete()
+        if not nx.reply_to_message:
+            await message.reply("**ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ** ᴛʀʏ ᴀɢᴀɪɴ♻️")
+            continue
+        await nx.reply_to_message.delete()
         if nx.text.startswith("/"):
             await message.delete()
             await nx.delete()
@@ -457,24 +457,29 @@ async def imdb_searh(bot, message):
         titl = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|malayalam|English|english|Malayalam|Hindi|hindi|Telugu|telugu|1080p|720p|HEVC|Esub|Kannada|kannada|tamil|Tamil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|with\ssubtitle(s)?)", "", nx.text, flags=re.IGNORECASE) # plis contribute some common words 
         name = titl.strip()
         if len(name) <= 2:
-            ki = await message.reply(f"{message.from_user.mention}, **ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ**")
-            await asyncio.sleep(10)
-            await ki.delete()
             await message.delete()
+            ki = await nx.reply(f"{message.from_user.mention}, **ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ**", quote=True)
+            await asyncio.sleep(15)
+            await ki.delete()
+            await nx.delete()
             return
         movies = await get_post(name, bulk=True)
         if not movies:
             kuttons = []
+            await message.delete()
             x = name.split()
             hari = "+".join(x)
             kuttons.append(
                 [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
             )
+            kuttons.append(
+                [InlineKeyboardButton(text="ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 🍿", url="https://t.me/+eDjzTT2Ua6kwMTI1")]
+            )
             reply_arkup = InlineKeyboardMarkup(kuttons)
-            k = await message.reply("**I couldn't find any movie in that name** \n\n __𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
+            k = await nx.reply("**I couldn't find any movie in that name** \n\n __𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", quote=True, reply_markup=reply_arkup)
             await asyncio.sleep(30)
             await k.delete()
-            await message.delete()
+            await nx.delete()
             return
         try:
             btn = [
@@ -488,11 +493,11 @@ async def imdb_searh(bot, message):
             ]
             await nx.reply('**👇 Hᴇʀᴇ ɪs ᴡʜᴀᴛ ɪ ғᴏᴜɴᴅ ᴏɴ IMDb**', quote=True, reply_markup=InlineKeyboardMarkup(btn))
             await message.delete()
-            break
+            return
         except Exception as e:
             await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
             await message.delete()
-            break
+            return
 """@Client.on_message(filters.regex('Name📃') & filters.private)
 async def helmogth(bot, message):
     await asyncio.sleep(20)
