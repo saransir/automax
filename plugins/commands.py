@@ -446,28 +446,38 @@ async def imdb_searh(bot, message):
             await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ** __30__ **ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️**")
             await message.delete()
             return
-        name = nx.text
-        if len(name) <= 3:
-            await message.reply("__No results Found__")
-            break
         if nx.reply_to_message:
             await nx.reply_to_message.delete()
-        await spell(nx)
-
-        """try:
-            movies = await get_post(name, bulk=True)
-        except Exception as e:
-            await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
-            movies = []
-        if not movies:
-            await message.reply("__No results Found__")
+        if nx.text.startswith("/"):
             await message.delete()
-            return    
+            return
+        titl = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|malayalam|English|english|Malayalam|Hindi|hindi|Telugu|telugu|1080p|720p|HEVC|Esub|Kannada|kannada|tamil|Tamil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|with\ssubtitle(s)?)", "", nx.text, flags=re.IGNORECASE) # plis contribute some common words 
+        name = titl.strip()
+        if len(name) <= 2:
+            ki = await message.reply(f"{message.from_user.mention}, **ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ**")
+            await asyncio.sleep(10)
+            await ki.delete()
+            await message.delete()
+            return
+        movies = await get_post(name, bulk=True)
+        if not movies:
+            kuttons = []
+            x = name.split()
+            hari = "+".join(x)
+            kuttons.append(
+                [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
+            )
+            reply_arkup = InlineKeyboardMarkup(kuttons)
+            k = await message.reply("**I couldn't find any movie in that name** \n\n __𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
+            await asyncio.sleep(30)
+            await k.delete()
+            await message.delete()
+            return
         try:
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"{movie.get('title')} 💒 {movie.get('year')}",
+                        text=f"{movie.get('title')[0:33]} 💒 {movie.get('year')}",
                         callback_data=f"spo#se#{user}#{movie.movieID}",
                     )
                 ]
@@ -480,7 +490,7 @@ async def imdb_searh(bot, message):
             await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
             await message.delete()
             break
-@Client.on_message(filters.regex('Name📃') & filters.private)
+"""@Client.on_message(filters.regex('Name📃') & filters.private)
 async def helmogth(bot, message):
     await asyncio.sleep(20)
     await message.delete()"""
