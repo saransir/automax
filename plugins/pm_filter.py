@@ -1,4 +1,4 @@
-#on air movies
+#on airmovie
 from pyrogram.errors import UserNotParticipant, UserIsBlocked, FloodWait 
 from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, ADMINS, START_MSG
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
