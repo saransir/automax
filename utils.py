@@ -2,6 +2,9 @@ import re
 import base64
 import logging
 import pymongo
+import random
+import asyncio
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from struct import pack
 from bs4 import BeautifulSoup
 from pyrogram.errors import UserNotParticipant
@@ -16,6 +19,7 @@ import requests
 import json
 from imdb import IMDb
 from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, AUTH_CHANNEL, API_KEY
+from pm_filter import advantage_spell_chok
 DATABASE_URI_2=os.environ.get('DATABASE_URI_2', DATABASE_URI)
 DATABASE_NAME_2=os.environ.get('DATABASE_NAME_2', DATABASE_NAME)
 COLLECTION_NAME_2="Posters"
@@ -32,6 +36,13 @@ imdb=Instance.from_db(imdbdb)
 imdbb = IMDb()
 myclient = pymongo.MongoClient(DATABASE_URI)
 mydb = myclient[DATABASE_NAME]
+RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼",]
+
+PHOTO = [
+    "https://telegra.ph/file/9075ca7cbad944afaa823.jpg",
+    "https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg",
+    "https://telegra.ph/file/51683050f583af4c81013.jpg",
+]
 
 @instance.register
 class Media(Document):
@@ -111,6 +122,43 @@ async def delete_filter(message, text):
     else:
         await message.reply_text("Couldn't find that filter!", quote=True)
 
+async def spell(message):
+    titl = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|malayalam|English|english|Malayalam|Hindi|hindi|Telugu|telugu|1080p|720p|HEVC|Esub|Kannada|kannada|tamil|Tamil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE) # plis contribute some common words 
+    title = titl.strip()
+    if len(title) <= 2:
+        ki = await message.reply("** I couldn't find any movie in that name**.")
+        await asyncio.sleep(8)
+        await ki.delete()
+        await message.delete()
+        return
+    fn = titl.replace(" ", "_")[0:30]
+    btn = []
+    user = message.from_user.id if message.from_user else 0
+    movies = await get_post(title, bulk=True)
+    if not movies:
+        return await advantage_spell_chok(message)
+    oam = f"{random.choice(RAT)}"
+    for movie in movies:
+        title = movie.get('title')[:25]
+        year = movie.get('year')
+        if not year:
+            year = oam
+        btn.append(
+            [InlineKeyboardButton(text=f"{title} {oam} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
+        )
+    if len(btn) > 9: 
+        btn = btn[:9]
+    btn.append([InlineKeyboardButton(text=f"🔖 ᴄʟᴏꜱᴇ", callback_data=f'spo#se#{user}#close_spellcheck'), InlineKeyboardButton(text=f"🔖 ᴩᴍ ",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
+    poster=None
+    if API_KEY:
+        poster=await get_poster(title)
+    if poster:
+        try:
+            await message.reply_photo(photo=poster, caption="        𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞.  ? 👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
+        except:
+            await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=" 𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
+    else:
+        await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption="    𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞   ?👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
 
 async def save_poster(imdb_id, title, year, url):
     try:
