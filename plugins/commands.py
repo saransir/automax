@@ -135,7 +135,7 @@ async def start(bot, cmd):
             return
         else:
             return await spell(nx)
-        ***await bot.send_message(
+        """await bot.send_message(
             chat_id=cmd.from_user.id,
             text="**request on group🎪**",
             reply_markup=InlineKeyboardMarkup(
@@ -145,7 +145,7 @@ async def start(bot, cmd):
                     ]
                 ]
             )
-        )***
+        )"""
     elif usr_cmdall1.startswith("/start saran"):
         ident, file_name = cmd.text.split("==")
         await cmd.reply_chat_action("typing")
