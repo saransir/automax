@@ -267,7 +267,7 @@ async def spell(message):
         return await advantage_spell_chok(message)
     oam = f"{random.choice(RAT)}"
     btn.append([InlineKeyboardButton(text=f"{oam} ᴄʟᴏꜱᴇ", callback_data=f"spo#se#{user}#close_spellcheck"), InlineKeyboardButton(text=f"{oam} ᴩᴍ ",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
-    chat_type = query.message.chat.type
+    chat_type = message.chat.type
     N = int(25)
     if chat_type == "private":
        N = int(34)
@@ -306,7 +306,7 @@ async def advantage_spell_chok(message):
     kuttons.append(
         [InlineKeyboardButton(text="✉️ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ ✉️",callback_data=f"report_{hari}")]
     )
-    chat_type = query.message.chat.type
+    chat_type = message.chat.type
     if chat_type == "private":
         btn.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+PBGW_EV3ldY5YjJl")])
     reply_arkup = InlineKeyboardMarkup(kuttons)
