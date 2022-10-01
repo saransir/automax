@@ -19,7 +19,7 @@ import requests
 import json
 from imdb import IMDb
 from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, AUTH_CHANNEL, API_KEY
-from pm_filter import advantage_spell_chok
+from plugins.pm_filter import advantage_spell_chok
 DATABASE_URI_2=os.environ.get('DATABASE_URI_2', DATABASE_URI)
 DATABASE_NAME_2=os.environ.get('DATABASE_NAME_2', DATABASE_NAME)
 COLLECTION_NAME_2="Posters"
