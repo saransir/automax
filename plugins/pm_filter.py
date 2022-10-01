@@ -266,12 +266,12 @@ async def spell(message):
     if not movies:
         return await advantage_spell_chok(message)
     oam = f"{random.choice(RAT)}"
-    btn.append([InlineKeyboardButton(text=f"{oam} ᴄʟᴏꜱᴇ", callback_data=f'spo#se#{user}#close_spellcheck'), InlineKeyboardButton(text=f"{oam} ᴩᴍ ",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
+    btn.append([InlineKeyboardButton(text=f"{oam} ᴄʟᴏꜱᴇ", callback_data=f"spo#se#{user}#close_spellcheck"), InlineKeyboardButton(text=f"{oam} ᴩᴍ ",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
     chat_type = query.message.chat.type
     N = int(25)
     if chat_type == "private":
        N = int(34)
-       btn = []
+       btn.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+PBGW_EV3ldY5YjJl")])
     for movie in movies:
         title = movie.get('title')[:N]
         year = movie.get('year')
@@ -306,6 +306,9 @@ async def advantage_spell_chok(message):
     kuttons.append(
         [InlineKeyboardButton(text="✉️ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ ✉️",callback_data=f"report_{hari}")]
     )
+    chat_type = query.message.chat.type
+    if chat_type == "private":
+        btn.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+PBGW_EV3ldY5YjJl")])
     reply_arkup = InlineKeyboardMarkup(kuttons)
     if not g_s:
         k = await message.reply("**I couldn't find any movie in that name** \n\n ɪꜰ ꜰɪʟᴇ ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇 \n\n __𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
@@ -344,14 +347,14 @@ async def advantage_spell_chok(message):
     SPELL_CHECK[message.message_id] = movielist
     btn = [[
                 InlineKeyboardButton(
-                    text=movie.strip(),
+                    text=🎬 {movie.strip()},
                     callback_data=f"spo#sa#{user}#{k}",
                 )
             ] for k, movie in enumerate(movielist)]
     if len(btn) > 6: 
         btn = btn[:6]
-    btn.append([InlineKeyboardButton(text="🔺 Close 🔺", callback_data=f'spo#sa#{user}#close_spellcheck'), InlineKeyboardButton(text=f"{query}",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
-    await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption="ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ 𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
+    btn.append([InlineKeyboardButton(text="🄲🄻🄾🅂🄴", callback_data=f'spo#sa#{user}#close_spellcheck'), InlineKeyboardButton(text="🄿🄼", url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
+    await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
 
 @Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
