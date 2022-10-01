@@ -458,7 +458,7 @@ async def imdb_searh(bot, message):
         await nx.delete()
         return
     else:
-        return await spell(message)
+        return await spell(nx)
         """titl = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|malayalam|English|english|Malayalam|Hindi|hindi|Telugu|telugu|1080p|720p|HEVC|Esub|Kannada|kannada|tamil|Tamil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|with\ssubtitle(s)?)", "", nx.text, flags=re.IGNORECASE) # plis contribute some common words 
         name = titl.strip()
         if len(name) <= 2:
