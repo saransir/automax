@@ -272,7 +272,7 @@ async def spell(message):
     if chat_type == "private":
        N = int(34)
        btn = []
-       btn.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+PBGW_EV3ldY5YjJl")])
+       btn.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
     for movie in movies:
         title = movie.get('title')[:N]
         year = movie.get('year')
@@ -309,7 +309,7 @@ async def advantage_spell_chok(message):
     )
     chat_type = message.chat.type
     if chat_type == "private":
-        btn.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+PBGW_EV3ldY5YjJl")])
+        btn.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
     reply_arkup = InlineKeyboardMarkup(kuttons)
     if not g_s:
         k = await message.reply("**I couldn't find any movie in that name** \n\n ɪꜰ ꜰɪʟᴇ ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇 \n\n __𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
