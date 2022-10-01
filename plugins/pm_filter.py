@@ -266,8 +266,14 @@ async def spell(message):
     if not movies:
         return await advantage_spell_chok(message)
     oam = f"{random.choice(RAT)}"
+    btn.append([InlineKeyboardButton(text=f"{oam} ᴄʟᴏꜱᴇ", callback_data=f'spo#se#{user}#close_spellcheck'), InlineKeyboardButton(text=f"{oam} ᴩᴍ ",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
+    chat_type = query.message.chat.type
+    N = int(25)
+    if chat_type == "private":
+       N = int(34)
+       btn = []
     for movie in movies:
-        title = movie.get('title')[:25]
+        title = movie.get('title')[:N]
         year = movie.get('year')
         if not year:
             year = oam
@@ -276,17 +282,7 @@ async def spell(message):
         )
     if len(btn) > 9: 
         btn = btn[:9]
-    btn.append([InlineKeyboardButton(text=f"🔖 ᴄʟᴏꜱᴇ", callback_data=f'spo#se#{user}#close_spellcheck'), InlineKeyboardButton(text=f"🔖 ᴩᴍ ",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
-    poster=None
-    if API_KEY:
-        poster=await get_poster(title)
-    if poster:
-        try:
-            await message.reply_photo(photo=poster, caption="        𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞.  ? 👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
-        except:
-            await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=" 𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
-    else:
-        await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption="    𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞   ?👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
+    await message.reply("__𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞__?👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
 
 async def advantage_spell_chok(message):
     query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE)
