@@ -271,6 +271,7 @@ async def spell(message):
     N = int(25)
     if chat_type == "private":
        N = int(34)
+       btn = []
        btn.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+PBGW_EV3ldY5YjJl")])
     for movie in movies:
         title = movie.get('title')[:N]
