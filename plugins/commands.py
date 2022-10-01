@@ -115,38 +115,27 @@ async def start(bot, cmd):
         )
         await cmd.delete()
     elif len(cmd.command) > 1 and cmd.command[1] == 'okay' or usr_cmdall1.startswith("/start imx"):
-        """user = cmd.from_user.id if cmd.from_user else 0
-        await cmd.delete()
+        user = message.from_user.id if message.from_user else 0
         while True:
-            nx = await bot.ask(text="** Just Send Me Movie/Series Name Without Spelling Mistake **", chat_id=cmd.from_user.id, reply_markup=ForceReply(placeholder="type..."))
-            name = nx.text
-            await nx.forward("@S1a2r3a4n")
-            # if 
-            # ident, file_name = cmd.text.split("==")
-            if len(name) <= 3:
-                await message.reply("__No results Found__")
-                break
             try:
-                movies = await get_post(name, bulk=True)
-                if not movies:
-                    return await cmd.reply("No results Found")
-                if nx.reply_to_message:
-                    await nx.reply_to_message.delete()
-                btn = [
-                    [
-                        InlineKeyboardButton(
-                            text=f"{movie.get('title')} 💒 {movie.get('year')}",
-                            callback_data=f"spo#se#{user}#{movie.movieID}",
-                        )
-                    ]
-                    for movie in movies
-                ]
-                await nx.reply('**👇 Here is what i found on IMDb**', quote=True, reply_markup=InlineKeyboardMarkup(btn))
+                nx = await bot.ask(text="**ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴍᴏᴠɪᴇ\sᴇʀɪᴇs ɴᴀᴍᴇ ᴡɪᴛʜᴏᴜᴛ sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ**", chat_id=message.from_user.id, filters=filters.text, timeout=30, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
+            except TimeoutError:
+                await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ** __30__ **ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️ or request on group👇**", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
+                await message.delete()
                 break
-            except Exception as e:
-                await nx.reply_text(f"❗️Error❗️ caused Due to <code>{e}</code>")
-                break """
-        await bot.send_message(
+            if not nx.reply_to_message:
+                await message.reply("**ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ** ᴛʀʏ ᴀɢᴀɪɴ♻️")
+                continue
+            else:
+                await message.delete()
+                await nx.reply_to_message.delete()
+                break
+        if nx.text.startswith("/"):
+            await nx.delete()
+            return
+        else:
+            return await spell(nx)
+        ***await bot.send_message(
             chat_id=cmd.from_user.id,
             text="**request on group🎪**",
             reply_markup=InlineKeyboardMarkup(
@@ -156,7 +145,7 @@ async def start(bot, cmd):
                     ]
                 ]
             )
-        )
+        )***
     elif usr_cmdall1.startswith("/start saran"):
         ident, file_name = cmd.text.split("==")
         await cmd.reply_chat_action("typing")
@@ -451,63 +440,15 @@ async def imdb_searh(bot, message):
             await message.reply("**ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ** ᴛʀʏ ᴀɢᴀɪɴ♻️")
             continue
         else:
+            await message.delete()
+            await nx.reply_to_message.delete()
             break
-
-    await nx.reply_to_message.delete()
     if nx.text.startswith("/"):
-        await message.delete()
         await nx.delete()
         return
     else:
-        return await spell(nx)
-        """titl = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|malayalam|English|english|Malayalam|Hindi|hindi|Telugu|telugu|1080p|720p|HEVC|Esub|Kannada|kannada|tamil|Tamil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|with\ssubtitle(s)?)", "", nx.text, flags=re.IGNORECASE) # plis contribute some common words 
-        name = titl.strip()
-        if len(name) <= 2:
-            await message.delete()
-            ki = await nx.reply(f"{message.from_user.mention}, **ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ**", quote=True)
-            await asyncio.sleep(15)
-            await ki.delete()
-            await nx.delete()
-            return
-    movies = await get_post(name, bulk=True)
-    if not movies:
-        movies = await get_post(nx.text, bulk=True)
-        if not movies:
-            kuttons = []
-            await message.delete()
-            x = name.split()
-            hari = "+".join(x)
-            kuttons.append(
-                [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
-            )
-            kuttons.append(
-                [InlineKeyboardButton(text="ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 🍿", url="https://t.me/+eDjzTT2Ua6kwMTI1")]
-            )
-            reply_arkup = InlineKeyboardMarkup(kuttons)
-            k = await nx.reply("**I couldn't find any movie in that name** \n\n __𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", quote=True, reply_markup=reply_arkup)
-            await asyncio.sleep(30)
-            await k.delete()
-            await nx.delete()
-            return
-    if movies:
-        try:
-            btn = [
-                [
-                    InlineKeyboardButton(
-                        text=f"{movie.get('title')[0:33]} 💒 {movie.get('year')}",
-                        callback_data=f"spo#se#{user}#{movie.movieID}",
-                    )
-                ]
-                for movie in movies
-            ]
-            await nx.reply('**👇 Hᴇʀᴇ ɪs ᴡʜᴀᴛ ɪ ғᴏᴜɴᴅ ᴏɴ IMDb**', quote=True, reply_markup=InlineKeyboardMarkup(btn))
-            await message.delete()
-            return
-        except Exception as e:
-            await nx.reply_text(f"Error❗️ caused Due to <code>{e}</code>")
-            await message.delete()
-            return
-@Client.on_message(filters.regex('Name📃') & filters.private)
+        return await spell(nx)        
+"""@Client.on_message(filters.regex('Name📃') & filters.private)
 async def helmogth(bot, message):
     await asyncio.sleep(20)
     await message.delete()"""
