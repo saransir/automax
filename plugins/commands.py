@@ -467,7 +467,9 @@ async def imdb_searh(bot, message):
             await ki.delete()
             await nx.delete()
             return
-        movies = await get_post(name, bulk=True)
+    movies = await get_post(name, bulk=True)
+    if not movies:
+        movies = await get_post(nx.text, bulk=True)
         if not movies:
             kuttons = []
             await message.delete()
@@ -485,6 +487,7 @@ async def imdb_searh(bot, message):
             await k.delete()
             await nx.delete()
             return
+    if movies:
         try:
             btn = [
                 [
