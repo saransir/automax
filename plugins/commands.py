@@ -6,9 +6,10 @@ import random
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest, CallbackQuery, ForceReply
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
-from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post, add_filter, get_filters, delete_filter, spell
+from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post, add_filter, get_filters, delete_filter
 from info import TUTORIAL
 from info import IMDB_TEMPLATE, IMDB_TEMPLATEE
+from plugins.pm_filter import spell
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 from asyncio.exceptions import TimeoutError
