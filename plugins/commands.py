@@ -445,14 +445,16 @@ async def imdb_searh(bot, message):
         except TimeoutError:
             await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ** __30__ **ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️ or request on group👇**", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
             await message.delete()
-            return
+            break
         if not nx.reply_to_message:
             await message.reply("**ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ** ᴛʀʏ ᴀɢᴀɪɴ♻️")
             continue
+        else:
+            break
+
     await nx.reply_to_message.delete()
     if nx.text.startswith("/"):
         await message.delete()
-        await nx.delete()
         await nx.delete()
         return
     else:
