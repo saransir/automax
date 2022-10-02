@@ -66,6 +66,7 @@ async def answer(bot, query):
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="start",
                            next_offset=str(next_offset))
+        return
     else:
         switch_pm_text = f'{emoji.CROSS_MARK} No results'
         if string:
