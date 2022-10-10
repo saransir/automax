@@ -23,9 +23,11 @@ PHOTO = [
 @Client.on_callback_query(filters.regex(r"^spo"))
 async def advantage_spoll_choker(bot, query):
     _, s, user, movie_ = query.data.split('#')
+    message = query.message.reply_to_message
+    if not message:
+        return await query.message.delete()
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer("Don't click others Requested files🎬", show_alert=True)
-    message = query.message.reply_to_message
     if movie_  == "close_spellcheck":
         await message.delete()
         return await query.message.delete()
@@ -89,7 +91,7 @@ async def advantage_spoll_choker(bot, query):
         for file in files:
             file_id = file.file_id
             sz = get_size(file.file_size)
-            tt = str(file.file_name[0:32].title().lstrip())
+            tt = str(file.file_name[0:35].title().lstrip())
             dcode = re.sub(r"(_|\-|\.|\´|\`|\,|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
             filename = f"{dcode[0:N]}{oam}{sz[0:3]} {sz[-2:]}{oam}"
             btn.append(
@@ -397,8 +399,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('ᴍᴀɪɴ ɢʀᴏᴜᴘ 💒', url='https://t.me/+PBGW_EV3ldY5YjJl'),
-                        InlineKeyboardButton('💒 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
+                        InlineKeyboardButton('💒 ｍａｉｎ  ｇｒｏｕｐ 💒', url='https://t.me/+PBGW_EV3ldY5YjJl')
                     ]
                     ]
             if (clicked == typed):
@@ -435,9 +436,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton(f"🎪 Pages {int(index)+2}/{data['total']}🎪", callback_data="pages")]
                 )
-                buttons.append(
-                    [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
-                )
+                """buttons.append(
+                    [InlineKeyboardButton(text="🍿𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼🍿",callback_data=f"myree#")]
+                )"""
 
                 await query.edit_message_reply_markup( 
                     reply_markup=InlineKeyboardMarkup(buttons)
@@ -449,10 +450,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton(f"🎪{int(index)+2}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)+1}_{keyword}")]
                 )
-                buttons.append(
-                    [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
-                )
-
+                
                 await query.edit_message_reply_markup( 
                     reply_markup=InlineKeyboardMarkup(buttons)
                 )
@@ -482,9 +480,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton(f"🎪{int(index)}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)-1}_{keyword}")]
                 )
-                buttons.append(
-                    [InlineKeyboardButton(text="🕵️𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼",callback_data=f"myree#")]
-                )
 
                 await query.edit_message_reply_markup( 
                     reply_markup=InlineKeyboardMarkup(buttons)
@@ -499,24 +494,21 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 [
                     InlineKeyboardButton("ɢʀᴏᴜᴩ 1 🎪", url="https://t.me/+PBGW_EV3ldY5YjJl"),
                     InlineKeyboardButton("ɢʀᴏᴜᴩ 2 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")   
-                ],
-                [
+                ]]
+                """[
                     InlineKeyboardButton("🔎 ꜱᴇᴀʀᴄʜ ꜰɪʟᴇ 🔍", switch_inline_query_current_chat='')
                 ],
                 [
                     InlineKeyboardButton('🔍 ɢᴏ ɪɴʟɪɴᴇ 🔎', switch_inline_query='')
                 ]
-                ]
+                ]"""
             a = await query.message.reply_text(
             START_MSG.format(query.from_user.first_name),
             parse_mode="Markdown",
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(buttons))
             await query.message.delete()
-            await asyncio.sleep(2)
-            m = await a.reply(f"<code> മുകളിൽ കാണുന്ന -𝘀𝗲𝗮𝗿𝗰𝗵 𝗳𝗶𝗹𝗲- എന്ന ബട്ടണിൽ ക്ലിക്ക് ചെയ്തു സിനിമയുടെ പേര്  ടൈപ്പ് ചെയ്താൽ  സിനിമ ഫയൽ ലഭികും</code> \n\n <b>⚠️ Note: search ചെയ്യുമ്പോൾ Correct Spelling ആയിരിക്കണം. Correct Spelling അറിയാൻ ഗൂഗിളിൽ നോക്കി  ടൈപ്പ് ചെയ്യുക</b>")
-            await asyncio.sleep(15)
-            await m.delete()
+            
         elif query.data.startswith("report"):
             ident, movie = query.data.split("_")
             x = movie.split("+")
@@ -547,9 +539,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.delete()
             try:
                 await message.delete()
-            except KeyError:
-                await query.answer(" your query message is deleted 🌩️",show_alert=True)
-                return
+            except:
+                return await query.answer("your query message is deleted 🌩️",show_alert=True)
+                
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
                 await query.answer("🎪ഗ്രൂപ്പിൽ join ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ \n\n Join My 🎪 group 🎪 to click",show_alert=True)
@@ -570,8 +562,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('🎪 ɢʀᴏᴜᴘ', url='https://t.me/+PBGW_EV3ldY5YjJl'),
-                        InlineKeyboardButton(' 🔍 sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
+                        InlineKeyboardButton('🎪 ɢʀᴏᴜᴘ', url='https://t.me/+PBGW_EV3ldY5YjJl')
                     ]
                     ]
                 
