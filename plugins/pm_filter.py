@@ -84,7 +84,7 @@ async def advantage_spoll_choker(bot, query):
         chat_type = query.message.chat.type
         N = int(23)
         if chat_type == "private":
-            N = int(31)
+            N = int(33)
             btn = []
         for file in files:
             file_id = file.file_id
@@ -308,12 +308,13 @@ async def advantage_spell_chok(message):
     kuttons.append(
         [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
     )
-    kuttons.append(
-        [InlineKeyboardButton(text="✉️ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ ✉️",callback_data=f"report_{hari}")]
-    )
     chat_type = message.chat.type
     if chat_type == "private":
         kuttons.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
+    else:
+        kuttons.append(
+            [InlineKeyboardButton(text="✉️ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ ✉️",callback_data=f"report_{hari}")]
+        )
     reply_arkup = InlineKeyboardMarkup(kuttons)
     if not g_s:
         k = await message.reply("**I couldn't find any movie in that name** \n\n ɪꜰ ꜰɪʟᴇ ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇 \n\n __𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
@@ -537,8 +538,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.edit_message_reply_markup( 
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
-            await asyncio.sleep(2)
-            await query.answer("Once this movie is releas HDRip/OTT, it will be upload on the 💒channel \n\n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ 💒ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ് ",show_alert=True)
+            await asyncio.sleep(.8)
+            await query.answer("Once this movie is releas HDRip/OTT, it will be upload on the👇 💒channel \n\n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ ഉള്ള 💒ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്",show_alert=True)
             return
         elif query.data == "about":
             await query.answer("🤖 ɴᴀᴍᴇ: ғɪʟᴛᴇʀ -x- v2.8\n\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ😁\n\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
