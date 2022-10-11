@@ -397,17 +397,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         f_caption=f_caption
                 if f_caption is None:
                     f_caption = f"{title}"
-                buttons = [
-                    [
-                        InlineKeyboardButton('💒 ｍａｉｎ  ｇｒｏｕｐ 💒', url='https://t.me/+PBGW_EV3ldY5YjJl')
-                    ]
-                    ]
+                buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
             if (clicked == typed):
                 try:  
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption=f"**🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛**<code>{title}</code><b> \n\n  [©ᵗᵉˡᵉᵍʳᵃᵐᵃᵐ](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
+                    caption=f"**🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛**<code>{title}</code><b>\n\n ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
                 except UserIsBlocked:
@@ -530,17 +526,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.edit_message_reply_markup( 
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
-            await asyncio.sleep(.8)
+            await asyncio.sleep(.5)
             await query.answer("Once this movie is releas HDRip/OTT, it will be upload on the👇 💒channel \n\n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ ഉള്ള 💒ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്",show_alert=True)
             return
         elif query.data == "about":
             await query.answer("🤖 ɴᴀᴍᴇ: ғɪʟᴛᴇʀ -x- v2.8\n\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ😁\n\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
         elif query.data == "close":
+            await query.answer("your query message is deleted 🌩️",show_alert=True)
             await query.message.delete()
             try:
                 await message.delete()
             except:
-                return await query.answer("your query message is deleted 🌩️",show_alert=True)
+                return
                 
         elif query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
@@ -562,7 +559,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('🎪 ɢʀᴏᴜᴘ', url='https://t.me/+PBGW_EV3ldY5YjJl')
+                        InlineKeyboardButton('💒 ɢʀᴏᴜᴘ 💒', url='https://t.me/+PBGW_EV3ldY5YjJl')
                     ]
                     ]
                 
@@ -574,8 +571,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     caption=f"<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     ) 
-
-
         elif query.data == "pages":
             await query.answer()
     else:
