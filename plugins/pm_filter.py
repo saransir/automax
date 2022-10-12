@@ -80,8 +80,6 @@ async def advantage_spoll_choker(bot, query):
     else:
         imdbcap = f" **{movie}**"     
     cha = int(CHAA)
-    if not query.message.reply_to_message:
-        return await query.message.delete()
     if files:
         chat_type = query.message.chat.type
         N = int(23)
@@ -117,6 +115,8 @@ async def advantage_spoll_choker(bot, query):
                     [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ 🤵",callback_data=f"report_{hari}")]
                 )
             reply_markup = InlineKeyboardMarkup(kuttons)
+            if not message.from_user:
+                return await a1.delete()
             await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
             a = await a1.edit_text(f"<b>🌀ꜰᴏʀ-{message.from_user.mention}</b>\n\n {imdbcap}\n\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺 <b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b> \n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ ꜱᴏ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ👇\n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup)
             await asyncio.sleep(55)
@@ -129,7 +129,8 @@ async def advantage_spoll_choker(bot, query):
         await a.delete()
         await message.delete()
         return
-    # btn = list(set(btn))
+    if not message.message_id:
+        return await a1.delete()
     if len(btn) > 6: 
         btns = list(split_list(btn, 6)) 
         keyword = f"{message.chat.id}-{message.message_id}"
@@ -386,7 +387,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
             for files in filedetails:
                 at = files.file_name[0:-4]
-                title = re.sub(r"(#|\@|\~|\©|\[|\]|\(|\_|\.)", "", at, flags=re.IGNORECASE)
+                title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", "", at, flags=re.IGNORECASE)
                 size=files.file_size
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
