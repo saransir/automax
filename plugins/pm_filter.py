@@ -490,14 +490,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 [
                     InlineKeyboardButton("ɢʀᴏᴜᴩ 1 🎪", url="https://t.me/+PBGW_EV3ldY5YjJl"),
                     InlineKeyboardButton("ɢʀᴏᴜᴩ 2 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")   
-                ]]
-                """[
-                    InlineKeyboardButton("🔎 ꜱᴇᴀʀᴄʜ ꜰɪʟᴇ 🔍", switch_inline_query_current_chat='')
-                ],
-                [
-                    InlineKeyboardButton('🔍 ɢᴏ ɪɴʟɪɴᴇ 🔎', switch_inline_query='')
                 ]
-                ]"""
+                ]
+                
             a = await query.message.reply_text(
             START_MSG.format(query.from_user.first_name),
             parse_mode="Markdown",
