@@ -169,6 +169,7 @@ async def group(client, message):
         x = search.split()
         hari = "+".join(x)
         sesna = "_".join(x)
+        imdb=None
         imdb = await get_post(search)
         if imdb:
             btn.append(
