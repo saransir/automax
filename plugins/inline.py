@@ -52,8 +52,7 @@ async def answer(bot, query):
                 title=file.file_name,
                 file_id=file.file_id,
                 caption="<code>" + title + "</code>""\n\n  <b>ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ \n [𝚐𝚛𝚘𝚞𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)  ↮  [𝚐𝚛𝚘𝚞𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
-                description=f'🪁 Size: {get_size(file.file_size)}\nType: {file.file_type}',
-                reply_markup=reply_markup))
+                description=f'💒 Size: {get_size(file.file_size)}\n🍿Type: {file.file_type}'))
 
     if results:
         switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂"
