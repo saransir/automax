@@ -160,12 +160,11 @@ async def group(client, message):
         await asyncio.sleep(10)
         await kk.delete()
         await message.delete()
-    elif 2 < len(message.text) <= 5:
+    elif 2 < len(message.text) <= 4:
         return await spell(message)
-    elif 5 < len(message.text) < 42:    
+    elif 4 < len(message.text) < 40:    
         btn = []
-        searc = message.text
-        search = searc.strip()
+        search = message.text.title().strip()
         x = search.split()
         hari = "+".join(x)
         sesna = "_".join(x)
@@ -272,7 +271,7 @@ async def spell(message):
     if not movies:
         return await advantage_spell_chok(message)
     oam = f"{random.choice(RAT)}"
-    btn.append([InlineKeyboardButton(text=f"{oam} ᴄʟᴏꜱᴇ", callback_data=f"spo#se#{user}#close_spellcheck"), InlineKeyboardButton(text=f"{oam} ᴩᴍ ",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
+    btn.append([InlineKeyboardButton(text=f"{oam} ᴄʟᴏꜱᴇ", callback_data=f"close"), InlineKeyboardButton(text=f"{oam} ᴩᴍ ",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
     chat_type = message.chat.type
     N = int(25)
     if chat_type == "private":
@@ -361,7 +360,7 @@ async def advantage_spell_chok(message):
             ] for k, movie in enumerate(movielist)]
     if len(btn) > 6: 
         btn = btn[:6]
-    btn.append([InlineKeyboardButton(text="🄲🄻🄾🅂🄴", callback_data=f'spo#sa#{user}#close_spellcheck'), InlineKeyboardButton(text="🄿🄼", url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
+    btn.append([InlineKeyboardButton(text="🄲🄻🄾🅂🄴", callback_data="close"), InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}")])
     await message.reply("ɪ ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ᴛʜᴀᴛ \n𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞 ?👇👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
 
 @Client.on_callback_query()
@@ -386,7 +385,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
                 return
             for files in filedetails:
-                title = files.file_name[0:-4]
+                at = files.file_name[0:-4]
+                title = re.sub(r"(#|\@|\~|\©|\[)", "@on_air_movies ", at, flags=re.IGNORECASE)
                 size=files.file_size
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
@@ -403,7 +403,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption=f"**🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛**<code>{title}</code><b>\n\n ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                    caption=f"<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛{title}\n\n\n ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
                 except UserIsBlocked:
