@@ -386,7 +386,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
             for files in filedetails:
                 at = files.file_name[0:-4]
-                title = re.sub(r"(#|\@|\~|\©|\[)", "@on_air_movies ", at, flags=re.IGNORECASE)
+                title = re.sub(r"(#|\@|\~|\©)", "@on_air_movies ", at, flags=re.IGNORECASE)
                 size=files.file_size
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
