@@ -87,15 +87,14 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name} "
                 buttons = [
                     [
-                        InlineKeyboardButton('ᴍᴀɪɴ ɢʀᴏᴜᴘ', url=f'{LN}'),
-                        InlineKeyboardButton('sᴇᴀʀᴄʜ ғɪʟᴇ', switch_inline_query_current_chat='')
+                        InlineKeyboardButton('ᴍᴀɪɴ ɢʀᴏᴜᴘ', url=f'{LN}')
                     ]
                     ]
                 await cmd.delete()
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption="<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛</b>""<code>" + title + "</code>""\n\n<b>[ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
+                    caption="<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛</b>""<code>" + title + "</code>""\n\n<b>ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ [𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
@@ -114,7 +113,7 @@ async def start(bot, cmd):
             )
         )
         await cmd.delete()
-    elif len(cmd.command) > 1 and cmd.command[1] == 'okay' or usr_cmdall1.startswith("/start imx"):
+    elif len(cmd.command) > 1 and cmd.command[1] == 'okay' or usr_cmdall1.startswith("/start saran"):
         user = cmd.from_user.id if cmd.from_user else 0
         while True:
             try:
@@ -146,7 +145,7 @@ async def start(bot, cmd):
                 ]
             )
         )"""
-    elif usr_cmdall1.startswith("/start saran"):
+    elif usr_cmdall1.startswith("/start imx"):
         ident, file_name = cmd.text.split("==")
         await cmd.reply_chat_action("typing")
         await asyncio.sleep(1)
@@ -304,7 +303,7 @@ async def delete(bot, message):
             await reply.delete()
             await msg.edit('File not found in database')
 
-@Client.on_message(filters.command(['search', 'help']) & filters.private)
+@Client.on_message(filters.command('search_f') & filters.private)
 async def bot_link(bot, message):
     buttons = [
         [
@@ -379,7 +378,7 @@ async def helmo(bot, message):
 async def texddtx(bot, message):
     await message.reply_sticker(sticker=f"{random.choice(HI)}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="🎪 start 🎪",callback_data="start")]]))
     return await message.delete()  
-@Client.on_message(filters.command('mlm_new') & filters.private)
+@Client.on_message(filters.command('malalm_new') & filters.private)
 async def textx(bot, message):
     buttons = [
         [
