@@ -386,7 +386,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
             for files in filedetails:
                 at = files.file_name[0:-4]
-                title = re.sub(r"(#|\@|\~|\©)", "@on_air_movies ", at, flags=re.IGNORECASE)
+                title = re.sub(r"(#|\@|\~|\©|\[|\]|\(|\_|\.)", "", at, flags=re.IGNORECASE)
                 size=files.file_size
                 f_caption=files.caption
                 if CUSTOM_FILE_CAPTION:
@@ -403,7 +403,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption=f"<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛{title}\n\n\n ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                    caption=f"<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛</b><i>{title}</i>\n\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
                 except UserIsBlocked:
