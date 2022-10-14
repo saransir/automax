@@ -24,36 +24,46 @@ async def answer(bot, query):
         string, file_type = query.query.split('|', maxsplit=1)
         string = string.strip()
         file_type = file_type.strip().lower()
-    elif '<' in query.query:
+    elif '+' in query.query:
+        nd = []
+        nd.append(
+            InlineQueryResultArticle(
+                title="request on group 🎪",
+                thumb_url="https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg",
+                description="ask movie/series in group",
+                input_message_content=InputTextMessageContent(
+                    message_text="**request on group**🎪 👇\n **https://t.me/+eDjzTT2Ua6kwMTI1 https://t.me/+eDjzTT2Ua6kwMTI1**",
+                    disable_web_page_preview=True)))
+
         me, string = query.query.split('<', maxsplit=1)
         movie = string.strip()
         movies = await get_post(movie, bulk=True)
         # imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
         if not movies:
-            switch_pm_text = f'{emoji.CROSS_MARK} No results'
-            await query.answer(results=[],
+            await query.answer(results=nd,
                                is_personal = True,
-                               cache_time=cache_time,
-                               switch_pm_text=switch_pm_text,
-                               switch_pm_parameter="okay")
+                               cache_time=cache_time)
             return
         for movie in movies:
-            title = movie.get('title')
+            myr = movie.get('title')
             year = movie.get('year')
-            poster = movie.get('poster')
-            imdbcap = f"**{title}**\n\n **╔‎/yᴇᴀʀ: {year}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {movie.get('rating')}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{movie.get('genres')}**\n\n__ʀᴜɴᴛɪᴍᴇ: {movie.get('runtime')}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{movie.get('languages')}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {movie.get('release_date')}__"
-            if not year:
-               year = "0000"
+            titl = myr.strip()
+            title = titl + year
+            imdb = await get_post(title)
+            if imdb:
+               imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+            else:
+               imdbcap = f"**{titl} 🍿 {year}**"
             results.append(
                 InlineQueryResultArticle(
-                    title=title,
+                    title=f"{titl} 🍿 {year}",
                     thumb_url=poster,
-                    description="click",
                     input_message_content=InputTextMessageContent(
                         message_text=imdbcap,
                         disable_web_page_preview=True)))
         
         switch_pm_text = f'ʀᴇꜱᴜʟᴛꜱ'
+        results += nd
         await query.answer(results=results,
                            is_personal = True,
                            cache_time=cache_time,
