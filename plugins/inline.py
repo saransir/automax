@@ -48,14 +48,14 @@ async def answer(bot, query):
             myr = movie.get('title')
             year = movie.get('year')
             titl = myr.strip()
-            title = titl + year
+            title = = f"{titl} {year}"
             imdb = await get_post(title)
             if imdb:
                imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
                poster = imdb['poster']
             else:
                imdbcap = f"**{titl} 🍿 {year}**"
-               poster = "https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg"
+               poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
             results.append(
                 InlineQueryResultArticle(
                     title=f"{titl} 🍿 {year}",
@@ -99,9 +99,9 @@ async def answer(bot, query):
             InlineQueryResultCachedDocument(
                 title=file.file_name,
                 file_id=file.file_id,
-                caption="<code>" + title + "</code>""\n\n  <b>ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ \n [𝚐𝚛𝚘𝚞𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)  ↮  [𝚐𝚛𝚘𝚞𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
-                description=f'💒 Size: {get_size(file.file_size)}\n🍿Type: {file.file_type}'))
-
+                caption=f"<code><u>🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</u></code>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                description=f'💒 Size: {get_size(file.file_size)}\n🍿Type: {file.file_type}',
+                reply_markup=reply_markup))
     if results:
         switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂"
         if string:
@@ -127,7 +127,8 @@ async def answer(bot, query):
         return
 
 def get_reply_markup(query):
-    buttons = [
+    buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
+    buttons += [
         [
             InlineKeyboardButton('🔍 𝚂𝙴𝙰𝚁𝙲𝙷 ꜰɪʟᴇ 🔎', switch_inline_query_current_chat=query)
         ]
