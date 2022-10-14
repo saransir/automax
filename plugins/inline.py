@@ -48,7 +48,7 @@ async def answer(bot, query):
             myr = movie.get('title')
             year = movie.get('year')
             titl = myr.strip()
-            title = = f"{titl} {year}"
+            title = f"{titl} {year}"
             imdb = await get_post(title)
             if imdb:
                imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
