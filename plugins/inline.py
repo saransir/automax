@@ -40,7 +40,7 @@ async def answer(bot, query):
                     description="click",
                     input_message_content=InputTextMessageContent(
                         message_text=imdbcap,
-                        disable_web_page_preview=True
+                        disable_web_page_preview=True)))
         except:
             pass
     else:
