@@ -1,8 +1,8 @@
 import logging
 from pyrogram import Client, emoji, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent
 
-from utils import get_search_results, is_subscribed
+from utils import get_search_results, is_subscribed, get_post
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
 logger = logging.getLogger(__name__)
 cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
@@ -24,6 +24,25 @@ async def answer(bot, query):
         string, file_type = query.query.split('|', maxsplit=1)
         string = string.strip()
         file_type = file_type.strip().lower()
+    elif '<' in query.query:
+        me, string = query.query.split('<', maxsplit=1)
+        movie = string.strip()
+        imdb = await get_post(movie)
+        if imdb:
+            imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+        else:
+            imdbcap = f" **{movie}**"
+        try:
+            results.append(
+                InlineQueryResultArticle(
+                    title=movie,
+                    thumb_url=imdb['poster'],
+                    description="click",
+                    input_message_content=InputTextMessageContent(
+                        message_text=imdbcap,
+                        disable_web_page_preview=True
+        except:
+            pass
     else:
         string = query.query.strip()
         file_type = None
