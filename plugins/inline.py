@@ -35,9 +35,9 @@ async def answer(bot, query):
                     message_text="**request on group**🎪 👇\n **https://t.me/+eDjzTT2Ua6kwMTI1 https://t.me/+eDjzTT2Ua6kwMTI1**",
                     disable_web_page_preview=True)))
 
-        me, string = query.query.split('<', maxsplit=1)
-        movie = string.strip()
-        movies = await get_post(movie, bulk=True)
+        me, string = query.query.split('+', maxsplit=1)
+        vie = string.strip()
+        movies = await get_post(vie, bulk=True)
         # imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
         if not movies:
             await query.answer(results=nd,
@@ -52,8 +52,10 @@ async def answer(bot, query):
             imdb = await get_post(title)
             if imdb:
                imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+               poster = imdb['poster']
             else:
                imdbcap = f"**{titl} 🍿 {year}**"
+               poster = "https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg"
             results.append(
                 InlineQueryResultArticle(
                     title=f"{titl} 🍿 {year}",
