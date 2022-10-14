@@ -49,9 +49,12 @@ async def answer(bot, query):
             titl = myr.strip()
             title = f"{titl} {year}"
             imdb = await get_post(title)
+            poster=None
             if imdb:
                imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
                poster = imdb['poster']
+               if not poster:
+                   poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
             else:
                imdbcap = f"**{titl} 🍿 {year}**"
                poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
@@ -64,7 +67,7 @@ async def answer(bot, query):
                         disable_web_page_preview=True)))
         
         switch_pm_text = f'ʀᴇꜱᴜʟᴛꜱ'
-        results += nd
+        # results += nd
         await query.answer(results=results,
                            is_personal = True,
                            cache_time=cache_time)                         
