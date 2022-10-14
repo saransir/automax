@@ -20,21 +20,20 @@ async def answer(bot, query):
         return
 
     results = []
+    nd = []
+    nd.append(
+        InlineQueryResultArticle(
+            title="request on group 🎪",
+            thumb_url="https://telegra.ph/file/d651c3858b99538bdb311.jpg",
+            description="ask movie/series in group",
+            input_message_content=InputTextMessageContent(
+                message_text="**request on group**🎪 👇\n https://t.me/+eDjzTT2Ua6kwMTI1 https://t.me/+eDjzTT2Ua6kwMTI1",
+                disable_web_page_preview=True)))
     if '|' in query.query:
         string, file_type = query.query.split('|', maxsplit=1)
         string = string.strip()
         file_type = file_type.strip().lower()
-    elif '+' in query.query:
-        nd = []
-        nd.append(
-            InlineQueryResultArticle(
-                title="request on group 🎪",
-                thumb_url="https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg",
-                description="ask movie/series in group",
-                input_message_content=InputTextMessageContent(
-                    message_text="**request on group**🎪 👇\n **https://t.me/+eDjzTT2Ua6kwMTI1 https://t.me/+eDjzTT2Ua6kwMTI1**",
-                    disable_web_page_preview=True)))
-
+    elif '+' in query.query:       
         me, string = query.query.split('+', maxsplit=1)
         vie = string.strip()
         movies = await get_post(vie, bulk=True)
@@ -68,9 +67,7 @@ async def answer(bot, query):
         results += nd
         await query.answer(results=results,
                            is_personal = True,
-                           cache_time=cache_time,
-                           switch_pm_text=switch_pm_text,
-                           switch_pm_parameter="okay")
+                           cache_time=cache_time)                         
         return
     else:
         string = query.query.strip()
@@ -119,7 +116,7 @@ async def answer(bot, query):
         if string:
             switch_pm_text += f' for "{string}"'
 
-        await query.answer(results=[],
+        await query.answer(results=nd,
                            is_personal = True,
                            cache_time=cache_time,
                            switch_pm_text=switch_pm_text,
