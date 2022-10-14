@@ -8,4 +8,4 @@ pyromod
 requests
 parse-torrent-name
 bs4
-imdbpy
+imdbpy==2021.4.18
