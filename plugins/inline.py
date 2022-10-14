@@ -31,7 +31,13 @@ async def answer(bot, query):
         if imdb:
             imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
         else:
-            imdbcap = f" **{movie}**"
+            switch_pm_text = f'{emoji.CROSS_MARK} No results'
+            await query.answer(results=[],
+                               is_personal = True,
+                               cache_time=cache_time,
+                               switch_pm_text=switch_pm_text,
+                               switch_pm_parameter="okay")
+            return
         try:
             results.append(
                 InlineQueryResultArticle(
@@ -43,6 +49,13 @@ async def answer(bot, query):
                         disable_web_page_preview=True)))
         except:
             pass
+        switch_pm_text = f'ʀᴇꜱᴜʟᴛꜱ'
+        await query.answer(results=results,
+                           is_personal = True,
+                           cache_time=cache_time,
+                           switch_pm_text=switch_pm_text,
+                           switch_pm_parameter="okay")
+        return
     else:
         string = query.query.strip()
         file_type = None
