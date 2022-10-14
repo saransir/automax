@@ -27,10 +27,9 @@ async def answer(bot, query):
     elif '<' in query.query:
         me, string = query.query.split('<', maxsplit=1)
         movie = string.strip()
-        imdb = await get_post(movie)
-        if imdb:
-            imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
-        else:
+        movies = await get_post(movie, bulk=True)
+        # imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+        if not movies:
             switch_pm_text = f'{emoji.CROSS_MARK} No results'
             await query.answer(results=[],
                                is_personal = True,
@@ -38,17 +37,22 @@ async def answer(bot, query):
                                switch_pm_text=switch_pm_text,
                                switch_pm_parameter="okay")
             return
-        try:
+        for movie in movies:
+            title = movie.get('title')
+            year = movie.get('year')
+            poster = movie.get('poster')
+            imdbcap = f"**{title}**\n\n **╔‎/yᴇᴀʀ: {year}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {movie.get('rating')}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{movie.get('genres')}**\n\n__ʀᴜɴᴛɪᴍᴇ: {movie.get('runtime')}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{movie.get('languages')}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {movie.get('release_date')}__"
+            if not year:
+               year = "0000"
             results.append(
                 InlineQueryResultArticle(
-                    title=movie,
-                    thumb_url=imdb['poster'],
+                    title=title,
+                    thumb_url=poster,
                     description="click",
                     input_message_content=InputTextMessageContent(
                         message_text=imdbcap,
                         disable_web_page_preview=True)))
-        except:
-            pass
+        
         switch_pm_text = f'ʀᴇꜱᴜʟᴛꜱ'
         await query.answer(results=results,
                            is_personal = True,
