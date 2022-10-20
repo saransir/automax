@@ -389,7 +389,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if (clicked == typed):
                 for files in filedetails:
                     at = files.file_name[0:-4]
-                    title = re.sub(r"(#|\@|\~|\©|\https|\www|\http|\com|\|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
+                    title = re.sub(r"(#|\@|\~|\©|\https|\www|\http|\com|\video|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
                     size=files.file_size
                     # f_caption=files.caption  
                     buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
@@ -405,7 +405,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except FloodWait as e:
                     await asyncio.sleep(1)
                 else:
-                    await query.answer(f"file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm \n\n🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛ {title}",show_alert=True)        
+                    await query.answer(f"file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 ✔️ sent to your pm \n\n🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛ {title}",show_alert=True)        
             else:
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")               
     elif query.data.startswith("myree"):
