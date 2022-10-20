@@ -39,6 +39,7 @@ async def advantage_spoll_choker(bot, query):
         ttte = movies[(int(movie_))]
         mov = re.sub(r"(:|-|_|;|IMDb)", "", ttte, flags=re.IGNORECASE)
         movie = mov.strip()
+        imdb = await get_post(movie)
         if len(movie) > 30:
             await query.message.edit_text(f"𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾 \n <spoiler>sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ</spoiler>")
             await asyncio.sleep(10)
@@ -74,8 +75,6 @@ async def advantage_spoll_choker(bot, query):
 
     hari = "+".join(x)
     kuttons = []
-    imdb=None
-    imdb = await get_post(mov)
     if imdb:
         imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
     else:
@@ -85,7 +84,7 @@ async def advantage_spoll_choker(bot, query):
         chat_type = query.message.chat.type
         N = int(23)
         if chat_type == "private":
-            N = int(33)
+            N = int(31)
             btn = []
         for file in files:
             file_id = file.file_id
@@ -176,9 +175,9 @@ async def group(client, message):
             btn.append(
                 [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#{imdb['imdb_id']}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
-            caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n**‌‌‌‌[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
+            caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n     **‌‌‌‌[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
         else:
-            caption = f"<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
+            caption = f"<b>{search}‌‌‌‌‎</b>\n\n      **‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
         oam = f"{random.choice(RAT)}"
         oamm = f"{random.choice(RAT)}"
         files = await get_filter_results(query=search)
@@ -387,21 +386,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if chat_type == "private":
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
                 return
-            for files in filedetails:
-                at = files.file_name[0:-4]
-                title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", "", at, flags=re.IGNORECASE)
-                size=files.file_size
-                f_caption=files.caption
-                if CUSTOM_FILE_CAPTION:
-                    try:
-                        f_caption="{title}",
-                    except Exception as e:
-                        print(e)
-                        f_caption=f_caption
-                if f_caption is None:
-                    f_caption = f"{title}"
-                buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
             if (clicked == typed):
+                for files in filedetails:
+                    at = files.file_name[0:-4]
+                    title = re.sub(r"(#|\@|\~|\©|\https|\www|\http|\com|\|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
+                    size=files.file_size
+                    # f_caption=files.caption  
+                    buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
                 try:  
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
@@ -414,7 +405,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except FloodWait as e:
                     await asyncio.sleep(1)
                 else:
-                    await query.answer(f"ᴄʜᴇcᴋ ᴩᴍ 👀 \n file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm \n\n  𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}",show_alert=True)        
+                    await query.answer(f"file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈✔️ sent to your pm \n\n\n  🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛ {title}",show_alert=True)        
             else:
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")               
     elif query.data.startswith("myree"):
