@@ -175,9 +175,9 @@ async def group(client, message):
             btn.append(
                 [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#{imdb['imdb_id']}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
-            caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n     **‌‌‌‌[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
+            caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n      **‌‌‌‌[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
         else:
-            caption = f"<b>{search}‌‌‌‌‎</b>\n\n      **‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
+            caption = f"<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
         oam = f"{random.choice(RAT)}"
         oamm = f"{random.choice(RAT)}"
         files = await get_filter_results(query=search)
@@ -389,7 +389,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if (clicked == typed):
                 for files in filedetails:
                     at = files.file_name[0:-4]
-                    title = re.sub(r"(#|\@|\~|\©|\https|\www|\http|\com|\video|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
+                    title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
                     size=files.file_size
                     # f_caption=files.caption  
                     buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
