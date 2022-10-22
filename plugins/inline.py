@@ -21,6 +21,7 @@ async def answer(bot, query):
 
     results = []
     nd = []
+    buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl")]]
     nd.append(
         InlineQueryResultArticle(
             title="request on group 🎪",
@@ -28,7 +29,8 @@ async def answer(bot, query):
             description="ask movie/series in group",
             input_message_content=InputTextMessageContent(
                 message_text="**request on group**🎪 👇\n https://t.me/+eDjzTT2Ua6kwMTI1 https://t.me/+eDjzTT2Ua6kwMTI1",
-                disable_web_page_preview=True)))
+                disable_web_page_preview=True),
+                reply_markup=InlineKeyboardMarkup(buttons)))
     if '|' in query.query:
         string, file_type = query.query.split('|', maxsplit=1)
         string = string.strip()
