@@ -1,6 +1,6 @@
 import logging
 from pyrogram import Client, emoji, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent, InlineQueryResultPhoto 
 
 from utils import get_search_results, is_subscribed, get_post
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
@@ -21,14 +21,14 @@ async def answer(bot, query):
 
     results = []
     nd = []
-    buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl")]]
+    buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ ", url="https://t.me/+PBGW_EV3ldY5YjJl")]]
     nd.append(
         InlineQueryResultArticle(
             title="request on group 🎪",
             thumb_url="https://telegra.ph/file/d651c3858b99538bdb311.jpg",
             description="ask movie/series in group",
             input_message_content=InputTextMessageContent(
-                message_text="**request on group**🎪 👇\n https://t.me/+eDjzTT2Ua6kwMTI1 https://t.me/+eDjzTT2Ua6kwMTI1",
+                message_text="**request on group**🎪 👇",
                 disable_web_page_preview=True),
                 reply_markup=InlineKeyboardMarkup(buttons)))
     if '|' in query.query:
@@ -50,7 +50,8 @@ async def answer(bot, query):
             year = movie.get('year')
             titl = myr.strip()
             title = f"{titl} {year}"
-            imdb = await get_post(title)
+            mid = movie.movieID
+            imdb = await get_post(mid, id=True)
             poster=None
             if imdb:
                imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
@@ -61,7 +62,8 @@ async def answer(bot, query):
                imdbcap = f"**{titl} 🍿 {year}**"
                poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
             results.append(
-                InlineQueryResultArticle(
+                InlineQueryResultPhoto(
+                    photo_url=poster,
                     title=f"{titl} 🍿 {year}",
                     thumb_url=poster,
                     input_message_content=InputTextMessageContent(
@@ -102,7 +104,7 @@ async def answer(bot, query):
                 title=file.file_name,
                 file_id=file.file_id,
                 caption=f"<u><code>🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</code></u>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
-                description=f'💒 Size: {get_size(file.file_size)}\n🍿Type: {file.file_type}',
+                description=f'💒 Size: {get_size(file.file_size)} Type: {file.file_type}',
                 reply_markup=reply_markup))
     if results:
         switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂"
