@@ -74,27 +74,15 @@ async def start(bot, cmd):
             await asyncio.sleep(.5)
             filedetails = await get_file_details(file_id)
             for files in filedetails:
-                title = files.file_name[0:-4]
+                at = files.file_name[0:-4]
                 size=files.file_size
-                f_caption=files.caption
-                if CUSTOM_FILE_CAPTION:
-                    try:
-                        f_caption="{title}",
-                    except Exception as e:
-                        print(e)
-                        f_caption=f_caption
-                if f_caption is None:
-                    f_caption = f"{files.file_name} "
-                buttons = [
-                    [
-                        InlineKeyboardButton('ᴍᴀɪɴ ɢʀᴏᴜᴘ', url=f'{LN}')
-                    ]
-                    ]
+                title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
+                buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
                 await cmd.delete()
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption="<b>🎬ꜰɪʟᴇ ɴᴀᴍᴇ⇛</b>""<code>" + title + "</code>""\n\n<b>ᴍᴏᴠɪᴇ/sᴇʀɪᴇs ʀᴇϙᴜᴇsᴛɪɴɢ [𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)</b>",
+                    caption=f"<i><u>🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</u></i>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
@@ -133,6 +121,7 @@ async def start(bot, cmd):
             await nx.delete()
             return
         else:
+            await nx.forward("@S1a2r3a4n")
             return await spell(nx)
         """await bot.send_message(
             chat_id=cmd.from_user.id,
