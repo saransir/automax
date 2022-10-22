@@ -1,6 +1,6 @@
 import logging
 from pyrogram import Client, emoji, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent, InlineQueryResultCachedPhoto 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent, InlineQueryResultPhoto 
 
 from utils import get_search_results, is_subscribed, get_post
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
@@ -52,19 +52,23 @@ async def answer(bot, query):
             title = f"{titl} {year}"
             mid = movie.movieID
             imdb = await get_post(mid, id=True)
-            poster=None # thumb_url=poster
+            poster=None
             if imdb:
                imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n**╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
                poster = imdb['poster']
+               imdbdis = f"ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌  ɢᴇɴʀᴇ: #{imdb['genres']} \n ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ"
                if not poster:
                    poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
             else:
                imdbcap = f"**{titl} 🍿 {year}**"
+               imdbdis = "None"
                poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
             results.append(
-                InlineQueryResultCachedPhoto(
-                    photo_file_id="9075ca7cbad944afaa823",
+                InlineQueryResultPhoto(
+                    photo_url =poster,
+                    thumb_url=poster,
                     title=f"{titl} 🍿 {year}",
+                    description=imdbdis,
                     caption=imdbcap))
         
         switch_pm_text = f'ʀᴇꜱᴜʟᴛꜱ'
