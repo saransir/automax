@@ -1,6 +1,6 @@
 import logging
 from pyrogram import Client, emoji, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent, InlineQueryResultPhoto 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent, InlineQueryResultCachedPhoto 
 
 from utils import get_search_results, is_subscribed, get_post
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
@@ -52,9 +52,9 @@ async def answer(bot, query):
             title = f"{titl} {year}"
             mid = movie.movieID
             imdb = await get_post(mid, id=True)
-            poster=None
+            poster=None # thumb_url=poster
             if imdb:
-               imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+               imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n**╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
                poster = imdb['poster']
                if not poster:
                    poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
@@ -62,13 +62,10 @@ async def answer(bot, query):
                imdbcap = f"**{titl} 🍿 {year}**"
                poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
             results.append(
-                InlineQueryResultPhoto(
-                    photo_url=poster,
+                InlineQueryResultCachedPhoto(
+                    photo_file_id=poster,
                     title=f"{titl} 🍿 {year}",
-                    thumb_url=poster,
-                    input_message_content=InputTextMessageContent(
-                        message_text=imdbcap,
-                        disable_web_page_preview=True)))
+                    caption=imdbcap))
         
         switch_pm_text = f'ʀᴇꜱᴜʟᴛꜱ'
         # results += nd
