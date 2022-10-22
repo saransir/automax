@@ -63,7 +63,7 @@ async def answer(bot, query):
                poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
             results.append(
                 InlineQueryResultCachedPhoto(
-                    photo_file_id=poster,
+                    photo_file_id="9075ca7cbad944afaa823",
                     title=f"{titl} 🍿 {year}",
                     caption=imdbcap))
         
