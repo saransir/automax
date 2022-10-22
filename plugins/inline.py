@@ -73,9 +73,8 @@ async def answer(bot, query):
         
         switch_pm_text = f'ʀᴇꜱᴜʟᴛꜱ'
         # results += nd
-        await query.answer(results=results,
-                           is_personal = True,
-                           cache_time=cache_time)                         
+        await query.answer(results=results,                          
+                           cache_time=0)                         
         return
     else:
         string = query.query.strip()
