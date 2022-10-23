@@ -37,7 +37,7 @@ async def advantage_spoll_choker(bot, query):
             await query.answer("You are clicking on an old button which is expired.", show_alert=True)
             return await query.message.delete()
         ttte = movies[(int(movie_))]
-        mov = re.sub(r"(:|-|_|;|'|?|IMDb|Streaming|Online|Netflix's|Episode|Season|Movie|movie|movies|Movie)", " ", ttte, flags=re.IGNORECASE)
+        mov = re.sub(r"(:|-|_|;|?|IMDb|Streaming|Online|Netflix's|Episode|Season|Movie|movie|movies|Movie)", " ", ttte, flags=re.IGNORECASE)
         movie = mov.replace("  ", " ").strip()
         imdb = await get_post(movie)
         if len(movie) > 30:
