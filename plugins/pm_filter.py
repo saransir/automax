@@ -37,8 +37,8 @@ async def advantage_spoll_choker(bot, query):
             await query.answer("You are clicking on an old button which is expired.", show_alert=True)
             return await query.message.delete()
         ttte = movies[(int(movie_))]
-        mov = re.sub(r"(:|-|_|;|IMDb)", "", ttte, flags=re.IGNORECASE)
-        movie = mov.strip()
+        mov = re.sub(r"(:|-|_|;|'|?|IMDb|Streaming|Online|Netflix's|Episode|Season|Movie|movie|movies|Movie)", " ", ttte, flags=re.IGNORECASE)
+        movie = mov.replace("  ", " ").strip()
         imdb = await get_post(movie)
         if len(movie) > 30:
             await query.message.edit_text(f"𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾 \n <spoiler>sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ</spoiler>")
@@ -56,7 +56,8 @@ async def advantage_spoll_choker(bot, query):
         movi = movie_
         imdb = await get_post(query=movi, id=True)
         ttt = imdb.get('title')[0:29]
-        mov = re.sub(r"(\:|\-|\,|\_|\.|\#|\;|IMDb|None)", "", ttt, flags=re.IGNORECASE).strip()
+        movx = re.sub(r"(\:|\-|\,|\_|\.|\#|\;|IMDb|None|Streaming|Online|Netflix's|Episode|Season|Movie|movie|movies|Movie)", " ", ttt, flags=re.IGNORECASE).strip()
+        mov = movx.replace("  ", " ")
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
         x = mov.split()
@@ -111,13 +112,13 @@ async def advantage_spoll_choker(bot, query):
             if chat_type == "private":
                 kuttons.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
             else:
+                await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
                 kuttons.append(
                     [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ",callback_data=f"report_{hari}")]
                 )
             reply_markup = InlineKeyboardMarkup(kuttons)
             if not message.from_user:
                 return await a1.delete()
-            await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
             a = await a1.edit_text(f"{imdbcap}\n\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺<b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b>\n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ \n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup)
             await asyncio.sleep(35)
             await a.delete()
