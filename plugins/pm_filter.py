@@ -37,7 +37,7 @@ async def advantage_spoll_choker(bot, query):
             await query.answer("You are clicking on an old button which is expired.", show_alert=True)
             return await query.message.delete()
         ttte = movies[(int(movie_))]
-        mov = re.sub(r"(:|-|_|;|?|IMDb|Streaming|Online|Netflix|'s|Episode|Season|Movie|movie|movies|Movie)", " ", ttte, flags=re.IGNORECASE)
+        mov = re.sub(r"(:|-|_|;|?|IMDb|Streaming|Online|Netflix|'s|Episode|Season|Movie|movie|movies|Movies)", " ", ttte, flags=re.IGNORECASE)
         movie = mov.replace("  ", " ").strip()
         imdb = await get_post(movie)
         if len(movie) > 30:
@@ -56,7 +56,7 @@ async def advantage_spoll_choker(bot, query):
         movi = movie_
         imdb = await get_post(query=movi, id=True)
         ttt = imdb.get('title')[0:29]
-        movx = re.sub(r"(\:|\-|\,|\_|\.|\#|\;|IMDb|None|Streaming|Online|Netflix|'s|Episode|Season|Movie|movie|movies|Movie)", " ", ttt, flags=re.IGNORECASE).strip()
+        movx = re.sub(r"(\:|\-|\,|\_|\.|\#|\;|IMDb|None|Streaming|Online|Netflix|'s|Episode|Season|Movie|movie|movies|Movies)", " ", ttt, flags=re.IGNORECASE).strip()
         mov = movx.replace("  ", " ")
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
@@ -179,7 +179,7 @@ async def group(client, message):
                 )
                 caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n      **‌‌‌‌[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
             else:
-                caption = f"<b>{search}‌‌‌‌‎</b>n\n<b>🌀ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"
+                caption = f"<b>{search}‌‌‌‌‎</b>\n\n\n<b>🌀ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"
             oam = f"{random.choice(RAT)}"
             oamm = f"{random.choice(RAT)}"
             for file in files:
