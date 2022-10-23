@@ -37,7 +37,7 @@ async def advantage_spoll_choker(bot, query):
             await query.answer("You are clicking on an old button which is expired.", show_alert=True)
             return await query.message.delete()
         ttte = movies[(int(movie_))]
-        mov = re.sub(r"(:|-|_|;|?|IMDb|Streaming|Online|Netflix's|Episode|Season|Movie|movie|movies|Movie)", " ", ttte, flags=re.IGNORECASE)
+        mov = re.sub(r"(:|-|_|;|?|IMDb|Streaming|Online|Netflix|'s|Episode|Season|Movie|movie|movies|Movie)", " ", ttte, flags=re.IGNORECASE)
         movie = mov.replace("  ", " ").strip()
         imdb = await get_post(movie)
         if len(movie) > 30:
@@ -56,7 +56,7 @@ async def advantage_spoll_choker(bot, query):
         movi = movie_
         imdb = await get_post(query=movi, id=True)
         ttt = imdb.get('title')[0:29]
-        movx = re.sub(r"(\:|\-|\,|\_|\.|\#|\;|IMDb|None|Streaming|Online|Netflix's|Episode|Season|Movie|movie|movies|Movie)", " ", ttt, flags=re.IGNORECASE).strip()
+        movx = re.sub(r"(\:|\-|\,|\_|\.|\#|\;|IMDb|None|Streaming|Online|Netflix|'s|Episode|Season|Movie|movie|movies|Movie)", " ", ttt, flags=re.IGNORECASE).strip()
         mov = movx.replace("  ", " ")
         yea = imdb.get('year')
         movie = f"{mov} {yea}"
