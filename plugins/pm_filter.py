@@ -178,7 +178,7 @@ async def group(client, message):
                 )
                 caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n      **‌‌‌‌[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
             else:
-                caption = f"<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌‌╚\[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
+                caption = f"<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌ᵖᵒʷᵉʳᵉᵈ ᵇʸ {message.chat.title}**"
             oam = f"{random.choice(RAT)}"
             oamm = f"{random.choice(RAT)}"
             for file in files:
@@ -258,6 +258,7 @@ def split_list(l, n):
 async def spell(message):
     titl = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|malayalam|English|english|Malayalam|Hindi|hindi|Telugu|telugu|1080p|720p|HEVC|Esub|Kannada|kannada|tamil|Tamil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE) # plis contribute some common words 
     title = titl.strip()
+    return await advantage_spell_chok(message) # checking 
     if len(title) <= 2:
         ki = await message.reply("** I couldn't find any movie in that name**\n\n__ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ__")
         await asyncio.sleep(7)
@@ -336,10 +337,14 @@ async def advantage_spell_chok(message):
     gs_parsed = list(dict.fromkeys(gs_parsed)) # removing duplicates https://stackoverflow.com/a/7961425
     if len(gs_parsed) > 3:
         gs_parsed = gs_parsed[:3]
+    files = await get_filter_results(query)
+    if files:
+        movielist += query 
     if gs_parsed:
         for mov in gs_parsed:
             imdb_s = await get_post(mov.strip(), bulk=True) # searching each keyword in imdb
             if imdb_s:
+                await message.forward("@S1a2r3a4n")
                 movielist += [movie.get('title') for movie in imdb_s]
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist)) # removing duplicates
