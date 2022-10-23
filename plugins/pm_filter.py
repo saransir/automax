@@ -178,7 +178,7 @@ async def group(client, message):
                 )
                 caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n      **‌‌‌‌[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
             else:
-                caption = f"<b>{search}‌‌‌‌‎</b>\n\n**‌‌‌ᵖᵒʷᵉʳᵉᵈ ᵇʸ {message.chat.title}**"
+                caption = f"<b>{search}‌‌‌‌‎</b>n\n<b>🌀ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"
             oam = f"{random.choice(RAT)}"
             oamm = f"{random.choice(RAT)}"
             for file in files:
@@ -301,6 +301,9 @@ async def advantage_spell_chok(message):
     query = query.strip() + " movie"
     g_s = await search_gagala(query)
     g_s += await search_gagala(message.text)
+    files = await get_filter_results(query)
+    if files:
+        g_s += f"query" 
     gs_parsed = []
     x = fn.split()
     hari = "+".join(x)
@@ -337,14 +340,10 @@ async def advantage_spell_chok(message):
     gs_parsed = list(dict.fromkeys(gs_parsed)) # removing duplicates https://stackoverflow.com/a/7961425
     if len(gs_parsed) > 3:
         gs_parsed = gs_parsed[:3]
-    files = await get_filter_results(query)
-    if files:
-        movielist += query 
     if gs_parsed:
         for mov in gs_parsed:
             imdb_s = await get_post(mov.strip(), bulk=True) # searching each keyword in imdb
             if imdb_s:
-                await message.forward("@S1a2r3a4n")
                 movielist += [movie.get('title') for movie in imdb_s]
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist)) # removing duplicates
