@@ -268,7 +268,10 @@ async def spell(message):
     fn = titl.replace(" ", "_")[0:30]
     btn = []
     user = message.from_user.id if message.from_user else 0
-    movies = await get_post(titl, bulk=True)
+    try:
+        movies = await get_post(titl, bulk=True)
+    except:
+        return await advantage_spell_chok(message)
     if not movies:
         return await advantage_spell_chok(message)
     oam = f"{random.choice(RAT)}"
@@ -371,7 +374,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     message = query.message.reply_to_message
     try:
         typed = query.message.reply_to_message.from_user.id
-    except:
+    except:  
         typed = query.from_user.id
         pass
     if query.data.startswith("saran"):
@@ -397,7 +400,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption=f"<i><u>🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</u></i>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                    caption=f"<b><u>🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
                 except UserIsBlocked:
@@ -405,7 +408,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except FloodWait as e:
                     await asyncio.sleep(1)
                 else:
-                    await query.answer(f"file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 ✔️ sent to your pm \n\n🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛ {title}",show_alert=True)        
+                    await query.answer(f"file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 ✔️ sent to your pm \n\n🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛ ~~{title}~~",show_alert=True)        
             else:
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")               
     elif (clicked == typed):
