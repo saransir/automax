@@ -375,7 +375,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     try:
         typed = query.message.reply_to_message.from_user.id
     except:  
-        typed = query.from_user.id
+        typed = "732556620" # query.from_user.id
         pass
     if query.data.startswith("saran"):
             ident, file_id = query.data.split("#")
@@ -400,7 +400,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await client.send_cached_media(
                     chat_id=query.from_user.id,
                     file_id=file_id,
-                    caption=f"<b><u>🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                    caption=f"<b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛<u>{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
                 except UserIsBlocked:
