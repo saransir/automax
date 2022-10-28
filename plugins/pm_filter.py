@@ -375,7 +375,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     try:
         typed = query.message.reply_to_message.from_user.id
     except:  
-        typed = "732556620" # query.from_user.id
+        typed = query.from_user.id
         pass
     if query.data.startswith("saran"):
             ident, file_id = query.data.split("#")
