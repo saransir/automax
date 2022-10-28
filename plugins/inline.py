@@ -6,7 +6,7 @@ from utils import get_search_results, is_subscribed, get_post
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
 logger = logging.getLogger(__name__)
 cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
-RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼",]
+RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼", "🪗", "🎬", "🪘", "🗽",]
 
 @Client.on_inline_query(filters.user(AUTH_USERS) if AUTH_USERS else None)
 async def answer(bot, query):
@@ -43,7 +43,7 @@ async def answer(bot, query):
         if not movies:
             await query.answer(results=nd,
                                cache_time=0,
-                               switch_pm_text="❌️ No Results ❌️",
+                               switch_pm_text='❌️ No Results ❌️',
                                switch_pm_parameter="okay")
             return
         buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
@@ -73,11 +73,10 @@ async def answer(bot, query):
                     description=imdbdis,
                     caption=imdbcap,
                     reply_markup=InlineKeyboardMarkup(buttons)))
-        
-        switch_pm_text = f'ʀᴇꜱᴜʟᴛꜱ'
-        # results += nd
         await query.answer(results=results,                          
-                           cache_time=0)                         
+                           cache_time=0,
+                           switch_pm_text='ʀᴇꜱᴜʟᴛꜱ 👇',
+                           switch_pm_parameter="start")                         
         return
     else:
         string = query.query.strip()
@@ -106,14 +105,13 @@ async def answer(bot, query):
             InlineQueryResultCachedDocument(
                 title=f"{oam} {file.file_name}",
                 file_id=file.file_id,
-                caption=f"<u><code>🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</code></u>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                caption=f"{oam}<u><code>𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</code></u>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
                 description=f'Size: {get_size(file.file_size)} Type: {file.file_type}',
                 reply_markup=reply_markup))
     if results:
         switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂"
         if string:
             switch_pm_text += f" for {string}"
-
         await query.answer(results=results,
                            is_personal = True,
                            cache_time=cache_time,
