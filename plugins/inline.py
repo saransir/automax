@@ -1,12 +1,12 @@
 import logging
 from pyrogram import Client, emoji, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent, InlineQueryResultPhoto 
-
+import random
 from utils import get_search_results, is_subscribed, get_post
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
 logger = logging.getLogger(__name__)
 cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
-
+RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼",]
 
 @Client.on_inline_query(filters.user(AUTH_USERS) if AUTH_USERS else None)
 async def answer(bot, query):
@@ -42,9 +42,11 @@ async def answer(bot, query):
         # imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
         if not movies:
             await query.answer(results=nd,
-                               is_personal = True,
-                               cache_time=cache_time)
+                               cache_time=0,
+                               switch_pm_text="❌️ No Results ❌️",
+                               switch_pm_parameter="okay")
             return
+        buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
         for movie in movies:
             myr = movie.get('title')
             year = movie.get('year')
@@ -65,11 +67,12 @@ async def answer(bot, query):
                poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
             results.append(
                 InlineQueryResultPhoto(
-                    photo_url =poster,
+                    photo_url=poster,
                     thumb_url=poster,
                     title=f"{titl} 🍿 {year}",
                     description=imdbdis,
-                    caption=imdbcap))
+                    caption=imdbcap,
+                    reply_markup=InlineKeyboardMarkup(buttons)))
         
         switch_pm_text = f'ʀᴇꜱᴜʟᴛꜱ'
         # results += nd
@@ -86,7 +89,7 @@ async def answer(bot, query):
                                                   file_type=file_type,
                                                   max_results=10,
                                                   offset=offset)
-
+    oam = f"{random.choice(RAT)}"
     for file in files:
         title=file.file_name
         size=file.file_size
@@ -101,10 +104,10 @@ async def answer(bot, query):
             f_caption = f"{file.file_name}"
         results.append(
             InlineQueryResultCachedDocument(
-                title=file.file_name,
+                title=f"{oam} {file.file_name}",
                 file_id=file.file_id,
                 caption=f"<u><code>🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</code></u>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
-                description=f'💒 Size: {get_size(file.file_size)} Type: {file.file_type}',
+                description=f'Size: {get_size(file.file_size)} Type: {file.file_type}',
                 reply_markup=reply_markup))
     if results:
         switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂"
