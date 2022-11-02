@@ -12,7 +12,7 @@ BUTTONS = {}
 BOT = {}
 SPELL_CHECK = {}
 CHAA = "-1001534114432"
-RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼",]
+RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼", "🪗", "🎬", "🪘", "🗽",]
 
 PHOTO = [
     "https://telegra.ph/file/9075ca7cbad944afaa823.jpg",
@@ -112,7 +112,7 @@ async def advantage_spoll_choker(bot, query):
             if chat_type == "private":
                 kuttons.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
             else:
-                await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
+                # await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
                 kuttons.append(
                     [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ",callback_data=f"report_{hari}")]
                 )
@@ -144,14 +144,14 @@ async def advantage_spoll_choker(bot, query):
         buttons.append(
             [InlineKeyboardButton(" 💒💒  ᴄʜᴀɴɴᴇʟ 💒💒 ", url="https://t.me/joinchat/4-Quex2FaFhjMDM1")]
         )
-        await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>🌀ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+        await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
         return
     data = BUTTONS[keyword]
     buttons = data['buttons'][0].copy()
     buttons.append(
         [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
     )
-    await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>🌀ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+    await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
         
 @Client.on_message(filters.text & ~filters.edited & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
 async def group(client, message):
@@ -172,6 +172,8 @@ async def group(client, message):
         sesna = "_".join(x)
         files = await get_filter_results(query=search)
         if files:
+            oam = f"{random.choice(RAT)}"
+            oamm = f"{random.choice(RAT)}"
             imdb = await get_post(search, file=(files[0]).file_name)
             if imdb:
                 btn.append(
@@ -179,9 +181,7 @@ async def group(client, message):
                 )
                 caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n      **‌‌‌‌[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
             else:
-                caption = f"<b>{search}‌‌‌‌‎</b>\n\n\n<b>🌀ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"
-            oam = f"{random.choice(RAT)}"
-            oamm = f"{random.choice(RAT)}"
+                caption = f"<b>{search}‌‌‌‌‎</b>\n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n{oamm}ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"         
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
@@ -359,7 +359,7 @@ async def advantage_spell_chok(message):
     SPELL_CHECK[message.message_id] = movielist
     btn = [[
                 InlineKeyboardButton(
-                    text=f"🎬 {movie.strip()}",
+                    text=f"{random.choice(RAT)} {movie.strip()}",
                     callback_data=f"spo#sa#{user}#{k}",
                 )
             ] for k, movie in enumerate(movielist)]
@@ -565,4 +565,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "pages":
             await query.answer()
     else:
-        await query.answer(f"😊{query.from_user.first_name} search your own file,\n\n this is>> {query.message.reply_to_message.from_user.first_name} <<Requested files🎬",show_alert=True)
+        await query.answer(f"😊\n\n{query.from_user.first_name} search your own file,\n\n this is>> {query.message.reply_to_message.from_user.first_name} <<Requested files🎬",show_alert=True)
