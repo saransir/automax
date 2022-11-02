@@ -82,7 +82,7 @@ async def start(bot, cmd):
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption=f"<i><u>🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</u></i>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                    caption=f"<b><u>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</u></b>\n\n <i>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</i>",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
         except Exception as err:
