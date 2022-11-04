@@ -1,12 +1,10 @@
 import logging
 from pyrogram import Client, emoji, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent, InlineQueryResultPhoto 
-import random
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent, InlineQueryResultPhoto
 from utils import get_search_results, is_subscribed, get_post
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
 logger = logging.getLogger(__name__)
 cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
-RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼", "🪗", "🎬", "🪘", "🗽",]
 
 @Client.on_inline_query(filters.user(AUTH_USERS) if AUTH_USERS else None)
 async def answer(bot, query):
@@ -88,25 +86,16 @@ async def answer(bot, query):
                                                   file_type=file_type,
                                                   max_results=10,
                                                   offset=offset)
-    oam = f"{random.choice(RAT)}"
     for file in files:
-        title=file.file_name
-        size=file.file_size
-        f_caption=file.caption
-        if CUSTOM_FILE_CAPTION:
-            try:
-                f_caption="🍿{title}",
-            except Exception as e:
-                print(e)
-                f_caption=f_caption
-        if f_caption is None:
-            f_caption = f"{file.file_name}"
+        at = file.file_name
+        title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
+        size = file.file_size        
         results.append(
             InlineQueryResultCachedDocument(
-                title=f"{oam} {file.file_name}",
+                title=title
                 file_id=file.file_id,
-                caption=f"{oam}<u><code>𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛{title}</code></u>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
-                description=f'Size: {get_size(file.file_size)} Type: {file.file_type}',
+                caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <i>⚡️ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</i>",
+                description=f'Size: {get_size(file.file_size)} 🍿 Type: {file.file_type}',
                 reply_markup=reply_markup))
     if results:
         switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂"
@@ -133,12 +122,12 @@ async def answer(bot, query):
 
 def get_reply_markup(query):
     buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
-    buttons += [
+    """buttons += [
         [
             InlineKeyboardButton('🔍 𝚂𝙴𝙰𝚁𝙲𝙷 ꜰɪʟᴇ 🔎', switch_inline_query_current_chat=query)
         ]
         ]
-    return InlineKeyboardMarkup(buttons)
+    return InlineKeyboardMarkup(buttons)"""
 
 
 def get_size(size):
