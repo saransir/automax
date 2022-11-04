@@ -96,7 +96,7 @@ async def answer(bot, query):
                 title=title,
                 file_id=file.file_id,
                 caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <i>⚡️ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</i>",
-                description=f'Size: {get_size(file.file_size)} 🍿 Type: {file.file_type}',
+                description=f'🍿{file.file_type} Size: {get_size(file.file_size)}',
                 reply_markup=reply_markup))
     if results:
         switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂"
@@ -127,8 +127,8 @@ def get_reply_markup(query):
         [
             InlineKeyboardButton('🔍 𝚂𝙴𝙰𝚁𝙲𝙷 ꜰɪʟᴇ 🔎', switch_inline_query_current_chat=query)
         ]
-        ]
-    return InlineKeyboardMarkup(buttons)"""
+        ]"""
+    return InlineKeyboardMarkup(buttons)
 
 
 def get_size(size):
