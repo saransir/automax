@@ -1,2 +1,2 @@
-![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=NB:+code+മുഴുവൻ+errors+ആണ്😪!)
+![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=NB:+code+error+ആണ്😪!)
 
