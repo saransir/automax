@@ -412,7 +412,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             else:
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
     else query.data == "pages":
-        return await query.answer("🤐")
+            return await query.answer('🤐')
+
     if not ((clicked == typed) or (clicked in ADMINS)):
         return await query.answer(f"🖐️ {query.from_user.first_name} search your own file,\n\n this is >> {query.message.reply_to_message.from_user.first_name} << Requested files🎬",show_alert=True)
     else:    
