@@ -424,8 +424,9 @@ async def imdb_searh(bot, message):
             await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ** __30__ **ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️ or request on group👇**", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
             await message.delete()
             break
-        if not nx.reply_to_message:
+        if not nx.reply_to_message or user == nx.from_user.id:
             await message.reply("**ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ** ᴛʀʏ ᴀɢᴀɪɴ♻️")
+            await asyncio.sleep(.5)
             continue
         else:
             await message.delete()
@@ -444,11 +445,6 @@ async def helmogth(bot, message):
 async def imdb_callback(bot, quer_y: CallbackQuery):
     i, movi = quer_y.data.split('#')
     movie = movi[2:]
-    try:
-        typed = quer_y.message.reply_to_message.from_user.id
-    except:
-        typed = quer_y.from_user.id
-        pass
     imdb = await get_post(query=movie, id=True)
     btn = [
             [
