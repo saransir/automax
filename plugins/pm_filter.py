@@ -535,7 +535,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             except:
                 return
                 
-        elif query.data.startswith("checksub"):
+        else query.data.startswith("checksub"):
             if AUTH_CHANNEL and not await is_subscribed(client, query):
                 await query.answer("🎪ഗ്രൂപ്പിൽ join ചെയ്തതിനു ശേഷം ക്ലിക്ക് ചെയ്യൂ \n\n Join My 🎪 group 🎪 to click",show_alert=True)
                 return
@@ -565,6 +565,5 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     chat_id=query.from_user.id,
                     file_id=file_id,
                     caption=f"<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)",
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                    ) 
-    
+                    reply_markup=InlineKeyboardMarkup(buttons)) 
+   
