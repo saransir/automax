@@ -373,7 +373,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     clicked = query.from_user.id
     message = query.message.reply_to_message
     try:
-        typed = query.message.reply_to_message.from_user.id or ADMINS
+        typed = query.message.reply_to_message.from_user.id
     except:  
         typed = query.from_user.id
         pass
@@ -410,8 +410,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 else:
                     await query.answer(f"file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 ✔️ sent to your pm \n\n🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛ ~~{title}~~",show_alert=True)        
             else:
-                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")               
-    elif (clicked == typed):
+                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+    else query.data == "pages":
+        return await query.answer("🤐")
+    if not ((clicked == typed) or (clicked in ADMINS)):
+        return await query.answer(f"🖐️ {query.from_user.first_name} search your own file,\n\n this is >> {query.message.reply_to_message.from_user.first_name} << Requested files🎬",show_alert=True)
+    else:    
         if query.data.startswith("next"):
             ident, index, keyword = query.data.split("_")
             try:
@@ -562,7 +566,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     caption=f"<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)",
                     reply_markup=InlineKeyboardMarkup(buttons)
                     ) 
-        elif query.data == "pages":
-            await query.answer()
-    else:
-        await query.answer(f"😊\n\n{query.from_user.first_name} search your own file,\n\n this is>> {query.message.reply_to_message.from_user.first_name} <<Requested files🎬",show_alert=True)
+    
