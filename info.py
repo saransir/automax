@@ -33,7 +33,7 @@ Here you can search files in Inline mode as well as PM, Use the below buttons to
 """
 START_MSG = environ.get('START_MSG', default_start_msg)
 IMDB_TEMPLATE = "<b><a href={url}>{title}</a>🤺ɪᴍᴅʙ</b>\n\n <b>‌‌‌‌╔‎/yᴇᴀʀ: {year}\n ╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {rating}/10‌‌‌‌ \n ╚\ɢᴇɴʀᴇ: #{genres}</b> \n\n     <b>[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)</b>"
-IMDB_TEMPLATEE = "🎬 ɴᴀᴍᴇ: {title} {year}\n ʀᴀᴛɪɴɢ‌‌‌‌‎: {rating}/10‌‌‌‌ \n ʀᴇʟᴇᴀsᴇ ᴅᴀᴛᴇ: {release_date}\n ᴄᴀꜱᴛ: #{cast} "
+IMDB_TEMPLATEE = "🎬ɴᴀᴍᴇ: {title} {year}\n ʀᴀᴛɪɴɢ‌‌ \n ᴄᴀꜱᴛ: #{cast}\n ᴅɪʀᴇᴄᴛᴏʀ: {director} \n ᴡʀɪᴛᴇʀ: {writer} \n\n ᴩʟᴏᴛ: {plot}"
 
 FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", "")
 OMDB_API_KEY = environ.get("OMDB_API_KEY", "http://www.omdbapi.com/?i=tt3896198&apikey=4f08a979")
