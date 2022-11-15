@@ -476,8 +476,7 @@ async def imdb_callback(bot, quer_y: CallbackQuery):
             **locals()
         )
     else:
-        caption = "No Results🤷🏻‍♂️"
-        cap = caption
+        cap = "No Results🤷🏻‍♂️"
     if len(caption) > 197: 
-        cap = caption[:197] + ".."
+        cap = caption[:196] + "..."
     await quer_y.answer(cap, show_alert=True)
