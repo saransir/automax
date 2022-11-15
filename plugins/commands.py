@@ -446,15 +446,7 @@ async def imdb_callback(bot, quer_y: CallbackQuery):
     i, movi = quer_y.data.split('#')
     movie = movi[2:]
     imdb = await get_post(query=movie, id=True)
-    btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{imdb.get('title')}",
-                    switch_inline_query_current_chat=f"{imdb.get('title')}"
-                )
-            ]
-        ]
-    message = quer_y.message.reply_to_message or quer_y.message
+    # message = quer_y.message.reply_to_message or quer_y.message
     if imdb:
         caption = IMDB_TEMPLATEE.format(
             query = imdb['title'],
