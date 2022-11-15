@@ -293,7 +293,7 @@ async def spell(message):
     if chat_type == "private":
        btn.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
     else:
-       btn.append([InlineKeyboardButton(text=f"{oam} ᴄʟᴏꜱᴇ", callback_data=f"close"), InlineKeyboardButton(text=f"{oam} ᴩᴍ ",url=f"http://t.me/On_air_Filter_bot?start=saran=={fn}")])
+       btn.append([InlineKeyboardButton(text=f"{oam} ᴄʟᴏꜱᴇ", callback_data=f"close"), InlineKeyboardButton(text=f"{oam} ᴩᴍ ",callback_data="myree#")])
     await message.reply("__𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞__?👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
 
 async def advantage_spell_chok(message):
@@ -393,7 +393,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if chat_type == "private":
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
                 return
-            if (clicked == typed) or (clicked in ADMINS)):
+            if clicked == typed or clicked in ADMINS:
                 for files in filedetails:
                     at = files.file_name[0:-4]
                     title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
