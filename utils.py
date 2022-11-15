@@ -318,7 +318,7 @@ async def get_post(query, bulk=False, id=False, file=None):
     else:
         date = "N/A"
     plot = ""
-    plot = movie.get('plot outline')
+    plot = movie.get('plot')
     if plot and len(plot) > 750:
         plot = plot[0:750] + "..."
     return {
