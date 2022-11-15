@@ -57,7 +57,7 @@ async def answer(bot, query):
                imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n**╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
                poster = imdb['poster']
                imdbdis = f"ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌  ɢᴇɴʀᴇ: #{imdb['genres']} \n ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ"
-               buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("🎪 ɪɴꜰᴏ ", callback_data=f"imdb#{imdb['imdb_id']}, InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
+               buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("🎪 ɪɴꜰᴏ ", callback_data=f"imdb#{imdb['imdb_id']}), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
                if not poster:
                    poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
             else:
