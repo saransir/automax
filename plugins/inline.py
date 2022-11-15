@@ -38,7 +38,7 @@ async def answer(bot, query):
         me, string = query.query.split('+', maxsplit=1)
         vie = string.strip()
         movies = await get_post(vie, bulk=True)
-        # imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+        # imdbcap = f"**{movie}**\n\n**╔‎/yᴇᴀʀ: {imdb['year']}**\n**╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n**╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__\n\n**🍿ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
         if not movies:
             await query.answer(results=nd,
                                cache_time=0,
@@ -54,7 +54,7 @@ async def answer(bot, query):
             imdb = await get_post(mid, id=True)
             poster=None
             if imdb:
-               imdbcap = f"**{titl}**\n\n **╔‎/yᴇᴀʀ: {year}**\n**╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
+               imdbcap = f"**{titl}**\n\n**╔‎/yᴇᴀʀ: {year}**\n**╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n**╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__\n\n **🍿ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
                poster = imdb['poster']
                imdbdis = f"ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌  ɢᴇɴʀᴇ: #{imdb['genres']} \n ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ"
                buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("🎪 ɪɴꜰᴏ ", callback_data=f"imdb#{imdb['imdb_id']}"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
@@ -73,7 +73,8 @@ async def answer(bot, query):
                     description=imdbdis,
                     caption=imdbcap,
                     reply_markup=InlineKeyboardMarkup(buttons)))
-        await query.answer(results=results,                          
+        await query.answer(results=results,
+                           is_personal = True,                         
                            cache_time=0,
                            switch_pm_text='ʀᴇꜱᴜʟᴛꜱ 👇',
                            switch_pm_parameter="start")                         
@@ -96,7 +97,7 @@ async def answer(bot, query):
             InlineQueryResultCachedDocument(
                 title=title,
                 file_id=file.file_id,
-                caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <i>⚡️ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</i>",
+                caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <b>⚡️ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
                 description=f'🍿{file.file_type} Size: {get_size(file.file_size)}',
                 reply_markup=reply_markup))
     if results:
