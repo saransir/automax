@@ -102,6 +102,10 @@ async def advantage_spoll_choker(bot, query):
             kuttons.append(
                 [InlineKeyboardButton(text=f"{oam} 𝙾𝚃𝚃/𝙷𝙳 {oam}", callback_data="ott")]
             )
+            if imdb:
+                kuttons.append(
+                    [InlineKeyboardButton(text=f"{oam} ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}"), InlineKeyboardButton(text=f"ᴄʟᴏꜱᴇ {oam}",callback_data="close")]
+                )
             await a1.edit_text(f"{imdbcap}\n\n <b>❗️<u>{reply_text}</u>❗️</b> \n", reply_markup=InlineKeyboardMarkup(kuttons))
             return
         else:
@@ -276,12 +280,12 @@ async def spell(message):
         return await advantage_spell_chok(message)
     oam = f"{random.choice(RAT)}"
     for movie in movies:
-        title = movie.get('title')[:30]
+        title = movie.get('title')[:27]
         year = movie.get('year')
         if not year:
             year = oam
         btn.append(
-            [InlineKeyboardButton(text=f"{year} {oam} {title}",callback_data=f"spo#se#{user}#{movie.movieID}")]
+            [InlineKeyboardButton(text=f"{oam} {title} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
     if len(btn) > 10: 
         btn = btn[:10]
@@ -389,7 +393,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if chat_type == "private":
                 await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
                 return
-            if (clicked == typed):
+            if (clicked == typed) or (clicked in ADMINS)):
                 for files in filedetails:
                     at = files.file_name[0:-4]
                     title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
