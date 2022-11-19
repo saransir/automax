@@ -170,7 +170,8 @@ async def group(client, message):
         return await spell(message)
     elif 3 < len(message.text) < 40:    
         btn = []
-        search = message.text
+        search = []
+        search = message.text.strip()
         x = search.split()
         hari = "+".join(x)
         sesna = "_".join(x)
@@ -569,5 +570,5 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     caption=f"<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/joinchat/4-Quex2FaFhjMDM1) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)",
                     reply_markup=InlineKeyboardMarkup(buttons)) 
         elif query.data == "pages":
-            await query.answer("ʟᴏᴏᴋ ᴀᴛ ᴛʜᴇ ɴᴇxᴛ ᴘᴀɢᴇ")
+            await query.answer("ɪꜰ ❌️ꜱᴇᴇ ᴛʜᴇ ꜰɪʟᴇ, ʟᴏᴏᴋ ᴀᴛ ɴᴇxᴛ ᴘᴀɢᴇ")
 
