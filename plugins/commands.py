@@ -121,7 +121,7 @@ async def start(bot, cmd):
             await nx.delete()
             return
         else:
-            await nx.forward("@S1a2r3a4n")
+            # await nx.forward("@S1a2r3a4n")
             return await spell(nx)
         """await bot.send_message(
             chat_id=cmd.from_user.id,
@@ -328,9 +328,10 @@ async def bot_kunna(bot, message):
     await message.reply_chat_action("typing")
     await asyncio.sleep(2)
     await message.reply(text=f"<b>If you want all the new and old movies and web series, click on the link below 👇\n\n\n https://t.me/+eDjzTT2Ua6kwMTI1 https://t.me/+eDjzTT2Ua6kwMTI1 </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-@Client.on_message(filters.regex('https') & filters.group & filters.chat(AUTH_GROUPS) & ~filters.user(ADMINS))
+@Client.on_message(filters.regex('https') & filters.group)
 async def hellto(bot, message):
-    await message.delete()
+    if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
+        await message.delete()
 @Client.on_chat_join_request(filters.chat(AUTH_GROUPS))
 async def autoapprove(bot, message: ChatJoinRequest):
     chat=message.chat # Chat
@@ -347,10 +348,11 @@ async def auto_welcoime(bot, message):
     cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
     await asyncio.sleep(16) 
     await cg.delete()
-@Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) & ~filters.user(ADMINS))
+@Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS))
 async def delfor(bot,message):
-    await message.delete()
-@Client.on_message(filters.regex('movie') & filters.group & filters.incoming & ~filters.user(ADMINS))
+    if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
+        await message.delete()
+@Client.on_message(filters.regex('movie') & filters.group & filters.incoming)
 async def helmo(bot, message):
     buttons = [
         [
@@ -358,10 +360,11 @@ async def helmo(bot, message):
             InlineKeyboardButton(' 🔍 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ ', url='https://www.google.com/')
         ]
         ]
-    mo = await message.reply(text=f"𝗦𝗲𝗻𝘁 𝗠𝗼𝘃𝗶𝗲 𝗡𝗮𝗺𝗲 & 𝘆𝗲𝗮𝗿 𝗼𝗻𝗹𝘆 \n മൂവിയുടെ പേര് & വർഷം മാത്രം മതി \n ᴇxᴀᴍᴘʟᴇ :👇\n\n ᴛᴇɴᴇᴛ ✅ \n ᴛᴇɴᴇᴛ 2021 ✅ \n ᴛᴇɴᴇᴛ ᴍᴏᴠɪᴇ ❌ \n\n▫️ɪғ ʏᴏᴜ sᴛɪʟʟ ᴅᴏ ɴᴏᴛ ғɪɴᴅ ᴛʜᴇ 😪 ᴍᴏᴠɪᴇ sᴇᴀʀᴄʜ ᴛʜᴇ ʙᴏᴛ👇\n▪️ɪғ ʏᴏᴜ ᴅᴏ ɴᴏᴛ ᴋɴᴏᴡ ᴛʜᴇ ᴍᴏᴠɪᴇ ᴄᴜʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ ᴄʟɪᴄᴋ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ 👇", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-    await asyncio.sleep(15) # error 
-    await mo.delete()
-    await message.delete()
+    if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
+        mo = await message.reply(text=f"𝗦𝗲𝗻𝘁 𝗠𝗼𝘃𝗶𝗲 𝗡𝗮𝗺𝗲 & 𝘆𝗲𝗮𝗿 𝗼𝗻𝗹𝘆 \n മൂവിയുടെ പേര് & വർഷം മാത്രം മതി \n ᴇxᴀᴍᴘʟᴇ :👇\n\n ᴛᴇɴᴇᴛ ✅ \n ᴛᴇɴᴇᴛ 2021 ✅ \n ᴛᴇɴᴇᴛ ᴍᴏᴠɪᴇ ❌ \n\n▫️ɪғ ʏᴏᴜ sᴛɪʟʟ ᴅᴏ ɴᴏᴛ ғɪɴᴅ ᴛʜᴇ 😪 ᴍᴏᴠɪᴇ sᴇᴀʀᴄʜ ᴛʜᴇ ʙᴏᴛ👇\n▪️ɪғ ʏᴏᴜ ᴅᴏ ɴᴏᴛ ᴋɴᴏᴡ ᴛʜᴇ ᴍᴏᴠɪᴇ ᴄᴜʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ ᴄʟɪᴄᴋ ᴍᴏᴠɪᴇ ɴᴀᴍᴇ 👇", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+        await asyncio.sleep(15) # error 
+        await mo.delete()
+        await message.delete()
 
 @Client.on_message(filters.command('st_a_rt') & filters.private)
 async def texddtx(bot, message):
