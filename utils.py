@@ -297,16 +297,7 @@ async def get_post(query, bulk=False, id=False, file=None):
         try:
             movieid = imdbb.search_movie(title.lower(), results=10)
         except IMDbDataAccessError:
-            url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'
-            try:
-                n = requests.get(url)
-                a = json.loads(n.text)
-                if a["Response"] == 'True':
-                    y = a.get("Search")[0]
-                    ovieid=y.get("imdbID")
-                    movieid = list_to_str(ovieid[2:])
-            except Exception as e:
-                return None
+            return None
         if not movieid:
             return None    
         if year:
