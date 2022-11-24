@@ -15,6 +15,7 @@ import PTN
 import requests
 import json
 from imdb import IMDb
+from imdb import IMDbDataAccessError
 from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, AUTH_CHANNEL, API_KEY
 DATABASE_URI_2=os.environ.get('DATABASE_URI_2', DATABASE_URI)
 DATABASE_NAME_2=os.environ.get('DATABASE_NAME_2', DATABASE_NAME)
@@ -293,7 +294,11 @@ async def get_post(query, bulk=False, id=False, file=None):
                 year = list_to_str(year[:1]) 
         else:
             year = None
-        movieid = imdbb.search_movie(title.lower(), results=10)
+        try:
+            movieid = imdbb.search_movie(title.lower(), results=10)
+        except IMDbDataAccessError:
+            logger.warning("IMDbDataAccessError")
+            return None
         if not movieid:
             return None
         if year:
