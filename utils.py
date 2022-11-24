@@ -305,12 +305,12 @@ async def get_post(query, bulk=False, id=False, file=None):
                 a = json.loads(n.text)
                 if a["Response"] == 'True':
                     y = a.get("Search")[0]
-                    movieid=y.get("imdbID")
+                    ovieid=y.get("imdbID")
             except Exception as e:
                 return None
-            logger.info(movieid + "👈")
-            if not movieid:
+            if not ovieid:
                 return None
+            movieid = int(ovieid[2:])
         if year:
             filtered=list(filter(lambda k: str(k.get('year')) == str(year), movieid))
             if not filtered:
