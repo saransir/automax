@@ -295,9 +295,10 @@ async def get_post(query, bulk=False, id=False, file=None):
         else:
             year = None
         try:
-            movieid = imdbb.search_movie(title.lower(), results=10)
+            movieid = imdbb.search_movie(title.lower(), results=8)
         except IMDbDataAccessError:
-            movieid = None
+            logger.info("IMDbDataAccessError❗️")
+
         if movieid:
             if year:
                 filtered=list(filter(lambda k: str(k.get('year')) == str(year), movieid))
@@ -320,20 +321,19 @@ async def get_post(query, bulk=False, id=False, file=None):
                     y = a.get("Search")[0]
                     id=y.get("imdbID")
                     movieid = id[2:]
-                    logger.exception(movieid + 'set👈')
             except Exception:
                 return None
     else:
         movieid = int(query)
     movie = imdbb.get_movie(movieid)
-    if not movie:
-        return None
     if movie.get("original air date"):
         date = movie["original air date"]
     elif movie.get("year"):
         date = movie.get("year")
     else:
         date = "N/A"
+    if not movie:
+        return None
     plot = ""
     plot = movie.get('plot')
     if plot and len(plot) > 750:
