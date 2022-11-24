@@ -295,10 +295,9 @@ async def get_post(query, bulk=False, id=False, file=None):
         else:
             year = None
         try:
-            movieid = imdbb.search_movie(title.lower(), results=8)
+            movieid = imdbb.search_movie(title.lower(), results=10)
         except IMDbDataAccessError:
             logger.info("IMDbDataAccessError❗️")
-
         if movieid:
             if year:
                 filtered=list(filter(lambda k: str(k.get('year')) == str(year), movieid))
@@ -320,9 +319,14 @@ async def get_post(query, bulk=False, id=False, file=None):
                 if a["Response"] == 'True':
                     y = a.get("Search")[0]
                     id=y.get("imdbID")
-                    movieid = id[2:]
             except Exception:
                 return None
+            if not id:
+                return None
+            movieid = id[2:]
+            if bulk:
+                movie = imdbb.get_movie(movieid)
+                return movie
     else:
         movieid = int(query)
     movie = imdbb.get_movie(movieid)
