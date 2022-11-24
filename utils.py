@@ -297,10 +297,20 @@ async def get_post(query, bulk=False, id=False, file=None):
         try:
             movieid = imdbb.search_movie(title.lower(), results=10)
         except IMDbDataAccessError:
-            logger.warning("IMDbDataAccessError")
-            return None
+            movieid = None
         if not movieid:
-            return None
+            url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'
+            try:
+                n = requests.get(url)
+                a = json.loads(n.text)
+                if a["Response"] == 'True':
+                    y = a.get("Search")[0]
+                    movieid=y.get("imdbID")
+            except Exception as e:
+                return None
+            logger.info(movieid + "👈")
+            if not movieid:
+                return None
         if year:
             filtered=list(filter(lambda k: str(k.get('year')) == str(year), movieid))
             if not filtered:
@@ -316,6 +326,8 @@ async def get_post(query, bulk=False, id=False, file=None):
     else:
         movieid = int(query)
     movie = imdbb.get_movie(movieid)
+    if not movie:
+        return None
     if movie.get("original air date"):
         date = movie["original air date"]
     elif movie.get("year"):
