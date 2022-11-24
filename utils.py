@@ -304,7 +304,7 @@ async def get_post(query, bulk=False, id=False, file=None):
                 if a["Response"] == 'True':
                     y = a.get("Search")[0]
                     ovieid=y.get("imdbID")
-                    movieid = ovieid[2:]
+                    movieid = list_to_str(ovieid[2:])
             except Exception as e:
                 return None
         if not movieid:
