@@ -325,8 +325,14 @@ async def get_post(query, bulk=False, id=False, file=None):
                 return None
             movieid = id[2:]
             if bulk:
-                movie = imdbb.get_movie(movieid)
-                return {'title': movie.get('title'), 'year': movie.get('year'), 'movieID': movie.get('imdbID')}
+                try:
+                    movieid = imdbb.search_movie(title, results=5)
+                except IMDbDataAccessError:
+                    logger.info("IMDbDataAccessError 2❗️")
+                    return None
+                if not movieid:
+                    return None 
+                return movieid               
     else:
         movieid = int(query)
     movie = imdbb.get_movie(movieid)
