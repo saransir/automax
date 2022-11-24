@@ -326,7 +326,7 @@ async def get_post(query, bulk=False, id=False, file=None):
             movieid = id[2:]
             if bulk:
                 movie = imdbb.get_movie(movieid)
-                return movie
+                return {'title': movie.get('title'), 'year': movie.get('year'), "movieID": f"tt{movie.get('imdbID')}")
     else:
         movieid = int(query)
     movie = imdbb.get_movie(movieid)
