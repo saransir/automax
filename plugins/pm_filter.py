@@ -65,9 +65,9 @@ async def advantage_spoll_choker(bot, query):
         if yea:
             files = await get_filter_results(movie)
             if files:
-                files += await get_filter_results(mov)
-                tot = len(files)
-                files = await files.to_list(length=int(tot))
+                # files += await get_filter_results(mov)
+                fies = await get_filter_results(mov)
+                files.append(fies.group(1))
                 files = list(dict.fromkeys(files)) 
             else:
                 files = await get_filter_results(mov)
