@@ -127,9 +127,9 @@ async def save_poster(imdb_id, title, year, url):
         try:
             await data.commit()
         except DuplicateKeyError:
-            logger.warning("already saved in database")
+            logger.warning("already in db")
         else:
-            logger.info("Poster is saved in database")
+            logger.info("Poster-saved in db")
 
 async def save_file(media):
     """Save file in database"""
@@ -156,7 +156,7 @@ async def save_file(media):
         except DuplicateKeyError:
             logger.warning(media.file_name + " is already saved in database")
         else:
-            logger.info(file_id + " is saved in database")
+            logger.info(file_name + " is saved in database")
             
 async def get_search_results(query, file_type=None, max_results=10, offset=0):
     """For given query return (results, next_offset)"""
@@ -325,6 +325,7 @@ async def get_post(query, bulk=False, id=False, file=None):
             if not id:
                 return None
             movieid = id[2:]
+            logger.info(title + "👈 @json data")
             if bulk:
                 await asyncio.sleep(.5)
                 try:
@@ -334,7 +335,7 @@ async def get_post(query, bulk=False, id=False, file=None):
                     return None
                 if not movieid:
                     return None
-                logger.info("json data🔥")
+                logger.info(title + "👈 research for bulk")
                 return movieid               
     else:
         movieid = int(query)
