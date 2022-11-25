@@ -388,7 +388,11 @@ async def search_gagala(text):
         }
     text = text.replace(" ", '+')
     url = f'https://www.google.com/search?q={text}'
-    response = requests.get(url, headers=usr_agent)
+    try:
+        response = requests.get(url, headers=usr_agent)
+    except Exception as e:
+        logger.exception(e)
+        return
     response.raise_for_status()
     try:
         soup = BeautifulSoup(response.text, 'html.parser')
