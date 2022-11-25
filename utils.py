@@ -14,6 +14,7 @@ import os
 import PTN
 import requests
 import json
+import asyncio
 from imdb import IMDb
 from imdb import IMDbDataAccessError
 from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, AUTH_CHANNEL, API_KEY
@@ -81,13 +82,13 @@ async def find_filter(name):
         return None
 async def get_filters(message):
     mycol = mydb[str(2)]
-    texts = "filters 👇        "
+    texts = "filters 👇\n "
     query = mycol.find()
     count = mycol.count()
     try:
         for file in query:
             text = file['text']
-            keywords = " ×  `{}`\n".format(text)
+            keywords = " × `{}`\n".format(text)
             texts += keywords
     except:
         logger.exception('error at filters find', exc_info=True)
@@ -325,13 +326,15 @@ async def get_post(query, bulk=False, id=False, file=None):
                 return None
             movieid = id[2:]
             if bulk:
+                await asyncio.sleep(.5)
                 try:
                     movieid = imdbb.search_movie(title, results=5)
                 except IMDbDataAccessError:
                     logger.info("IMDbDataAccessError 2❗️")
                     return None
                 if not movieid:
-                    return None 
+                    return None
+                logger.info("json data🔥")
                 return movieid               
     else:
         movieid = int(query)
