@@ -42,14 +42,14 @@ async def answer(bot, query):
         if not movies:
             await query.answer(results=[],
                                cache_time=0,
-                               switch_pm_text='No imdb Results 😐',
+                               switch_pm_text='No imdb Results',
                                switch_pm_parameter="okay")
             return
         for movie in movies:
             titl = movie.get('title').strip()
             year = movie.get('year')
             title = f"{titl} {year}"
-            mid = movie.get('Movie id') # movie.movieID
+            mid = movie.movieID
             imdb = await get_post(mid, id=True)
             poster=None
             if imdb:
