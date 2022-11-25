@@ -40,17 +40,16 @@ async def answer(bot, query):
         movies = await get_post(vie, bulk=True)
         # imdbcap = f"**{movie}**\n\n**╔‎/yᴇᴀʀ: {imdb['year']}**\n**╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n**╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__\n\n**🍿ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
         if not movies:
-            await query.answer(results=nd,
+            await query.answer(results=[],
                                cache_time=0,
-                               switch_pm_text='❌️ No Results ❌️',
+                               switch_pm_text='No imdb Results 😐',
                                switch_pm_parameter="okay")
             return
         for movie in movies:
-            myr = movie.get('title')
+            titl = movie.get('title').strip()
             year = movie.get('year')
-            titl = myr.strip()
             title = f"{titl} {year}"
-            mid = movie.movieID
+            mid = movie.get('Movie id') # movie.movieID
             imdb = await get_post(mid, id=True)
             poster=None
             if imdb:
