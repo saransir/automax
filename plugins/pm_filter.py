@@ -66,6 +66,9 @@ async def advantage_spoll_choker(bot, query):
             files = await get_filter_results(movie)
             if files:
                 files += await get_filter_results(mov)
+                tot = len(files)
+                files = await files.to_list(length=int(tot))
+                files = list(dict.fromkeys(files)) 
             else:
                 files = await get_filter_results(mov)
         else:
@@ -427,8 +430,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             try:
                 data = BUTTONS[keyword]
             except KeyError:
-                await query.answer(" You are using this for one of my old message, please send the request again ⭕️.",show_alert=True)
-                await query.message.delete()
+                await query.answer(" You are using this for one of my old message, please send the request again ",show_alert=True)
                 return
             if int(index) == int(data["total"]) - 2:
                 buttons = data['buttons'][int(index)+1].copy()
