@@ -6,5 +6,6 @@ marshmallow==3.14.1
 umongo==3.0.1
 pyromod
 requests
+parse-torrent-name
 bs4
 imdbpy==2021.4.18
