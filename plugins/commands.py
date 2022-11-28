@@ -3,7 +3,6 @@ import re
 import logging
 import asyncio
 import random
-import PTN
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest, CallbackQuery, ForceReply
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
@@ -272,8 +271,7 @@ async def delete(bot, message):
     })
     if result.deleted_count:
         await message.delete()
-        ptn = PTN.parse(file_name)
-        aa = await msg.edit(f'{ptn}  👈 File is successfully deleted from database')
+        aa = await msg.edit('File is successfully deleted from database')
         await reply.delete()
         await asyncio.sleep(1)
         await aa.delete()
