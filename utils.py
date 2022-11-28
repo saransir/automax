@@ -397,7 +397,11 @@ async def search_gagala(text):
     except Exception as e:
         logger.exception(e)
         return
-    response.raise_for_status()
+    try:
+        response.raise_for_status()
+    except Exception as e:
+        logger.exception(e)
+        return
     try:
         soup = BeautifulSoup(response.text, 'html.parser')
     except Exception as e:
