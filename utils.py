@@ -11,7 +11,6 @@ from umongo import Instance, Document, fields
 from motor.motor_asyncio import AsyncIOMotorClient
 from marshmallow.exceptions import ValidationError
 import os
-import PTN
 import requests
 import json
 import asyncio
@@ -240,16 +239,8 @@ async def is_subscribed(bot, query):
     return False
 
 async def get_poster(movie):
-    extract = PTN.parse(movie)
-    try:
-        title=extract["title"]
-    except KeyError:
-        title=movie
-    try:
-        year=extract["year"]
-        year=int(year)
-    except KeyError:
-        year=None
+    title = (movie.strip()).lower()
+    year = re.findall(r'[1-2]\d{3}$', title, re.IGNORECASE)
     if year:
         filter = {'$and': [{'title': str(title).lower().strip()}, {'year': int(year)}]}
     else:
