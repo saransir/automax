@@ -1,5 +1,5 @@
 #on airmovie
-from pyrogram.errors import UserNotParticipant, UserIsBlocked, FloodWait 
+from pyrogram.errors import UserNotParticipant, UserIsBlocked, FloodWait, PeerIdInvalid
 from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, ADMINS, START_MSG
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters
@@ -413,8 +413,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     )
                 except UserIsBlocked:
                     await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
-                except FloodWait as e:
-                    await asyncio.sleep(1)
+                except PeerIdInvalid:
+                    await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+                except Exception as e:
+                    await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
                 else:
                     await query.answer(f"file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 ✔️ sent to your pm \n\n🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛ ~~{title}~~",show_alert=True)        
             else:
