@@ -242,6 +242,8 @@ async def get_poster(movie):
     title = (movie.strip()).lower()
     year = re.findall(r'[1-2]\d{3}$', title, re.IGNORECASE)
     if year:
+        year = list_to_str(year[:1])
+        title = (query.replace(year, "")).strip()
         filter = {'$and': [{'title': str(title).lower().strip()}, {'year': int(year)}]}
     else:
         filter = {'title': str(title).lower().strip()}
