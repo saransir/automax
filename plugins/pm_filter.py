@@ -444,8 +444,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 try:
                     await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
                 except MessageNotModified:
-                    pass
-                await query.answer("❗️MessageNotModified❗️")
+                    await query.answer("❗️MessageNotModified❗️")
                 return
             else:
                 buttons = data['buttons'][int(index)+1].copy()
@@ -456,8 +455,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 try:
                     await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
                 except MessageNotModified:
-                    pass
-                await query.answer("❗️MessageNotModified❗️")
+                    await query.answer("❗️MessageNotModified❗️")
                 return
         elif query.data.startswith("back"):
             ident, index, keyword = query.data.split("_")
@@ -477,8 +475,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 try:
                     await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
                 except MessageNotModified:
-                    pass
-                await query.answer("❗️MessageNotModified❗️")
+                    await query.answer("❗️MessageNotModified❗️")
                 return   
             else:
                 buttons = data['buttons'][int(index)-1].copy()
@@ -490,8 +487,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 try:
                     await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
                 except MessageNotModified:
-                    pass
-                await query.answer("❗️MessageNotModified❗️")
+                    await query.answer("❗️MessageNotModified❗️")
                 return
         elif query.data.startswith("start"):
             buttons = [
