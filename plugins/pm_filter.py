@@ -1,5 +1,5 @@
 #on airmovie
-from pyrogram.errors import UserNotParticipant, UserIsBlocked, FloodWait, PeerIdInvalid
+from pyrogram.errors import UserNotParticipant, UserIsBlocked, FloodWait, PeerIdInvalid, MessageNotModified
 from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, ADMINS, START_MSG
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters
@@ -441,10 +441,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 """buttons.append(
                     [InlineKeyboardButton(text="🍿𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼🍿",callback_data=f"myree#")]
                 )"""
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
+                try:
+                    await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
+                except MessageNotModified:
+                    pass
+                await query.answer("❗️MessageNotModified❗️")
                 return
             else:
                 buttons = data['buttons'][int(index)+1].copy()
@@ -452,10 +453,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton(f"🎪{int(index)+2}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)+1}_{keyword}")]
                 )
-                
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
+                try:
+                    await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
+                except MessageNotModified:
+                    pass
+                await query.answer("❗️MessageNotModified❗️")
                 return
         elif query.data.startswith("back"):
             ident, index, keyword = query.data.split("_")
@@ -472,9 +474,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton(f"🎪 Pages {int(index)}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)-1}_{keyword}")]                   
                 )
 
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
+                try:
+                    await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
+                except MessageNotModified:
+                    pass
+                await query.answer("❗️MessageNotModified❗️")
                 return   
             else:
                 buttons = data['buttons'][int(index)-1].copy()
@@ -483,9 +487,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton(f"🎪{int(index)}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)-1}_{keyword}")]
                 )
 
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
+                try:
+                    await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
+                except MessageNotModified:
+                    pass
+                await query.answer("❗️MessageNotModified❗️")
                 return
         elif query.data.startswith("start"):
             buttons = [
@@ -509,7 +515,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ident, file_name = query.data.split("#")
             await query.answer(url=f"http://t.me/On_air_Filter_bot?start=saran=={file_name}")   
         elif query.data.startswith("report"):
-            ident, movie = query.data.split("_")
+            try:
+                ident, movie = query.data.split("_")
+            except:
+                await query.answer("❗️ERROR❗️")  
             x = movie.split("+")
             kdm = " ".join(x)
             cha = int(CHAA)
