@@ -389,17 +389,17 @@ async def search_gagala(text):
         response = requests.get(url, headers=usr_agent)
     except Exception as e:
         logger.exception(e)
-        return
+        return None
     try:
         response.raise_for_status()
     except Exception as e:
         logger.exception(e)
-        return
+        return None
     try:
         soup = BeautifulSoup(response.text, 'html.parser')
     except Exception as e:
         logger.exception(e)
-        return 
+        return None
     titles = soup.find_all( 'h3' )
     return [title.getText() for title in titles]
 
