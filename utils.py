@@ -289,8 +289,9 @@ async def get_post(query, bulk=False, id=False, file=None):
         else:
             year = None
         try:
-            movieid = imdbb.search_movie(title.lower(), results=10)
+            movieid = imdbb.search_movie(title.lower(), results=6)
         except IMDbDataAccessError:
+            movieid = None
             logger.info("IMDbDataAccessError❗️")
         if movieid:
             if year:
@@ -318,9 +319,8 @@ async def get_post(query, bulk=False, id=False, file=None):
             if not id:
                 return None
             movieid = id[2:]
-            logger.info(title + "👈 @json data")
             if bulk:
-                await asyncio.sleep(.5)
+                await asyncio.sleep(1)
                 try:
                     movieid = imdbb.search_movie(title, results=5)
                 except IMDbDataAccessError:
@@ -329,7 +329,8 @@ async def get_post(query, bulk=False, id=False, file=None):
                 if not movieid:
                     return None
                 logger.info(title + "👈 research for bulk")
-                return movieid               
+                return movieid
+            logger.info(title + "👈 @json data")             
     else:
         movieid = int(query)
     movie = imdbb.get_movie(movieid)
