@@ -276,10 +276,7 @@ async def spell(message):
     fn = titl.replace(" ", "_")[0:30]
     btn = []
     user = message.from_user.id if message.from_user else 0
-    try:
-        movies = await get_post(titl, bulk=True)
-    except:
-        return await advantage_spell_chok(message)
+    movies = await get_post(titl, bulk=True)
     if not movies:
         return await advantage_spell_chok(message)
     oam = f"{random.choice(RAT)}"
@@ -309,14 +306,12 @@ async def advantage_spell_chok(message):
         await message.delete()
         return
     fn = query.replace(" ", "_")[0:30]
-    query = query.strip() + " movie"
-    g_s = await search_gagala(query)
+    uery = query.strip() + " movie"
+    g_s = await search_gagala(uery)
     g_s += await search_gagala(message.text)
-    files = await get_filter_results(query)
-    if files:
-        g_s += f"query" 
+    g_s += f"query" 
     gs_parsed = []
-    x = fn.split()
+    x = query.split()
     hari = "+".join(x)
     kuttons = []
     kuttons.append(
@@ -511,21 +506,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
             ident, file_name = query.data.split("#")
             await query.answer(url=f"http://t.me/On_air_Filter_bot?start=saran=={file_name}")   
         elif query.data.startswith("report"):
-            try:
-                ident, movie = query.data.split("_")
-            except:
-                await query.answer("❗️ERROR❗️")  
-            x = movie.split("+")
-            kdm = " ".join(x)
-            cha = int(CHAA)
-            try:
-                await client.send_message(chat_id=cha,text=f"{kdm}", disable_web_page_preview=True)
-            except UserIsBlocked:
-                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=saran")
-            else:
-                await query.answer("𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 Reported to Admins 👮‍♂ \n\n\n ᴛʜᴇ ᴍᴏᴠɪᴇ ᴡɪʟʟ ᴜᴩʟᴏᴀᴅɪɴɢ ꜱᴏᴏɴ..",show_alert=True)
-                await message.delete()
-                return await query.message.delete()
+            if message:
+                cha = int(CHAA)
+                try:
+                    await client.send_message(chat_id=cha,text=f"{message.text}", disable_web_page_preview=True)
+                except:
+                    await query.answer("http://t.me/On_air_Filter_bot?start=saran")
+                else:
+                    await query.answer("𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 Reported to Admins 👮‍♂ \n\n\n ᴛʜᴇ ᴍᴏᴠɪᴇ ᴡɪʟʟ ᴜᴩʟᴏᴀᴅɪɴɢ ꜱᴏᴏɴ..",show_alert=True)
+                    await message.delete()
+            return await query.message.delete()
         elif query.data == "ott":
             buttons = []
             buttons.append(
@@ -540,7 +530,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "about":
             await query.answer("🤖 ɴᴀᴍᴇ: ғɪʟᴛᴇʀ -x- v2.8\n\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ😁\n\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
         elif query.data == "close":
-            await query.answer("your query message is deleted 🌩️",show_alert=True)
+            await query.answer("your message is deleted 🌩️")
             await query.message.delete()
             try:
                 await message.delete()
