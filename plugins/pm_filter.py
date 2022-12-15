@@ -300,7 +300,7 @@ async def spell(message):
 async def advantage_spell_chok(message):
     query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE).strip()
     if len(query) <= 3:
-        ko = await message.reply("**ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ**")
+        ko = await message.reply("**ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ**", quote=True)
         await asyncio.sleep(5)
         await ko.delete()
         await message.delete()
@@ -308,8 +308,7 @@ async def advantage_spell_chok(message):
     fn = query.replace(" ", "_")[0:30]
     uery = query.strip() + " movie"
     g_s = await search_gagala(uery)
-    g_s += await search_gagala(message.text)
-    g_s += f"query" 
+    g_s += await search_gagala(message.text) 
     gs_parsed = []
     x = query.split()
     hari = "+".join(x)
@@ -320,42 +319,33 @@ async def advantage_spell_chok(message):
     chat_type = message.chat.type
     if chat_type == "private":
         kuttons.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
-    else:
-        kuttons.append(
-            [InlineKeyboardButton(text="✉️ ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ ✉️",callback_data=f"report_{hari}")]
-        )
     reply_arkup = InlineKeyboardMarkup(kuttons)
+    user = message.from_user.id if message.from_user else 0
+    movielist = []
     if not g_s:
-        k = await message.reply("**I couldn't find any movie in that name** \n\n**𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
-        await asyncio.sleep(38)
-        await k.delete()
-        await message.delete()
-        return
-    # regex = re.compile(r".*(imdbb|wikipedia).*", re.IGNORECASE) # look for imdb / wiki results
-    # gs = list(filter(regex.match, g_s))
-    # gs_parsed = [re.sub(r'\b(\-([a-zA-Z-\s])\-\simdb|(\-\s)?imdb|(\-\s)?wikipedia|\(|\)|\-|reviews|full|all|episode(s)?|film|movie|series)', '', i, flags=re.IGNORECASE) for i in g_s]
-    # if not gs_parsed:
-    if g_s:
+        movielist += f"query"
+    else:
         reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*", re.IGNORECASE) # match something like Watch Niram | Amazon Prime 
         for mv in g_s:
             match  = reg.match(mv)
             if match:
                 gs_parsed.append(match.group(1))
-    user = message.from_user.id if message.from_user else 0
-    movielist = []
-    gs_parsed = list(dict.fromkeys(gs_parsed)) # removing duplicates https://stackoverflow.com/a/7961425
-    if len(gs_parsed) > 3:
-        gs_parsed = gs_parsed[:3]
-    if gs_parsed:
-        for mov in gs_parsed:
-            imdb_s = await get_post(mov.strip(), bulk=True) # searching each keyword in imdb
-            if imdb_s:
-                movielist += [movie.get('title') for movie in imdb_s]
-    movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
+        gs_parsed = list(dict.fromkeys(gs_parsed)) # removing duplicates https://stackoverflow.com/a/7961425
+        if len(gs_parsed) > 3:
+            gs_parsed = gs_parsed[:3]
+        if gs_parsed:
+            for mov in gs_parsed:
+                imdb_s = await get_post(mov.strip(), bulk=True) # searching each keyword in imdb
+                if imdb_s:
+                    movielist += [movie.get('title') for movie in imdb_s]
+        movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist)) # removing duplicates
     if not movielist:
-        k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**\n\n__𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
-        await asyncio.sleep(40)
+        try:
+            k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**\n\n__𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
+        except:
+            k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**\n\n__𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇")
+        await asyncio.sleep(30)
         await k.delete()
         await message.delete()
         return
@@ -369,7 +359,7 @@ async def advantage_spell_chok(message):
     if len(btn) > 9: 
         btn = btn[:9]
     btn.append([InlineKeyboardButton(text="🄲🄻🄾🅂🄴", callback_data="close"), InlineKeyboardButton(text=f"🄶🄾🄾🄶🄻🄴", url=f"https://google.com/search?q={hari}")])
-    await message.reply("__𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞__ ?👇👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
+    await message.reply("**𝐃𝐢𝐝 𝐲𝐨𝐮 𝐦𝐞𝐚𝐧 𝐚𝐧𝐲 𝐨𝐧𝐞 𝐨𝐟 𝐭𝐡𝐞𝐬𝐞** ?👇👇", quote=True, reply_markup=InlineKeyboardMarkup(btn))
 
 @Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
