@@ -339,12 +339,12 @@ async def advantage_spell_chok(message):
                 if imdb_s:
                     movielist += [movie.get('title') for movie in imdb_s]
         movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
-    movielist = list(dict.fromkeys(movielist)) # removing duplicates
+        movielist = list(dict.fromkeys(movielist)) # removing duplicates
     if not movielist:
         try:
             k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**\n\n__𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
         except:
-            k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**\n\n__𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇")
+            k = await message.reply("__I couldn't find anything related to that. Check your spelling__\n\n**𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇")
         await asyncio.sleep(30)
         await k.delete()
         await message.delete()
