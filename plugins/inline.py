@@ -1,6 +1,7 @@
 import logging
 from pyrogram import Client, emoji, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQueryResultArticle, InputTextMessageContent, InlineQueryResultPhoto
+from pyrogram.errors.exceptions.bad_request_400 import QueryIdInvalid
 import re
 from utils import get_search_results, is_subscribed, get_post
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
@@ -34,9 +35,11 @@ async def answer(bot, query):
         string, file_type = query.query.split('|', maxsplit=1)
         string = string.strip()
         file_type = file_type.strip().lower()
-    elif '+' in query.query:       
-        me, string = query.query.split('+', maxsplit=1)
+    elif '++' in query.query:       
+        me, string = query.query.split('++', maxsplit=1)
         vie = string.strip()
+        if len(vie) <= 2:
+            return
         movies = await get_post(vie, bulk=True)
         # imdbcap = f"**{movie}**\n\n**╔‎/yᴇᴀʀ: {imdb['year']}**\n**╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n**╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__\n\n**🍿ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
         if not movies:
@@ -72,12 +75,16 @@ async def answer(bot, query):
                     description=imdbdis,
                     caption=imdbcap,
                     reply_markup=InlineKeyboardMarkup(buttons)))
-        await query.answer(results=results,
+        try:
+            await query.answer(results=results,
                            is_personal = True,                         
                            cache_time=0,
                            switch_pm_text='ʀᴇꜱᴜʟᴛꜱ 👇',
                            switch_pm_parameter="start")                         
-        return
+        except QueryIdInvalid:
+            pass
+        except Exception as e:
+            logging.exception(str(e))
     else:
         string = query.query.strip()
         file_type = None
@@ -96,20 +103,24 @@ async def answer(bot, query):
             InlineQueryResultCachedDocument(
                 title=title,
                 file_id=file.file_id,
-                caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <b>⚡️ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <b>⚡️ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>\n\n♡ ㅤ   ❍ㅤ     ⎙      ⌲   ˡᶦᵏᵉ  ᶜᵒᵐᵐᵉⁿᵗ   ˢᵃᵛᵉ   ˢʰᵃʳᵉ",
                 description=f'🍿{file.file_type} Size: {get_size(file.file_size)}',
                 reply_markup=reply_markup))
     if results:
         switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂"
         if string:
             switch_pm_text += f" for {string}"
-        await query.answer(results=results,
+        try:
+            await query.answer(results=results,
                            is_personal = True,
                            cache_time=cache_time,
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="start",
                            next_offset=str(next_offset))
-        return
+        except QueryIdInvalid:
+            pass
+        except Exception as e:
+            logging.exception(str(e))
     else:
         switch_pm_text = f'{emoji.CROSS_MARK} No results'
         if string:
