@@ -339,7 +339,7 @@ async def advantage_spell_chok(message):
         movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
         movielist = list(dict.fromkeys(movielist)) # removing duplicates
         if not movielist:
-            movielist += f"query"
+            movielist = f"{query}"
         """try:
             k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**\n\n__𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
         except:
@@ -349,7 +349,7 @@ async def advantage_spell_chok(message):
         await message.delete()
         return"""
     else:
-        movielist += f"query"
+        movielist = f"{query}"
     SPELL_CHECK[message.message_id] = movielist
     btn = [[
                 InlineKeyboardButton(
