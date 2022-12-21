@@ -339,7 +339,7 @@ async def advantage_spell_chok(message):
         movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
         movielist = list(dict.fromkeys(movielist)) # removing duplicates
         if not movielist:
-            movielist = f"{query}"
+            movielist += str(query)
         """try:
             k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**\n\n__𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
         except:
@@ -349,7 +349,7 @@ async def advantage_spell_chok(message):
         await message.delete()
         return"""
     else:
-        movielist = f"{query}"
+        movielist += str(query)
     SPELL_CHECK[message.message_id] = movielist
     btn = [[
                 InlineKeyboardButton(
@@ -560,5 +560,5 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     caption=f"<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/+R9zxAI4mCkk0NzVl) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)",
                     reply_markup=InlineKeyboardMarkup(buttons)) 
         elif query.data == "pages":
-            await query.answer("ɪꜰ ❌️ꜱᴇᴇ ᴛʜᴇ ꜰɪʟᴇ, ʟᴏᴏᴋ ᴀᴛ ɴᴇxᴛ ᴘᴀɢᴇ")
+            await query.answer("ʟᴏᴏᴋ ᴀᴛ ɴᴇxᴛ ᴘᴀɢᴇ")
 
