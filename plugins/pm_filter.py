@@ -307,8 +307,7 @@ async def advantage_spell_chok(message):
         return
     fn = query.replace(" ", "_")[0:30]
     uery = query.strip() + " movie"
-    g_s = await search_gagala(uery)
-    g_s += await search_gagala(message.text) 
+    g_s = await search_gagala(uery) 
     gs_parsed = []
     x = query.split()
     hari = "+".join(x)
@@ -322,9 +321,8 @@ async def advantage_spell_chok(message):
     reply_arkup = InlineKeyboardMarkup(kuttons)
     user = message.from_user.id if message.from_user else 0
     movielist = []
-    if not g_s:
-        movielist += f"query"
-    else:
+    if g_s:
+        g_s += await search_gagala(message.text)
         reg = re.compile(r"watch(\s[a-zA-Z0-9_\s\-\(\)]*)*\|.*", re.IGNORECASE) # match something like Watch Niram | Amazon Prime 
         for mv in g_s:
             match  = reg.match(mv)
@@ -340,15 +338,18 @@ async def advantage_spell_chok(message):
                     movielist += [movie.get('title') for movie in imdb_s]
         movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
         movielist = list(dict.fromkeys(movielist)) # removing duplicates
-    if not movielist:
-        try:
+        if not movielist:
+            movielist += f"query"
+        """try:
             k = await message.reply("__I couldn't find anything related to that. Check your__ **spelling**\n\n__𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎__ **𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇", reply_markup=reply_arkup)
         except:
             k = await message.reply("__I couldn't find anything related to that. Check your spelling__\n\n**𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐** 👇")
         await asyncio.sleep(30)
         await k.delete()
         await message.delete()
-        return
+        return"""
+    else:
+        movielist += f"query"
     SPELL_CHECK[message.message_id] = movielist
     btn = [[
                 InlineKeyboardButton(
