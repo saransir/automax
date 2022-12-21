@@ -105,7 +105,7 @@ async def advantage_spoll_choker(bot, query):
             )
             if imdb:
                 kuttons.append(
-                    [InlineKeyboardButton(text=f"{oam} ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}"), InlineKeyboardButton(text=f"ᴄʟᴏꜱᴇ {oam}",callback_data="close")]
+                    [InlineKeyboardButton(text=f"{oam} ɪɴꜰᴏ ",callback_data=f"imdb#{imdb['imdb_id']}"), InlineKeyboardButton(text=f"ᴄʟᴏꜱᴇ {oam}",callback_data="close")]
                 )
             await a1.edit_text(f"{imdbcap}\n\n <b>❗️<u>{reply_text}</u>❗️</b> \n", reply_markup=InlineKeyboardMarkup(kuttons))
             return
