@@ -14,7 +14,7 @@ import os
 import requests
 import json
 import asyncio
-from imdb import IMDb
+from imdb import Cinemagoer
 from imdb import IMDbDataAccessError
 from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, AUTH_CHANNEL, API_KEY
 DATABASE_URI_2=os.environ.get('DATABASE_URI_2', DATABASE_URI)
@@ -30,7 +30,7 @@ instance = Instance.from_db(db)
 IClient = AsyncIOMotorClient(DATABASE_URI_2)
 imdbdb=client[DATABASE_NAME_2]
 imdb=Instance.from_db(imdbdb)
-imdbb = IMDb()
+imdbb = Cinemagoer()
 myclient = pymongo.MongoClient(DATABASE_URI)
 mydb = myclient[DATABASE_NAME]
 
