@@ -30,7 +30,7 @@ instance = Instance.from_db(db)
 IClient = AsyncIOMotorClient(DATABASE_URI_2)
 imdbdb=client[DATABASE_NAME_2]
 imdb=Instance.from_db(imdbdb)
-imdbb = Cinemagoer()
+imdbb = Cinemagoer(accessSystem='http')
 myclient = pymongo.MongoClient(DATABASE_URI)
 mydb = myclient[DATABASE_NAME]
 
