@@ -214,7 +214,7 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton(" 💒💒  ᴄʜᴀɴɴᴇʟ 💒💒 ", url="https://t.me/+R9zxAI4mCkk0NzVl")]
+                [InlineKeyboardButton("💒💒  ᴄʜᴀɴɴᴇʟ 💒💒", url="https://t.me/+R9zxAI4mCkk0NzVl")]
             )
             poster=None
             if API_KEY:
