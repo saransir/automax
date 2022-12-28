@@ -201,9 +201,9 @@ async def group(client, message):
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
         else:
-            return await advantage_spell_chok(message)
+            return await spell(message)
         if not btn:
-            return await advantage_spell_chok(message)
+            return await spell(message)
         if len(btn) > 6: 
             btns = list(split_list(btn, 6)) 
             keyword = f"{message.chat.id}-{message.message_id}"
@@ -568,5 +568,5 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     caption=f"<b>©[ᵒⁿᵃⁱʳᵐᵒᵛⁱᵉˢ](https://t.me/+R9zxAI4mCkk0NzVl) \n 🎬 file name 👉  </b>""<code>" + title + "</code>""\n\n[𝙼𝚘𝚟𝚒𝚎 ʀᴇϙᴜᴇsᴛɪɴɢ 𝚐𝚛𝚘𝚞𝚙](https://t.me/+eDjzTT2Ua6kwMTI1)",
                     reply_markup=InlineKeyboardMarkup(buttons)) 
         elif query.data == "pages":
-            await query.answer("👀ʟᴏᴏᴋ ᴀᴛ ɴᴇxᴛ ᴘᴀɢᴇ📄")
+            await query.answer("👀 ʟᴏᴏᴋ ᴀᴛ ɴᴇxᴛ ᴘᴀɢᴇ 📄")
 
