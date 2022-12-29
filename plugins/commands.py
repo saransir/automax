@@ -10,6 +10,7 @@ from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_p
 from info import TUTORIAL
 from info import IMDB_TEMPLATE, IMDB_TEMPLATEE
 from plugins.pm_filter import spell
+from saran import db
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 from asyncio.exceptions import TimeoutError
@@ -354,11 +355,10 @@ async def auto_welcoime(bot, message):
         BOT["id"]=nyva    
     r_j_check = [u.id for u in message.new_chat_members]
     if nyva in r_j_check:
-        """if not await db.get_chat(message.chat.id):
-            total=await bot.get_chat_members_count(message.chat.id)
-            r_j = message.from_user.mention if message.from_user else "Anonymous" 
-            await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, r_j))       
-            await db.add_chat(message.chat.id, message.chat.title)"""
+        if not await db.get_chat(message.chat.id):
+            # total=await bot.get_chat_members_count(message.chat.id)
+            # await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, r_j))       
+            await db.add_chat(message.chat.id, message.chat.title)
         sa = await message.reply_text(text=f"Thankyou For Adding Me In {chat.title} ❣️")
         await sa.forward("@S1a2r3a4n")
         await asyncio.sleep(16) 
@@ -368,6 +368,23 @@ async def auto_welcoime(bot, message):
             cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
             await asyncio.sleep(10) 
             await cg.delete()
+
+@Client.on_message(filters.command('chats') & filters.user(ADMINS))
+async def list_chats(bot, message):
+    raju = await message.reply('Getting List Of chats')
+    chats = await db.get_all_chats()
+    out = "Chats Saved In DB Are:\n\n"
+    async for chat in chats:
+        out += f"**Title:** `{chat['title']}`\n**- ID:** `{chat['id']}`"
+        if chat['chat_status']['is_disabled']:
+            out += '( Disabled Chat )'
+        out += '\n'
+    try:
+        await raju.edit_text(out)
+    except:
+        with open('chats.txt', 'w+') as outfile:
+            outfile.write(out)
+        await message.reply_document('chats.txt', caption="List Of Chats")
 
 @Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS))
 async def delfor(bot,message):
