@@ -348,10 +348,10 @@ async def auto_welcoime(bot, message):
     chat=message.chat
     user=message.new_chat_members
     nyva=BOT.get("id")
-        if not nyva:
-            botid=await client.get_me()
-            nyva=botid.id
-            BOT["id"]=nyva    
+    if not nyva:
+        botid=await client.get_me()
+        nyva=botid.id
+        BOT["id"]=nyva    
     r_j_check = [u.id for u in message.new_chat_members]
     if nyva in r_j_check:
         """if not await db.get_chat(message.chat.id):
