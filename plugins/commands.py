@@ -22,6 +22,8 @@ PHOT = [
 ]
 LN = "https://t.me/+PBGW_EV3ldY5YjJl"
 
+BOT = {}
+
 @Client.on_message(filters.regex('Livegram') & filters.private)
 async def dfhhg(bot, message):
     return await message.delete()
@@ -103,18 +105,18 @@ async def start(bot, cmd):
         await cmd.delete()
     elif len(cmd.command) > 1 and cmd.command[1] == 'okay' or usr_cmdall1.startswith("/start saran"):
         user = cmd.from_user.id if cmd.from_user else 0
+        await cmd.delete()
         while True:
             try:
                 nx = await bot.ask(text="__ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴍᴏᴠɪᴇ\sᴇʀɪᴇs ɴᴀᴍᴇ ᴡɪᴛʜᴏᴜᴛ sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ__", chat_id=cmd.from_user.id, filters=filters.text, timeout=30, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
             except TimeoutError:
                 await cmd.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ** __ᴏꜰ 30 ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️ or request on group👇__", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
-                return await cmd.delete()
+                return 
             if not nx.reply_to_message or user != nx.from_user.id:
                 await cmd.reply("__ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ ᴛʀʏ ᴀɢᴀɪɴ__ ♻️")
                 await asyncio.sleep(.8)
                 continue
             else:
-                await cmd.delete()
                 await nx.reply_to_message.delete()
                 break
         if nx.text.startswith("/"):
@@ -344,10 +346,27 @@ async def autoapprove(bot, message: ChatJoinRequest):
 @Client.on_message(filters.new_chat_members & filters.chat(AUTH_GROUPS))
 async def auto_welcoime(bot, message):
     chat=message.chat
-    user=message.from_user
-    cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
-    await asyncio.sleep(16) 
-    await cg.delete()
+    user=message.new_chat_members
+    nyva=BOT.get("id")
+        if not nyva:
+            botid=await client.get_me()
+            nyva=botid.id
+            BOT["id"]=nyva    
+    r_j_check = [u.id for u in message.new_chat_members]
+    if nyva in r_j_check:
+        """if not await db.get_chat(message.chat.id):
+            total=await bot.get_chat_members_count(message.chat.id)
+            r_j = message.from_user.mention if message.from_user else "Anonymous" 
+            await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, r_j))       
+            await db.add_chat(message.chat.id, message.chat.title)"""
+        sa = await message.reply_text(text=f"Thankyou For Adding Me In {chat.title} ❣️")
+        await sa.forward("@S1a2r3a4n")
+        await asyncio.sleep(16) 
+        await sa.delete()
+    else:
+        cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
+        await asyncio.sleep(16) 
+        await cg.delete()
 @Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS))
 async def delfor(bot,message):
     if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
