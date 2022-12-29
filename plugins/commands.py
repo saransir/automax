@@ -356,11 +356,11 @@ async def auto_welcoime(bot, message):
     r_j_check = [u.id for u in message.new_chat_members]
     if nyva in r_j_check:
         if not await db.get_chat(message.chat.id):
-            # total=await bot.get_chat_members_count(message.chat.id)
-            # await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, r_j))       
+            total=await bot.get_chat_members_count(message.chat.id)
+            r_j = message.from_user.mention if message.from_user else "Anonymous" 
+            await bot.send_message(chat_id=int(-1001529899497), text=f"**#NEWCHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j}**")       
             await db.add_chat(message.chat.id, message.chat.title)
         sa = await message.reply_text(text=f"Thankyou For Adding Me In {chat.title} ❣️")
-        await sa.forward("@S1a2r3a4n")
         await asyncio.sleep(16) 
         await sa.delete()
     else:
