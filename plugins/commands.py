@@ -274,11 +274,12 @@ async def delete(bot, message):
         'mime_type': media.mime_type
     })
     if result.deleted_count:
-        await message.delete()
         aa = await msg.edit('File is successfully deleted from database')
         await reply.delete()
         await asyncio.sleep(1)
         await aa.delete()
+        await message.delete()
+        
     else:
         result = await Media.collection.delete_one({
             'file_name': media.file_name,
@@ -286,11 +287,12 @@ async def delete(bot, message):
             'mime_type': media.mime_type
         })
         if result.deleted_count:
-            await message.delete()
             aa = await msg.edit('File is successfully deleted from database')
             await reply.delete()
             await asyncio.sleep(1)
             await aa.delete()
+            await message.delete()
+        
         else:
             await message.delete()
             await reply.delete()
@@ -330,13 +332,16 @@ async def bot_kunna(bot, message):
         ]
         ]
     await message.reply_chat_action("typing")
-    await asyncio.sleep(2)
+    await asyncio.sleep(1)
     await message.reply(text=f"<b>If you want all the new and old movies and web series, click on the link below 👇\n\n\n https://t.me/+eDjzTT2Ua6kwMTI1 https://t.me/+eDjzTT2Ua6kwMTI1 </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 @Client.on_message(filters.regex('https') & filters.group)
 async def hellto(bot, message):
     if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
-        await message.delete()
-@Client.on_chat_join_request(filters.chat(AUTH_GROUPS))
+        try:
+            await message.delete()
+        except:
+            return
+@Client.on_chat_join_request(filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.group)
 async def autoapprove(bot, message: ChatJoinRequest):
     chat=message.chat # Chat
     user=message.from_user # User
@@ -356,17 +361,24 @@ async def auto_welcoime(bot, message):
     r_j_check = [u.id for u in message.new_chat_members]
     if nyva in r_j_check:
         if not await db.get_chat(message.chat.id):
-            total=await bot.get_chat_members_count(message.chat.id)
-            r_j = message.from_user.mention if message.from_user else "Anonymous" 
-            await bot.send_message(chat_id=int(-1001529899497), text=f"**#NEWCHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j}**")       
             await db.add_chat(message.chat.id, message.chat.title)
-        sa = await message.reply_text(text=f"Thankyou For Adding Me In {chat.title} ❣️")
-        await asyncio.sleep(16) 
+        total=await bot.get_chat_members_count(message.chat.id)
+        r_j = message.from_user.mention if message.from_user else "Anonymous" 
+        chatt = int(message.chat.id)      
+        try:
+            link = await bot.create_chat_invite_link(chatt)
+        except:
+            sa = await message.reply_text(text=f"**Thankyou For Adding Me In {chat.title}**\n\n __make me as admin and give Sufficient Rights__")
+            await bot.send_message(chat_id=int(-1001529899497), text=f"**#ADDED_CHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j}**")       
+        else:
+            sa = await message.reply_text(text=f"**Thankyou For Adding Me In {chat.title}**")
+            await bot.send_message(chat_id=int(-1001529899497), text=f"**#ADDED_CHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j} \n Link {link.invite_link}**")       
+        await asyncio.sleep(30) 
         await sa.delete()
     else:
         for user in message.new_chat_members:
             cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
-            await asyncio.sleep(10) 
+            await asyncio.sleep(20) 
             await cg.delete()
 
 @Client.on_message(filters.command('chats') & filters.user(ADMINS))
@@ -386,10 +398,13 @@ async def list_chats(bot, message):
             outfile.write(out)
         await message.reply_document('chats.txt', caption="List Of Chats")
 
-@Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS))
+@Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.forwarded & filters.group & filters.incoming)
 async def delfor(bot,message):
     if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
-        await message.delete()
+        try:
+            await message.delete()
+        except:
+            return
 @Client.on_message(filters.regex('movie') & filters.group & filters.incoming)
 async def helmo(bot, message):
     buttons = [
@@ -452,8 +467,12 @@ async def gen_link_s(bot, message):
     file_type = replied.media
     if file_type not in ["video", 'audio', 'document']:
         return await message.reply("Reply to a supported media")
+    media = getattr(replied, file_type, None)
+        if media is not None:
+            return await message.reply("Reply to a supported media")
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
-    await message.reply(f"https://telegram.dog/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+    file_name = re.sub(r"(_|\-|\.|\@|\#|\+)", " ", str(media.file_name))
+    await message.reply(f"file name :{file_name}\n\n https://telegram.dog/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
 
 @Client.on_message(filters.command(['pmfilter', 'imdb']) & filters.private)
 async def imdb_searh(bot, message):
@@ -466,7 +485,7 @@ async def imdb_searh(bot, message):
             return await message.delete()
         if not nx.reply_to_message or user != nx.from_user.id:
             await message.reply("__ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ ᴛʀʏ ᴀɢᴀɪɴ__ ♻️")
-            await asyncio.sleep(.8)
+            await asyncio.sleep(1)
             continue
         else:
             await message.delete()
