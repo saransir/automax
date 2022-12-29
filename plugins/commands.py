@@ -22,6 +22,7 @@ PHOT = [
 ]
 LN = "https://t.me/+PBGW_EV3ldY5YjJl"
 
+
 BOT = {}
 
 @Client.on_message(filters.regex('Livegram') & filters.private)
@@ -346,7 +347,6 @@ async def autoapprove(bot, message: ChatJoinRequest):
 @Client.on_message(filters.new_chat_members & filters.group)
 async def auto_welcoime(bot, message):
     chat=message.chat
-    user=message.new_chat_members
     nyva=BOT.get("id")
     if not nyva:
         botid=await bot.get_me()
@@ -364,9 +364,11 @@ async def auto_welcoime(bot, message):
         await asyncio.sleep(16) 
         await sa.delete()
     else:
-        cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
-        await asyncio.sleep(16) 
-        await cg.delete()
+        for user in message.new_chat_members:
+            cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
+            await asyncio.sleep(10) 
+            await cg.delete()
+
 @Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS))
 async def delfor(bot,message):
     if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
