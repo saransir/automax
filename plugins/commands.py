@@ -468,8 +468,8 @@ async def gen_link_s(bot, message):
     if file_type not in ["video", 'audio', 'document']:
         return await message.reply("Reply to a supported media")
     media = getattr(replied, file_type, None)
-        if media is not None:
-            return await message.reply("Reply to a supported media")
+    if media is not None:
+        return await message.reply("Reply to a supported media")
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
     file_name = re.sub(r"(_|\-|\.|\@|\#|\+)", " ", str(media.file_name))
     await message.reply(f"file name :{file_name}\n\n https://telegram.dog/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
