@@ -349,7 +349,7 @@ async def auto_welcoime(bot, message):
     user=message.new_chat_members
     nyva=BOT.get("id")
     if not nyva:
-        botid=await self.get_me()
+        botid=await bot.get_me()
         nyva=botid.id
         BOT["id"]=nyva    
     r_j_check = [u.id for u in message.new_chat_members]
