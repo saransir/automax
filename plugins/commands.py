@@ -127,7 +127,7 @@ async def start(bot, cmd):
             return await spell(nx)
         """await bot.send_message(
             chat_id=cmd.from_user.id,
-            text="**request on group🎪**",
+            text="**request on group 🎪**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
