@@ -343,13 +343,13 @@ async def autoapprove(bot, message: ChatJoinRequest):
     cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
     await asyncio.sleep(16) 
     await cg.delete()
-@Client.on_message(filters.new_chat_members & filters.chat(AUTH_GROUPS))
+@Client.on_message(filters.new_chat_members & filters.group)
 async def auto_welcoime(bot, message):
     chat=message.chat
     user=message.new_chat_members
     nyva=BOT.get("id")
     if not nyva:
-        botid=await client.get_me()
+        botid=await Client.get_me()
         nyva=botid.id
         BOT["id"]=nyva    
     r_j_check = [u.id for u in message.new_chat_members]
