@@ -6,6 +6,7 @@ from pyrogram import Client, filters
 import re
 import random
 import asyncio
+from plugins.onairmovie import INMAL, INTAM, INHIN, INENG
 from info import IMDB_TEMPLATE
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster, get_post, search_gagala, find_filter
 BUTTONS = {}
@@ -110,27 +111,21 @@ async def advantage_spoll_choker(bot, query):
             await a1.edit_text(f"{imdbcap}\n\n <b>❗️<u>{reply_text}</u>❗️</b> \n", reply_markup=InlineKeyboardMarkup(kuttons))
             return
         else:
-            kuttons.append(
-                [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
-            )
             chat_type = query.message.chat.type
             if chat_type == "private":
                 kuttons.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
             else:
                 # await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
                 kuttons.append(
-                    [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ",callback_data=f"report_{hari}")]
+                    [InlineKeyboardButton(text="ᴍᴀʟ", callback_data="instr_mal"), InlineKeyboardButton(text="ᴛᴀᴍ", callback_data="instr_tam"), InlineKeyboardButton(text="ʜɪɴ", callback_data="instr_hin"), InlineKeyboardButton(text="ᴇɴɢ", callback_data="instr_eng")]
+                )
+                kuttons.append(
+                    [InlineKeyboardButton(text="ᴄʟᴏꜱᴇ", callback_data="close")]
                 )
             reply_markup = InlineKeyboardMarkup(kuttons)
             if not message.from_user:
                 return await a1.delete()
-            a = await a1.edit_text(f"{imdbcap}\n\n <i>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</i>\n\n ᴘᴏssɪʙʟᴇ ᴄᴀᴜsᴇs : 👇\n\n🔺<b>ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ʏᴇᴛ </b>\n🔺 ɴᴏᴛ ɪɴ ᴅᴀᴛᴀʙᴀsᴇ \n\n 𝙲𝚕𝚒𝚌𝚔 & 𝙲𝚑𝚎𝚌𝚔 𝚝𝚑𝚎 𝚜𝚙𝚎𝚕𝚕𝚒𝚗𝚐 👇", reply_markup=reply_markup)
-            await asyncio.sleep(35)
-            await a.delete()
-            try:
-                await message.delete()
-            except:
-                return
+            a = await a1.edit_text(f"{imdbcap}\n\n <b>I couldn't find anything related to your request. 🤧Try reading the instructions below 👇</b>", reply_markup=reply_markup)
 
     if not btn:
         a = await a1.edit_text(f"{message.from_user.mention}, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>")
@@ -509,7 +504,33 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.delete()
         elif query.data.startswith("myree"):
             ident, file_name = query.data.split("#")
-            await query.answer(url=f"http://t.me/On_air_Filter_bot?start=saran=={file_name}")   
+            await query.answer(url=f"http://t.me/On_air_Filter_bot?start=saran=={file_name}")
+        elif query.data.startswith("instr"):
+            ident, lang = query.data.split("_")
+            x = message.text.split()
+            hari = "+".join(x)
+            kuttons = []
+            kuttons.append(
+                [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ᴏʀ ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
+            )
+            kuttons.append(
+                [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ",callback_data=f"report_{hari}")]
+            )
+            reply_markup = InlineKeyboardMarkup(kuttons)
+            if lang  == "mal":
+                a = await query.message.edit_text(INMAL, parse_mode="Markdown", reply_markup=reply_markup)
+            elif lang  == "tam":
+                a = await query.message.edit_text(INTAM, parse_mode="Markdown", reply_markup=reply_markup)
+            elif lang  == "hin":
+                a = await query.message.edit_text(INHIN, parse_mode="Markdown", reply_markup=reply_markup)
+            else lang  == "eng":
+                a = await query.message.edit_text(INENG, parse_mode="Markdown", reply_markup=reply_markup)
+            await asyncio.sleep(35)
+            await a.delete()
+            try:
+                await message.delete()
+            except:
+                return
         elif query.data.startswith("report"):
             if message:
                 cha = int(CHAA)
