@@ -23,11 +23,18 @@ PHOTO = [
 
 @Client.on_message(filters.command('akd') & filters.private & filters.user(ADMINS))
 async def addlter(bot, message):
-    r, text = message.text.split(None, 1)
-    search = text.strip()
+    reply = message.reply_to_message
+    r, fno = message.text.split(None, 1)
+    if not reply:
+        await message.reply_text(f"{message.from_user.mention} reply any movie name")        
+        return
+    N = int(fno)
+    if not fno:
+        N = int(5)
+    search = reply.text.strip()
     files = await get_filter_results(query=search)
-    if len(files) > 6: 
-        files = files[:6]
+    if len(files) > N: 
+        files = files[:N]
     if files:
         btn = []
         oam = f"{random.choice(RAT)}"
@@ -38,9 +45,9 @@ async def addlter(bot, message):
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
-                tt = file.file_name[0:32].title().lstrip()
+                tt = file.file_name[0:34].title().lstrip()
                 fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
-                dcode = fn[0:30]
+                dcode = fn[0:31]
                 filename = f"{oam}{sz[0:3]} {sz[-2:]}{oamm} {dcode}"
                 btn.append([InlineKeyboardButton(text=f"{filename}", url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")])
             buttons = btn
@@ -50,14 +57,14 @@ async def addlter(bot, message):
                 poster=await get_poster(search)
             if poster:
                 try:
-                    await message.reply_photo(photo=poster, caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
+                    await bot.send_photo(chat_id=int(-1001889657493), photo=poster, caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
                 except:
-                    await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
+                    await bot.send_photo(chat_id=int(-1001889657493), photo=f"{random.choice(PHOTO)}", caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
-            await bot.send_message(chat_id=int(CHAA), text=f"{caption}", reply_markup=InlineKeyboardMarkup(buttons))
+                await bot.send_photo(chat_id=int(-1001889657493), photo=f"{random.choice(PHOTO)}", caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
+            # await bot.send_photo(chat_id=int(-1001889657493), text=f"{caption}", reply_markup=InlineKeyboardMarkup(buttons))
             return
-    await message.reply_text(f"{message.from_user.mention} 𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅")        
+    await reply.reply_text(f"{message.from_user.mention} 𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅")        
     return
 @Client.on_callback_query(filters.regex(r"^spo"))
 async def advantage_spoll_choker(bot, query):
