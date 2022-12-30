@@ -1,11 +1,13 @@
 from pyrogram import Client, filters
 import datetime
 import time
+import logging
 from saran import db
 from info import ADMINS
 import asyncio
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
 
+logger = logging.getLogger(__name__)
 
 @Client.on_message(filters.command("grp_broadcast") & filters.user(ADMINS) & filters.reply)
 async def grp_brodcst(bot, message):
@@ -33,8 +35,7 @@ async def grp_brodcst(bot, message):
                 failed += 1
         done += 1
         await asyncio.sleep(2)
-        if not done % 20:
-            await sts.edit(f"Broadcast in progress:\n\nTotal Chats {total_chats}\nCompleted: {done} / {total_chats}\nSuccess: {success}\nFailed: {failed}")    
+        await sts.edit(f"Broadcast in progress:\n\nTotal Chats {total_chats}\nCompleted: {done} / {total_chats}\nSuccess: {success}\nFailed: {failed}")    
     time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
     await sts.edit(f"Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Chats {total_chats}\nCompleted: {done} / {total_chats}\nSuccess: {success}\nFailed: {failed}")
 
