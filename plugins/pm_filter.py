@@ -126,6 +126,7 @@ async def advantage_spoll_choker(bot, query):
             if not message.from_user:
                 return await a1.delete()
             a = await a1.edit_text(f"{imdbcap}\n\n <b>I couldn't find anything related to your request. 🤧Try reading the instructions below 👇</b>", reply_markup=reply_markup)
+            return
 
     if not btn:
         a = await a1.edit_text(f"{message.from_user.mention}, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>")
