@@ -523,7 +523,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 a = await query.message.edit_text(INTAM, parse_mode="Markdown", reply_markup=reply_markup)
             elif lang  == "hin":
                 a = await query.message.edit_text(INHIN, parse_mode="Markdown", reply_markup=reply_markup)
-            else lang  == "eng":
+            elif lang  == "eng":
                 a = await query.message.edit_text(INENG, parse_mode="Markdown", reply_markup=reply_markup)
             await asyncio.sleep(35)
             await a.delete()
