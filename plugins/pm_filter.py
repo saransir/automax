@@ -21,6 +21,44 @@ PHOTO = [
     "https://telegra.ph/file/51683050f583af4c81013.jpg",
 ]
 
+@Client.on_message(filters.command('akd') & filters.private & filters.user(ADMINS))
+async def addlter(bot, message):
+    r, text = message.text.split(None, 1)
+    search = text.strip()
+    files = await get_filter_results(query=search)
+    if len(files) > 6: 
+        files = files[:6]
+    if files:
+        btn = []
+        oam = f"{random.choice(RAT)}"
+        oamm = f"{random.choice(RAT)}"
+        imdb = await get_post(search)
+        if imdb:
+            caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n      **‌‌‌‌[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
+            for file in files:
+                file_id = file.file_id
+                sz = get_size(file.file_size)
+                tt = file.file_name[0:32].title().lstrip()
+                fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
+                dcode = fn[0:30]
+                filename = f"{oam}{sz[0:3]} {sz[-2:]}{oamm} {dcode}"
+                btn.append([InlineKeyboardButton(text=f"{filename}", url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")])
+            buttons = btn
+            buttons.append([InlineKeyboardButton("ʙʏ⇛𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ", url="https://t.me/On_air_Filter_bot")])
+            poster=None
+            if API_KEY:
+                poster=await get_poster(search)
+            if poster:
+                try:
+                    await message.reply_photo(photo=poster, caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
+                except:
+                    await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
+            else:
+                await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
+            await bot.send_message(chat_id=int(CHAA), text=f"{caption}", reply_markup=InlineKeyboardMarkup(buttons))
+            return
+    await message.reply_text(f"{message.from_user.mention} 𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅")        
+    return
 @Client.on_callback_query(filters.regex(r"^spo"))
 async def advantage_spoll_choker(bot, query):
     _, s, user, movie_ = query.data.split('#')
