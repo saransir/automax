@@ -21,8 +21,9 @@ PHOT = [
     "https://telegra.ph/file/9688c892ad2f2cf5c3f68.jpg",
     "https://telegra.ph/file/51683050f583af4c81013.jpg",
 ]
+DELETE_CHANNELS = int(-1001529899497)
 LN = "https://t.me/+PBGW_EV3ldY5YjJl"
-
+media_filter = filters.document | filters.video | filters.audio
 
 BOT = {}
 
@@ -296,6 +297,45 @@ async def delete(bot, message):
         else:
             await message.delete()
             await reply.delete()
+            await msg.edit('File not found in database')
+
+@Client.on_message(filters.chat(DELETE_CHANNELS) & media_filter)
+async def deletemultiplemedia(bot, message):
+    """Delete Multiple files from database"""
+    msg = await message.reply("Processing...⏳", quote=True)
+    for file_type in ("document", "video", "audio"):
+        media = getattr(message, file_type, None)
+        if media is not None:
+            break
+    else:
+        return
+
+    file_name = re.sub(r"(_|\-|\.|\@|\#|\+)", " ", str(media.file_name))
+    result = await Media.collection.delete_one({
+        'file_name': file_name,
+        'file_size': media.file_size,
+        'mime_type': media.mime_type
+    })
+    if result.deleted_count:
+        aa = await msg.edit('File is successfully deleted from database')
+        await message.delete()
+        await asyncio.sleep(1)
+        await aa.delete()
+        
+    else:
+        result = await Media.collection.delete_one({
+            'file_name': media.file_name,
+            'file_size': media.file_size,
+            'mime_type': media.mime_type
+        })
+        if result.deleted_count:
+            aa = await msg.edit('File is successfully deleted from database')
+            await asyncio.sleep(1)
+            await aa.delete()
+            await message.delete()
+        
+        else:
+            await message.delete()
             await msg.edit('File not found in database')
 
 @Client.on_message(filters.command('search_f') & filters.private)
