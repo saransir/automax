@@ -3,6 +3,7 @@ import re
 import logging
 import asyncio
 import random
+import time
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest, CallbackQuery, ForceReply
 from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
@@ -388,6 +389,11 @@ async def autoapprove(bot, message: ChatJoinRequest):
     await asyncio.sleep(2)
     await bot.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
     cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
+    bantime = int(time.time() + int(10))
+    try:
+        await bot.restrict_chat_member(chat_id=chat.id, user_id=user.id, ChatPermissions=ChatPermissions(can_send_messages=True), until_date=bantime)
+    except:
+        return
     await asyncio.sleep(16) 
     await cg.delete()
 @Client.on_message(filters.new_chat_members & filters.group)
