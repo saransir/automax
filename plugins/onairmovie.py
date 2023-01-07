@@ -1,3 +1,4 @@
+import os
 from pyrogram import Client, filters
 import datetime
 import time
@@ -8,6 +9,7 @@ import asyncio
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
 
 logger = logging.getLogger(__name__)
+# ആന്താടാ
 
 @Client.on_message(filters.command('invite') & filters.user(ADMINS))
 async def gen_invviite(bot, message):
@@ -24,6 +26,27 @@ async def gen_invviite(bot, message):
         return await message.reply(f'Error {e}')
     await message.reply(f'**Here is your Invite Link**👇 \n\n {link.invite_link}')
 
+@Client.on_message(filters.command(["json", 'js', 'showjson']))
+async def jsonify(_, message):
+    the_real_message = None
+    reply_to_id = None
+
+    if message.reply_to_message:
+        the_real_message = message.reply_to_message
+    else:
+        the_real_message = message
+    try:
+        await message.reply_text(f"<code>{the_real_message}</code>", quote=True)
+    except Exception as e:
+        with open("json.text", "w+", encoding="utf8") as out_file:
+            out_file.write(str(the_real_message))
+        await message.reply_document(
+            document="json.text",
+            caption=str(e),
+            disable_notification=True,
+            quote=True
+        )            
+        os.remove("json.text")
 
 @Client.on_message(filters.command("grp_broadcast") & filters.user(ADMINS) & filters.reply)
 async def grp_brodcst(bot, message):
