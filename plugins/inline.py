@@ -21,7 +21,7 @@ async def answer(bot, query):
 
     results = []
     nd = []
-    buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ ", url="https://t.me/+PBGW_EV3ldY5YjJl")]]
+    buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
     nd.append(
         InlineQueryResultArticle(
             title="request on group 🎪",
@@ -104,10 +104,10 @@ async def answer(bot, query):
                 title=title,
                 file_id=file.file_id,
                 caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <b>⚡️ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>\n\n<b>♡ ㅤ   ❍ㅤ     ⎙      ⌲\nˡᶦᵏᵉ  ᶜᵒᵐᵐᵉⁿᵗ   ˢᵃᵛᵉ   ˢʰᵃʳᵉ</b>",
-                description=f'❤️‍🔥{file.file_type} Size: {get_size(file.file_size)}',
+                description=f'🍿 {file.file_type} Size: {get_size(file.file_size)}',
                 reply_markup=reply_markup))
     if results:
-        switch_pm_text = f"𝚁𝙴𝚂𝚄𝙻𝚃𝚂"
+        switch_pm_text = f"results"
         if string:
             switch_pm_text += f" for {string}"
         try:
@@ -125,13 +125,16 @@ async def answer(bot, query):
         switch_pm_text = f'{emoji.CROSS_MARK} No results'
         if string:
             switch_pm_text += f' for "{string}"'
-
-        await query.answer(results=nd,
+        try:
+            await query.answer(results=nd,
                            is_personal = True,
                            cache_time=cache_time,
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="okay")
-        return
+        except QueryIdInvalid:
+            pass
+        except Exception as e:
+            logging.exception(str(e))
 
 def get_reply_markup(query):
     buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
