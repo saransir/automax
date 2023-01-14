@@ -96,12 +96,12 @@ async def answer(bot, query):
                                                   max_results=10,
                                                   offset=offset)
     for file in files:
-        at = file.file_name
-        if not at:
-            ay = file.caption
-            at = ay[0:40]
-        title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
-        size = file.file_size        
+        at=file.file_name
+        f_caption=file.caption
+        if at is None:
+            at=f_caption[0:40]
+        title=re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
+        size=file.file_size        
         results.append(
             InlineQueryResultCachedDocument(
                 title=title,
