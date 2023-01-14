@@ -81,6 +81,8 @@ async def start(bot, cmd):
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 at = files.file_name[0:-4]
+                if at is None:
+                    at = files.caption
                 size=files.file_size
                 title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
                 buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ꜱʜᴀʀᴇ", url="http://t.me/share/url?url=Checkout%20%40On_air_Filter_bot%20for%20searching%20files"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
@@ -88,9 +90,9 @@ async def start(bot, cmd):
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption=f"<b><u>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                    )
+                    caption=f"<b><u>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>")
+                    # reply_markup=InlineKeyboardMarkup(buttons)
+                    # )
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
     elif len(cmd.command) > 1 and cmd.command[1] == 'join':
@@ -524,7 +526,7 @@ async def gen_link_s(bot, message):
         return await message.reply("Reply to a supported media")
     file_id, ref = unpack_new_file_id((getattr(replied, file_type)).file_id)
     file_name = re.sub(r"(_|\-|\.|\@|\#|\+)", " ", str(media.file_name))
-    await message.reply(f"file name :{file_name}\n\n https://telegram.dog/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+    await message.reply(f"`{file_name}`\n\n https://telegram.dog/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
 
 @Client.on_message(filters.command(['pmfilter', 'imdb']) & filters.private)
 async def imdb_searh(bot, message):
