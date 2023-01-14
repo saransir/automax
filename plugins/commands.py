@@ -82,8 +82,9 @@ async def start(bot, cmd):
             for files in filedetails:
                 at = files.file_name[0:-4]
                 if at is None:
-                    at = files.caption
-                size=files.file_size
+                    await bot.send_cached_media(
+                    chat_id=int(-1001529899497),
+                    file_id=file_id)
                 title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
                 buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ꜱʜᴀʀᴇ", url="http://t.me/share/url?url=Checkout%20%40On_air_Filter_bot%20for%20searching%20files"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
                 await cmd.delete()
