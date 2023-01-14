@@ -81,7 +81,7 @@ async def start(bot, cmd):
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 at = files.file_name[0:-4]
-                if at is None:
+                if not at:
                     await bot.send_cached_media(
                     chat_id=int(-1001529899497),
                     file_id=file_id)
@@ -91,7 +91,7 @@ async def start(bot, cmd):
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption=f"<b><u>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>")
+                    caption=f"<b><u>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ🍿ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>")
                     # reply_markup=InlineKeyboardMarkup(buttons)
                     # )
         except Exception as err:
