@@ -137,7 +137,7 @@ async def save_file(media):
     file_id, file_ref = unpack_new_file_id(media.file_id)
     file_name = re.sub(r"(_|\-|\.|\@|\#|\+)", " ", str(media.file_name))
     caption = media.caption.html if media.caption else None
-    if file_name == None:
+    if file_name == "None":
         file_name = caption[0:40]
     try:
         file = Media(
