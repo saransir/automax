@@ -28,9 +28,10 @@ async def addlter(bot, message):
     if not reply:
         await message.reply_text(f"{message.from_user.mention} reply any movie name")        
         return
-    N = int(fno)
+    A = fno
     if not fno:
-        N = int(5)
+        A = 5
+    N = int(A)
     search = reply.text.strip()
     files = await get_filter_results(query=search)
     if len(files) > N: 
@@ -63,7 +64,7 @@ async def addlter(bot, message):
             else:
                 await bot.send_photo(chat_id=int(-1001889657493), photo=f"{random.choice(PHOTO)}", caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
             # await bot.send_photo(chat_id=int(-1001889657493), text=f"{caption}", reply_markup=InlineKeyboardMarkup(buttons))
-            return
+            return await message.reply_text("success")
     await reply.reply_text(f"{message.from_user.mention} 𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅")        
     return
 @Client.on_callback_query(filters.regex(r"^spo"))
@@ -73,7 +74,9 @@ async def advantage_spoll_choker(bot, query):
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer("Don't click others Requested files🎬", show_alert=True)
     if movie_  == "close_spellcheck":
-        await message.delete()
+        try:
+            await message.delete()
+        except:
         return await query.message.delete()
     btn = []
     oam = f"{random.choice(RAT)}"
@@ -90,14 +93,17 @@ async def advantage_spoll_choker(bot, query):
             await query.message.edit_text(f"𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾 \n <spoiler>sᴇᴀʀᴄʜ ɪɴ ɢᴏᴏɢʟᴇ ғᴏʀ ᴄᴏʀʀᴇᴄᴛ sᴘᴇʟʟɪɴɢ</spoiler>")
             await asyncio.sleep(10)
             await query.message.delete()
-            return await message.delete()       
+            try:
+                await message.delete()
+            except:
+            
+            return       
         x = mov.split()
         sesna = "_".join(x)
         btn.append(
             [InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
         files = await get_filter_results(movie)
-    a1 = await query.message.edit_text(f"{oam} ᴄʜᴇᴄᴋɪɴɢ.... {oam}")
     if s  == "se":
         movi = movie_
         imdb = await get_post(query=movi, id=True)
@@ -126,7 +132,8 @@ async def advantage_spoll_choker(bot, query):
     if imdb:
         imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
     else:
-        imdbcap = f" **{movie}**"     
+        imdbcap = f" **{movie}**"
+    a1 = await query.message.edit_text(f"{imdbcap}")    
     cha = int(CHAA)
     if files:
         chat_type = query.message.chat.type
@@ -153,20 +160,16 @@ async def advantage_spoll_choker(bot, query):
                 kuttons.append(
                     [InlineKeyboardButton(text=f"{oam} ɪɴꜰᴏ ",callback_data=f"imdb#{imdb['imdb_id']}"), InlineKeyboardButton(text=f"ᴄʟᴏꜱᴇ {oam}",callback_data="close")]
                 )
-            await a1.edit_text(f"{imdbcap}\n\n <b>❗️<u>{reply_text}</u>❗️</b> \n", reply_markup=InlineKeyboardMarkup(kuttons))
+            await a1.edit_text(f"{imdbcap}\n\n <b>[🎈 <u>{reply_text}</u> 🎈]</b> \n", reply_markup=InlineKeyboardMarkup(kuttons))
             return
         else:
-            chat_type = query.message.chat.type
-            if chat_type == "private":
-                kuttons.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
-            else:
-                # await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
-                kuttons.append(
-                    [InlineKeyboardButton(text="ᴍᴀʟ", callback_data="instr_mal"), InlineKeyboardButton(text="ᴛᴀᴍ", callback_data="instr_tam"), InlineKeyboardButton(text="ʜɪɴ", callback_data="instr_hin"), InlineKeyboardButton(text="ᴇɴɢ", callback_data="instr_eng")]
-                )
-                kuttons.append(
-                    [InlineKeyboardButton(text="ᴄʟᴏꜱᴇ", callback_data="close")]
-                )
+            # await bot.send_message(chat_id=cha,text=f"{movie}", disable_web_page_preview=True)
+            kuttons.append(
+                [InlineKeyboardButton(text="ᴍᴀʟ", callback_data="instr_mal"), InlineKeyboardButton(text="ᴛᴀᴍ", callback_data="instr_tam"), InlineKeyboardButton(text="ʜɪɴ", callback_data="instr_hin"), InlineKeyboardButton(text="ᴇɴɢ", callback_data="instr_eng")]
+            )
+            kuttons.append(
+                [InlineKeyboardButton(text="ᴄʟᴏꜱᴇ", callback_data="close")]
+            )
             reply_markup = InlineKeyboardMarkup(kuttons)
             if not message.from_user:
                 return await a1.delete()
@@ -175,9 +178,6 @@ async def advantage_spoll_choker(bot, query):
 
     if not btn:
         a = await a1.edit_text(f"{message.from_user.mention}, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>")
-        await asyncio.sleep(5)
-        await a.delete()
-        await message.delete()
         return
     if not message.message_id:
         return await a1.delete()
@@ -200,19 +200,25 @@ async def advantage_spoll_choker(bot, query):
     buttons.append(
         [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
     )
-    await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+    await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n\n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
         
 @Client.on_message(filters.text & ~filters.edited & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
 async def group(client, message):
     if re.findall("((^/|^!|^@|^#|^[\U0001F600-\U000E007F]).*)", message.text):
         if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
-            await message.delete()
-        return 
+            try:
+                await message.delete()
+            except:
+        return
+    men = message.from_user.mention if message.from_user else "Anonymous" 
     if len(message.text) <= 2:
-        kk = await message.reply_text(f"{message.from_user.mention},ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ")
+        kk = await message.reply_text(f"{men},ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ")
         await asyncio.sleep(10)
         await kk.delete()
-        await message.delete()
+        try:
+            await message.delete()
+        except:
+            return
     elif 2 < len(message.text) <= 3:
         return await spell(message)
     elif 3 < len(message.text) < 40:    
@@ -231,9 +237,9 @@ async def group(client, message):
                 btn.append(
                     [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#{imdb['imdb_id']}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
                 )
-                caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__ \n\n      **‌‌‌‌[𝚐𝚛𝚙 1](https://t.me/+PBGW_EV3ldY5YjJl)↮[𝚐𝚛𝚙 2](https://t.me/+eDjzTT2Ua6kwMTI1)**"
+                caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n\n**{oam}ꜰᴏʀ-{men}** \n\n{oamm}**ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
             else:
-                caption = f"<b>{search}‌‌‌‌‎</b>\n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n{oamm}ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"         
+                caption = f"<b>{search}‌‌‌‌‎</b>\n\n<b>{oam}ꜰᴏʀ-{men} \n{oamm}ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"         
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
@@ -291,7 +297,10 @@ async def group(client, message):
             await message.reply_photo(photo=f"{random.choice(PHOTO)}", caption=caption, reply_markup=InlineKeyboardMarkup(buttons))
 
     else:
-        await message.delete()
+        try:
+            await message.delete()
+        except:
+            return
 
 def get_size(size):
     
@@ -313,9 +322,6 @@ async def spell(message):
     title = titl.strip()
     if len(title) <= 2:
         ki = await message.reply("** I couldn't find any movie in that name**\n\n__ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ__")
-        await asyncio.sleep(7)
-        await ki.delete()
-        await message.delete()
         return
     fn = titl.replace(" ", "_")[0:30]
     btn = []
@@ -345,9 +351,6 @@ async def advantage_spell_chok(message):
     query = re.sub(r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)", "", message.text, flags=re.IGNORECASE).strip()
     if len(query) <= 3:
         ko = await message.reply("**ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ**", quote=True)
-        await asyncio.sleep(5)
-        await ko.delete()
-        await message.delete()
         return
     fn = query.replace(" ", "_")[0:30]
     uery = query.strip() + " movie"
@@ -559,9 +562,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
             kuttons.append(
                 [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ᴏʀ ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
             )
-            kuttons.append(
-                [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ",callback_data=f"report_{hari}")]
-            )
+            if chat_type == "private":
+                kuttons.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
+            else:
+                kuttons.append(
+                    [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ",callback_data=f"report_{hari}")]
+                )
             reply_markup = InlineKeyboardMarkup(kuttons)
             if lang  == "mal":
                 a = await query.message.edit_text(INMAL, parse_mode="Markdown", reply_markup=reply_markup)
