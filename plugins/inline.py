@@ -98,7 +98,7 @@ async def answer(bot, query):
     for file in files:
         at=file.file_name
         f_caption=file.caption
-        if at is None:
+        if at == "None":
             at=f_caption[0:40]
         title=re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
         size=file.file_size        
