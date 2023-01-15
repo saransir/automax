@@ -76,7 +76,8 @@ async def advantage_spoll_choker(bot, query):
     if movie_  == "close_spellcheck":
         try:
             await message.delete()
-        except:
+        except Exception as e:
+            print(e)
         return await query.message.delete()
     btn = []
     oam = f"{random.choice(RAT)}"
@@ -95,8 +96,8 @@ async def advantage_spoll_choker(bot, query):
             await query.message.delete()
             try:
                 await message.delete()
-            except:
-            
+            except Exception as e:
+                print(e)  
             return       
         x = mov.split()
         sesna = "_".join(x)
@@ -208,7 +209,8 @@ async def group(client, message):
         if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
             try:
                 await message.delete()
-            except:
+            except Exception as e:
+                print(e)
         return
     men = message.from_user.mention if message.from_user else "Anonymous" 
     if len(message.text) <= 2:
@@ -217,7 +219,8 @@ async def group(client, message):
         await kk.delete()
         try:
             await message.delete()
-        except:
+        except Exception as e:
+            print(e)
             return
     elif 2 < len(message.text) <= 3:
         return await spell(message)
