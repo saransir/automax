@@ -24,14 +24,14 @@ PHOTO = [
 @Client.on_message(filters.command('akd') & filters.private & filters.user(ADMINS))
 async def addlter(bot, message):
     reply = message.reply_to_message
-    r, fno = message.text.split(None, 1)
+    try:
+        r, fno = message.text.split(None, 1)
+    except:
+        fno = 5
     if not reply:
         await message.reply_text(f"{message.from_user.mention} reply any movie name")        
         return
-    A = fno
-    if not fno:
-        A = 5
-    N = int(A)
+    N = int(fno)
     search = reply.text.strip()
     files = await get_filter_results(query=search)
     if len(files) > N: 
@@ -565,6 +565,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             kuttons.append(
                 [InlineKeyboardButton(text=f"ɢᴏᴏɢʟᴇ 🍿", url=f"https://google.com/search?q={hari}"),InlineKeyboardButton(text=f"ᴏʀ ɪᴍᴅʙ 🍿", url=f"https://www.imdb.com/find?q={hari}")]
             )
+            chat_type = message.chat.type
             if chat_type == "private":
                 kuttons.append([InlineKeyboardButton(text="💒 ʀᴇϙᴜᴇsᴛ ᴏɴ ɢʀᴏᴜᴘ 💒",url="https://t.me/+eDjzTT2Ua6kwMTI1")])
             else:
