@@ -271,6 +271,8 @@ async def delete(bot, message):
         await msg.edit('This is not supported file format')
         return
     file_name = re.sub(r"(_|\-|\.|\@|\#|\+)", " ", str(media.file_name))
+    if file_name == "None":
+        file_name = media.caption[0:40]
     result = await Media.collection.delete_one({
         'file_name': file_name,
         'file_size': media.file_size,
@@ -313,6 +315,8 @@ async def deletemultiplemedia(bot, message):
         return
 
     file_name = re.sub(r"(_|\-|\.|\@|\#|\+)", " ", str(media.file_name))
+    if file_name == "None":
+        file_name = media.caption[0:40]
     result = await Media.collection.delete_one({
         'file_name': file_name,
         'file_size': media.file_size,
@@ -394,6 +398,7 @@ async def autoapprove(bot, message: ChatJoinRequest):
         return
     cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
     bantime = int(time.time() + int(33))
+    # spam control 
     try:
         await bot.restrict_chat_member(chat_id=chat.id, user_id=user.id, permissions=ChatPermissions(can_send_messages=True), until_date=bantime)
     except:
@@ -427,7 +432,13 @@ async def auto_welcoime(bot, message):
         await sa.delete()
     else:
         for user in message.new_chat_members:
-            cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
+            cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 🥂 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
+            bantime = int(time.time() + int(33))
+            # spam control 
+            try:
+                await bot.restrict_chat_member(chat_id=chat.id, user_id=user.id, permissions=ChatPermissions(can_send_messages=True), until_date=bantime)
+            except:
+                return
             await asyncio.sleep(20) 
             await cg.delete()
 
