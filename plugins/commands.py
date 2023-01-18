@@ -414,15 +414,16 @@ async def auto_welcoime(bot, message):
         if not await db.get_chat(message.chat.id):
             await db.add_chat(message.chat.id, message.chat.title)
         total=await bot.get_chat_members_count(message.chat.id)
+        buttons = [[InlineKeyboardButton("ꜱʜᴀʀᴇ", url="http://t.me/share/url?url=Checkout%20%40On_air_Filter_bot%20for%20searching%20files")]]
         r_j = message.from_user.mention if message.from_user else "Anonymous" 
         chatt = int(message.chat.id)      
         try:
             link = await bot.create_chat_invite_link(chatt)
         except:
-            sa = await message.reply_text(text=f"**Thankyou For Adding Me In {chat.title}**\n\n __make me as admin and give Sufficient Rights__")
+            sa = await message.reply_text(text=f"**Thankyou For Adding Me In {chat.title}**\n\n __make me as admin and give Sufficient Rights__", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
             await bot.send_message(chat_id=int(-1001529899497), text=f"**#ADDED_CHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j}**")       
         else:
-            sa = await message.reply_text(text=f"**Thankyou For Adding Me In {chat.title}**")
+            sa = await message.reply_text(text=f"**Thankyou For Adding Me In {chat.title}**", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
             await bot.send_message(chat_id=int(-1001529899497), text=f"**#ADDED_CHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j} \n Link {link.invite_link}**")       
         await asyncio.sleep(30) 
         await sa.delete()
@@ -590,7 +591,6 @@ async def imdb_callback(bot, quer_y: CallbackQuery):
             year = imdb['year'],
             genres = imdb['genres'],
             poster = imdb['poster'],
-            plot = imdb['plot'],
             rating = imdb['rating'],
             url = imdb['url'],
             **locals()
