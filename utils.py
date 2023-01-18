@@ -308,7 +308,7 @@ async def get_post(query, bulk=False, id=False, file=None):
                 return movieid
             movieid = movieid[0].movieID
         else:
-            if bulk
+            if bulk:
                 return None
             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'
             try:
