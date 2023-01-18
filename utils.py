@@ -290,7 +290,7 @@ async def get_post(query, bulk=False, id=False, file=None):
         else:
             year = None
         try:
-            movieid = imdbb.search_movie(title.lower(), results=6)
+            movieid = imdbb.search_movie(title.lower(), results=10)
         except IMDbDataAccessError:
             movieid = None
             logger.info("IMDbDataAccessError❗️")
@@ -308,6 +308,8 @@ async def get_post(query, bulk=False, id=False, file=None):
                 return movieid
             movieid = movieid[0].movieID
         else:
+            if bulk
+                return None
             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'
             try:
                 n = requests.get(url)
@@ -320,18 +322,7 @@ async def get_post(query, bulk=False, id=False, file=None):
             if not id:
                 return None
             movieid = id[2:]
-            if bulk:
-                await asyncio.sleep(1)
-                try:
-                    movieid = imdbb.search_movie(title, results=5)
-                except IMDbDataAccessError:
-                    logger.info("IMDbDataAccessError 2❗️")
-                    return None
-                if not movieid:
-                    return None
-                logger.info(title + "👈 research for bulk")
-                return movieid
-            logger.info(title + "👈 @json data")             
+            logger.info(title + "👈 json data")             
     else:
         movieid = int(query)
     movie = imdbb.get_movie(movieid)
@@ -343,10 +334,6 @@ async def get_post(query, bulk=False, id=False, file=None):
         date = "N/A"
     if not movie:
         return None
-    plot = ""
-    plot = movie.get('plot')
-    if plot and len(plot) > 750:
-        plot = plot[0:750] + "..."
     return {
         'title': movie.get('title'),
         'votes': movie.get('votes'),
@@ -368,7 +355,6 @@ async def get_post(query, bulk=False, id=False, file=None):
         'year': movie.get('year'),
         'genres': list_to_str(movie.get("genres")),
         'poster': movie.get('full-size cover url'),
-        'plot': plot,
         'rating': str(movie.get("rating")),
         'url':f'https://www.imdb.com/title/tt{movieid}'
     }
