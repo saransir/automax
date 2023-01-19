@@ -125,7 +125,7 @@ async def advantage_spoll_choker(bot, query):
         else:
             files = await get_filter_results(mov)
         btn.append(
-            [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#tt{movi}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
+            [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ", url=f"https://www.imdb.com/title/tt{movi}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
 
     hari = "+".join(x)
@@ -238,7 +238,7 @@ async def group(client, message):
             imdb = await get_post(search)
             if imdb:
                 btn.append(
-                    [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ",callback_data=f"imdb#{imdb['imdb_id']}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
+                    [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ", url=f"https://www.imdb.com/title/{imdb['imdb_id']}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
                 )
                 caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n\n**{oam}ꜰᴏʀ-{men}** \n\n{oamm}**ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
             else:
