@@ -427,7 +427,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             if not filedetails:
                 return await query.answer("No such file exist.",show_alert=True)
             if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+                if clicked == typed or clicked in ADMINS:
+                    await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
+                else:
+                    await query.answer(f"Hᴇʏ {query.from_user.first_name},    𝐓ʜɪ𝐬 𝐈𝐬 𝐍ᴏᴛ 𝐘ᴏᴜʀ 𝐌ᴏᴠɪᴇ 𝐑ᴇǫᴜᴇ𝐬ᴛ. 𝐑ᴇǫᴜᴇ𝐬ᴛ 𝐘ᴏᴜʀ'𝐬 ", show_alert=True)
                 return
             chat_type = query.message.chat.type
             if chat_type == "private":
@@ -456,10 +459,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 else:
                     await query.answer(f"file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 ✔️ sent to your pm \n\n🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛ ~~{title}~~",show_alert=True)        
             else:
-                await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
-    
+                await query.answer(f"Hᴇʏ {query.from_user.first_name},    𝐓ʜɪ𝐬 𝐈𝐬 𝐍ᴏᴛ 𝐘ᴏᴜʀ 𝐌ᴏᴠɪᴇ 𝐑ᴇǫᴜᴇ𝐬ᴛ. 𝐑ᴇǫᴜᴇ𝐬ᴛ 𝐘ᴏᴜʀ'𝐬 ", show_alert=True)
+
     if not ((clicked == typed) or (clicked in ADMINS)):
-        return await query.answer(f"🖐️ {query.from_user.first_name} search your own file,\n\n this is >> {query.message.reply_to_message.from_user.first_name} << Requested files🎬",show_alert=True)
+        return await query.answer(f"🖐️ {query.from_user.first_name} search your own file,\n\n this is >> {query.message.reply_to_message.from_user.first_name} << Requested files 🎬",show_alert=True)
     else:    
         if query.data.startswith("next"):
             ident, index, keyword = query.data.split("_")
@@ -482,7 +485,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except MessageNotModified:
                     await query.answer("❗️MessageNotModified❗️")
                 except Exception as e:
-                    await query.answer("❗️MessageNotModified❗️")
+                    await query.answer()
                 return
             else:
                 buttons = data['buttons'][int(index)+1].copy()
@@ -495,7 +498,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except MessageNotModified:
                     await query.answer("❗️MessageNotModified❗️")
                 except Exception as e:
-                    await query.answer("❗️MessageNotModified❗️")
+                    await query.answer()
                 return
         elif query.data.startswith("back"):
             ident, index, keyword = query.data.split("_")
@@ -517,7 +520,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except MessageNotModified:
                     await query.answer("❗️MessageNotModified❗️")
                 except Exception as e:
-                    await query.answer("❗️MessageNotModified❗️")
+                    await query.answer()
                 return   
             else:
                 buttons = data['buttons'][int(index)-1].copy()
@@ -531,7 +534,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except MessageNotModified:
                     await query.answer("❗️MessageNotModified❗️")
                 except Exception as e:
-                    await query.answer("❗️MessageNotModified❗️")
+                    await query.answer()
                 return
         elif query.data.startswith("start"):
             buttons = [
