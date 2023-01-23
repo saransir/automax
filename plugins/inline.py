@@ -106,7 +106,7 @@ async def answer(bot, query):
             InlineQueryResultCachedDocument(
                 title=title,
                 file_id=file.file_id,
-                caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <b>⚡️ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>\n\n<b>♡ ㅤ   ❍ㅤ     ⎙      ⌲\nˡᶦᵏᵉ  ᶜᵒᵐᵐᵉⁿᵗ   ˢᵃᵛᵉ   ˢʰᵃʳᵉ</b>",
+                caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <b>🍿ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>\n\n<b>♡ ㅤ   ❍ㅤ     ⎙      ⌲\nˡᶦᵏᵉ  ᶜᵒᵐᵐᵉⁿᵗ   ˢᵃᵛᵉ   ˢʰᵃʳᵉ</b>",
                 description=f'🍿 {file.file_type} Size: {get_size(file.file_size)}',
                 reply_markup=reply_markup))
     if results:
