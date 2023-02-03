@@ -125,9 +125,8 @@ async def advantage_spoll_choker(bot, query):
         else:
             files = await get_filter_results(mov)
         btn.append(
-            [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ", url=f"https://www.imdb.com/title/tt{movi}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
+            [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ", url=f"https://www.imdb.com/title/tt{movi}"), InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
             )
-
     hari = "+".join(x)
     kuttons = []
     if imdb:
@@ -176,7 +175,6 @@ async def advantage_spoll_choker(bot, query):
                 return await a1.delete()
             a = await a1.edit_text(f"{imdbcap}\n\n <b>I couldn't find anything related to your request. 🤧Try reading the instructions below 👇</b>", reply_markup=reply_markup)
             return
-
     if not btn:
         a = await a1.edit_text(f"{message.from_user.mention}, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>")
         return
