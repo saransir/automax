@@ -10,7 +10,7 @@ API_HASH = environ['API_HASH']
 BOT_TOKEN = environ['BOT_TOKEN']
 # Bot settings
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
-USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
+USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 
 # Admins, Channels & Users
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ['ADMINS'].split()]
@@ -25,6 +25,7 @@ TUTORIAL = "https://t.me/joinchat/q4xMr02fvA9jNzQ1"
 DATABASE_URI = environ['DATABASE_URI']
 DATABASE_NAME = environ['DATABASE_NAME']
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
+LOG_CHANNEL = int(environ.get('LOG_CHANNEL', -1001529899497))
 
 # Messages
 default_start_msg = """
