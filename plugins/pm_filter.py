@@ -69,7 +69,11 @@ async def addlter(bot, message):
     return
 @Client.on_callback_query(filters.regex(r"^spo"))
 async def advantage_spoll_choker(bot, query):
-    _, s, user, movie_ = query.data.split('#')
+    try:
+        _, s, user, movie_ = query.data.split('#')
+    except Exception as e:
+        print(e)
+        return await query.message.delete()
     message = query.message.reply_to_message
     if int(user) != 0 and query.from_user.id != int(user):
         return await query.answer("Don't click others Requested files🎬", show_alert=True)
@@ -334,8 +338,8 @@ async def spell(message):
     for movie in movies:
         title = movie.get('title')[:27]
         year = movie.get('year')
-        if not year:
-            year = oam
+        """if not year:
+            year = oam"""
         btn.append(
             [InlineKeyboardButton(text=f"{oam} {title} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
