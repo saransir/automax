@@ -8,7 +8,7 @@ logging.getLogger().setLevel(logging.ERROR)
 from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
 from utils import Media
-from info import SESSION, API_ID, API_HASH, BOT_TOKEN
+from info import SESSION, API_ID, API_HASH, BOT_TOKEN, LOG_CHANNEL
 import pyromod.listen
 
 class Bot(Client):
@@ -30,6 +30,7 @@ class Bot(Client):
         me = await self.get_me()
         self.username = '@' + me.username
         print(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started 🥂on {me.username}.")
+        await self.send_message(chat_id=LOG_CHANNEL, text=f"Bᴏᴛ Rᴇsᴛᴀʀᴛᴇᴅ 🎈\n\n {me.username}")
 
     async def stop(self, *args):
         await super().stop()
