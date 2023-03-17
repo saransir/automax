@@ -290,7 +290,7 @@ async def get_post(query, bulk=False, id=False, file=None):
         else:
             year = None
         try:
-            movieid = imdbb.search_movie(title.lower(), results=10)
+            movieid = imdbb.search_movie(title.lower(), results=5)
         except IMDbDataAccessError:
             movieid = None
             logger.info("IMDbDataAccessError❗️")
