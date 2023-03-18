@@ -263,8 +263,8 @@ async def group(client, message):
             return await spell(message)
         if not btn:
             return await spell(message)
-        if len(btn) > 6: 
-            btns = list(split_list(btn, 6)) 
+        if len(btn) > 7: 
+            btns = list(split_list(btn, 7)) 
             keyword = f"{message.chat.id}-{message.message_id}"
             BUTTONS[keyword] = {
                 "total" : len(btns),
@@ -463,7 +463,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except Exception as e:
                     await query.answer(url=f"http://t.me/On_air_Filter_bot?start=seren_-_-_-_{file_id}")
                 else:
-                    await query.answer(f"file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 ✔️ sent to your pm \n\n🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛ ~~{title}~~",show_alert=True)        
+                    await query.answer(f"file🎬 has 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 💌sent to your pm \n\n🎬𝙵𝙸𝙻𝙴 𝙽𝙰𝙼𝙴⇛ ~~{title}~~",show_alert=True)        
             else:
                 await query.answer(f"Hᴇʏ {query.from_user.first_name},    𝐓ʜɪ𝐬 𝐈𝐬 𝐍ᴏᴛ 𝐘ᴏᴜʀ 𝐌ᴏᴠɪᴇ 𝐑ᴇǫᴜᴇ𝐬ᴛ. 𝐑ᴇǫᴜᴇ𝐬ᴛ 𝐘ᴏᴜʀ'𝐬 ", show_alert=True)
 
