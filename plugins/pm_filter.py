@@ -242,9 +242,13 @@ async def group(client, message):
                 btn.append(
                     [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ", url=f"https://www.imdb.com/title/{imdb['imdb_id']}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
                 )
+                
                 caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n\n**{oam}ꜰᴏʀ-{men}** \n\n{oamm}**ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
             else:
-                caption = f"<b>{search}‌‌‌‌‎</b>\n\n<b>{oam}ꜰᴏʀ-{men} \n{oamm}ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"         
+                caption = f"<b>{search}‌‌‌‌‎</b>\n\n<b>{oam}ꜰᴏʀ-{men} \n{oamm}ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"
+            btn.append(
+                [InlineKeyboardButton("⚡ Cʜᴇᴄᴋ Bᴏᴛ PM ⚡", url="https://t.me/On_air_Filter_bot")]
+            )        
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
@@ -338,8 +342,8 @@ async def spell(message):
     for movie in movies:
         title = movie.get('title')[:27]
         year = movie.get('year')
-        """if not year:
-            year = oam"""
+        if not year:
+            year = oam
         btn.append(
             [InlineKeyboardButton(text=f"{oam} {title} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
