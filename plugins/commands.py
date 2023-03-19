@@ -115,10 +115,12 @@ async def start(bot, cmd):
             try:
                 nx = await bot.ask(text="__ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴍᴏᴠɪᴇ\sᴇʀɪᴇs ɴᴀᴍᴇ ᴡɪᴛʜᴏᴜᴛ sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ__", chat_id=cmd.from_user.id, filters=filters.text, timeout=30, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
             except TimeoutError:
+                await nx.request.delete()
                 await cmd.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ** __ᴏꜰ 30 ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️ or request on group👇__", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
                 return 
             if not nx.reply_to_message or user != nx.from_user.id:
                 await cmd.reply("__ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ ᴛʀʏ ᴀɢᴀɪɴ__ ♻️")
+                await nx.request.delete()
                 await asyncio.sleep(.8)
                 continue
             else:
