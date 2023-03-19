@@ -117,7 +117,7 @@ async def start(bot, cmd):
             except TimeoutError:
                 await cmd.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ** __ᴏꜰ 30 ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️ or request on group👇__", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
                 return 
-            if user != nx.from_user.id:
+            if nx.text.startswith("/") or user != nx.from_user.id:
                 a = await cmd.reply("__ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ ᴛʀʏ ᴀɢᴀɪɴ__ ♻️")
                 await nx.request.delete()
                 await nx.delete()
@@ -125,16 +125,11 @@ async def start(bot, cmd):
                 await a.delete()
                 continue
             else:
-                await nx.reply_to_message.delete()
+                await nx.request.delete()
                 break
-        if nx.text.startswith("/"):
-            await nx.delete()
-            await nx.request.delete()
-            return
-        else:
-            # await nx.forward("@S1a2r3a4n")
-            await nx.request.delete()
-            return await spell(nx)
+        # await nx.forward("@S1a2r3a4n")
+        return await spell(nx)
+
         """await bot.send_message(
             chat_id=cmd.from_user.id,
             text="**request on group 🎪**",
