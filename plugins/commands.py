@@ -118,11 +118,9 @@ async def start(bot, cmd):
                 await cmd.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ** __ᴏꜰ 30 ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️ or request on group👇__", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
                 return 
             if nx.text.startswith("/") or user != nx.from_user.id:
-                a = await cmd.reply("__ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ ᴛʀʏ ᴀɢᴀɪɴ__ ♻️")
+                await nx.reply("__ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ ᴛʀʏ ᴀɢᴀɪɴ__ ♻️")
                 await nx.request.delete()
-                await nx.delete()
-                await asyncio.sleep(1)
-                await a.delete()
+                await asyncio.sleep(.7)
                 continue
             else:
                 await nx.request.delete()
@@ -543,20 +541,19 @@ async def imdb_searh(bot, message):
             nx = await bot.ask(text="__ᴊᴜsᴛ sᴇɴᴅ ᴍᴇ ᴍᴏᴠɪᴇ\sᴇʀɪᴇs ɴᴀᴍᴇ ᴡɪᴛʜᴏᴜᴛ sᴘᴇʟʟɪɴɢ ᴍɪsᴛᴀᴋᴇ__", chat_id=message.from_user.id, filters=filters.text, timeout=30, reply_markup=ForceReply(placeholder="ᵗʸᵖᵉ...."))
         except TimeoutError:
             await message.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏꜰ 30 ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️ or request on group👇**", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
-            return await message.delete()
-        if not nx.reply_to_message or user != nx.from_user.id:
-            await message.reply("__ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ ᴛʀʏ ᴀɢᴀɪɴ__ ♻️")
-            await asyncio.sleep(1)
+            await message.delete()
+            return 
+        if nx.text.startswith("/") or user != nx.from_user.id:
+            await nx.reply("__ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ ᴛʀʏ ᴀɢᴀɪɴ__ ♻️")
+            await nx.request.delete()
+            await message.delete()
+            await asyncio.sleep(.7)
             continue
         else:
             await message.delete()
-            await nx.reply_to_message.delete()
+            await nx.request.delete()
             break
-    if nx.text.startswith("/"):
-        await nx.delete()
-        return
-    else:
-        return await spell(nx)
+    return await spell(nx)
        
 """@Client.on_message(filters.regex('Name📃') & filters.private)
 async def helmogth(bot, message):
