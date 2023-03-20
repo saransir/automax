@@ -1,6 +1,6 @@
 #on airmovie
 from pyrogram.errors import UserNotParticipant, UserIsBlocked, FloodWait, PeerIdInvalid, MessageNotModified
-from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, ADMINS, START_MSG
+from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS, ADMINS, START_MSG, FILTER_GROUPS
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters
 import re
@@ -205,7 +205,7 @@ async def advantage_spoll_choker(bot, query):
     )
     await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n\n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
         
-@Client.on_message(filters.text & ~filters.edited & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
+@Client.on_message(filters.text & ~filters.edited & filters.group & filters.incoming & filters.chat(FILTER_GROUPS) if FILTER_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
 async def group(client, message):
     if re.findall("((^/|^!|^@|^#|^[\U0001F600-\U000E007F]).*)", message.text):
         if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
