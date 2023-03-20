@@ -6,7 +6,7 @@ import random
 import time
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ChatJoinRequest, CallbackQuery, ForceReply, ChatPermissions
-from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY
+from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_FILE_CAPTION, API_KEY, LOG_CHANNEL
 from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post, add_filter, get_filters, delete_filter
 from info import TUTORIAL
 from info import IMDB_TEMPLATE, IMDB_TEMPLATEE
@@ -117,15 +117,17 @@ async def start(bot, cmd):
             except TimeoutError:
                 await cmd.reply("**ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ** __ᴏꜰ 30 ꜱᴇᴄᴏɴᴅꜱ \n\n try again♻️ or request on group👇__", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎪 group 🎪", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]))
                 return 
-            if nx.text.startswith("/") or user != nx.from_user.id:
-                await nx.reply("__ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ ᴛʀʏ ᴀɢᴀɪɴ__ ♻️")
+            if nx.text.startswith("/") or nx.text.startswith("#"):
+                await nx.reply("__ᴛʜɪs ɪs ᴀɴ ɪɴᴠᴀʟɪᴅ ᴍᴇssᴀɢᴇ ᴛʀʏ ᴀɢᴀɪɴ__ ♻️", quote=True)
                 await nx.request.delete()
                 await asyncio.sleep(.7)
                 continue
             else:
                 await nx.request.delete()
+                if user != nx.from_user.id:
+                    return
                 break
-        # await nx.forward("@S1a2r3a4n")
+        await nx.forward(LOG_CHANNEL)
         return await spell(nx)
 
         """await bot.send_message(
@@ -428,13 +430,15 @@ async def auto_welcoime(bot, message):
     else:
         for user in message.new_chat_members:
             cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 🥂 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
-            bantime = int(time.time() + int(33))
-            # spam control 
-            try:
-                await bot.restrict_chat_member(chat_id=chat.id, user_id=user.id, permissions=ChatPermissions(can_send_messages=True), until_date=bantime)
-            except:
-                return
-            await asyncio.sleep(20) 
+            chatt=message.chat.id
+            if chatt in AUTH_GROUPS:
+                bantime = int(time.time() + int(33))
+                # spam control 
+                try:
+                    await bot.restrict_chat_member(chat_id=chat.id, user_id=user.id, permissions=ChatPermissions(can_send_messages=True), until_date=bantime)
+                except:
+                    return
+            await asyncio.sleep(27) 
             await cg.delete()
 
 @Client.on_message(filters.command('chats') & filters.user(ADMINS))
