@@ -51,6 +51,8 @@ async def answer(bot, query):
         for movie in movies:
             titl = movie.get('title').strip()
             year = movie.get('year')
+            if not year:
+                year = "🎈"
             title = f"{titl} {year}"
             mid = movie.movieID
             imdb = await get_post(mid, id=True)
@@ -71,7 +73,7 @@ async def answer(bot, query):
                 InlineQueryResultPhoto(
                     photo_url=poster,
                     thumb_url=poster,
-                    title=f"{titl} 🍿 {year}",
+                    title=f"{titl} - {year}",
                     description=imdbdis,
                     caption=imdbcap,
                     reply_markup=InlineKeyboardMarkup(buttons)))
@@ -99,7 +101,11 @@ async def answer(bot, query):
         at=file.file_name
         f_caption=file.caption
         if at == "None":
-            at=f_caption[0:40]
+            try:
+                at=f_caption[0:40]
+            except Exception as e:
+                continue
+
         title=re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
         size=file.file_size        
         results.append(
