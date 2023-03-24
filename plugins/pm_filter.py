@@ -137,7 +137,11 @@ async def advantage_spoll_choker(bot, query):
         imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
     else:
         imdbcap = f" **{movie}**"
-    a1 = await query.message.edit_text(f"{imdbcap}")    
+    try:
+        a1 = await query.message.edit_text(f"{imdbcap}") 
+    except Exception as e:
+        await query.message.edit_text(f"{e}") 
+        return 
     cha = int(CHAA)
     if files:
         chat_type = query.message.chat.type
@@ -180,8 +184,11 @@ async def advantage_spoll_choker(bot, query):
             a = await a1.edit_text(f"{imdbcap}\n\n <b>I couldn't find anything related to your request. 🤧Try reading the instructions below 👇</b>", reply_markup=reply_markup)
             return
     if not btn:
-        a = await a1.edit_text(f"{message.from_user.mention}, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>")
-        return
+        try:
+            a = await a1.edit_text(f"{message.from_user.mention}, <spoiler>𝑻𝒉𝒊𝒔 𝑴𝒐𝒗𝒊𝒆 𝑵𝒐𝒕 𝑭𝒐𝒖𝒏𝒅 𝑰𝒏 𝑫𝒂𝒕𝒂𝑩𝒂𝒔𝒆💾</spoiler>")
+        except Exception as e:
+            await a1.edit_text(f"{e}") 
+            return
     if not message.message_id:
         return await a1.delete()
     if len(btn) > 6: 
@@ -196,15 +203,21 @@ async def advantage_spoll_choker(bot, query):
         buttons.append(
             [InlineKeyboardButton(" 💒💒  ᴄʜᴀɴɴᴇʟ 💒💒 ", url="https://t.me/+R9zxAI4mCkk0NzVl")]
         )
-        await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
-        return
+        try:
+            await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+        except Exception as e:
+            await a1.edit_text(f"{e}") 
+            return
     data = BUTTONS[keyword]
     buttons = data['buttons'][0].copy()
     buttons.append(
         [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
     )
-    await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n\n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
-        
+    try:
+        await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n\n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+    except Exception as e:
+        await a1.edit_text(f"{e}") 
+        return    
 @Client.on_message(filters.text & ~filters.edited & filters.group & filters.incoming & filters.chat(FILTER_GROUPS) if FILTER_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
 async def group(client, message):
     if re.findall("((^/|^!|^@|^#|^[\U0001F600-\U000E007F]).*)", message.text):
@@ -582,20 +595,27 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     [InlineKeyboardButton(text="ʀᴇᴩᴏʀᴛ ᴛᴏ ᴀᴅᴍɪɴ",callback_data=f"report_{hari}")]
                 )
             reply_markup = InlineKeyboardMarkup(kuttons)
-            if lang  == "mal":
-                a = await query.message.edit_text(INMAL, parse_mode="Markdown", reply_markup=reply_markup)
-            elif lang  == "tam":
-                a = await query.message.edit_text(INTAM, parse_mode="Markdown", reply_markup=reply_markup)
-            elif lang  == "hin":
-                a = await query.message.edit_text(INHIN, parse_mode="Markdown", reply_markup=reply_markup)
-            elif lang  == "eng":
-                a = await query.message.edit_text(INENG, parse_mode="Markdown", reply_markup=reply_markup)
-            await asyncio.sleep(35)
-            await a.delete()
             try:
-                await message.delete()
-            except:
-                return
+                if lang  == "mal":
+                    a = await query.message.edit_text(INMAL, parse_mode="Markdown", reply_markup=reply_markup)
+                elif lang  == "tam":
+                    a = await query.message.edit_text(INTAM, parse_mode="Markdown", reply_markup=reply_markup)
+                elif lang  == "hin":
+                    a = await query.message.edit_text(INHIN, parse_mode="Markdown", reply_markup=reply_markup)
+                elif lang  == "eng":
+                    a = await query.message.edit_text(INENG, parse_mode="Markdown", reply_markup=reply_markup)
+            except MessageNotModified:
+                await query.answer("❗️MessageNotModified❗️")
+            except Exception as e:
+                await query.answer()
+            else:
+                await asyncio.sleep(35)
+                await a.delete()
+                try:
+                    await message.delete()
+                except:
+                    return
+            return
         elif query.data.startswith("report"):
             if message:
                 cha = int(CHAA)
@@ -605,18 +625,27 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     await query.answer("http://t.me/On_air_Filter_bot?start=saran")
                 else:
                     await query.answer("𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 Reported to Admins 👮‍♂ \n\n\n ᴛʜᴇ ᴍᴏᴠɪᴇ ᴡɪʟʟ ᴜᴩʟᴏᴀᴅɪɴɢ ꜱᴏᴏɴ..",show_alert=True)
+                try:
                     await message.delete()
+                except:
+                
             return await query.message.delete()
         elif query.data == "ott":
             buttons = []
             buttons.append(
                 [InlineKeyboardButton(" 💒💒  ᴄʜᴀɴɴᴇʟ 💒💒 ", url="https://t.me/+R9zxAI4mCkk0NzVl")]
             )
-            await query.edit_message_reply_markup( 
-                reply_markup=InlineKeyboardMarkup(buttons)
-            )
-            await asyncio.sleep(.3)
-            await query.answer("Once this movie is releas HDRip/OTT, it will be upload on the👇 💒channel \n\n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ ഉള്ള 💒ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്",show_alert=True)
+            try:
+                await query.edit_message_reply_markup( 
+                    reply_markup=InlineKeyboardMarkup(buttons)
+                )
+            except MessageNotModified:
+                await query.answer("❗️MessageNotModified❗️")
+            except Exception as e:
+                await query.answer()
+            else:
+                await asyncio.sleep(.3)
+                await query.answer("Once this movie is releas HDRip/OTT, it will be upload on the👇 💒channel \n\n\n ഈ സിനിമയുടെ HD/OTT ഇറങ്ങിയാൽ ഉടൻ ചുവടെ ഉള്ള 💒ചാനലിൽ അപ്‌ലോഡ് ചെയ്യുന്നതാണ്",show_alert=True)
             return
         elif query.data == "about":
             await query.answer("🤖 ɴᴀᴍᴇ: ғɪʟᴛᴇʀ -x- v2.8\n\n🎪ᴄʀᴇᴀᴛᴏʀ: sᴀʀᴀɴ😁\n\n📚ʟᴀɴɢᴜᴀɢᴇ: ᴘʏᴛʜᴏɴ3\n\n🌀 ʟɪʙʀᴀʀʏ : ᴘʏʀᴏɢʀᴀᴍ ᴀsʏɴᴄɪᴏ 1.13.0",show_alert=True)
