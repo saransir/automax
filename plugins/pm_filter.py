@@ -628,7 +628,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 try:
                     await message.delete()
                 except:
-                
+                    pass
             return await query.message.delete()
         elif query.data == "ott":
             buttons = []
