@@ -260,7 +260,14 @@ async def deleteid(bot, message):
     msg = await message.reply("Processing...⏳", quote=True)
     idd = message.command[1]
     id = str(idd)
-    result = await Media.collection.delete_one({'file_id': id})
+    filedetails = await get_file_details(id)
+    for files in filedetails:
+        result = await Media.collection.delete_one({
+            'file_name': files.file_name,
+            'file_size': files.file_size,
+            'mime_type': files.mime_type
+        })
+
     if result.deleted_count:
         await msg.edit('File is successfully deleted from database')
     else:
