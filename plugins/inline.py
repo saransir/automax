@@ -4,7 +4,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQue
 from pyrogram.errors.exceptions.bad_request_400 import QueryIdInvalid
 import re
 from utils import get_search_results, is_subscribed, get_post
-from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
+from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL
 logger = logging.getLogger(__name__)
 cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
 
@@ -93,10 +93,16 @@ async def answer(bot, query):
 
     offset = int(query.offset or 0)
     reply_markup = get_reply_markup(query=string)
-    files, next_offset = await get_search_results(string,
-                                                  file_type=file_type,
-                                                  max_results=10,
-                                                  offset=offset)
+    try:
+        files, next_offset = await get_search_results(string,
+                                                     file_type=file_type,
+                                                     max_results=10,
+                                                     offset=offset)
+    except Exception as e:
+        await bot.send_message(chat_id=LOG_CHANNEL, text=f"{e}")
+        logging.exception(str(e))
+        return
+
     for file in files:
         at=file.file_name
         f_caption=file.caption
@@ -104,6 +110,7 @@ async def answer(bot, query):
             try:
                 at=f_caption[0:40]
             except Exception as e:
+                await bot.send_message(chat_id=LOG_CHANNEL, text=f"{e}\n\n{file.file_id}")
                 continue
 
         title=re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
@@ -129,6 +136,7 @@ async def answer(bot, query):
         except QueryIdInvalid:
             pass
         except Exception as e:
+            await bot.send_message(chat_id=LOG_CHANNEL, text=f"{e}")
             logging.exception(str(e))
     else:
         switch_pm_text = f'{emoji.CROSS_MARK} No results'
