@@ -252,7 +252,19 @@ async def log_file(bot, message):
     except Exception as e:
         await message.reply(str(e))
 
-
+@Client.on_message(filters.command('delid') & filters.private & filters.user(ADMINS))
+async def deleteid(bot, message):
+    """Delete fileid """
+    if len(message.command) == 1:
+        return await message.reply('Give me a file id')
+    msg = await message.reply("Processing...⏳", quote=True)
+    idd = message.command[1]
+    id = str(idd)
+    result = await Media.collection.delete_one({'file_id': id})
+    if result.deleted_count:
+        await msg.edit('File is successfully deleted from database')
+    else:
+        await msg.edit('File id not found in database')
 @Client.on_message(filters.command('del') & filters.private & filters.user(ADMINS))
 async def delete(bot, message):
     """Delete file from database"""
