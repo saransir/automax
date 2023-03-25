@@ -31,12 +31,8 @@ async def answer(bot, query):
                 message_text="**request on group**🎪 👇",
                 disable_web_page_preview=True),
                 reply_markup=InlineKeyboardMarkup(buttons)))
-    if '|' in query.query:
-        string, file_type = query.query.split('|', maxsplit=1)
-        string = string.strip()
-        filetype = file_type.strip().lower()
-    elif '#' in query.query:       
-        me, string = query.query.split('#', maxsplit=1)
+    if '₹' in query.query:       
+        me, string = query.query.split('₹', maxsplit=1)
         vie = string.strip()
         if len(vie) <= 2:
             return
@@ -89,15 +85,14 @@ async def answer(bot, query):
             pass
         except Exception as e:
             logging.exception(str(e))
+        return
     else:
         string = query.query.strip()
-        filetype = None
-
     offset = int(query.offset or 0)
     reply_markup = get_reply_markup(query=string)
     try:
         files, next_offset = await get_search_results(string,
-                                                     file_type=filetype,
+                                                     file_type=None,
                                                      max_results=10,
                                                      offset=offset)
     except Exception as e:
