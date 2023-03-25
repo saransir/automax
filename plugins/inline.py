@@ -34,9 +34,9 @@ async def answer(bot, query):
     if '|' in query.query:
         string, file_type = query.query.split('|', maxsplit=1)
         string = string.strip()
-        file_type = file_type.strip().lower()
-    elif '++' in query.query:       
-        me, string = query.query.split('++', maxsplit=1)
+        filetype = file_type.strip().lower()
+    elif '#' in query.query:       
+        me, string = query.query.split('#', maxsplit=1)
         vie = string.strip()
         if len(vie) <= 2:
             return
@@ -51,13 +51,13 @@ async def answer(bot, query):
         for movie in movies:
             titl = movie.get('title').strip()
             year = movie.get('year')
-            if not year:
-                year = "🎈"
-            title = f"{titl} {year}"
             mid = movie.movieID
             imdb = await get_post(mid, id=True)
             poster=None
             if imdb:
+               if not year:
+                   year = f"{imdb['year']}"
+                   # title = f"{titl} {year}"
                imdbcap = f"**{titl}**\n\n**╔‎/yᴇᴀʀ: {year}**\n**╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n**╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__\n\n **🍿ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
                poster = imdb['poster']
                imdbdis = f"ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌  ɢᴇɴʀᴇ: #{imdb['genres']} \n ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ"
@@ -65,6 +65,8 @@ async def answer(bot, query):
                if not poster:
                    poster = "https://telegra.ph/file/9075ca7cbad944afaa823.jpg"
             else:
+               if not year:
+                   year = "🎈"
                imdbcap = f"**{titl} 🍿 {year}**"
                imdbdis = "None"
                buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
@@ -89,13 +91,13 @@ async def answer(bot, query):
             logging.exception(str(e))
     else:
         string = query.query.strip()
-        file_type = None
+        filetype = None
 
     offset = int(query.offset or 0)
     reply_markup = get_reply_markup(query=string)
     try:
         files, next_offset = await get_search_results(string,
-                                                     file_type=file_type,
+                                                     file_type=filetype,
                                                      max_results=10,
                                                      offset=offset)
     except Exception as e:
