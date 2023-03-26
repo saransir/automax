@@ -14,7 +14,6 @@ BOT = {}
 SPELL_CHECK = {}
 CHAA = "-1001534114432"
 RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼", "🪗", "🎬", "🗽"]
-ARO = ["⇎", "⇔", "⊳", "⌱", "►", "★", "☆", "➺"]
 
 PHOTO = [
     "https://telegra.ph/file/9075ca7cbad944afaa823.jpg",
@@ -141,8 +140,8 @@ async def advantage_spoll_choker(bot, query):
     try:
         a1 = await query.message.edit_text(f"{imdbcap}") 
     except Exception as e:
-        await query.message.edit_text(f"{e}") 
-        return 
+        a1 = await query.message.edit_text(f"{e}") 
+         
     cha = int(CHAA)
     if files:
         chat_type = query.message.chat.type
@@ -207,7 +206,7 @@ async def advantage_spoll_choker(bot, query):
         try:
             await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
         except Exception as e:
-            await a1.edit_text(f"{e}") 
+            await a1.edit_text(f"⚠️ {e}") 
             return
     data = BUTTONS[keyword]
     buttons = data['buttons'][0].copy()
@@ -217,7 +216,7 @@ async def advantage_spoll_choker(bot, query):
     try:
         await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n\n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
     except Exception as e:
-        await a1.edit_text(f"{e}") 
+        await a1.edit_text(f"⚠️ {e}") 
         return    
 @Client.on_message(filters.text & ~filters.edited & filters.group & filters.incoming & filters.chat(FILTER_GROUPS) if FILTER_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
 async def group(client, message):
@@ -249,7 +248,7 @@ async def group(client, message):
         sesna = "_".join(x)
         files = await get_filter_results(query=search)
         if files:
-            oam = f"{random.choice(ARO)}"
+            # oam = f"{random.choice(ARO)}"
             imdb = await get_post(search)
             if imdb:
                 btn.append(
@@ -268,7 +267,7 @@ async def group(client, message):
                 tt = file.file_name[0:29].title().lstrip()
                 fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
                 dcode = fn[0:27]
-                filename = f"{dcode}{oam}{sz[0:3]} {sz[-2:]}"
+                filename = f"{dcode}⇎ {sz[0:3]} {sz[-2:]}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
