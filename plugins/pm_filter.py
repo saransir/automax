@@ -566,7 +566,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 button = str(btn)
                 idt, fname = button.split("#")
                 # ttt = re.sub(r"({|\}|\"|\])", "", fname, flags=re.IGNORECASE)
-                await bot.send_message(chat_id=LOG_CHANNEL, text=f"{fname}")
+                await client.send_message(chat_id=LOG_CHANNEL, text=f"{fname}")
             await query.answer("🤝")
         elif query.data.startswith("start"):
             buttons = [
