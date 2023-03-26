@@ -140,7 +140,7 @@ async def advantage_spoll_choker(bot, query):
     try:
         a1 = await query.message.edit_text(f"{imdbcap}") 
     except Exception as e:
-        a1 = await query.message.edit_text(f"{e}") 
+        a1 = await query.message.edit_text(f"⚠️ {e}") 
          
     cha = int(CHAA)
     if files:
@@ -248,7 +248,7 @@ async def group(client, message):
         sesna = "_".join(x)
         files = await get_filter_results(query=search)
         if files:
-            # oam = f"{random.choice(ARO)}"
+            oam = f"{random.choice(ARO)}"
             imdb = await get_post(search)
             if imdb:
                 btn.append(
@@ -264,10 +264,9 @@ async def group(client, message):
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
-                tt = file.file_name[0:29].title().lstrip()
+                tt = file.file_name[0:28].title().lstrip()
                 fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
-                dcode = fn[0:27]
-                filename = f"{dcode}⇎ {sz[0:3]} {sz[-2:]}"
+                filename = f"{oam}{sz[0:3]} {sz[-2:]}{oam}{fn}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
