@@ -111,14 +111,19 @@ async def answer(bot, query):
                 continue
 
         title=re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
-        size=file.file_size        
-        results.append(
-            InlineQueryResultCachedDocument(
-                title=title,
-                file_id=file.file_id,
-                caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <b>🍿ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>\n\n<b>♡ ㅤ   ❍ㅤ     ⎙      ⌲\nˡᶦᵏᵉ  ᶜᵒᵐᵐᵉⁿᵗ   ˢᵃᵛᵉ   ˢʰᵃʳᵉ</b>",
-                description=f'🍿 {file.file_type} Size: {get_size(file.file_size)}',
-                reply_markup=reply_markup))
+        size=file.file_size
+        try:      
+            results.append(
+                InlineQueryResultCachedDocument(
+                    title=title,
+                    file_id=file.file_id,
+                    caption=f"<u><b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</b></u>\n\n <b>🍿ʙʏ⇛[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>\n\n<b>♡ ㅤ   ❍ㅤ     ⎙      ⌲\nˡᶦᵏᵉ  ᶜᵒᵐᵐᵉⁿᵗ   ˢᵃᵛᵉ   ˢʰᵃʳᵉ</b>",
+                    description=f'🍿 {file.file_type} Size: {get_size(file.file_size)}',
+                    reply_markup=reply_markup))
+        except Exception as e:
+            await bot.send_message(chat_id=LOG_CHANNEL, text=f"{e}\n\n{file.file_id}")
+            continue
+
     if results:
         switch_pm_text = f"results"
         if string:
