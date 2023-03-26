@@ -7,7 +7,7 @@ import re
 import random
 import asyncio
 from plugins.onairmovie import INMAL, INTAM, INHIN, INENG
-from info import IMDB_TEMPLATE
+from info import IMDB_TEMPLATE, LOG_CHANNEL
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster, get_post, search_gagala, find_filter
 BUTTONS = {}
 BOT = {}
@@ -566,7 +566,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 button = str(btn)
                 idt, fname = button.split("#")
                 # ttt = re.sub(r"({|\}|\"|\])", "", fname, flags=re.IGNORECASE)
-                print(fname)
+                await bot.send_message(chat_id=LOG_CHANNEL, text=f"{fname}")
             await query.answer("🤝")
         elif query.data.startswith("start"):
             buttons = [
