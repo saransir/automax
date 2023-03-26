@@ -562,8 +562,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 return
             butns = data['buttons'][int(index)].copy()
             buttons = butns[1:]
-            for buttons in buttons
-                idt, fname = query.data.split("#")
+            for button in buttons
+                idt, fname = button.split("#")
                 # ttt = re.sub(r"({|\}|\"|\])", "", fname, flags=re.IGNORECASE)
                 logging.exception(fname)
             await query.answer("🤝")
