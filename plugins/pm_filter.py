@@ -13,7 +13,8 @@ BUTTONS = {}
 BOT = {}
 SPELL_CHECK = {}
 CHAA = "-1001534114432"
-RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼", "🪗", "🎬", "🗽",]
+RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼", "🪗", "🎬", "🗽"]
+ARO = ["⇎", "⇔", "⊳", "⌱", "►", "★", "☆", "➺"]
 
 PHOTO = [
     "https://telegra.ph/file/9075ca7cbad944afaa823.jpg",
@@ -239,7 +240,7 @@ async def group(client, message):
             return
     elif 2 < len(message.text) <= 3:
         return await spell(message)
-    elif 3 < len(message.text) < 40:    
+    elif 3 < len(message.text) < 45:    
         btn = []
         search = []
         search = message.text.strip()
@@ -248,27 +249,26 @@ async def group(client, message):
         sesna = "_".join(x)
         files = await get_filter_results(query=search)
         if files:
-            oam = f"{random.choice(RAT)}"
-            oamm = f"{random.choice(RAT)}"
+            oam = f"{random.choice(ARO)}"
             imdb = await get_post(search)
             if imdb:
                 btn.append(
                     [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ", url=f"https://www.imdb.com/title/{imdb['imdb_id']}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
                 )
                 
-                caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n\n**{oam}ꜰᴏʀ-{men}** \n\n{oamm}**ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
+                caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n\n**ꜰᴏʀ-{men}** \n**ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
             else:
-                caption = f"<b>{search}‌‌‌‌‎</b>\n\n<b>{oam}ꜰᴏʀ-{men} \n{oamm}ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"
+                caption = f"<b>{search}‌‌‌‌‎</b>\n\n<b>ꜰᴏʀ-{men} \n ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"
             btn.append(
                 [InlineKeyboardButton("⚡ Cʜᴇᴄᴋ Bᴏᴛ PM ⚡", url="https://t.me/On_air_Filter_bot")]
             )        
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
-                tt = file.file_name[0:26].title().lstrip()
+                tt = file.file_name[0:29].title().lstrip()
                 fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
-                dcode = fn[0:23]
-                filename = f"{dcode} {oam}{sz[0:3]} {sz[-2:]}{oamm}"
+                dcode = fn[0:27]
+                filename = f"{dcode}{oam}{sz[0:3]} {sz[-2:]}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
