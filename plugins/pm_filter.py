@@ -560,8 +560,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
             except KeyError:
                 await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
                 return
-            buttons = data['buttons'][int(index)].copy()
+            butns = data['buttons'][int(index)].copy()
+            buttons = butns[1:]
             for buttons in buttons
+                idt, fname = query.data.split("#")
+                # ttt = re.sub(r"({|\}|\"|\])", "", fname, flags=re.IGNORECASE)
+                logging.exception(fname)
             await query.answer("🤝")
         elif query.data.startswith("start"):
             buttons = [
