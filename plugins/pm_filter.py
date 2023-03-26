@@ -494,9 +494,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton(f"🎪 {int(index)+2}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton(text="🕯️ᴄʟᴏꜱᴇ", callback_data="close")]
                 )
-                """buttons.append(
-                    [InlineKeyboardButton(text="🍿𝚂𝙴𝙰𝚁𝙲𝙷 𝙸𝙽 𝙿𝙼🍿",callback_data=f"myree#")]
-                )"""
                 try:
                     await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
                 except MessageNotModified:
@@ -565,9 +562,42 @@ async def cb_handler(client: Client, query: CallbackQuery):
             for btn in buttons:
                 button = str(btn)
                 idt, fname = button.split("#")
-                # ttt = re.sub(r"({|\}|\"|\])", "", fname, flags=re.IGNORECASE)
-                await client.send_message(chat_id=LOG_CHANNEL, text=f"{fname}")
-            await query.answer("🤝")
+                file_id = fname[:-3]
+                filedetails = await get_file_details(file_id)
+                if not filedetails:
+                    continue
+                for files in filedetails:
+                    at = files.file_name[0:-4]
+                    title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
+                    bkuttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
+                try:  
+                    await client.send_cached_media(
+                    chat_id=query.from_user.id,
+                    file_id=file_id,
+                    caption=f"<b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛<u>{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                    reply_markup=InlineKeyboardMarkup(bkuttons)
+                    )
+                except FloodWait as e:
+                    await asyncio.sleep(e.x)
+                    await client.send_cached_media(
+                    chat_id=query.from_user.id,
+                    file_id=file_id,
+                    caption=f"<b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛<u>{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                    reply_markup=InlineKeyboardMarkup(bkuttons)
+                    )
+                except Exception as e:
+                    await query.answer(f"⚠️not available⚠️ \n\n❗️{e}❗️")
+                    return 
+            await query.answer(f"files🎬 are 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 💌sent to your pm")
+            butns.append([InlineKeyboardButton(f"🎪 Pages {int(index)}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)}_{keyword}")]                   )
+            try:
+                await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
+            except MessageNotModified:
+                await query.answer("❗️MessageNotModified❗️")
+            except Exception as e:
+                await query.answer()
+            return
+
         elif query.data.startswith("start"):
             buttons = [
                 [
