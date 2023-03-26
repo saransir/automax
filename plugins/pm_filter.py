@@ -13,7 +13,7 @@ BUTTONS = {}
 BOT = {}
 SPELL_CHECK = {}
 CHAA = "-1001534114432"
-RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🗼", "🪗", "🎬", "🗽"]
+RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🪗", "🎬", "🍒"]
 
 PHOTO = [
     "https://telegra.ph/file/9075ca7cbad944afaa823.jpg",
@@ -248,7 +248,7 @@ async def group(client, message):
         sesna = "_".join(x)
         files = await get_filter_results(query=search)
         if files:
-            oam = f"{random.choice(ARO)}"
+            oam = f"{random.choice(RAT)}"
             imdb = await get_post(search)
             if imdb:
                 btn.append(
