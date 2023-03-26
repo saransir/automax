@@ -211,7 +211,7 @@ async def advantage_spoll_choker(bot, query):
     data = BUTTONS[keyword]
     buttons = data['buttons'][0].copy()
     buttons.append(
-        [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
+        [InlineKeyboardButton(text="ᴀʟʟ 📗",callback_data=f"all_0_{keyword}"),InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
     )
     try:
         await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n\n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
@@ -553,6 +553,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 except Exception as e:
                     await query.answer()
                 return
+        elif query.data.startswith("all"):
+            ident, index, keyword = query.data.split("_")
+            try:
+                data = BUTTONS[keyword]
+            except KeyError:
+                await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
+                return
+            buttons = data['buttons'][int(index)].copy()
+            for buttons in buttons
+            await query.answer("🤝")
         elif query.data.startswith("start"):
             buttons = [
                 [
