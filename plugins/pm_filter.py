@@ -257,10 +257,7 @@ async def group(client, message):
                 
                 caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n\n**ꜰᴏʀ-{men}** \n**ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
             else:
-                caption = f"<b>{search}‌‌‌‌‎</b>\n\n<b>ꜰᴏʀ-{men} \n ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"
-            btn.append(
-                [InlineKeyboardButton("⚡ Cʜᴇᴄᴋ Bᴏᴛ PM ⚡", url="https://t.me/On_air_Filter_bot")]
-            )        
+                caption = f"<b>{search}‌‌‌‌‎</b>\n\n<b>ꜰᴏʀ-{men} \n ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"        
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
@@ -300,11 +297,7 @@ async def group(client, message):
 
         data = BUTTONS[keyword]
         buttons = data['buttons'][0].copy()
-
-        buttons.append(
-            [InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
-        )
-        
+        buttons.append([InlineKeyboardButton(text="ᴀʟʟ 📗",callback_data=f"all_0_{keyword}"),InlineKeyboardButton(text=f"🎪 1/{data['total']} 🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")])       
         poster=None
         if API_KEY:
             poster=await get_poster(search)
@@ -586,10 +579,17 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     reply_markup=InlineKeyboardMarkup(bkuttons)
                     )
                 except Exception as e:
-                    await query.answer(f"⚠️not available⚠️ \n\n❗️{e}❗️")
+                    await query.answer(f"⚠️not available⚠️ \n\n❗️{e}❗️",show_alert=True)
+                    butns.append([InlineKeyboardButton(f"🎪 Pages {int(index)+1}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)}_{keyword}")]                   )
+                    try:
+                        await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(butns))
+                    except MessageNotModified:
+                        await query.answer("❗️MessageNotModified❗️")
+                    except Exception as e:
+                        await query.answer()
                     return 
-            await query.answer(f"files🎬 are 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 💌sent to your pm")
-            butns.append([InlineKeyboardButton(f"🎪 Pages {int(index)}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)}_{keyword}")]                   )
+            await query.answer(f"files🎬 are 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 💌sent to your pm",show_alert=True)
+            butns.append([InlineKeyboardButton(f"🎪 Pages {int(index)+1}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)}_{keyword}")]                   )
             try:
                 await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(butns))
             except MessageNotModified:
