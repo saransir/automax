@@ -211,7 +211,7 @@ async def advantage_spoll_choker(bot, query):
     data = BUTTONS[keyword]
     buttons = data['buttons'][0].copy()
     buttons.append(
-        [InlineKeyboardButton(text="ᴀʟʟ 📗",callback_data=f"all_0_{keyword}"),InlineKeyboardButton(text=f"🎪 Pages 1/{data['total']}🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
+        [InlineKeyboardButton(text="ᴀʟʟ 📗",callback_data=f"all_0_{keyword}"),InlineKeyboardButton(text=f"🎪 1/{data['total']} 🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
     )
     try:
         await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n\n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
@@ -591,7 +591,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(f"files🎬 are 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 💌sent to your pm")
             butns.append([InlineKeyboardButton(f"🎪 Pages {int(index)}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)}_{keyword}")]                   )
             try:
-                await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
+                await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(butns))
             except MessageNotModified:
                 await query.answer("❗️MessageNotModified❗️")
             except Exception as e:
