@@ -10,7 +10,7 @@ from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, AUTH_GROUPS, CUSTOM_
 from utils import Media, get_file_details, get_poster, unpack_new_file_id, get_post, add_filter, get_filters, delete_filter
 from info import TUTORIAL
 from info import IMDB_TEMPLATE, IMDB_TEMPLATEE
-from plugins.pm_filter import spell
+from plugins.pm_filter import spell, BUTTONS
 from saran import db
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
@@ -160,6 +160,22 @@ async def start(bot, cmd):
             )
         )
         await cmd.delete()
+    elif usr_cmdall1.startswith("/start chek"):
+        ident, index, keyword = query.data.split("==")
+        if keyword:
+            try:
+                data = BUTTONS[keyword]
+            except KeyError:
+                await bot.send_message(chat_id=cmd.from_user.id, text="**You are using this for one of my old message, please**")
+                return
+            butns = data['buttons'][int(index)].copy()
+            buttons = butns[1:]
+            for btn in buttons:
+                button = str(btn)
+                idt, fname = button.split("#")
+                file_id = fname[:-3]
+                await bot.send_message(chat_id=cmd.from_user.id, text=f"**{file_id}**")
+               
     else:
         await cmd.reply_sticker(sticker=f"{random.choice(HI)}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="start",callback_data="start")]]))
         await cmd.delete()
