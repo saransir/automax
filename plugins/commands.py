@@ -160,7 +160,7 @@ async def start(bot, cmd):
             )
         )
         await cmd.delete()
-    elif usr_cmdall1.startswith("/start chek"):
+    elif usr_cmdall1.startswith("/start all"):
         ident, index, keyword = cmd.text.split("==")
         if keyword:
             try:
@@ -174,8 +174,33 @@ async def start(bot, cmd):
                 button = str(btn)
                 idt, fname = button.split("#")
                 file_id = fname[:-3]
-                await bot.send_message(chat_id=cmd.from_user.id, text=f"**{file_id}**")
-               
+                filedetails = await get_file_details(file_id)
+                if not filedetails:
+                    continue
+                for files in filedetails:
+                    at = files.file_name[0:-4]
+                    title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
+                    bkuttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
+                try:  
+                    await bot.send_cached_media(
+                    chat_id=cmd.from_user.id,
+                    file_id=file_id,
+                    caption=f"<b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛<u>{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                    reply_markup=InlineKeyboardMarkup(bkuttons)
+                    )
+                except FloodWait as e:
+                    await asyncio.sleep(e.x)
+                    await bot.send_cached_media(
+                    chat_id=cmd.from_user.id,
+                    file_id=file_id,
+                    caption=f"<b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛<u>{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                    reply_markup=InlineKeyboardMarkup(bkuttons)
+                    )
+                except Exception as e:
+                    await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{e}`")
+                    return
+        await cmd.delete()
+
     else:
         await cmd.reply_sticker(sticker=f"{random.choice(HI)}", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton(text="start",callback_data="start")]]))
         await cmd.delete()
