@@ -161,7 +161,7 @@ async def start(bot, cmd):
         )
         await cmd.delete()
     elif usr_cmdall1.startswith("/start chek"):
-        ident, index, keyword = query.data.split("==")
+        ident, index, keyword = cmd.text.split("==")
         if keyword:
             try:
                 data = BUTTONS[keyword]
