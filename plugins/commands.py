@@ -89,9 +89,8 @@ async def start(bot, cmd):
                 await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
-                    caption=f"<b><u>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ🍿ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>")
-                    # reply_markup=InlineKeyboardMarkup(buttons)
-                    # )
+                    caption=f"<b><u>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ🍿ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
+                    reply_markup=InlineKeyboardMarkup(buttons))
         except Exception as err:
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
     elif len(cmd.command) > 1 and cmd.command[1] == 'join':
@@ -168,11 +167,13 @@ async def start(bot, cmd):
             except KeyError:
                 await bot.send_message(chat_id=cmd.from_user.id, text="**You are using this for one of my old message, please**")
                 return
-            butns = data['buttons'][int(index)].copy()
-            buttons = butns[1:]
+            buttons = data['buttons'][int(index)].copy()
             for btn in buttons:
                 button = str(btn)
-                idt, fname = button.split("#")
+                try:
+                    idt, fname = button.split("#")
+                except:
+                    continue
                 file_id = fname[:-3]
                 filedetails = await get_file_details(file_id)
                 if not filedetails:
@@ -452,14 +453,14 @@ async def autoapprove(bot, message: ChatJoinRequest):
         await bot.approve_chat_join_request(chat_id=chat.id, user_id=user.id)
     except:
         return
-    cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
+    cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n\n 💐 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
     bantime = int(time.time() + int(33))
     # spam control 
     try:
         await bot.restrict_chat_member(chat_id=chat.id, user_id=user.id, permissions=ChatPermissions(can_send_messages=True), until_date=bantime)
     except:
         return
-    await asyncio.sleep(15) 
+    await asyncio.sleep(20) 
     await cg.delete()
 @Client.on_message(filters.new_chat_members & filters.group)
 async def auto_welcoime(bot, message):
@@ -485,11 +486,11 @@ async def auto_welcoime(bot, message):
         else:
             sa = await message.reply_text(text=f"**Thankyou For Adding Me In {chat.title}**", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
             await bot.send_message(chat_id=int(-1001529899497), text=f"**#ADDED_CHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j} \n Link {link.invite_link}**")       
-        await asyncio.sleep(30) 
+        await asyncio.sleep(90) 
         await sa.delete()
     else:
         for user in message.new_chat_members:
-            cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n 🥂 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
+            cg = await bot.send_message(chat_id=chat.id, text=f"ʜɪ {user.mention} \n\n 🥂 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ {chat.title}")
             chatt=message.chat.id
             if chatt in AUTH_GROUPS:
                 bantime = int(time.time() + int(33))
@@ -498,14 +499,14 @@ async def auto_welcoime(bot, message):
                     await bot.restrict_chat_member(chat_id=chat.id, user_id=user.id, permissions=ChatPermissions(can_send_messages=True), until_date=bantime)
                 except:
                     return
-            await asyncio.sleep(27) 
+            await asyncio.sleep(20) 
             await cg.delete()
 
 @Client.on_message(filters.command('chats') & filters.user(ADMINS))
 async def list_chats(bot, message):
     raju = await message.reply('Getting List Of chats')
     chats = await db.get_all_chats()
-    out = "Chats Saved In DB Are:\n\n"
+    out = f"**Chats{len(chats)}** Saved In DB Are:\n\n"
     async for chat in chats:
         out += f"**Title:** `{chat['title']}`\n**- ID:** `{chat['id']}`"
         if chat['chat_status']['is_disabled']:
@@ -516,7 +517,7 @@ async def list_chats(bot, message):
     except:
         with open('chats.txt', 'w+') as outfile:
             outfile.write(out)
-        await message.reply_document('chats.txt', caption="List Of Chats")
+        await message.reply_document('chats.txt', caption=f"List Of Chats🥂{len(chats)}")
 
 @Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.forwarded & filters.group & filters.incoming)
 async def delfor(bot,message):
