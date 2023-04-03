@@ -13,7 +13,7 @@ BUTTONS = {}
 BOT = {}
 SPELL_CHECK = {}
 CHAA = "-1001534114432"
-RAT = ["🦋", "🌸", "🦄", "🎈", "🥀", "🌻", "🍭", "🍿", "🪁", "🪗", "🎬", "🍒"]
+RAT = ["🦋", "🍎", "🍫", "🎈", "🥀", "🍭", "🍿", "🪁", "🍷", "🎬", "🍒"]
 
 PHOTO = [
     "https://telegra.ph/file/9075ca7cbad944afaa823.jpg",
@@ -145,16 +145,16 @@ async def advantage_spoll_choker(bot, query):
     cha = int(CHAA)
     if files:
         chat_type = query.message.chat.type
-        N = int(23)
+        N = int(25)
         if chat_type == "private":
-            N = int(31)
+            N = int(35)
             btn = []
         for file in files:
             file_id = file.file_id
             sz = get_size(file.file_size)
-            tt = str(file.file_name[0:35].title().lstrip())
+            tt = str(file.file_name[0:39].title().lstrip())
             dcode = re.sub(r"(_|\-|\.|\´|\`|\,|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
-            filename = f"{dcode[0:N]}{oam}{sz[0:3]} {sz[-2:]}{oam}"
+            filename = f"{oam}{sz[0:3]} {sz[-2:]}{oam}{dcode[0:N]}"
             btn.append(
                 [InlineKeyboardButton(text=f"{filename}",callback_data=f"saran#{file_id}")]
                 )
@@ -261,7 +261,7 @@ async def group(client, message):
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
-                tt = file.file_name[0:28].title().lstrip()
+                tt = file.file_name[0:27].title().lstrip()
                 fn = re.sub(r"(_|\-|\.|\#|\@|\+)", " ", tt, flags=re.IGNORECASE)
                 filename = f"{oam}{sz[0:3]} {sz[-2:]}{oam}{fn}"
                 btn.append(
@@ -487,6 +487,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton(f"🎪 {int(index)+2}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton(text="🕯️ᴄʟᴏꜱᴇ", callback_data="close")]
                 )
+                buttons.insert(0,
+                    [InlineKeyboardButton("⇓ ᴀʟʟ ⇓", callback_data=f"all_{int(index)+1}_{keyword}")]
+                )
                 try:
                     await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
                 except MessageNotModified:
@@ -499,6 +502,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
                 buttons.append(
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton(f"🎪{int(index)+2}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)+1}_{keyword}")]
+                )
+                buttons.insert(0,
+                    [InlineKeyboardButton("⇓ ᴀʟʟ ⇓", callback_data=f"all_{int(index)+1}_{keyword}")]
                 )
                 try:
                     await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
@@ -521,7 +527,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [InlineKeyboardButton(f"🎪 Pages {int(index)}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)-1}_{keyword}")]                   
                 )
-
+                buttons.append(
+                    [InlineKeyboardButton(" ᴀʟʟ ", callback_data=f"all_{int(index)-1}_{keyword}")]
+                )
                 try:
                     await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
                 except MessageNotModified:
@@ -535,7 +543,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [InlineKeyboardButton("⇍ʙᴀᴄᴋ⇍", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton(f"🎪{int(index)}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)-1}_{keyword}")]
                 )
-
+                buttons.insert(0,
+                    [InlineKeyboardButton("⇓ ᴀʟʟ ⇓", callback_data=f"all_{int(index)-1}_{keyword}")]
+                )
                 try:
                     await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
                 except MessageNotModified:
@@ -550,52 +560,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             except KeyError:
                 await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
                 return
-            butns = data['buttons'][int(index)].copy()
-            buttons = butns[1:]
-            for btn in buttons:
-                button = str(btn)
-                idt, fname = button.split("#")
-                file_id = fname[:-3]
-                filedetails = await get_file_details(file_id)
-                if not filedetails:
-                    continue
-                for files in filedetails:
-                    at = files.file_name[0:-4]
-                    title = re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
-                    bkuttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ 1", url="https://t.me/+PBGW_EV3ldY5YjJl"), InlineKeyboardButton("ɢʀᴏᴜᴩ 2", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
-                try:  
-                    await client.send_cached_media(
-                    chat_id=query.from_user.id,
-                    file_id=file_id,
-                    caption=f"<b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛<u>{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
-                    reply_markup=InlineKeyboardMarkup(bkuttons)
-                    )
-                except FloodWait as e:
-                    await asyncio.sleep(e.x)
-                    await client.send_cached_media(
-                    chat_id=query.from_user.id,
-                    file_id=file_id,
-                    caption=f"<b>#𝙵𝙸𝙻𝙴_𝙽𝙰𝙼𝙴⇛<u>{title}</u></b>\n\n <b>ʙʏ⇛[ᴏɴᴀɪʀ_ғɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>",
-                    reply_markup=InlineKeyboardMarkup(bkuttons)
-                    )
-                except Exception as e:
-                    await query.answer(f"⚠️not available⚠️ \n\n❗️{e}❗️",show_alert=True)
-                    butns.append([InlineKeyboardButton(f"🎪 Pages {int(index)+1}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)}_{keyword}")]                   )
-                    try:
-                        await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(butns))
-                    except MessageNotModified:
-                        await query.answer("❗️MessageNotModified❗️")
-                    except Exception as e:
-                        await query.answer()
-                    return 
-            await query.answer(f"files🎬 are 𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 💌sent to your pm",show_alert=True)
-            butns.append([InlineKeyboardButton(f"🎪 Pages {int(index)+1}/{data['total']}🎪", callback_data="pages"),InlineKeyboardButton("⇏ɴᴇxᴛ⇏", callback_data=f"next_{int(index)}_{keyword}")]                   )
-            try:
-                await query.edit_message_reply_markup(reply_markup=InlineKeyboardMarkup(butns))
-            except MessageNotModified:
-                await query.answer("❗️MessageNotModified❗️")
-            except Exception as e:
-                await query.answer()
+            await query.answer(url=f"http://t.me/On_air_Filter_bot?start=all=={index}=={keyword}")
             return
 
         elif query.data.startswith("start"):
