@@ -175,7 +175,7 @@ async def start(bot, cmd):
                                 InlineKeyboardButton(" 👉 ᴊᴏɪɴ ɢʀᴏᴜᴩ 💒 ", url=invite_link.invite_link)
                             ],
                             [
-                                InlineKeyboardButton(" 🖐️ 𝚃𝚁𝚈 𝙰𝙶𝙰𝙸𝙽 🔄", callback_data=f"all=={index}=={keyword}")
+                                InlineKeyboardButton(" 🖐️ 𝚃𝚁𝚈 𝙰𝙶𝙰𝙸𝙽 🔄", callback_data=f"all_{index}_{keyword}")
                             ]
                         ]
                     ),
