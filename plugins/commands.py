@@ -161,6 +161,35 @@ async def start(bot, cmd):
         await cmd.delete()
     elif usr_cmdall1.startswith("/start all"):
         ident, index, keyword = cmd.text.split("==")
+        if AUTH_CHANNEL:
+            try:
+                user = await bot.get_chat_member(int(AUTH_CHANNEL), cmd.from_user.id)
+            except UserNotParticipant:
+                invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
+                await bot.send_message(
+                    chat_id=cmd.from_user.id,
+                    text="__Join My group 💒 to use this Bot__",
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton(" 👉 ᴊᴏɪɴ ɢʀᴏᴜᴩ 💒 ", url=invite_link.invite_link)
+                            ],
+                            [
+                                InlineKeyboardButton(" 🖐️ 𝚃𝚁𝚈 𝙰𝙶𝙰𝙸𝙽 🔄", callback_data=f"all=={index}=={keyword}")
+                            ]
+                        ]
+                    ),
+                    parse_mode="markdown"
+                )
+                return await cmd.delete()
+            except Exception:
+                await bot.send_message(
+                    chat_id=cmd.from_user.id,
+                    text="Something went Wrong.",
+                    parse_mode="markdown",
+                    disable_web_page_preview=True
+                )
+                return await cmd.delete()
         if keyword:
             try:
                 data = BUTTONS[keyword]
