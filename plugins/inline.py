@@ -24,7 +24,7 @@ async def answer(bot, query):
     buttons = [[InlineKeyboardButton("ɢʀᴏᴜᴩ", url="https://t.me/+eDjzTT2Ua6kwMTI1")]]
     nd.append(
         InlineQueryResultArticle(
-            title="request on group 🎪",
+            title="request on group",
             thumb_url="https://telegra.ph/file/d651c3858b99538bdb311.jpg",
             description="ask movie/series in group",
             input_message_content=InputTextMessageContent(
