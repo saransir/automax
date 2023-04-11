@@ -96,7 +96,6 @@ async def answer(bot, query):
                                                      max_results=10,
                                                      offset=offset)
     except Exception as e:
-        await bot.send_message(chat_id=LOG_CHANNEL, text=f"{e}")
         logging.exception(str(e))
         return
 
@@ -107,7 +106,6 @@ async def answer(bot, query):
             try:
                 at=f_caption[0:40]
             except Exception as e:
-                await bot.send_message(chat_id=LOG_CHANNEL, text=f"{e}\n\n{file.file_id}")
                 continue
 
         title=re.sub(r"(#|\@|\~|\©|\[|\]|\_|\.)", " ", at, flags=re.IGNORECASE)
@@ -138,7 +136,6 @@ async def answer(bot, query):
         except QueryIdInvalid:
             pass
         except Exception as e:
-            await bot.send_message(chat_id=LOG_CHANNEL, text=f"{e}")
             logging.exception(str(e))
     else:
         switch_pm_text = f'{emoji.CROSS_MARK} No results'
