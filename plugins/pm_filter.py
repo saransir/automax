@@ -75,8 +75,9 @@ async def advantage_spoll_choker(bot, query):
         print(e)
         return await query.message.delete()
     message = query.message.reply_to_message
-    if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer("Don't click others Requested files🎬", show_alert=True)
+    if not query.from_user.id in ADMINS:
+        if int(user) != 0 and query.from_user.id != int(user):
+            return await query.answer("Don't click others Requested files🎬", show_alert=True)
     if movie_  == "close_spellcheck":
         try:
             await message.delete()
@@ -122,8 +123,7 @@ async def advantage_spoll_choker(bot, query):
         if yea:
             files = await get_filter_results(movie)
             if files:
-                files += await get_filter_results(mov)
-                
+                files += await get_filter_results(mov)   
             else:
                 files = await get_filter_results(mov)
         else:
@@ -140,8 +140,7 @@ async def advantage_spoll_choker(bot, query):
     try:
         a1 = await query.message.edit_text(f"{imdbcap}") 
     except Exception as e:
-        a1 = await query.message.edit_text(f"⚠️ {e}") 
-         
+        a1 = query.message     
     cha = int(CHAA)
     if files:
         chat_type = query.message.chat.type
@@ -204,9 +203,9 @@ async def advantage_spoll_choker(bot, query):
             [InlineKeyboardButton(" 💒💒  ᴄʜᴀɴɴᴇʟ 💒💒 ", url="https://t.me/+R9zxAI4mCkk0NzVl")]
         )
         try:
-            await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+            await a1.edit_text(f"{oam} <b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
         except Exception as e:
-            await a1.edit_text(f"⚠️ {e}") 
+            await a1.edit_text(f"⚠️ {e} ⚠️") 
             return
     data = BUTTONS[keyword]
     buttons = data['buttons'][0].copy()
@@ -214,9 +213,9 @@ async def advantage_spoll_choker(bot, query):
         [InlineKeyboardButton(text="ᴀʟʟ 📗",callback_data=f"all_0_{keyword}"),InlineKeyboardButton(text=f"🎪 1/{data['total']} 🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
     )
     try:
-        await a1.edit_text(f"<b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>{oam}ꜰᴏʀ-{message.from_user.mention} \n\n⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+        await a1.edit_text(f"<b>{oam} {imdbcap} ‌‌‌‌‎</b> \n\n<b>ꜰ⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
     except Exception as e:
-        await a1.edit_text(f"⚠️ {e}") 
+        await a1.edit_text(f"⚠️ {e} ⚠️") 
         return    
 @Client.on_message(filters.text & ~filters.edited & filters.group & filters.incoming & filters.chat(FILTER_GROUPS) if FILTER_GROUPS else filters.text & filters.group & ~filters.edited & filters.incoming)
 async def group(client, message):
@@ -227,7 +226,6 @@ async def group(client, message):
             except Exception as e:
                 print(e)
         return
-    men = message.from_user.mention if message.from_user else "Anonymous" 
     if len(message.text) <= 2:
         kk = await message.reply_text(f"{men},ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ")
         await asyncio.sleep(10)
@@ -255,9 +253,9 @@ async def group(client, message):
                     [InlineKeyboardButton(text="🎪 ɪɴꜰᴏ ", url=f"https://www.imdb.com/title/{imdb['imdb_id']}"),InlineKeyboardButton(text="🕵️ 𝙿𝙼",callback_data=f"myree#{sesna}")]
                 )
                 
-                caption = f"**{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n\n**ꜰᴏʀ-{men}** \n**ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
+                caption = f"{oam} **{search}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌**\n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n__ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n\n**ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)**"
             else:
-                caption = f"<b>{search}‌‌‌‌‎</b>\n\n<b>ꜰᴏʀ-{men} \n ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"        
+                caption = f"{oam} <b>{search}‌‌‌‌‎</b>\n\n<b>ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>"        
             for file in files:
                 file_id = file.file_id
                 sz = get_size(file.file_size)
@@ -347,7 +345,8 @@ async def spell(message):
         title = movie.get('title')[:27]
         year = movie.get('year')
         if not year:
-            year = oam
+            imdnb = await get_post(query=movie.movieID, id=True)
+            year = imdnb.get('year')
         btn.append(
             [InlineKeyboardButton(text=f"{oam} {title} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
