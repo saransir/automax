@@ -136,7 +136,7 @@ async def advantage_spoll_choker(bot, query):
     if imdb:
         imdbcap = f"**{movie}**\n\n **╔‎/yᴇᴀʀ: {imdb['year']}**\n **╠|ʀᴀᴛɪɴɢ‌‌‌‌‎: {imdb['rating']}/10‌‌‌‌** \n **╚\ɢᴇɴʀᴇ: #{imdb['genres']}**\n\n__ʀᴜɴᴛɪᴍᴇ: {imdb['runtime']}ᴍɪɴ__\n __ʟᴀɴɢᴜᴀɢᴇꜱ: #{imdb['languages']}__\n 💡__ʀᴇʟᴇᴀꜱᴇ ᴅᴀᴛᴇ: {imdb['release_date']}__"
     else:
-        imdbcap = f" **{movie}**"
+        imdbcap = f"**{movie}**"
     try:
         a1 = await query.message.edit_text(f"{imdbcap}") 
     except Exception as e:
@@ -203,7 +203,7 @@ async def advantage_spoll_choker(bot, query):
             [InlineKeyboardButton(" 💒💒  ᴄʜᴀɴɴᴇʟ 💒💒 ", url="https://t.me/+R9zxAI4mCkk0NzVl")]
         )
         try:
-            await a1.edit_text(f"{oam} <b>{imdbcap} ‌‌‌‌‎</b> \n\n<b>⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+            await a1.edit_text(f"{oam} <b>{imdbcap} ‌‌‌‌‎</b> \n\n  <b>⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
         except Exception as e:
             await a1.edit_text(f"⚠️ {e} ⚠️") 
             return
@@ -213,7 +213,7 @@ async def advantage_spoll_choker(bot, query):
         [InlineKeyboardButton(text="ᴀʟʟ 📗",callback_data=f"all_0_{keyword}"),InlineKeyboardButton(text=f"🎪 1/{data['total']} 🎪",callback_data="pages"),InlineKeyboardButton(text="⇏ɴᴇxᴛ⇏",callback_data=f"next_0_{keyword}")]
     )
     try:
-        await a1.edit_text(f"<b>{oam} {imdbcap} ‌‌‌‌‎</b> \n\n<b>ꜰ⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+        await a1.edit_text(f"<b>{oam} {imdbcap} ‌‌‌‌‎</b> \n\n   <b>⚡️ʙʏ:[𝙾ɴ𝙰ɪʀ_𝚏ɪʟᴛᴇʀᵇᵒᵗ](https://t.me/On_air_Filter_bot)</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
     except Exception as e:
         await a1.edit_text(f"⚠️ {e} ⚠️") 
         return    
@@ -227,7 +227,7 @@ async def group(client, message):
                 print(e)
         return
     if len(message.text) <= 2:
-        kk = await message.reply_text(f"{men},ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ")
+        kk = await message.reply_text(f"ɪɴᴄʟᴜᴅᴇ ʏᴇᴀʀ ᴏғ ᴛʜᴇ ᴍᴏᴠɪᴇ. \n\n 𝚜𝚎𝚗𝚝👉 ᴍᴏᴠɪᴇ ɴᴀᴍᴇ & yᴇᴀʀ")
         await asyncio.sleep(10)
         await kk.delete()
         try:
@@ -343,10 +343,8 @@ async def spell(message):
     oam = f"{random.choice(RAT)}"
     for movie in movies:
         title = movie.get('title')[:27]
-        year = movie.get('year')
-        if not year:
-            imdnb = await get_post(query=movie.movieID, id=True)
-            year = imdnb.get('year')
+        imdnb = await get_post(query=movie.movieID, id=True)
+        year = imdnb.get('year')
         btn.append(
             [InlineKeyboardButton(text=f"{oam} {title} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
