@@ -343,8 +343,7 @@ async def spell(message):
     oam = f"{random.choice(RAT)}"
     for movie in movies:
         title = movie.get('title')[:27]
-        imdnb = await get_post(query=movie.movieID, id=True)
-        year = imdnb.get('year')
+        year = movie.get('year')
         btn.append(
             [InlineKeyboardButton(text=f"{oam} {title} {year}",callback_data=f"spo#se#{user}#{movie.movieID}")]
         )
