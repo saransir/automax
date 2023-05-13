@@ -535,7 +535,8 @@ async def auto_welcoime(bot, message):
 async def list_chats(bot, message):
     raju = await message.reply('Getting List Of chats')
     chats = await db.get_all_chats()
-    out = f"**Chats{len(chats)}** Saved In DB Are:\n\n"
+    totl_chats = await db.total_chat_count()
+    out = f"**Chats-{totl_chats}-** Saved In DB Are:\n\n"
     async for chat in chats:
         out += f"**Title:** `{chat['title']}`\n**- ID:** `{chat['id']}`"
         if chat['chat_status']['is_disabled']:
@@ -546,7 +547,7 @@ async def list_chats(bot, message):
     except:
         with open('chats.txt', 'w+') as outfile:
             outfile.write(out)
-        await message.reply_document('chats.txt', caption=f"List Of Chats🥂{len(chats)}")
+        await message.reply_document('chats.txt', caption=f"List Of Chats🥂{totl_chats}")
 
 @Client.on_message(filters.forwarded & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.forwarded & filters.group & filters.incoming)
 async def delfor(bot,message):
