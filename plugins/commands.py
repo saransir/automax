@@ -37,7 +37,6 @@ async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/start seren"):
         if AUTH_CHANNEL:
-            invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
             try:
                 user = await bot.get_chat_member(int(AUTH_CHANNEL), cmd.from_user.id)
                 if user.status == "kicked":
@@ -50,6 +49,7 @@ async def start(bot, cmd):
                     return await cmd.delete()
             except UserNotParticipant:
                 ident, file_id = cmd.text.split("_-_-_-_")
+                invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
                 await bot.send_message(
                     chat_id=cmd.from_user.id,
                     text="__Join My group 💒 to use this Bot__",
@@ -77,7 +77,6 @@ async def start(bot, cmd):
         try:
             ident, file_id = cmd.text.split("_-_-_-_")
             await cmd.reply_chat_action("upload_document")
-            await asyncio.sleep(.5)
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 at = files.file_name[0:-4]
@@ -511,7 +510,7 @@ async def auto_welcoime(bot, message):
             link = await bot.create_chat_invite_link(chatt)
         except:
             sa = await message.reply_text(text=f"**Thankyou For Adding Me In {chat.title}**\n\n __make me as admin and give Sufficient Rights__", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-            await bot.send_message(chat_id=int(-1001529899497), text=f"**#ADDED_CHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j} \n 👉 @{message.chat.username}**")       
+            await bot.send_message(chat_id=int(-1001529899497), text=f"**#ADDED_CHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j}**")       
         else:
             sa = await message.reply_text(text=f"**Thankyou For Adding Me In {chat.title}**", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
             await bot.send_message(chat_id=int(-1001529899497), text=f"**#ADDED_CHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j} \n Link {link.invite_link}**")       
