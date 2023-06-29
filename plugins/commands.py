@@ -510,7 +510,7 @@ async def auto_welcoime(bot, message):
         try:
             link = await bot.create_chat_invite_link(chatt)
         except:
-            liink = f"@{chat.username}"
+            liink = f"@{message.chat.username}"
             sa = await message.reply_text(text=f"**Thankyou For Adding Me In {chat.title}**\n\n __make me as admin and give Sufficient Rights__", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
             await bot.send_message(chat_id=int(-1001529899497), text=f"**#ADDED_CHAT \n Title :{message.chat.title}\n ID :{message.chat.id}\n Members :{total} \n by {r_j}** \n Link {liink} ")       
         else:
