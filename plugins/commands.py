@@ -465,11 +465,11 @@ async def bot_kunna(bot, message):
     await message.reply_chat_action("typing")
     await asyncio.sleep(1)
     await message.reply(text=f"<b>If you want all the new and old movies and web series, click on the link below 👇\n\n\n https://t.me/+eDjzTT2Ua6kwMTI1 https://t.me/+eDjzTT2Ua6kwMTI1 </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-@Client.on_message(filters.regex('https') & filters.group)
-async def hellto(bot, message):
-    if not ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
+@Client.on_message(filters.regex(['https', 'http']) & filters.group)
+async def hellkto(bot, message):
+    if ((message.from_user.id == "None") or (message.from_user.id in ADMINS)):
         try:
-            await message.delete()
+            await message.pin()
         except:
             return
 @Client.on_chat_join_request(filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.group)
